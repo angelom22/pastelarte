@@ -32,13 +32,9 @@
 
     @stack('css')
 </head>
-<head>
 
-
-
-
-</head>
 <body>
+    
     <div id="app" class="wrapper">
         <div class="preloader"></div>
             <!-- <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
