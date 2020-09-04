@@ -111,6 +111,10 @@
         <!-- Our Footer -->
         @include('layouts.footer')
 
+        <!-- Modal Cursos-->
+        @include('resources.modal_curso')
+
+
     </div>
     
     <script type="text/javascript" src="{{asset('js/jquery-3.3.1.js')}}"></script>
