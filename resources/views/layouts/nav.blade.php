@@ -26,7 +26,7 @@
                     <a href="#"><span class="title">Cursos</span></a>
                     <!-- Level Two-->
                     <ul>
-                        <li><a href="#">Todos los cursos</a></li>
+                        <li><a href="{{ url('/cursos') }}">Todos los cursos</a></li>
                         <li><a href="#">Técnicas de pastelería</a></li>
                         <li><a href="#">Masas</a></li>
                         <li><a href="#">Decoración de tortas comerciales</a></li>

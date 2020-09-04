@@ -22,6 +22,8 @@ Route::resource('/user', 'UserController',['except' => ['create','store']])->nam
 
 Route::resource('/blog', 'BlogController')->names('blog');
 
+Route::resource('/cursos', 'CursoController')->names('cursos');
+
 Route::resource('/categoria', 'CategoryController')->names('categoria');
 
 Route::resource('/etiqueta', 'TagController')->names('etiqueta');
