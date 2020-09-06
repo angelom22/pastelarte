@@ -86,7 +86,7 @@
 				<div class="col-sm-8 col-md-5 col-lg-6 col-xl-6 pb25 pt25">
 					<div class="footer_menu_widget">
 						<ul>
-							<li class="list-inline-item"><a href="index.php">Home</a></li>
+							<li class="list-inline-item"><a href="{{ url('/') }}">Home</a></li>
 							<li class="list-inline-item"><a href="#">Privacy</a></li>
 							<li class="list-inline-item"><a href="#">Terms</a></li>
 						</ul>
