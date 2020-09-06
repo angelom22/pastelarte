@@ -51,7 +51,7 @@ class RoleController extends Controller
         $request->validate([
             'name'          => 'required|max:50|unique:roles,name',
             'slug'          => 'required|max:50|unique:roles,slug',
-            'full-access'   => 'required|in:yes,no'
+            'full_access'   => 'required|in:yes,no'
         ]);
 
         $role = Role::create($request->all());
@@ -123,7 +123,7 @@ class RoleController extends Controller
         $request->validate([
             'name'          => 'required|max:50|unique:roles,name,'.$role->id,
             'slug'          => 'required|max:50|unique:roles,slug,'.$role->id,
-            'full-access'   => 'required|in:yes,no'
+            'full_access'   => 'required|in:yes,no'
         ]);
 
         $role->update($request->all());

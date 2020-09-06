@@ -20,7 +20,17 @@ Route::resource('/role', 'RoleController')->names('role');
 
 Route::resource('/user', 'UserController',['except' => ['create','store']])->names('user');
 
-Route::resource('/blog', 'BlogController')->names('blog');
+// Route::resource('/blog', 'BlogController')->names('blog');
+/**
+ *  Rutas para los articulos
+ */
+Route::resource('/blog', 'BlogController')->names([
+    'update'   => 'BlogUpdate',
+    'create'     => 'BlogCreate',
+    'store'       => 'BlogStore',
+    'edit'         => 'BlogEdit'
+]);
+
 
 Route::resource('/cursos', 'CursoController')->names('cursos');
 

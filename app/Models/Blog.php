@@ -8,6 +8,7 @@ use Cviebrock\EloquentSluggable\SluggableScopeHelpers;
 use App\Models\Category;
 use App\Models\Tag;
 use App\User;
+use  Carbon\Carbon;
 
 class Blog extends Model
 {
@@ -20,7 +21,7 @@ class Blog extends Model
     {
         return [
             'slug' => [
-                'source' => 'name',
+                'source' => 'title',
                 'maxLength'          => null,
                 'maxLengthKeepWords' => true,
                 'method'             => null,
@@ -44,7 +45,7 @@ class Blog extends Model
     protected $table = 'blogs';
 
     protected $fillable = [
-       'user_id', 'category_id', 'name', 'slug', 'extracto', 'content', 'status', 'file'
+       'user_id', 'category_id', 'title', 'slug', 'extracto', 'content', 'status', 'file', 'iframe', 'published_at'
     ];
 
     public function user(){
@@ -57,5 +58,15 @@ class Blog extends Model
 
     public function tags(){
         return $this->belongsToMany(Tag::class);
+    }
+
+    public function scopePublicados($query){
+
+        $query->orderBy('id', 'DESC')
+                ->whereNotNull('published_at')
+                ->where('published_at', '<=' , Carbon::now() )
+                ->latest('published_at')
+                ->where('status', 'PUBLICADO');
+
     }
 }

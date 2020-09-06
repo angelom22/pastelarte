@@ -11,7 +11,7 @@
                     <span class="icon-bar"></span>
                 </button>
             </div>
-            <a href="index.php" class="navbar_brand float-left dn-smd">
+            <a href="{{('/')}}" class="navbar_brand float-left dn-smd">
                 <img class="logo1 img-fluid" src="{{asset('img/header-logo.png')}}" alt="header-logo.png">
                 <img class="logo2 img-fluid" src="{{asset('img/header-logo2.png')}}" alt="header-logo2.png">
                 <span>Pastel Arte</span>
@@ -20,7 +20,7 @@
             <!--Note: declare the Menu style in the data-menu-style="horizontal" (options: horizontal, vertical, accordion) -->
             <ul id="respMenu" class="ace-responsive-menu" data-menu-style="horizontal">
                 <li style="display: none;">
-                    <a href="#"><span class="title">Home</span></a>
+                    <a href="{{url('/')}}"><span class="title">Home</span></a>
                 </li>
                 <li>
                     <a href="#"><span class="title">Cursos</span></a>
@@ -45,7 +45,7 @@
                     <a href="#"><span class="title">Eventos</span></a>
                 </li>
                 <li>
-                    <a href="#"><span class="title">Blog</span></a>
+                    <a href="{{url('blog')}}"><span class="title">Blog</span></a>
                 </li>
                 <li class="last">
                     <a href="page-contact.html"><span class="title">Contacto</span></a>
@@ -61,7 +61,7 @@
 
             <li class="list-inline-item list_s">
                 
-                <a id="navbarDropdown" style="font-size: 13px;" class="btn nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                <a id="navbarDropdown" style="font-size: 12px;" class="btn nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                     {{ Auth::user()->name }} <span class="caret"></span>
                 </a>
                 

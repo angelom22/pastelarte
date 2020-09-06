@@ -89,18 +89,26 @@
             </li>
             <li class="user_setting">
                 <div class="dropdown">
-                    <a class="btn dropdown-toggle" href="#" data-toggle="dropdown"><img class="rounded-circle" src="{{asset('img/team/e1.png')}}" alt="e1.png"></a>
+                    <a class="btn dropdown-toggle" href="#" data-toggle="dropdown"><img class="rounded-circle" src="{{asset(Auth::user()->avatar)}}" style="height: 50px; width:50px;" alt="avatar"></a>
                     <div class="dropdown-menu">
                         <div class="user_set_header">
-                            <img class="float-left" src="{{asset('img/team/e1.png')}}" alt="e1.png">
-                            <p>Kim Hunter <br><span class="address">kimhunter@gmail.com</span></p>
+                            <img class="float-left" src="{{asset(Auth::user()->avatar)}}" style="height: 50px; width:50px;" alt="avatar">
+                            <p>{{Auth::user()->name}} <br><span class="address">{{Auth::user()->email}}</span></p>
                         </div>
                         <div class="user_setting_content">
-                            <a class="dropdown-item active" href="#">My Profile</a>
-                            <a class="dropdown-item" href="#">Messages</a>
-                            <a class="dropdown-item" href="#">Purchase history</a>
-                            <a class="dropdown-item" href="#">Help</a>
-                            <a class="dropdown-item" href="#">Log out</a>
+                            <a class="dropdown-item active" href="#">Mi Perfil</a>
+                            <a class="dropdown-item" href="#">Mensajes</a>
+                            <!-- <a class="dropdown-item" href="#">Purchase history</a> -->
+                            <a class="dropdown-item" href="#">Ayuda</a>
+                            <a class="dropdown-item" href="{{ route('logout') }}"
+                                onclick="event.preventDefault();
+                                                document.getElementById('logout-form').submit();">
+                                <i class="fa fa-arrow-left fa-fw"></i>
+                                    {{ __('Salir') }}
+                            </a>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                @csrf
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -109,7 +117,6 @@
         <div class="header stylehome1 dashbord_mobile_logo dashbord_pages">
             <div class="main_logo_home2">
                 <img class="nav_logo_img img-fluid float-left mt20" src="{{asset('img/header-logo.png')}}" alt="header-logo.png">
-                <span>edumy</span>
             </div>
             <ul class="menu_bar_home2">
                 <li class="list-inline-item"></li>

@@ -25,7 +25,7 @@
         <div class="row">
             <div class="col-lg-6 offset-lg-3">
                 <div class="main-title text-center">
-                    <h3 class="mt0 mb0">Featured Posts</h3>
+                    <h3 class="mt0 mb0">Publicaciones destacadas</h3>
                 </div>
             </div>
         </div>
@@ -97,14 +97,14 @@
                         <div class="thumb">
                             @if($blog->file)
                             <a href="#">
-                                <img class="img-fluid" src="{{$blog->file}}" alt="12.jpg">
+                                <img class="img-fluid" src="{{ asset('storage/'.$blog->file)}}" style="width:982px; height:500px" alt="{{$blog->slug}}">
                             </a>
                             @endif
                             <div class="tag">{{$blog->category->name}} </div>
-                            <div class="post_date"><h2>28</h2> <span>DECEMBER</span></div>
+                            <div class="post_date"><h2>20</h2> <span>DECEMBER</span></div>
                         </div>
                         <div class="details">
-                           <a href="{{route('blog.show', $blog->slug )}}"><h3>{{$blog->name}}</h3></a> 
+                           <a href="{{route('blog.show', $blog->slug )}}"><h3>{{$blog->title}}</h3></a> 
                             <ul class="post_meta">
                                 <li><a href="#"><span class="flaticon-profile"></span></a></li>
                                 <li><a href="#"><span>{{$blog->user->name}}</span></a></li>
@@ -153,7 +153,7 @@
                         </ul>
                     </div>
                     <div class="blog_recent_post_widget media_widget">
-                        <h4 class="title">Recent Posts</h4>
+                        <h4 class="title">Publicaciones Recientes</h4>
                         <div class="media">
                             <img class="align-self-start mr-3" src="{{asset('img/blog/s1.jpg')}}" alt="s1.jpg">
                             <div class="media-body">

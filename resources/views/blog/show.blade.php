@@ -1,5 +1,8 @@
 @extends('layouts.app')
 
+@section('meta_title', $blog->title)
+@section('meta_description', $blog->extracto)
+
 @section('content')
 
 <!-- Inner Page Breadcrumb -->
@@ -27,7 +30,7 @@
                 <div class="main_blog_post_content">
                     <div class="mbp_thumb_post">
                         <div class="thumb">
-                            <img class="img-fluid" src="{{$blog->file}}" alt="12.jpg">
+                            <img class="img-fluid" src="{{ asset('storage/'.$blog->file)}}" style="width:982px; height:500px" alt="{{$blog->slug}}">
                             <div class="tag">{{$blog->category->name}}</div>
                             <div class="post_date"><h2>28</h2> <span>DECEMBER</span></div>
                         </div>
@@ -40,7 +43,7 @@
                                 <li><a href="#"><span>7 comments</span></a></li>
                             </ul>
                             <h4>Descripción</h4>
-                            <p>{{$blog->content}}</p>
+                            <p>{!! $blog->content !!}</p>
                             <h4 class="mb0">Content</h4>
                             <ul class="bs_content_list">
                                 <li><p>You will need a copy of Adobe XD 2019 or above. A free trial can be downloaded from Adobe.</p></li>

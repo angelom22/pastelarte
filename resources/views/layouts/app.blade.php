@@ -5,12 +5,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0'/>
     <meta name="keywords" content="escuela de pasteleria, cursos, cursos online, educacion, reposteria, aprendizaje, decoracion de tortas, cupcake cursos, cursos de tortas, pasapalos, educacion online resporteria, estudiantes, entrenamiento, pastel arte, escuela online de pasteleria">
-    <meta name="description" content="Pastel Arte - Escuela de pastelería y decoración de tortas">
+    <meta name="description" content="@yield('meta_description', 'Pastel Arte - Escuela de pastelería y decoración de tortas')">
     <meta name="robots" content="index, follow">
     <meta name="google" content="nositelinkssearchbox">
     <!-- css file -->
     
-    <title>Pastel Arte | Escuela online de pastelería | Decoración de tortas | cursos</title>
+    <title>@yield('meta_title',  "Pastel Arte | Escuela online de pastelería | Decoración de tortas | cursos" )
+    </title>
+    <!-- <title>Pastel Arte | Escuela online de pastelería | Decoración de tortas | cursos</title> -->
     <!-- <title>{{ config('app.name', 'Pastel Arte') }}</title> -->
 
     <!-- css file -->
@@ -97,6 +99,7 @@
         @include('layouts.nav')
 
         <!-- Modal Login-->
+        
         @include('resources.modal_login')
 
         <!-- Main Header Nav For Mobile -->
@@ -134,22 +137,26 @@
     <script type="text/javascript" src="{{asset('js/timepicker.js')}}"></script>
     <!-- Custom script for all pages --> 
     <script type="text/javascript" src="{{asset('js/script.js')}}"></script>
-    <!-- Script para trabajar el modal -->
-    <script>
-       if(window.location.hash === '#login')
-        {
-            $('#Modal_Login').modal('show');
-        }
 
-        $('#Modal_Login').on('hide.bs.modal', function(){
-            window.location.hash = '#';
-        });
-        
-        $('#Modal_Login').on('shown.bs.modal', function(){
-            $('#email').focus();
-            window.location.hash = '#login';
-        });
-    </script>
+    <!-- Script para trabajar el modal -->
+    @unless(Auth::user())
+        <script>
+        if(window.location.hash === '#login')
+            {
+                $('#Modal_Login').modal('show');
+            }
+
+            $('#Modal_Login').on('hide.bs.modal', function(){
+                window.location.hash = '#';
+            });
+            
+            $('#Modal_Login').on('shown.bs.modal', function(){
+                $('#email').focus();
+                window.location.hash = '#login';
+            });
+        </script>
+    @endunless
+
     @stack('js')
 
 </body>

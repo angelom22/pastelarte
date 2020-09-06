@@ -15,7 +15,7 @@ $factory->define(Blog::class, function (Faker $faker) {
     return [
         'user_id' => rand(1,30),
         'category_id' => rand(1,20),
-        'name' => $title,
+        'title' => $title,
         'slug' => $slug,
         'extracto' => $faker->text(200),
         'content' => $faker->text(500),

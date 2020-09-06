@@ -11,84 +11,44 @@
                     <span class="icon-bar"></span>
                 </button>
             </div>
-            <a href="#" class="navbar_brand float-left dn-smd">
+            <a href="{{('/')}}" class="navbar_brand float-left dn-smd">
                 <img class="logo1 img-fluid" src="{{asset('img/header-logo.png')}}" alt="header-logo.png">
-                <img class="logo2 img-fluid" src="{{asset('img/header-logo.png')}}" alt="header-logo.png">
-                <span>edumy</span>
+                <img class="logo2 img-fluid" src="{{asset('img/header-logo2.png')}}" alt="header-logo2.png">
+                <span>Pastel Arte</span>
             </a>
             <!-- Responsive Menu Structure-->
             <!--Note: declare the Menu style in the data-menu-style="horizontal" (options: horizontal, vertical, accordion) -->
             <ul id="respMenu" class="ace-responsive-menu" data-menu-style="horizontal">
+                <li style="display: none;">
+                    <a href="{{url('/')}}"><span class="title">Home</span></a>
+                </li>
                 <li>
-                    <a href="#"><span class="title">Home</span></a>
+                    <a href="#"><span class="title">Cursos</span></a>
                     <!-- Level Two-->
                     <ul>
-                        
+                        <li><a href="{{ url('/cursos') }}">Todos los cursos</a></li>
+                        <li><a href="#">Técnicas de pastelería</a></li>
+                        <li><a href="#">Masas</a></li>
+                        <li><a href="#">Decoración de tortas comerciales</a></li>
+                        <li><a href="#">Técnicas en fondant</a></li>
                     </ul>
                 </li>
                 <li>
-                    <a href="#"><span class="title">Courses</span></a>
+                    <a href="#"><span class="title">Carreras</span></a>
                     <!-- Level Two-->
                     <ul>
-                        <li>
-                            <a href="#">Courses List</a>
-                            <!-- Level Three-->
-                            <ul>
-                                
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="#">Courses Single</a>
-                            <!-- Level Three-->
-                            <ul>
-                                
-                            </ul>
-                        </li>
-                        <li><a href="#">Instructors</a></li>
-                        <li><a href="#">Instructor Single</a></li>
+                        <li><a href="#">Pastelería</a></li>
+                        <li><a href="#">Decoración de tortas</a></li>
                     </ul>
                 </li>
                 <li>
-                    <a href="#"><span class="title">Events</span></a>
-                    <ul>
-                        
-                    </ul>
+                    <a href="#"><span class="title">Eventos</span></a>
                 </li>
                 <li>
-                    <a href="#"><span class="title">Pages</span></a>
-                    <ul>
-                        <li>
-                            <a href="#"><span class="title">Shop Pages</span></a>
-                            <ul>
-                                
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="#"><span class="title">User Admin</span></a>
-                            <ul>
-                                
-                            </ul>
-                        </li>
-                        <li><a href="#">About Us</a></li>
-                        <li><a href="#">Gallery</a></li>
-                        <li><a href="#">Faq</a></li>
-                        <li><a href="#">LogIn</a></li>
-                        <li><a href="#">Register</a></li>
-                        <li><a href="#">Membership</a></li>
-                        <li><a href="#">404 Page</a></li>
-                        <li><a href="#">Terms and Conditions</a></li>
-                        <li><a href="#">Become an Instructor</a></li>
-                        <li><a href="#">UI Elements</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="#"><span class="title">Blog</span></a>
-                    <ul>
-                        
-                    </ul>
+                    <a href="{{url('blog')}}"><span class="title">Blog</span></a>
                 </li>
                 <li class="last">
-                    <a href="page-contact"><span class="title">Contact</span></a>
+                    <a href="page-contact.html"><span class="title">Contacto</span></a>
                 </li>
             </ul>
             <ul class="header_user_notif pull-right dn-smd">
@@ -180,17 +140,17 @@
                 </li>
                 <li class="user_setting">
                     <div class="dropdown">
-                        <a class="btn dropdown-toggle" href="#" data-toggle="dropdown"><img class="rounded-circle" src="{{asset(Auth::user()->avatar)}}" alt="avatar perfil"></a>
+                        <a class="btn dropdown-toggle" href="#" data-toggle="dropdown"><img class="rounded-circle" src="{{asset(Auth::user()->avatar)}}" style="height: 50px; width:50px;" alt="avatar"></a>
                         <div class="dropdown-menu">
                             <div class="user_set_header">
-                                <img class="float-left" src="{{asset(Auth::user()->avatar)}}" alt="Perfil">
+                                <img class="float-left" src="{{asset(Auth::user()->avatar)}}" style="height: 50px; width:50px;" alt="avatar">
                                 <p>{{Auth::user()->name}} <br><span class="address">{{Auth::user()->email}}</span></p>
                             </div>
                             <div class="user_setting_content">
-                                <a class="dropdown-item active" href="#">My Profile</a>
-                                <a class="dropdown-item" href="#">Messages</a>
-                                <a class="dropdown-item" href="#">Purchase history</a>
-                                <a class="dropdown-item" href="#">Help</a>
+                                <a class="dropdown-item active" href="#">Mi Perfil</a>
+                                <a class="dropdown-item" href="#">Mensajes</a>
+                                <!-- <a class="dropdown-item" href="#">Purchase history</a> -->
+                                <a class="dropdown-item" href="#">Ayuda</a>
                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                     onclick="event.preventDefault();
                                                     document.getElementById('logout-form').submit();">

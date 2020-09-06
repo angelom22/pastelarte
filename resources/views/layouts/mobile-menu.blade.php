@@ -3,7 +3,7 @@
         <div class="header stylehome1">
             <div class="main_logo_home2">
                 <img class="nav_logo_img img-fluid float-left mt20" src="{{asset('img/header-logo2.png')}}" alt="header-logo.png">
-                <span>Pastel Arte</span>
+                <!-- <span>Pastel Arte</span> -->
             </div>
             <ul class="menu_bar_home2">
                 <li class="list-inline-item"></li>

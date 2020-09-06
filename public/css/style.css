@@ -7658,7 +7658,7 @@ ul.mc_parent_list ul.mc_child_list:hover .pricing_btn{
   line-height: 1.2;
 }
 .header_user_notif li.user_setting .dropdown-menu .user_set_header p span{
-  font-size: 14px;
+  font-size: 13px;
   font-family: "Open Sans";
   color: rgb(126, 126, 126);
   line-height: 1.2;
@@ -10374,7 +10374,7 @@ section {
 
 .scrollToHome {
   bottom: 15px;
-  color: #ffffff;
+  color: #a639a6;
   display: none;
   font-size: 24px;
   line-height: 1.5em;
