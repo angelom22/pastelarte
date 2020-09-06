@@ -11,7 +11,7 @@
                     <span class="icon-bar"></span>
                 </button>
             </div>
-            <a href="index.php" class="navbar_brand float-left dn-smd">
+            <a href="{{ url('/') }}" class="navbar_brand float-left dn-smd">
                 <img class="logo1 img-fluid" src="{{asset('img/header-logo.png')}}" alt="header-logo.png">
                 <img class="logo2 img-fluid" src="{{asset('img/header-logo2.png')}}" alt="header-logo2.png">
                 <span>Pastel Arte</span>
@@ -26,26 +26,26 @@
                     <a href="#"><span class="title">Cursos</span></a>
                     <!-- Level Two-->
                     <ul>
-                        <li><a href="{{ url('/cursos') }}">Todos los cursos</a></li>
-                        <li><a href="#">Técnicas de pastelería</a></li>
-                        <li><a href="#">Masas</a></li>
-                        <li><a href="#">Decoración de tortas comerciales</a></li>
-                        <li><a href="#">Técnicas en fondant</a></li>
+                        <li><a href="{{ url('cursos') }}">Todos los cursos</a></li>
+                        <li><a href="{{ url('cursosingle') }}">Técnicas de pastelería</a></li>
+                        <li><a href="{{ url('cursosingle') }}">Masas</a></li>
+                        <li><a href="{{ url('cursosingle') }}">Decoración de tortas comerciales</a></li>
+                        <li><a href="{{ url('cursosingle') }}">Técnicas en fondant</a></li>
                     </ul>
                 </li>
                 <li>
                     <a href="#"><span class="title">Carreras</span></a>
                     <!-- Level Two-->
                     <ul>
-                        <li><a href="#">Pastelería</a></li>
-                        <li><a href="#">Decoración de tortas</a></li>
+                        <li><a href="{{ url('cursosingle') }}">Pastelería</a></li>
+                        <li><a href="{{ url('cursosingle') }}">Decoración de tortas</a></li>
                     </ul>
                 </li>
                 <li>
                     <a href="#"><span class="title">Eventos</span></a>
                 </li>
                 <li>
-                    <a href="#"><span class="title">Blog</span></a>
+                    <a href="{{ url('blog') }}"><span class="title">Blog</span></a>
                 </li>
                 <li class="last">
                     <a href="page-contact.html"><span class="title">Contacto</span></a>

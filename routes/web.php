@@ -24,6 +24,8 @@ Route::resource('/blog', 'BlogController')->names('blog');
 
 Route::resource('/cursos', 'CursoController')->names('cursos');
 
+Route::resource('/cursosingle', 'CursoSingleController')->names('cursosingle');
+
 Route::resource('/categoria', 'CategoryController')->names('categoria');
 
 Route::resource('/etiqueta', 'TagController')->names('etiqueta');
