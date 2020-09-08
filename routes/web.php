@@ -31,19 +31,22 @@ Route::resource('/blog', 'BlogController')->names([
     'edit'         => 'BlogEdit'
 ]);
 
-
 Route::resource('/cursos', 'CursoController')->names('cursos');
 
-Route::resource('/cursosingle', 'CursoSingleController')->names('cursosingle');
+Route::resource('/cursosingle', 'CursoSingleController')->names([
+    'cursosingle' => 'cursosingle',
+
+]);
 
 Route::resource('/categoria', 'CategoryController')->names('categoria');
 
 Route::resource('/etiqueta', 'TagController')->names('etiqueta');
 
 // Ruta para filtrar las categorias
-Route::get('categoria/{slug}', 'BlogController@filtrarCategoria')->name('filtrarCategoria');
+Route::get('categorias/{slug}', 'BlogController@filtrarCategoria')->name('filtrarCategoria');
 
 // Ruta para filtrar las etiquetas
-Route::get('etiqueta/{slug}', 'BlogController@filtrarEtiqueta')->name('filtrarEtiqueta');
+Route::get('etiquetas/{slug}', 'BlogController@filtrarEtiqueta')->name('filtrarEtiqueta');
 
 Route::resource('/dashboard', 'AdminController')->names('dashboard');
+Route::get('admin/blog', 'AdminController@blog')->name('admin.blog');

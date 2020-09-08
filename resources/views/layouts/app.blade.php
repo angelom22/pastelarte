@@ -32,6 +32,12 @@
     <!-- Scripts -->
     <!-- <script src="{{ asset('js/app.js') }}" defer></script> -->
 
+     <!-- PNotify -->
+     <link href="{{asset('plugins/pnotify/dist/PNotifyBrightTheme.css')}}" rel="stylesheet" type="text/css" />
+
+    <!-- Menesaje ToastrJS -->
+    <link rel="stylesheet" href="{{asset('plugins/toastrJS/build/toastr.min.css')}}">
+
     @stack('css')
 </head>
 
@@ -137,6 +143,14 @@
     <script type="text/javascript" src="{{asset('js/timepicker.js')}}"></script>
     <!-- Custom script for all pages --> 
     <script type="text/javascript" src="{{asset('js/script.js')}}"></script>
+    <script type="text/javascript" src="{{ asset('js/login.js') }}"></script>
+
+
+    <!-- PNotify -->
+    <script type="text/javascript" src="{{asset('plugins/pnotify/dist/iife/PNotify.js')}}"></script>
+    <script type="text/javascript" src="{{asset('plugins/pnotify/dist/iife/PNotifyButtons.js')}}"></script>
+    
+    <script type="text/javascript" src="{{asset('plugins/toastrJS/build/toastr.min.js')}}"></script>
 
     <!-- Script para trabajar el modal -->
     @unless(Auth::user())

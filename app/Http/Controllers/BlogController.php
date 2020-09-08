@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Http\Request;
 use App\Models\Tag;
 use App\Models\Blog;
 use App\Models\Category;
 use  Carbon\Carbon;
 use Storage;
-use Illuminate\Support\Facades\Gate;
 
 class BlogController extends Controller
 {
@@ -20,6 +20,7 @@ class BlogController extends Controller
 
     public function filtrarCategoria($slug)
     {
+        // dd($slug);
         $category   = Category::where('slug', $slug)->pluck('id')->first();
         $blogs      = Blog::where('category_id', $category)->orderBy('id', 'DESC')->where('status', 'PUBLICADO')->paginate(3);
 
@@ -45,8 +46,7 @@ class BlogController extends Controller
 
     public function index()
     {
-        
-        $blogs  = Blog::publicados()->paginate(3);
+        $blogs = Blog::publicados()->paginate(3);
 
         $categories = Category::orderBy('name', 'ASC')->get();
         // dd($categories[0]->slug);
@@ -63,7 +63,7 @@ class BlogController extends Controller
      */
     public function create()
     {
-        Gate::authorize('haveaccess', 'blog.create');
+        // Gate::authorize('haveaccess', 'blog.create');
 
         $categories = Category::all();
         $tags       = Tag::all();
@@ -79,14 +79,14 @@ class BlogController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request()->file('file'));
+        // dd($request->tag_id);
         // Validación
         $this->validate($request, [
             'title' => 'required|min:5',
             'content' => 'required',
             'category_id' => 'required',
             'extracto' => 'required',
-            // 'file' => 'required|image|max:2048'
+            'file' => 'required|image|max:2048'
         ]);
 
         // Nueva instancia de blog
@@ -99,21 +99,18 @@ class BlogController extends Controller
         $blog->title = $request->get('title');
         $blog->extracto = $request->get('extracto');
         $blog->content = $request->get('content');
-        // $blog->status = $request->get('status');
-        $blog->status = 'PUBLICADO';
+        $blog->status = $request->get('status');
         $blog->file = $file;
         $blog->iframe = $request->get('iframe');
-        $blog->published_at = $request->has('published_at') ? Carbon::parse($request->get('published_at'))  : null;
-
-        // guardar etiquetas
-        // $blog->tags()->sync($request->get('tag_id'));
-
+        // $blog->published_at = $request->has('published_at') ? Carbon::parse($request->get('published_at'))  : null;
+        
         // se guarda el post en la base da datos
         $blog->save();
-
+        
+        // guardar etiquetas
+        $blog->tags()->attach($request->tag_id);
     
-
-        return back()->with('flash', 'Tu publicación ha sido creada exitosamente');
+        return redirect()->route('admin.blog')->with('status_success', 'Tu publicación ha sido creada exitosamente');
     }
 
     /**

@@ -39,12 +39,12 @@
 					@include('custom.message')
 					<form action="{{ route('BlogStore') }}" method="POST" enctype="multipart/form-data" files="true">
 					@method('post')
-                    <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
-						<div class="col-xl-12">
+					<input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
+					<div class="card text-white bg-dark">
+						<div class="card-body">
+							<div class="col-md-12">	
 							
-								<h4>Crear Publicación</h4>	
-								<div class="card text-white bg-dark">
-									<div class="card-body">
+								<h4 style="color: #fff;">Crear Publicación</h4>	
 										<div class="form-group {{ $errors->has('title') ? 'has-error' : ''}}">
 											<input type="text" class="form-control" id="title" name="title" placeholder="Titulo de la publicación" value="{{ old('title') }}">
 											{!! $errors->first('title', '<span class="help-block">:message</span>') !!}
@@ -55,22 +55,13 @@
 											<textarea rows="10" class="form-control" id="content" name="content" placeholder="Ingresa contenido de la publicación">{{ old('content') }}</textarea>
 											{!! $errors->first('content', '<span class="help-block">:message</span>') !!}
 										</div>
-									</div>
-	
-									
-								</div>
-						
-						</div>
-						<div class="col-xl-8">
-							
-							<h4>Extracto</h4>
-							<div class="card text-white bg-dark">
-								<div class="card-body">
+							</div>
+							<div class="col-md-8">
 									<div class="form-group {{ $errors->has('extracto') ? 'has-error' : ''}}">
 										<textarea class="form-control" id="extracto" name="extracto" placeholder="Ingresa el extracto de la publicación">{{ old('extracto') }}</textarea>
 										{!! $errors->first('extracto', '<span class="help-block">:message</span>') !!}
 									</div>
-	
+
 									<div class="form-group {{ $errors->has('category_id') ? 'has-error' : ''}}">
 										<label for="category_id">Categorias</label>
 										<select name="category_id" id="category_id" class="form-control">
@@ -93,36 +84,29 @@
 									</div>
 	
 									<div class="form-group">
-									<p>Fecha a Publicar: <input type="text" id="published_at" name="published_at" value="{{ old('published_at') }}"></p>
+										<label for="tag_id">Status de la publicación</label>
+										<select class="form-control" name="status" id="status" >
+											<option value="">Seleccione</option>
+											<option value="BORRADOR">Borrador</option>
+											<option value="PUBLICADO">Publicado</option>
+										</select>
 									</div>
-									
-								</div>
 							</div>
-							
-						</div>	
-						<div class="col-xl-4">
-							
-							<h4>Imagen</h4>
-							
-							<div class="card text-white bg-dark">
-								<div class="card-body">
+							<div class="col-md-4">
 									<div class="form-group">
-										<div class="dropzone">
+										<!-- <div class="dropzone">
 
-										</div>
-										<!-- <input type="file" id="file" name="file" /> -->
+										</div> -->
+										<input type="file" id="file" name="file" />
 										
 									</div>
-	
-									
-								</div>
-							</div>
-							
-						</div>
+							</div>		
+						</div>	
+					</div>
 						<div class="form-group">
 							<button type="submit" class="btn mt-2 btn-primary btn-block" >Guardar Publicación</button>
 						</div>
-					</form>
+					</form>	
 
 					<div class="row mt50">
 						@include('admin.layouts.footer')
@@ -149,10 +133,11 @@
 		
 		$('#category_id').select2();
 		$('#tag_id').select2();
+		$('#status').select2();
 
 		var token = $('#token').val()
 		console.log(token);
-		
+
 		var MyDropzone = new Dropzone('.dropzone', {
 			url: '/blog',
 			paramName: 'file',

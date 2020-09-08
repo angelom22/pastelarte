@@ -45,7 +45,7 @@ class Blog extends Model
     protected $table = 'blogs';
 
     protected $fillable = [
-       'user_id', 'category_id', 'title', 'slug', 'extracto', 'content', 'status', 'file', 'iframe', 'published_at'
+       'user_id', 'category_id', 'title', 'slug', 'extracto', 'content', 'status', 'file', 'iframe', 
     ];
 
     public function user(){
@@ -57,15 +57,15 @@ class Blog extends Model
     }
 
     public function tags(){
-        return $this->belongsToMany(Tag::class);
+        return $this->belongsToMany(Tag::class)->withTimestamps();
     }
 
     public function scopePublicados($query){
 
         $query->orderBy('id', 'DESC')
-                ->whereNotNull('published_at')
-                ->where('published_at', '<=' , Carbon::now() )
-                ->latest('published_at')
+                // ->whereNotNull('published_at')
+                // ->where('published_at', '<=' , Carbon::now() )
+                // ->latest('published_at')
                 ->where('status', 'PUBLICADO');
 
     }

@@ -15,7 +15,8 @@
             <div class="tab-content" id="myTabContent">
                 <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                     <div class="login_form">
-                        <form method="POST" action="{{ route('login', '#login') }}" class="login">
+                        <form method="POST" action="{{ route('login', '#login') }}" class="login" id="login">
+                        <!-- <form method="POST" action="javascript: Login(this)" class="login" id="login"> -->
                         @csrf
                             <div class="heading">
                                 <h3 class="text-center">Ingrese a su cuenta</h3>
@@ -102,10 +103,6 @@
                             <div class="form-group">
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password"  placeholder="Confirmar Contraseña">
                             </div>
-                            <!-- <div class="form-group custom-control custom-checkbox">
-                                <input type="checkbox" class="custom-control-input" id="exampleCheck2">
-                                <label class="custom-control-label" for="exampleCheck2">¿Quieres convertirte en instructor?</label>
-                            </div> -->
                             <button type="submit" class="btn btn-log btn-block btn-thm2">{{ __('Registrar') }}</button>
                             <hr>
                             <div class="row mt40">

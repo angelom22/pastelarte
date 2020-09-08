@@ -101,7 +101,7 @@
                             </a>
                             @endif
                             <div class="tag">{{$blog->category->name}} </div>
-                            <div class="post_date"><h2>20</h2> <span>DECEMBER</span></div>
+                            <div class="post_date"><h2>{{$blog->created_at->format('d')}}</h2> <span>{{$blog->created_at->format('M')}}</span></div>
                         </div>
                         <div class="details">
                            <a href="{{route('blog.show', $blog->slug )}}"><h3>{{$blog->title}}</h3></a> 

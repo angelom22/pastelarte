@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Tag;
+use App\Models\Blog;
+use App\Models\Category;
 
 class AdminController extends Controller
 {
@@ -16,6 +19,15 @@ class AdminController extends Controller
         return view('admin.dashboard.dashboard');
     }
 
+    public function blog()
+    {
+        $this->authorize('haveaccess', 'blog.admin');
+
+        $blogs = Blog::orderBy('id', 'ASC')->get();
+        
+        return view('admin.blog.index',compact('blogs'));
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -23,7 +35,7 @@ class AdminController extends Controller
      */
     public function create()
     {
-        //
+        return 'hola';
     }
 
     /**

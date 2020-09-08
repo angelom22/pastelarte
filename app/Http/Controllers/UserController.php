@@ -19,7 +19,7 @@ class UserController extends Controller
     {
         $this->authorize('haveaccess', 'user.index');
         
-        $users = User::with('roles')->orderBy('id', 'Asc')->paginate(5);
+        $users = User::with('roles')->orderBy('id', 'Asc')->get();
 
         return view('user.index',compact('users'));
     }

@@ -24,7 +24,8 @@
                 Blog
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                <a class="dropdown-item" href="{{route('BlogCreate')}}">Crear Blog</a>
+                    <a class="dropdown-item" href="{{ route('admin.blog') }}">Publicaciones</a>
+                    <a class="dropdown-item" href="{{ route('BlogCreate') }}">Crear Publicación</a>
                 </div>
             </li>
             @endif

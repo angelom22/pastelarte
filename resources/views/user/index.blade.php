@@ -1,10 +1,8 @@
 @extends('admin.layouts.app')
 
 @push('css')
-	<link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css">
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.css">
 @endpush
-
-
 
 @section('content')
 
@@ -37,7 +35,7 @@
 					</div>
 					
 					<div class="col-xl-12">
-						<div class="application_statics">
+						
 							<h4>Usuarios</h4>
 							@include('custom.message')
 							<div class="card">
@@ -49,7 +47,7 @@
 											<th>Nombre</th>
 											<th>Email</th>
 											<th>Role(s)</th>
-											<th colspan="3" class="text-center">Acciones</th>
+											<th>Acciones</th>
 											</tr>
 										</thead>
 										<tbody>
@@ -80,11 +78,11 @@
 												@endcan
 												
 												@can('haveaccess','user.destroy') 
-													<form action="{{route('user.destroy', $user->id)}}" method="POST">
+													<form action="{{route('user.destroy', $user->id)}}" method="POST" style="display: inline;">
 														@csrf
 														@method('DELETE')
-														<button title="eliminar" class="btn btn-xs btn-danger">
-															<i class="fa fa-close"></i>
+														<button title="eliminar" class="btn btn-xs btn-danger" onclick="return ('Esta seguro de querer eliminar este usuario?')">
+															<i class="fa fa-times"></i>
 														</button>
 													</form>
 												@endcan
@@ -100,7 +98,7 @@
 													<!-- <li class="page-item disabled">
 														<a class="page-link" href="#" tabindex="-1" aria-disabled="true"> <span class="flaticon-left-arrow"></span> Prev</a>
 													</li> -->
-													{{ $users->links() }}
+												
 													<!-- <li class="page-item">
 														<a class="page-link" href="#">Next <span class="flaticon-right-arrow-1"></span></a>
 													</li> -->
@@ -110,7 +108,7 @@
 									</div>
 								</div>
 							</div>
-						</div>
+						
 					</div>
 					<!-- <div class="col-xl-4">
 						<div class="recent_job_activity">
@@ -143,10 +141,7 @@
 
 
 @push('js')
-<!-- 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script> -->
-
-<script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.js"></script>
 
 <script>
 	$(function () {
@@ -176,6 +171,7 @@
                     "sSortDescending": ": Activar para ordenar la columna de manera descendente"
                 }
             },
+			"lengthMenu": [[5, 15, 50, -1], [5, 15, 50, "All"]]
         });
     });
 </script>

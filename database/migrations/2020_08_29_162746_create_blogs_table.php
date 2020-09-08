@@ -27,7 +27,7 @@ class CreateBlogsTable extends Migration
             $table->string('file', 128)->nullable();
             $table->mediumText('iframe')->nullable();
 
-            $table->timestamp('published_at')->nullable();
+            // $table->timestamp('published_at')->nullable();
 
             $table->timestamps();
 

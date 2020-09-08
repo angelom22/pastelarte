@@ -32,7 +32,7 @@
                         <div class="thumb">
                             <img class="img-fluid" src="{{ asset('storage/'.$blog->file)}}" style="width:982px; height:500px" alt="{{$blog->slug}}">
                             <div class="tag">{{$blog->category->name}}</div>
-                            <div class="post_date"><h2>28</h2> <span>DECEMBER</span></div>
+                            <div class="post_date"><h2>{{$blog->created_at->format('d')}}</h2> <span>{{$blog->created_at->format('M')}}</span></div>
                         </div>
                         <div class="details">
                             <h3>{{$blog->name}}</h3>
