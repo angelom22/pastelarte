@@ -87,7 +87,6 @@ class BlogController extends Controller
         $file = Storage::disk('public')->put('blog/'.$request->title, $request->file('file'));
 
         $blog->user_id = auth()->id();
-        // Se guarda la categoria si a sido creada directamente desde el formulario
         $blog->category_id = $request->get('category_id');
         $blog->title = $request->get('title');
         $blog->extracto = $request->get('extracto');

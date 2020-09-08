@@ -71,6 +71,7 @@ class Blog extends Model
     }
 
     public function setCategoryIdAttribute($category){
+        // Se guarda la categoria si a sido creada directamente desde el formulario
         $this->attributes['category_id'] = Category::find($category) ? $category : Category::create(['name' =>  $category ])->id;
     }
 
