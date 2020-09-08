@@ -47,7 +47,7 @@
 			<div class="row">
 				<div class="col-sm-6 offset-sm-4 col-lg-6 offset-lg-5 text-center">
 					<div class="logo-widget error_paged">
-				        <a href="#" class="navbar_brand float-left">
+				        <a href="{{ url('/') }}" class="navbar_brand float-left">
 				            <img class="logo1 img-fluid" src="{{asset('img/header-logo.png')}}" alt="header-logo.png">
 				            <span>Pastel Arte</span>
 				        </a>
@@ -66,7 +66,7 @@
 							<button type="submit" class="btn btn-primary mb-2"><span class="flaticon-right-arrow-1"></span></button>
 						</form>
 					</div>
-					<a class="color-white mt25" href="index.html">Regresar al inicio <span class="flaticon-right-arrow-1 pl10"></span></a>
+					<a class="color-white mt25" href="{{ url('/') }}">Regresar al inicio <span class="flaticon-right-arrow-1 pl10"></span></a>
 				</div>
 			</div>
 		</div>

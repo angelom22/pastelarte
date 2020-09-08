@@ -15,10 +15,10 @@
 					<div class="footer_company_widget">
 						<h4>Pastel Arte</h4>
 						<ul class="list-unstyled">
-							<li><a href="#">Cursos</a></li>
+							<li><a href="{{ url('cursos') }}">Cursos</a></li>
 							<li><a href="#">Eventos</a></li>
-							<li><a href="#">Blog</a></li>
-							<li><a href="#">Contacto</a></li>
+							<li><a href="{{ url('blog') }}">Blog</a></li>
+							<li><a href="{{ url('Contacto') }}">Contacto</a></li>
 						</ul>
 					</div>
 				</div>
@@ -26,7 +26,7 @@
 					<div class="footer_program_widget">
 						<h4>Cursos</h4>
 						<ul class="list-unstyled">
-							<li><a href="#">Todos los cursos</a></li>
+							<li><a href="{{ url('cursos') }}">Todos los cursos</a></li>
 							<li><a href="#">Técnicas de pastelería</a></li>
 							<li><a href="#">Masas</a></li>
 							<li><a href="#">Decoración de tortas comerciales</a></li>

@@ -31,7 +31,12 @@ Route::resource('/blog', 'BlogController')->names([
     'edit'         => 'BlogEdit'
 ]);
 
+Route::resource('/evento', 'EventoController')->names('evento');
+
+
 Route::resource('/cursos', 'CursoController')->names('cursos');
+
+Route::resource('/contacto', 'ContactoController')->names('contacto');
 
 Route::resource('/cursosingle', 'CursoSingleController')->names([
     'cursosingle' => 'cursosingle',
