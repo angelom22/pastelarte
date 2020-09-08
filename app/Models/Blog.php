@@ -69,4 +69,18 @@ class Blog extends Model
                 ->where('status', 'PUBLICADO');
 
     }
+
+    public function setCategoryIdAttribute($category){
+        $this->attributes['category_id'] = Category::find($category) ? $category : Category::create(['name' =>  $category ])->id;
+    }
+
+    public function syncTags($tags){
+        // guardar las etiquetas si han sido creadas directamente desde el formulario
+        $tagIds = collect($tags)->map(function($tag){
+            return Tag::find($tag) ? $tag : Tag::create(['name' => $tag])->id;
+        });
+
+        // guardar etiquetas en la tabla relacional
+        return $this->tags()->sync($tagIds);
+    }
 }

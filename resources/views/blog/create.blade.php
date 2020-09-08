@@ -64,7 +64,7 @@
 
 									<div class="form-group {{ $errors->has('category_id') ? 'has-error' : ''}}">
 										<label for="category_id">Categorias</label>
-										<select name="category_id" id="category_id" class="form-control">
+										<select name="category_id" id="category_id" class="form-control select2">
 											<option value="">Seleccione Categoria</option>
 											@foreach($categories as $category)
 											<option value="{{$category->id}}" {{ old('category_id') == $category->id ? 'selected' : ''}}>{{$category->name}}</option>
@@ -75,7 +75,7 @@
 	
 									<div class="form-group">
 										<label for="tag_id">Etiquetas</label>
-										<select multiple="multiple" name="tag_id[]" id="tag_id" class="form-control">
+										<select multiple="multiple" name="tag_id[]" id="tag_id" class="form-control select2">
 											@foreach($tags as $tag)
 											<option value="{{$tag->id}}" {{ collect(old('tags_id'))->contains($tag->id) ? 'selected' : ''}}
 											>{{$tag->name}}</option>
@@ -131,9 +131,10 @@
 		
 		CKEDITOR.replace( 'content' );
 		
-		$('#category_id').select2();
-		$('#tag_id').select2();
-		$('#status').select2();
+		$('.select2').select2({
+			tags: true
+		});
+		
 
 		var token = $('#token').val()
 		console.log(token);

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Gate;
+use App\Http\Requests\StoreBlogRequest;
 use Illuminate\Http\Request;
 use App\Models\Tag;
 use App\Models\Blog;
@@ -77,17 +78,8 @@ class BlogController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreBlogRequest $request)
     {
-        // dd($request->tag_id);
-        // Validación
-        $this->validate($request, [
-            'title' => 'required|min:5',
-            'content' => 'required',
-            'category_id' => 'required',
-            'extracto' => 'required',
-            'file' => 'required|image|max:2048'
-        ]);
 
         // Nueva instancia de blog
         $blog = new Blog;
@@ -95,6 +87,7 @@ class BlogController extends Controller
         $file = Storage::disk('public')->put('blog/'.$request->title, $request->file('file'));
 
         $blog->user_id = auth()->id();
+        // Se guarda la categoria si a sido creada directamente desde el formulario
         $blog->category_id = $request->get('category_id');
         $blog->title = $request->get('title');
         $blog->extracto = $request->get('extracto');
@@ -102,13 +95,12 @@ class BlogController extends Controller
         $blog->status = $request->get('status');
         $blog->file = $file;
         $blog->iframe = $request->get('iframe');
-        // $blog->published_at = $request->has('published_at') ? Carbon::parse($request->get('published_at'))  : null;
         
         // se guarda el post en la base da datos
         $blog->save();
-        
-        // guardar etiquetas
-        $blog->tags()->attach($request->tag_id);
+
+        // guardar etiquetas en la tabla relacional
+        $blog->syncTags($request->get('tag_id'));
     
         return redirect()->route('admin.blog')->with('status_success', 'Tu publicación ha sido creada exitosamente');
     }
