@@ -141,6 +141,7 @@
     <script type="text/javascript" src="{{asset('js/progressbar.js')}}"></script>
     <script type="text/javascript" src="{{asset('js/slider.js')}}"></script>
     <script type="text/javascript" src="{{asset('js/timepicker.js')}}"></script>
+
     <!-- Custom script for all pages --> 
     <script type="text/javascript" src="{{asset('js/script.js')}}"></script>
     <script type="text/javascript" src="{{ asset('js/login.js') }}"></script>

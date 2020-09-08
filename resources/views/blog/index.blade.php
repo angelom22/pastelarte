@@ -10,7 +10,7 @@
                 <div class="breadcrumb_content">
                     <h4 class="breadcrumb_title">Blog</h4>
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item"><a href="{{ url('/') }}">Home</a></li>
                         <li class="breadcrumb-item active" aria-current="page">Blog</li>
                     </ol>
                 </div>
@@ -32,59 +32,31 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="feature_post_slider">
+
+
+
+@foreach($blogs as $blog)
                     <div class="item">
                         <div class="blog_post">
                             <div class="thumb">
-                                <img class="img-fluid w100" src="{{asset('img/blog/2a.jpg')}}" alt="2a.jpg">
-                                <a class="post_date" href="#">July 21, 2019</a>
+                                 @if($blog->file)
+                                <img class="img-fluid w100" style="width:306px; height: 450px;" src=" {{ asset('storage/'.$blog->file)}}" alt="pastelarteblog.jpg">
+                                <a class="post_date" href="#">{{$blog->created_at->format('d')}} {{$blog->created_at->format('M')}}</a>
+                                @endif
                             </div>
                             <div class="details">
-                                <h5>Marketing</h5>
-                                <h4>A Solution Built for Teachers</h4>
+                                <a href="{{route('blog.show', $blog->slug )}}"><h4 style="color:#ffffff;">{{$blog->title}}</h4></a>
                             </div>
                         </div>
                     </div>
-                    <div class="item">
-                        <div class="blog_post">
-                            <div class="thumb">
-                                <img class="img-fluid w100" src="{{asset('img/blog/3a.jpg')}}" alt="3a.jpg">
-                                <a class="post_date" href="#">July 21, 2019</a>
-                            </div>
-                            <div class="details">
-                                <h5>Marketing</h5>
-                                <h4>A Solution Built for Teachers</h4>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="blog_post">
-                            <div class="thumb">
-                                <img class="img-fluid w100" src="{{asset('img/blog/2.jpg')}}" alt="2.jpg">
-                                <a class="post_date" href="#">July 21, 2019</a>
-                            </div>
-                            <div class="details">
-                                <h5>Marketing</h5>
-                                <h4>A Solution Built for Teachers</h4>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="blog_post">
-                            <div class="thumb">
-                                <img class="img-fluid w100" src="{{asset('img/blog/3.jpg')}}" alt="3.jpg">
-                                <a class="post_date" href="#">July 21, 2019</a>
-                            </div>
-                            <div class="details">
-                                <h5>Business</h5>
-                                <h4>An Overworked Newspaper Editor</h4>
-                            </div>
-                        </div>
-                    </div>
+ @endforeach
+
                 </div>
             </div>
         </div>
     </div>
 </section>
+
 
 <!-- Main Blog Post Content -->
 <section class="blog_post_container">
@@ -134,14 +106,6 @@
             </div>
             <div class="col-lg-4 col-xl-3 pl10 pr10">
                 <div class="main_blog_post_widget_list">
-                    <div class="blog_search_widget">
-                        <div class="input-group mb-3">
-                            <input type="text" class="form-control" placeholder="Search Here" aria-label="Recipient's username" aria-describedby="button-addon2">
-                            <div class="input-group-append">
-                                <button class="btn btn-outline-secondary" type="button" id="button-addon2"><span class="flaticon-magnifying-glass"></span></button>
-                            </div>
-                        </div>
-                    </div>
                     <div class="blog_category_widget">
                         <ul class="list-group">
                             <h4 class="title">Categorías</h4>
@@ -153,28 +117,8 @@
                         </ul>
                     </div>
                     <div class="blog_recent_post_widget media_widget">
-                        <h4 class="title">Publicaciones Recientes</h4>
-                        <div class="media">
-                            <img class="align-self-start mr-3" src="{{asset('img/blog/s1.jpg')}}" alt="s1.jpg">
-                            <div class="media-body">
-                                <h5 class="mt-0 post_title">Half of What We Know About Coffee</h5>
-                                <a href="#">October 25, 2019.</a>
-                            </div>
-                        </div>
-                        <div class="media">
-                            <img class="align-self-start mr-3" src="{{asset('img/blog/s2.jpg')}}" alt="s2.jpg">
-                            <div class="media-body">
-                                <h5 class="mt-0 post_title">The Best Places to Start Your Travel</h5>
-                                <a href="#">October 25, 2019.</a>
-                            </div>
-                        </div>
-                        <div class="media">
-                            <img class="align-self-start mr-3" src="{{asset('img/blog/s3.jpg')}}" alt="s3.jpg">
-                            <div class="media-body">
-                                <h5 class="mt-0 post_title">The Top 25 London</h5>
-                                <a href="#">October 25, 2019.</a>
-                            </div>
-                        </div>
+                        <h4 class="title">Chef Beatriz Román</h4>
+                        <img src="{{ asset('img/gallery/chefroman.jpg') }}" alt="chefroman.jpg">
                     </div>
                     <div class="blog_tag_widget">
                         <h4 class="title">Tags</h4>
