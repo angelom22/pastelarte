@@ -38,6 +38,10 @@
 					
 					<div class="col-xl-12">
 						<div class="application_statics">
+						@can('haveaccess','blog.create')                        
+							<a href="{{route('BlogCreate')}}" class="btn btn-primary pull-right" data-toggle="modal" data-target="#tituloBlog"><i class="fa fa-plus"></i>
+							Crear Publicación</a>
+						@endcan
 							<h4>Publicaciones</h4>
 							@include('custom.message')
 							<div class="card">
@@ -90,10 +94,10 @@
 												
 												
 												
-													<form action="#" method="POST" style="display: inline;">
+													<form action="{{route('blog.destroy', $blog)}}" method="POST" style="display: inline;">
 														@csrf
 														@method('DELETE')
-														<button title="eliminar" class="btn btn-danger btn-sm" onclick="return ('Esta seguro de querer eliminar esta publicacion?') ">
+														<button title="eliminar" class="btn btn-danger btn-sm" onClick="return ('Esta seguro de querer eliminar esta publicacion?') ">
 															<i class="fa fa-times"></i>
 														</button>
 													</form>
@@ -147,7 +151,7 @@
 		</div>
 	</div>
 </section>
-
+@include('admin.blog.resources.modal')
 @endsection
 
 

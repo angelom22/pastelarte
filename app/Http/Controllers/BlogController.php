@@ -64,12 +64,29 @@ class BlogController extends Controller
      */
     public function create()
     {
-        // Gate::authorize('haveaccess', 'blog.create');
+        Gate::authorize('haveaccess', 'blog.create');
 
         $categories = Category::all();
         $tags       = Tag::all();
 
         return view('blog.create', compact('categories', 'tags'));
+    }
+
+    public function store(Request $request){
+        
+        Gate::authorize('haveaccess', 'blog.create');
+
+        $this->validate($request, [
+            'title' => 'required|min:5'
+        ]);
+    
+        $blog = Blog::create([
+            'user_id' => auth()->id(),
+            'title' => $request->get('title')
+            ]);
+
+        return redirect()->route('BlogEdit', $blog);
+
     }
 
     /**
@@ -78,31 +95,33 @@ class BlogController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreBlogRequest $request)
-    {
-
-        // Nueva instancia de blog
-        $blog = new Blog;
+    // public function store(StoreBlogRequest $request)
+    // {
+        // Gate::authorize('haveaccess', 'blog.create');
+    //     // Nueva instancia de blog
+    //     $blog = new Blog;
         
-        $file = Storage::disk('public')->put('blog/'.$request->title, $request->file('file'));
+    //     $file = Storage::disk('public')->put('blog/'.$request->title, $request->file('file'));
 
-        $blog->user_id = auth()->id();
-        $blog->category_id = $request->get('category_id');
-        $blog->title = $request->get('title');
-        $blog->extracto = $request->get('extracto');
-        $blog->content = $request->get('content');
-        $blog->status = $request->get('status');
-        $blog->file = $file;
-        $blog->iframe = $request->get('iframe');
+    //     $blog->user_id = auth()->id();
+    //     $blog->category_id = $request->get('category_id');
+    //     $blog->title = $request->get('title');
+    //     $blog->extracto = $request->get('extracto');
+    //     $blog->content = $request->get('content');
+    //     $blog->status = $request->get('status');
+    //     $blog->file = $file;
+    //     $blog->iframe = $request->get('iframe');
         
-        // se guarda el post en la base da datos
-        $blog->save();
+    //     // se guarda el post en la base da datos
+    //     $blog->save();
 
-        // guardar etiquetas en la tabla relacional
-        $blog->syncTags($request->get('tag_id'));
+    //     // guardar etiquetas en la tabla relacional
+    //     $blog->syncTags($request->get('tag_id'));
     
-        return redirect()->route('admin.blog')->with('status_success', 'Tu publicación ha sido creada exitosamente');
-    }
+    //     return redirect()->route('admin.blog')->with('status_success', 'Tu publicación ha sido creada exitosamente');
+    // }
+
+
 
     /**
      * Display the specified resource.
@@ -127,9 +146,9 @@ class BlogController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Blog $blog)
     {
-        //
+        return view('admin.blog.edit', compact('blog'));
     }
 
     /**
@@ -150,8 +169,14 @@ class BlogController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Blog $blog)
     {
-        //
+        $blog->tags()->detach();
+        
+        Storage::disk('public')->delete($blog->file);
+        
+        $blog->delete();
+
+        return redirect()->route('admin.blog')->with('status_success', 'La publicación ha sido eliminada');
     }
 }

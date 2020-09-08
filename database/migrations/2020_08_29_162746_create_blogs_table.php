@@ -16,13 +16,13 @@ class CreateBlogsTable extends Migration
         Schema::create('blogs', function (Blueprint $table) {
             $table->id();
             $table->integer('user_id')->unsigned();
-            $table->integer('category_id')->unsigned();
+            $table->integer('category_id')->unsigned()->nullable();
 
             $table->string('title', 128);
             $table->string('slug', 128)->unique();
 
             $table->mediumText('extracto')->nullable();
-            $table->text('content');
+            $table->text('content')->nullable();
             $table->enum('status', ['PUBLICADO', 'BORRADOR'])->default('BORRADOR');
             $table->string('file', 128)->nullable();
             $table->mediumText('iframe')->nullable();

@@ -39,6 +39,7 @@
 					@include('custom.message')
 					<form action="{{ route('BlogStore') }}" method="POST" enctype="multipart/form-data" files="true">
 					@method('post')
+					@csrf
 					<input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
 					<div class="card text-white bg-dark">
 						<div class="card-body">

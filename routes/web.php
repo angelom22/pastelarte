@@ -25,10 +25,10 @@ Route::resource('/user', 'UserController',['except' => ['create','store']])->nam
  *  Rutas para los articulos
  */
 Route::resource('/blog', 'BlogController')->names([
-    'update'   => 'BlogUpdate',
-    'create'     => 'BlogCreate',
-    'store'       => 'BlogStore',
-    'edit'         => 'BlogEdit'
+    'update'    => 'BlogUpdate',
+    'create'    => 'BlogCreate',
+    'store'     => 'BlogStore',
+    'edit'      => 'BlogEdit',
 ]);
 
 Route::resource('/cursos', 'CursoController')->names('cursos');
