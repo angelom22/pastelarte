@@ -16,7 +16,7 @@
             <li>
                     <span>Cursos</span>
                     <ul>
-                        <li><a href="#">Todos los cursos</a></li>
+                        <li><a href="{{ url('cursos') }}">Todos los cursos</a></li>
                         <li><a href="#">Técnicas de pastelería</a></li>
                         <li><a href="#">Masas</a></li>
                         <li><a href="#">Decoración de tortas comerciales</a></li>
@@ -30,11 +30,11 @@
                         <li><a href="#">Decoración de tortas</a></li>
                     </ul>
             </li>
-            <li><a href="page-blog-v1.html">Eventos</a></li>
-            <li><a href="page-blog-v1.html">Blog</a></li>
-            <li><a href="page-contact.html">Contacto</a></li>
-            <li><a href="page-login.html"><span class="flaticon-user"></span> Entrar</a></li>
-            <li><a href="page-register.html"><span class="flaticon-edit"></span> Registrar</a></li>
+            <li><a href="{{ url('evento') }}">Eventos</a></li>
+            <li><a href="{{ url('blog') }}">Blog</a></li>
+            <li><a href="{{ url('contacto') }}">Contacto</a></li>
+            <li><a href="{{ url('login') }}"><span class="flaticon-user"></span> Entrar</a></li>
+            <li><a href="{{ url('register') }}"><span class="flaticon-edit"></span> Registrar</a></li>
         </ul>
     </nav>
 </div>

@@ -1,73 +1,79 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Login') }}</div>
 
-                <div class="card-body">
-                    <form method="POST" action="{{ route('login') }}">
+    <!-- Inner Page Breadcrumb -->
+    <section class="inner_page_breadcrumb">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-6 offset-xl-3 text-center">
+                    <div class="breadcrumb_content">
+                        <h4 class="breadcrumb_title">Logın</h4>
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="{{ 'url/' }}">Home</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Logın</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our LogIn Register -->
+    <section class="our-log bgc-fa">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 col-lg-6 offset-lg-3">
+                    <div class="login_form inner_page">
+                <form method="POST" action="{{ route('login', '#login') }}" class="login" id="login">
+                        <!-- <form method="POST" action="javascript: Login(this)" class="login" id="login"> -->
                         @csrf
-
-                        <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
-
+                            <div class="heading">
+                                <h3 class="text-center">Ingrese a su cuenta</h3>
+                                <p class="text-center">¿No tienes una cuenta? <a class="text-thm" href="{{url('register')}}">¡Regístrate!</a></p>
+                            </div>
+                                <div class="form-group">
+                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus placeholder="Correo Electronico">
                                 @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
                                 @enderror
                             </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+                            <div class="form-group">
+                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password" placeholder="Contraseña">
 
                                 @error('password')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
+                                
                             </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <div class="col-md-6 offset-md-4">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-
-                                    <label class="form-check-label" for="remember">
-                                        {{ __('Remember Me') }}
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="form-group row mb-0">
-                            <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Login') }}
-                                </button>
-
+                            <div class="form-group custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input"  name="remember" id="exampleCheck1" id="remember" {{ old('remember') ? 'checked' : '' }} >
+                                <label class="custom-control-label" for="exampleCheck1">Recordarme</label>
                                 @if (Route::has('password.request'))
-                                    <a class="btn btn-link" href="{{ route('password.request') }}">
-                                        {{ __('Forgot Your Password?') }}
-                                    </a>
+                                <a class="btn btn-link" href="{{ route('password.request') }}">
+                                    {{ __('¿Se te olvidó tu contraseña?') }}
+                                </a>
                                 @endif
                             </div>
-                        </div>
-                    </form>
+                            <button type="submit" class="btn btn-log btn-block btn-thm2">Login</button>
+                            <hr>
+                            <div class="row mt40">
+                                <div class="col-lg">
+                                    <button type="submit" class="btn btn-block color-white bgc-fb"><i class="fa fa-facebook float-left mt5"></i> Facebook</button>
+                                </div>
+                                <div class="col-lg">
+                                    <button type="submit" class="btn btn-block color-white bgc-gogle"><i class="fa fa-google float-left mt5"></i> Google</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</div>
+    </section>
+
 @endsection
