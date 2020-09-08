@@ -22,7 +22,7 @@
                                 <h3 class="text-center">Ingrese a su cuenta</h3>
                                 <p class="text-center">¿No tienes una cuenta? <a class="text-thm" href="#profile">¡Regístrate!</a></p>
                             </div>
-                                <div class="form-group">
+                            <div class="form-group">
                                 <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus placeholder="Correo Electronico">
                                 @error('email')
                                 <span class="invalid-feedback" role="alert">

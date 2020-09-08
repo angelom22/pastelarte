@@ -42,13 +42,13 @@
                     </ul>
                 </li>
                 <li>
-                    <a href="#"><span class="title">Eventos</span></a>
+                    <a href="{{url('evento')}}"><span class="title">Eventos</span></a>
                 </li>
                 <li>
                     <a href="{{url('blog')}}"><span class="title">Blog</span></a>
                 </li>
                 <li class="last">
-                    <a href="page-contact.html"><span class="title">Contacto</span></a>
+                    <a href="{{url('contacto')}}"><span class="title">Contacto</span></a>
                 </li>
             </ul>
             <ul class="header_user_notif pull-right dn-smd">
