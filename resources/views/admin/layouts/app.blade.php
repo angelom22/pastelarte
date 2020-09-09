@@ -41,7 +41,7 @@
 	@yield('content')
 
 <a class="scrollToHome" href="#"><i class="flaticon-up-arrow-1"></i></a>
-
+@include('admin.blog.resources.modal')
 </div>
 
 <!-- Wrapper End -->

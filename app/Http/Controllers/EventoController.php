@@ -2,7 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Http\Request;
+use App\Models\Category;
+use App\Models\Tag;
+use App\Models\Event;
+use  Carbon\Carbon;
+use Storage;
 
 class EventoController extends Controller
 {
@@ -11,9 +17,40 @@ class EventoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function filtrarCategoria($slug)
+    {
+        $category   = Category::where('slug', $slug)->pluck('id')->first();
+        $events      = Event::where('category_id', $category)->orderBy('id', 'DESC')->paginate(3);
+
+        $categories = Category::orderBy('name', 'ASC')->get();
+        $tags       = Tag::orderBy('name', 'ASC')->get();
+
+        return view('evento.index',compact('events', 'categories', 'tags'));
+    }
+    
+    public function filtrarEtiqueta($slug)
+    {
+        $events      = Event::whereHas('tags', function($query) use($slug)
+        {
+            $query->where('slug', $slug);
+        })
+        ->orderBy('id', 'DESC')->paginate(3);
+        
+        $categories = Category::orderBy('name', 'ASC')->get();
+        $tags       = Tag::orderBy('name', 'ASC')->get();
+
+        return view('evento.index',compact('events', 'categories', 'tags'));
+    }
+
     public function index()
     {
-         return view('evento.index');
+        $events = Event::orderBy('id', 'DESC')->paginate(4);
+
+        $categories = Category::orderBy('name', 'ASC')->get();
+
+        $tags = Tag::orderBy('name', 'ASC')->get();
+
+        return view('evento.index', compact('events', 'categories', 'tags'));
     }
 
     /**
@@ -43,9 +80,15 @@ class EventoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($slug)
     {
-        //
+        $event = Event::findBySlugOrFail($slug);
+
+        $categories = Category::orderBy('name', 'ASC')->get();
+
+        $tags = Tag::orderBy('name', 'ASC')->get();
+
+        return view('evento.show',compact('event', 'categories', 'tags'));
     }
 
     /**

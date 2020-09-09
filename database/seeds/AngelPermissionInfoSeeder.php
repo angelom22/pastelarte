@@ -357,6 +357,14 @@ class AngelPermissionInfoSeeder extends Seeder
 
         // Permisos blogs
         $permission = Permission::create([
+            'name' => 'Administrador del blog',
+            'slug' => 'blog.admin',
+            'description' => 'El usuario puede listaradministrar los articulos',
+        ]);
+
+        $permission_all[] = $permission->id;
+
+        $permission = Permission::create([
             'name' => 'Lista blog',
             'slug' => 'blog.index',
             'description' => 'El usuario puede listar los articulos',

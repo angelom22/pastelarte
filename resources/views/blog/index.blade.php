@@ -35,13 +35,13 @@
 
 
 
-@foreach($blogs as $blog)
+                @foreach($blogs as $blog)
                     <div class="item">
                         <div class="blog_post">
                             <div class="thumb">
                                  @if($blog->file)
                                 <img class="img-fluid w100" style="width:306px; height: 450px;" src=" {{ asset('storage/'.$blog->file)}}" alt="pastelarteblog.jpg">
-                                <a class="post_date" href="#">{{$blog->created_at->format('d')}} {{$blog->created_at->format('M')}}</a>
+                                <a class="post_date" href="#">{{$blog->created_at->format('M d , Y')}} </a>
                                 @endif
                             </div>
                             <div class="details">
@@ -49,7 +49,7 @@
                             </div>
                         </div>
                     </div>
- @endforeach
+                @endforeach
 
                 </div>
             </div>
@@ -121,7 +121,7 @@
                         <img src="{{ asset('img/gallery/chefroman.jpg') }}" alt="chefroman.jpg">
                     </div>
                     <div class="blog_tag_widget">
-                        <h4 class="title">Tags</h4>
+                        <h4 class="title">Etiquetas</h4>
                         @foreach($tags as $tag)
                         <ul class="tag_list">
                             <li class="list-inline-item"><a href="{{route('filtrarEtiqueta', $tag->slug)}}">{{$tag->name}}</a></li>

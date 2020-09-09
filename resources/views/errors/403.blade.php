@@ -58,7 +58,7 @@
 				<div class="col-lg-10 offset-lg-1 text-center">
 					<div class="error_page footer_apps_widget">
 						<div class="erro_code"><h1>403</h1></div>
-						<h4>No tienes autorizacion para observar el contenido de esta páginas</h4>
+						<h4>No tienes autorizacion para observar el contenido de esta página</h4>
 						<p>Lamentablemente, no cuentas con los permisos y la autorización necesaria para el contenido de esta página.</p>
 						<form class="form-inline mailchimp_form">
 							<label class="sr-only" for="inlineFormInputMail3">Nombre</label>

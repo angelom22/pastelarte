@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateBlogTagTable extends Migration
+class CreateEventTagTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,18 +13,18 @@ class CreateBlogTagTable extends Migration
      */
     public function up()
     {
-        Schema::create('blog_tag', function (Blueprint $table) {
+        Schema::create('event_tag', function (Blueprint $table) {
             $table->id();
-            
-            $table->integer('blog_id')->unsigned();
-            $table->integer('tag_id')->unsigned();
-            
-            $table->timestamps();
-            
-            // Relaciones
-            $table->foreign('blog_id')->references('id')->on('blogs')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreign('tag_id')->references('id')->on('tags')->onDelete('cascade')->onUpdate('cascade');
 
+            $table->integer('event_id')->unsigned();
+            $table->integer('tag_id')->unsigned();
+
+            $table->timestamps();
+
+            // Relaciones
+            $table->foreign('event_id')->references('id')->on('events')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('tag_id')->references('id')->on('tags')->onDelete('cascade')->onUpdate('cascade');
+            
         });
     }
 
@@ -35,6 +35,6 @@ class CreateBlogTagTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('blog_tag');
+        Schema::dropIfExists('event_tag');
     }
 }

@@ -38,15 +38,15 @@
 					
 					<div class="col-xl-12">
 						<div class="application_statics">
-						@can('haveaccess','blog.create')                        
-							<a href="{{route('BlogCreate')}}" class="btn btn-primary pull-right" data-toggle="modal" data-target="#tituloBlog"><i class="fa fa-plus"></i>
-							Crear Publicación</a>
+						@can('haveaccess','event.create')                        
+							<a href="#" class="btn btn-primary pull-right" data-toggle="modal" data-target="#tituloevent"><i class="fa fa-plus"></i>
+							Crear Evento</a>
 						@endcan
 							<h4>Publicaciones</h4>
 							@include('custom.message')
 							<div class="card">
 								<div class="card-body">
-									<table class="table table-hover table-striped table-bordered" cellspacing="0" width="100%" id="blogs">
+									<table class="table table-hover table-striped table-bordered" cellspacing="0" width="100%" id="events">
 										<thead class="thead-dark">
 											<tr>
 											<th scope="col">#</th>
@@ -59,14 +59,14 @@
 											</tr>
 										</thead>
 										<tbody>
-                                            @foreach($blogs as $blog)
+                                            @foreach($events as $event)
                                             <tr>
-                                                <td>{{$blog->id}}</td>
-                                                <td>{{$blog->title}}</td>
-                                                <td>{{$blog->category->name}}</td>
-                                                <td>{{$blog->extracto}}</td>
+                                                <td>{{$event->id}}</td>
+                                                <td>{{$event->title}}</td>
+                                                <td>{{$event->category->name}}</td>
+                                                <td>{{$event->extracto}}</td>
                                                 <td>
-												@if($blog->status === "PUBLICADO")
+												@if($event->status === "PUBLICADO")
 													<button type="button" class="btn  btn-success btn-sm">
 														<i class= "fa fa-check fa-2x"></i>
 														Publicado
@@ -79,22 +79,22 @@
 													
 												@endif
 												</td>
-                                                <td>{{$blog->created_at->format('Y/m/d')}}</td>
+                                                <td>{{$event->created_at->format('Y/m/d')}}</td>
                                                 <td>
                                                 
-													<a href="{{route('blog.show', $blog->slug)}}" class="btn btn-secondary btn-sm" title="Ver"> 
+													<a href="{{route('event.show', $event->slug)}}" class="btn btn-secondary btn-sm" title="Ver"> 
 														<i class="fa fa-eye"></i>
 													</a>
 											
 												
 												
-													<a href="{{route('BlogEdit', $blog)}}" style="color: #fff;" class="btn btn-primary btn-sm" title="Modificar">
+													<a href="{{route('eventEdit', $event)}}" style="color: #fff;" class="btn btn-primary btn-sm" title="Modificar">
 														<i class="fa fa-pencil"></i>
 													</a>
 												
 												
 												
-													<form action="{{route('blog.destroy', $blog)}}" method="POST" style="display: inline;">
+													<form action="{{route('event.destroy', $event)}}" method="POST" style="display: inline;">
 														@csrf
 														@method('DELETE')
 														<button title="eliminar" class="btn btn-danger btn-sm" onclick="return alert('Esta seguro de querer eliminar esta publicacion?')">
@@ -151,7 +151,7 @@
 		</div>
 	</div>
 </section>
-@include('admin.blog.resources.modal')
+@include('admin.event.resources.modal')
 @endsection
 
 
@@ -161,7 +161,7 @@
 
 <script>
 	$(function () {
-        $('#blogs').DataTable({
+        $('#events').DataTable({
             responsive: true,
             language: {
                 "sProcessing":     "Procesando...",

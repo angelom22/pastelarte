@@ -20,7 +20,6 @@ Route::resource('/role', 'RoleController')->names('role');
 
 Route::resource('/user', 'UserController',['except' => ['create','store']])->names('user');
 
-// Route::resource('/blog', 'BlogController')->names('blog');
 /**
  *  Rutas para los articulos
  */
@@ -31,12 +30,20 @@ Route::resource('/blog', 'BlogController')->names([
     'edit'      => 'BlogEdit',
 ]);
 
-Route::resource('/evento', 'EventoController')->names('evento');
+/**
+ *  Rutas para los eventos
+ */
+Route::resource('/evento', 'EventoController')->names([
+    'update'    => 'EventoUpdate',
+    'create'    => 'EventoCreate',
+    'store'     => 'EventoStore',
+    'edit'      => 'EventoEdit',
+]);
 
+Route::resource('/contacto', 'ContactoController')->names('contacto');
 
 Route::resource('/cursos', 'CursoController')->names('cursos');
 
-Route::resource('/contacto', 'ContactoController')->names('contacto');
 
 Route::resource('/cursosingle', 'CursoSingleController')->names([
     'cursosingle' => 'cursosingle',
@@ -55,3 +62,4 @@ Route::get('etiquetas/{slug}', 'BlogController@filtrarEtiqueta')->name('filtrarE
 
 Route::resource('/dashboard', 'AdminController')->names('dashboard');
 Route::get('admin/blog', 'AdminController@blog')->name('admin.blog');
+Route::get('admin/evento', 'AdminController@evento')->name('admin.evento');

@@ -81,7 +81,7 @@
 													<form action="{{route('user.destroy', $user->id)}}" method="POST" style="display: inline;">
 														@csrf
 														@method('DELETE')
-														<button title="eliminar" class="btn btn-xs btn-danger" onclick="return ('Esta seguro de querer eliminar este usuario?')">
+														<button title="eliminar" class="btn btn-xs btn-danger" onclick="return('Esta seguro de querer eliminar este usuario?')">
 															<i class="fa fa-times"></i>
 														</button>
 													</form>

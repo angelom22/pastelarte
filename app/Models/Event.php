@@ -5,10 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Cviebrock\EloquentSluggable\SluggableScopeHelpers;
-use App\Models\Event;
-use App\Models\Blog;
+use App\Models\Category;
+use App\Models\Tag;
+use App\User;
+use  Carbon\Carbon;
 
-class Tag extends Model
+
+class Event extends Model
 {
     use Sluggable;
     use SluggableScopeHelpers;
@@ -18,7 +21,7 @@ class Tag extends Model
     {
         return [
             'slug' => [
-                'source' => 'name',
+                'source' => 'title',
                 'maxLength'          => null,
                 'maxLengthKeepWords' => true,
                 'method'             => null,
@@ -33,21 +36,27 @@ class Tag extends Model
         ];
     }
 
-    /**
+     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
+
+    protected $table = 'events';
+
     protected $fillable = [
-        'name', 'slug'
-     ];
- 
-    public function blogs(){
-        return $this->belongsToMany(Blog::class)->withTimesTamps();
+       'user_id', 'category_id', 'title', 'slug', 'extracto', 'content', 'fecha', 'file', 'iframe', 
+    ];
+
+    public function user(){
+        return $this->belongsTo(User::class)->withDefault();
     }
 
-    public function events(){
-        return $this->belongsToMany(Event::class)->withTimesTamps();
+    public function category(){
+        return $this->belongsTo(Category::class)->withDefault();
     }
-     
+
+    public function tags(){
+        return $this->belongsToMany(Tag::class)->withTimestamps();
+    }
 }

@@ -5,10 +5,17 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Tag;
 use App\Models\Blog;
+use App\Models\Event;
 use App\Models\Category;
 
 class AdminController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     /**
      * Display a listing of the resource.
      *
@@ -27,6 +34,15 @@ class AdminController extends Controller
         
         return view('admin.blog.index',compact('blogs'));
     }
+   
+    public function evento()
+    {
+        $this->authorize('haveaccess', 'blog.admin');
+
+        $events = Event::orderBy('id', 'ASC')->get();
+        
+        return view('admin.evento.index',compact('events'));
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -35,7 +51,7 @@ class AdminController extends Controller
      */
     public function create()
     {
-        return 'hola';
+       
     }
 
     /**

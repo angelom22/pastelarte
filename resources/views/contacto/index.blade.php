@@ -11,7 +11,7 @@
 						<h4 class="breadcrumb_title">Contacto</h4>
 						<ol class="breadcrumb">
 						    <li class="breadcrumb-item"><a href="{{ url('/') }}">Home</a></li>
-						    <li class="breadcrumb-item active" aria-current="page">Contact Us</li>
+						    <li class="breadcrumb-item active" aria-current="page">Contactanos</li>
 						</ol>
 					</div>
 				</div>

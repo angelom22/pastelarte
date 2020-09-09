@@ -16,19 +16,24 @@
             <li><a href="page-my-bookmarks.html"><span class="flaticon-like"></span> Bookmarks</a></li>
             <li><a href="page-my-listing.html"><span class="flaticon-add-contact"></span> Add listing</a></li> -->
             
-            <li {{ request()->is('dashboard') ? 'class=active' : '' }} ><a href="{{url('dashboard')}}"><span class="flaticon-puzzle-1"></span> Dashboard</a></li>
-            @if(auth()->user()->roles[0]->full_access == 'yes')
-            <li class="{{ request()->is('blog/create') ? 'active' : '' }} nav-item dropdown ">
+            <li {{ request()->is('dashboard') ? 'class=active' : '' }} ><a href="{{url('dashboard')}}"><span class="flaticon-puzzle-1"></span> Inicio</a></li>
+            @can('haveaccess','blog.admin')
+            <!-- @if(auth()->user()->roles[0]->full_access == 'yes') -->
+            <li class="{{ request()->is('admin/blog') ? 'active' : '' }} nav-item dropdown ">
                 <a class="dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <span class="flaticon-add-contact"></span>
                 Blog
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                     <a class="dropdown-item" href="{{ route('admin.blog') }}">Publicaciones</a>
-                    <a class="dropdown-item" href="{{ route('BlogCreate') }}">Crear Publicación</a>
+                    <a class="dropdown-item" href="#" data-toggle="modal" data-target="#tituloBlog">Crear Publicación</a>
                 </div>
             </li>
-            @endif
+            <!-- @endif -->
+            @endcan
+            @can('haveaccess','event.admin')
+            <li {{ request()->is('admin/evento') ? 'class=active' : '' }} ><a href="{{route('admin.evento')}}"><span class="flaticon-add-contact"></span>Eventos</a></li>
+            @endcan
             @can('haveaccess','role.index')
             <li {{ request()->is('role') ? 'class=active' : '' }} ><a href="{{route('role.index')}}"><span class="flaticon-add-contact"></span>Roles</a></li>
             @endcan

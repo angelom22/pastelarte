@@ -69,9 +69,15 @@ class BlogController extends Controller
         $categories = Category::all();
         $tags       = Tag::all();
 
-        return view('blog.create', compact('categories', 'tags'));
+        return view('admin.blog.create', compact('categories', 'tags'));
     }
 
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
     public function store(Request $request){
         
         Gate::authorize('haveaccess', 'blog.create');
@@ -89,12 +95,7 @@ class BlogController extends Controller
 
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+    
     // public function store(StoreBlogRequest $request)
     // {
         // Gate::authorize('haveaccess', 'blog.create');
@@ -148,7 +149,12 @@ class BlogController extends Controller
      */
     public function edit(Blog $blog)
     {
-        return view('admin.blog.edit', compact('blog'));
+        $this->authorize('haveaccess', 'blog.edit');
+
+        $categories = Category::all();
+        $tags       = Tag::all();
+
+        return view('admin.blog.edit', compact('blog','categories', 'tags'));
     }
 
     /**
@@ -158,9 +164,28 @@ class BlogController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StoreBlogRequest $request, Blog $blog)
     {
-        //
+        $this->authorize('haveaccess', 'blog.edit');
+        
+        $file = Storage::disk('public')->put('blog/'.$request->title, $request->file('file'));
+
+        $blog->user_id = auth()->id();
+        $blog->category_id = $request->get('category_id');
+        $blog->title = $request->get('title');
+        $blog->extracto = $request->get('extracto');
+        $blog->content = $request->get('content');
+        $blog->status = $request->get('status');
+        $blog->file = $file;
+        $blog->iframe = $request->get('iframe');
+        
+        // se guarda el post en la base da datos
+        $blog->save();
+
+        // guardar etiquetas en la tabla relacional
+        $blog->syncTags($request->get('tag_id'));
+    
+        return redirect()->route('admin.blog')->with('status_success', 'Tu publicación ha sido guardada exitosamente');
     }
 
     /**
@@ -171,6 +196,8 @@ class BlogController extends Controller
      */
     public function destroy(Blog $blog)
     {
+        $this->authorize('haveaccess', 'blog.destroy');
+
         $blog->tags()->detach();
         
         Storage::disk('public')->delete($blog->file);

@@ -14,7 +14,7 @@
                     <h4 class="breadcrumb_title">Blog</h4>
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{ url('/') }}">Home</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Blog</li>
+                        <li class="breadcrumb-item active" aria-current="page">{{ $blog->title }}</li>
                     </ol>
                 </div>
             </div>
@@ -61,7 +61,7 @@
                         <h4 class="aii_title">Comentarios</h4>
                         <div class="mbp_pagination_comments">
                             <div class="mbp_first media">
-                                <img src="img/resource/review1.png" class="mr-3" alt="review1.png">
+                                <img src="{{asset('img/perfil.png')}}" class="mr-3" alt="review1.png">
                                 <div class="media-body">
                                     <h4 class="sub_title mt-0">Angelo meneses</h4>
                                     <a class="sspd_postdate fz14" href="#">08 septiembre</a>
