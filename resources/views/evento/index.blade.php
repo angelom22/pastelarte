@@ -43,9 +43,9 @@
 										<a href="{{route('evento.show', $event->slug)}}"><h3>{{$event->title}}</h3></a>
 										<p>{{$event->extracto}}</p>
 										<ul class="mb0">
-											<li><a href="#"><span class="flaticon-appointment"></span> Date: 06.09.2019 - 06.09.2020</a></li>
-											<li><a href="#"><span class="flaticon-clock"></span>Time: 8:00 am - 5:00 pm</a></li>
-											<li><a href="#"><span class="flaticon-placeholder"></span>Address: Cambridge, MA 02138, USA</a></li>
+											<li><a href="#"><span class="flaticon-appointment"></span> Fecha: 01-11-2020</a></li>
+											<li><a href="#"><span class="flaticon-clock"></span>Hora: 8:00 am - 5:00 pm</a></li>
+											<li><a href="#"><span class="flaticon-placeholder"></span>Diección: Ecuador</a></li>
 										</ul>
 									</div>
 								</div>
