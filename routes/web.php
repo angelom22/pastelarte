@@ -34,10 +34,10 @@ Route::resource('/blog', 'BlogController')->names([
  *  Rutas para los eventos
  */
 Route::resource('/evento', 'EventoController')->names([
-    'update'    => 'EventoUpdate',
-    'create'    => 'EventoCreate',
-    'store'     => 'EventoStore',
-    'edit'      => 'EventoEdit',
+    'update'    => 'EventUpdate',
+    'create'    => 'EventCreate',
+    'store'     => 'EventStore',
+    'edit'      => 'EventEdit',
 ]);
 
 Route::resource('/contacto', 'ContactoController')->names('contacto');

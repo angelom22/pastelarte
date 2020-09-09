@@ -39,7 +39,7 @@
 					<div class="col-xl-12">
 						<div class="application_statics">
 						@can('haveaccess','event.create')                        
-							<a href="#" class="btn btn-primary pull-right" data-toggle="modal" data-target="#tituloevent"><i class="fa fa-plus"></i>
+							<a href="{{route('EventCreate')}}" class="btn btn-primary pull-right" data-toggle="modal" data-target="#tituloevent"><i class="fa fa-plus"></i>
 							Crear Evento</a>
 						@endcan
 							<h4>Publicaciones</h4>
@@ -82,19 +82,19 @@
                                                 <td>{{$event->created_at->format('Y/m/d')}}</td>
                                                 <td>
                                                 
-													<a href="{{route('event.show', $event->slug)}}" class="btn btn-secondary btn-sm" title="Ver"> 
+													<a href="{{route('evento.show', $event->slug)}}" class="btn btn-secondary btn-sm" title="Ver"> 
 														<i class="fa fa-eye"></i>
 													</a>
 											
 												
 												
-													<a href="{{route('eventEdit', $event)}}" style="color: #fff;" class="btn btn-primary btn-sm" title="Modificar">
+													<a href="{{route('EventEdit', $event)}}" style="color: #fff;" class="btn btn-primary btn-sm" title="Modificar">
 														<i class="fa fa-pencil"></i>
 													</a>
 												
 												
 												
-													<form action="{{route('event.destroy', $event)}}" method="POST" style="display: inline;">
+													<form action="{{route('evento.destroy', $event)}}" method="POST" style="display: inline;">
 														@csrf
 														@method('DELETE')
 														<button title="eliminar" class="btn btn-danger btn-sm" onclick="return alert('Esta seguro de querer eliminar esta publicacion?')">
@@ -151,7 +151,7 @@
 		</div>
 	</div>
 </section>
-@include('admin.event.resources.modal')
+
 @endsection
 
 
