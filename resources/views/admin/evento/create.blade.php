@@ -102,10 +102,10 @@
                                         <label>Hora del evento:</label>
 
                                         <div class="input-group date" id="timepicker" data-target-input="nearest">
-                                        <input type="text" class="form-control datetimepicker-input" data-target="#timepicker"/>
-                                        <div class="input-group-append" data-target="#timepicker" data-toggle="datetimepicker">
+                                        <input type="text" class="form-control time"/>
+<!--                                         <div class="input-group-append" data-target="#timepicker" data-toggle="datetimepicker">
                                             <div class="input-group-text"><i class="far fa-clock"></i></div>
-                                        </div>
+                                        </div> -->
                                         </div>
                                         <!-- /.input group -->
                                     </div>
@@ -128,19 +128,34 @@
 						</div>
 					</form>	
 
-					<div class="row mt50">
+<!-- 					<div class="row mt50">
 						@include('admin.layouts.footer')
-					</div>
+					</div> -->
 				</div>
 			</div>
 		</div>
 	</section>
 	
+
+
+
+
+
+
 @endsection
 
 @push('js')
 
-    <script src="{{asset('plugins/select2/dist/js/select2.min.j')}}s"></script>
+
+    <script type="text/javascript">
+      jQuery(function($) {
+        $('.time').mask('99:99');
+      });
+    </script>
+
+
+	<script src="{{asset('plugins/datepicker/jquery.maskedinput.min.js')}}"></script>
+    <script src="{{asset('plugins/select2/dist/js/select2.min.js')}}"></script>
     <script src="{{asset('plugins/datepicker/jquery-ui.js')}}"></script>
     <script src="{{asset('plugins/daterangepicker/daterangepicker.js')}}"></script>
     <!-- <script src="{{asset('plugins/bootstrap-datapicker/js/bootstrap-datepicker.min.js')}}"></script> -->
