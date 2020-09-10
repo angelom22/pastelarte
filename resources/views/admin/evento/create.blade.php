@@ -2,7 +2,8 @@
 
 @push('css')
 	<link rel="stylesheet" href="{{asset('plugins/datepicker/jquery-ui.css')}}">
-	<link rel="stylesheet" href="{{asset('plugins/daterangepicker/daterangepicker.css')}}">
+    <link rel="stylesheet" href="{{asset('plugins/daterangepicker/daterangepicker.css')}}">
+    <!-- <link src="{{asset('plugins/bootstrap-datapicker/css/bootstrap-datepicker3.css')}}"> -->
 	<link rel="stylesheet" href="{{asset('plugins/select2/dist/css/select2.min.css')}}"  >
     <link rel="stylesheet" href="{{asset('plugins/dropzone/dist/min/dropzone.min.css')}}">
     <!-- Bootstrap Color Picker -->
@@ -90,10 +91,26 @@
 
                                     <!-- Date and time range -->
                                     <div class="form-group">
-                                        <label for="fecha">Fecha y hora del evento</label>                                       
-                                        <input type="text" class="form-control" id="timepicker" name="fecha">
+                                        <label for="fecha">Fecha del evento</label>                                       
+                                        <input type="text" name="fecha" id="fecha" class="form-control">
                                     </div>
                                     <!-- /.form group -->
+
+                                    <!-- time Picker -->
+                                    <div class="bootstrap-timepicker">
+                                    <div class="form-group">
+                                        <label>Hora del evento:</label>
+
+                                        <div class="input-group date" id="timepicker" data-target-input="nearest">
+                                        <input type="text" class="form-control datetimepicker-input" data-target="#timepicker"/>
+                                        <div class="input-group-append" data-target="#timepicker" data-toggle="datetimepicker">
+                                            <div class="input-group-text"><i class="far fa-clock"></i></div>
+                                        </div>
+                                        </div>
+                                        <!-- /.input group -->
+                                    </div>
+                                    <!-- /.form group -->
+                                    </div>
 							</div>
 							<div class="col-md-4">
 									<div class="form-group">
@@ -126,6 +143,7 @@
     <script src="{{asset('plugins/select2/dist/js/select2.min.j')}}s"></script>
     <script src="{{asset('plugins/datepicker/jquery-ui.js')}}"></script>
     <script src="{{asset('plugins/daterangepicker/daterangepicker.js')}}"></script>
+    <!-- <script src="{{asset('plugins/bootstrap-datapicker/js/bootstrap-datepicker.min.js')}}"></script> -->
     <!-- bootstrap color picker -->
     <script src="{{asset('plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js')}}"></script>
 	<script src="{{asset('plugins/ckeditor/ckeditor.js')}}"></script>
@@ -141,16 +159,11 @@
         });
         
         
-        //Date range picker with time picker
-        $('#reservationtime').daterangepicker({
-            timePicker: true,
-            timePickerIncrement: 30,
-            locale: {
-                format: 'MM/DD/YYYY hh:mm A'
-            }
+        $('#fecha').datepicker({
+            language: "es",
+            autoclose: true
         });
 
-        
         //Timepicker
         $('#timepicker').datetimepicker({
         format: 'LT'
