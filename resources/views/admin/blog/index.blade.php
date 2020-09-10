@@ -3,7 +3,7 @@
 @push('css')
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.css">
     <link rel="stylesheet" type="text/css" href="{{asset('css/icheck-bootstrap.min.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{asset('plugins/bootstrap-switch/dist/css/bootstrap-switch.min.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('plugins/bootstrap-switch/dist/css/bootstrap4/bootstrap-switch.min.css')}}">
 @endpush
 
 @section('content')
@@ -53,8 +53,8 @@
 											<th>Titulo</th>
 											<th>Categoria</th>
 											<th>Extracto</th>
-                                            <th>Estado</th>
-                                            <th>Fecha de elaboración</th>
+											<th>Estado</th>
+											<th>Fecha</th>
 											<th>Acciones</th>
 											</tr>
 										</thead>
@@ -78,7 +78,9 @@
 													</button>
 													
 												@endif
+													<!-- <input type="checkbox" name="my-checkbox" checked data-bootstrap-switch> -->
 												</td>
+												
                                                 <td>{{$blog->created_at->format('Y/m/d')}}</td>
                                                 <td>
                                                 

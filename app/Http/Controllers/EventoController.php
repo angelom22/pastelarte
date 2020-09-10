@@ -60,7 +60,12 @@ class EventoController extends Controller
      */
     public function create()
     {
-        //
+        Gate::authorize('haveaccess', 'event.create');
+
+        $categories = Category::all();
+        $tags       = Tag::all();
+
+        return view('admin.evento.create', compact('categories', 'tags'));
     }
 
     /**
@@ -71,7 +76,7 @@ class EventoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return $request->all();
     }
 
     /**

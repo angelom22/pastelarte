@@ -37,7 +37,7 @@ class AdminController extends Controller
    
     public function evento()
     {
-        $this->authorize('haveaccess', 'blog.admin');
+        $this->authorize('haveaccess', 'event.admin');
 
         $events = Event::orderBy('id', 'ASC')->get();
         

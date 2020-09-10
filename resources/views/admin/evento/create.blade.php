@@ -2,8 +2,12 @@
 
 @push('css')
 	<link rel="stylesheet" href="{{asset('plugins/datepicker/jquery-ui.css')}}">
-	<link href="{{asset('plugins/select2/dist/css/select2.min.css')}}" rel="stylesheet" />
-	<link href="{{asset('plugins/dropzone/dist/min/dropzone.min.css')}}" rel="stylesheet" />
+	<link rel="stylesheet" href="{{asset('plugins/daterangepicker/daterangepicker.css')}}">
+	<link rel="stylesheet" href="{{asset('plugins/select2/dist/css/select2.min.css')}}"  >
+    <link rel="stylesheet" href="{{asset('plugins/dropzone/dist/min/dropzone.min.css')}}">
+    <!-- Bootstrap Color Picker -->
+    <link rel="stylesheet" href="{{asset('plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.min.cs')}}s">
+	
 @endpush
 
 @section('content')
@@ -37,29 +41,29 @@
 						</div>
 					</div>
 					@include('custom.message')
-					<form action="{{ route('BlogUpdate', $blog) }}" method="POST" enctype="multipart/form-data" files="true">
-					@method('PUT')
+					<form action="{{ route('EventStore') }}" method="POST" enctype="multipart/form-data" files="true">
+					@method('POST')
 					@csrf
 					
 					<div class="card text-white bg-dark">
 						<div class="card-body">
 							<div class="col-md-12">	
 							
-								<h4 style="color: #fff;">Crear Publicación</h4>	
+								<h4 style="color: #fff;">Crear Evento</h4>	
 										<div class="form-group {{ $errors->has('title') ? 'has-error' : ''}}">
-											<input type="text" class="form-control" id="title" name="title" placeholder="Titulo de la publicación" value="{{ old('title', $blog->title) }}">
+											<input type="text" class="form-control" id="title" name="title" placeholder="Titulo de la publicación" value="{{ old('title') }}">
 											{!! $errors->first('title', '<span class="help-block">:message</span>') !!}
 											
 										</div>
 									
 										<div class="form-group {{ $errors->has('content') ? 'has-error' : ''}}">
-											<textarea rows="10" class="form-control" id="content" name="content" placeholder="Ingresa contenido de la publicación">{{ old('content', $blog->content) }}</textarea>
+											<textarea rows="10" class="form-control" id="content" name="content" placeholder="Ingresa contenido de la publicación">{{ old('content') }}</textarea>
 											{!! $errors->first('content', '<span class="help-block">:message</span>') !!}
 										</div>
 							</div>
 							<div class="col-md-8">
 									<div class="form-group {{ $errors->has('extracto') ? 'has-error' : ''}}">
-										<textarea class="form-control" id="extracto" name="extracto" placeholder="Ingresa el extracto de la publicación">{{ old('extracto',  $blog->extracto) }}</textarea>
+										<textarea class="form-control" id="extracto" name="extracto" placeholder="Ingresa el extracto de la publicación">{{ old('extracto') }}</textarea>
 										{!! $errors->first('extracto', '<span class="help-block">:message</span>') !!}
 									</div>
 
@@ -68,7 +72,7 @@
 										<select name="category_id" id="category_id" class="form-control select2">
 											<option value="">Seleccione Categoria</option>
 											@foreach($categories as $category)
-											<option value="{{$category->id}}" {{ old('category_id', $blog->categoriy_id) == $category->id ? 'selected' : ''}}>{{$category->name}}</option>
+											<option value="{{$category->id}}" {{ old('category_id') == $category->id ? 'selected' : ''}}>{{$category->name}}</option>
 											@endforeach
 										</select>
 										{!! $errors->first('category_id', '<span class="help-block">:message</span>') !!}
@@ -78,28 +82,25 @@
 										<label for="tag_id">Etiquetas</label>
 										<select multiple="multiple" name="tag_id[]" id="tag_id" class="form-control select2">
 											@foreach($tags as $tag)
-											<option value="{{$tag->id}}" {{ collect(old('tags_id', $blog->tags->pluck('id')))->contains($tag->id) ? 'selected' : ''}}
+											<option value="{{$tag->id}}" {{ collect(old('tags_id'))->contains($tag->id) ? 'selected' : ''}}
 											>{{$tag->name}}</option>
 											@endforeach
 										</select>
 									</div>
-	
-									<div class="form-group">
-										<label for="tag_id">Status de la publicación</label>
-										<select class="form-control" name="status" id="status">
-                                            <option value="{{$blog->status}}">{{$blog->status}}</option>
-                                            <hr>
-											<option value="BORRADOR">BORRADOR</option>
-											<option value="PUBLICADO">PUBLICADO</option>
-										</select>
-									</div>
+
+                                    <!-- Date and time range -->
+                                    <div class="form-group">
+                                        <label for="fecha">Fecha y hora del evento</label>                                       
+                                        <input type="text" class="form-control" id="timepicker" name="fecha">
+                                    </div>
+                                    <!-- /.form group -->
 							</div>
 							<div class="col-md-4">
 									<div class="form-group">
 										<!-- <div class="dropzone">
 
 										</div> -->
-										<input type="file" id="file" name="file" value="{{ old('file', $blog->file) }}" />
+										<input type="file" id="file" name="file" value="{{ old('file') }}" />
 										
 									</div>
 							</div>		
@@ -122,27 +123,44 @@
 
 @push('js')
 
-	<script src="{{asset('plugins/select2/dist/js/select2.min.j')}}s"></script>
+    <script src="{{asset('plugins/select2/dist/js/select2.min.j')}}s"></script>
+    <script src="{{asset('plugins/datepicker/jquery-ui.js')}}"></script>
+    <script src="{{asset('plugins/daterangepicker/daterangepicker.js')}}"></script>
+    <!-- bootstrap color picker -->
+    <script src="{{asset('plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js')}}"></script>
 	<script src="{{asset('plugins/ckeditor/ckeditor.js')}}"></script>
 	<script src="{{asset('plugins/ckeditor/styles.js')}}"></script>
-	<script src="{{asset('plugins/datepicker/jquery-ui.js')}}"></script>
 	<script src="{{asset('plugins/dropzone/dist/min/dropzone.min.js')}}"></script>
 	<script>
 		
-		$("#published_at").datepicker();
-		
-		CKEDITOR.replace( 'content' );
+        
+        CKEDITOR.replace( 'content' );
 		
 		$('.select2').select2({
-			tags: true
-		});
-		
+            tags: true,
+        });
+        
+        
+        //Date range picker with time picker
+        $('#reservationtime').daterangepicker({
+            timePicker: true,
+            timePickerIncrement: 30,
+            locale: {
+                format: 'MM/DD/YYYY hh:mm A'
+            }
+        });
 
-		var token = $('#token').val()
+        
+        //Timepicker
+        $('#timepicker').datetimepicker({
+        format: 'LT'
+        })
+
+        var token = $('meta[name="csrf-token"]').attr('content');
 		console.log(token);
 
 		var MyDropzone = new Dropzone('.dropzone', {
-			url: '/blog',
+			url: '/evento',
 			paramName: 'file',
 			// acceptedFiles: 'image/*',
 			// maxFilesize:2,
@@ -156,8 +174,11 @@
 			var msg = res.message;
 			$('.dz-error-message:last > span').text(msg);
 		});
-
+        
+        
 		// Disable auto discover for all elements:
-		Dropzone.autoDiscover = false;
+            Dropzone.autoDiscover = false;
+        
+        
 	</script>
 @endpush

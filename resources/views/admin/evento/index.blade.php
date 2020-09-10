@@ -31,7 +31,7 @@
 							<h4 class="title float-left">Dashboard</h4>
 							<ol class="breadcrumb float-right">
 								<li class="breadcrumb-item"><a href="#">Home</a></li>
-								<li class="breadcrumb-item active" aria-current="page">Usuarios</li>
+								<li class="breadcrumb-item active" aria-current="page">Eventos</li>
 							</ol>
 						</nav>
 					</div>
@@ -39,10 +39,10 @@
 					<div class="col-xl-12">
 						<div class="application_statics">
 						@can('haveaccess','event.create')                        
-							<a href="{{route('EventCreate')}}" class="btn btn-primary pull-right" data-toggle="modal" data-target="#tituloevent"><i class="fa fa-plus"></i>
+							<a href="{{route('EventCreate')}}" class="btn btn-primary pull-right"><i class="fa fa-plus"></i>
 							Crear Evento</a>
 						@endcan
-							<h4>Publicaciones</h4>
+							<h4>Eventos</h4>
 							@include('custom.message')
 							<div class="card">
 								<div class="card-body">
@@ -53,8 +53,7 @@
 											<th>Titulo</th>
 											<th>Categoria</th>
 											<th>Extracto</th>
-                                            <th>Estado</th>
-                                            <th>Fecha de elaboración</th>
+                                            <th>Fecha del Evento</th>
 											<th>Acciones</th>
 											</tr>
 										</thead>
@@ -65,20 +64,6 @@
                                                 <td>{{$event->title}}</td>
                                                 <td>{{$event->category->name}}</td>
                                                 <td>{{$event->extracto}}</td>
-                                                <td>
-												@if($event->status === "PUBLICADO")
-													<button type="button" class="btn  btn-success btn-sm">
-														<i class= "fa fa-check fa-2x"></i>
-														Publicado
-													</button>
-												@else
-													<button type="button" class="btn btn-warning btn-sm">
-														<i class ="fa fa-wpforms fa-2x"></i>
-														borrador
-													</button>
-													
-												@endif
-												</td>
                                                 <td>{{$event->created_at->format('Y/m/d')}}</td>
                                                 <td>
                                                 
