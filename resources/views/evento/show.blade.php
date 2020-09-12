@@ -36,12 +36,12 @@
                                 <h3 class="mb25">{{$event->title}}</h3>
                             </div>
                             <div class="thumb">
-                                <img class="img-fluid" src="{{asset('img/blog/12.jpg')}}" alt="12.jpg">
-                                <div class="post_date"><h2>28</h2> <span>DECEMBER</span></div>
+                                <img class="img-fluid" src="{{ asset('storage/'.$event->file)}}" alt="{{$event->slug}}"  style="width: 982px; height:500px;">
+                                <div class="post_date"><h2>{{$event->created_at->format('d')}}</h2> <span>{{$event->created_at->format('M')}}</span></div>
                             </div>
                             <div class="details">
                                 <h4>Descripción</h4>
-                                <p>{{$event->extracto}} </p>
+                                <p>{!! $event->content !!} </p>
                             </div>
                             <ul class="blog_post_share mb0">
                                 <li><p>Share</p></li>
@@ -119,13 +119,13 @@
                         <div class="event_details_widget">
                             <h4 class="title">Detalles del evento</h4>
                             <ul>
-                                <li><span class="flaticon-appointment"></span> Fecha: 01-11-2020</li>
-                                <li><span class="flaticon-clock"></span> Hora: 8:00 am - 5:00 pm</li>
-                                <li><span class="flaticon-placeholder"></span> Dirección: Ecuador</li>
+                                <li><span class="flaticon-appointment"></span> Fecha: {{$event->fecha->format('d-m-Y')}}</li>
+                                <li><span class="flaticon-clock"></span> Hora: {{$event->hora->format('h:i:s')}}</li>
+                                <li><span class="flaticon-placeholder"></span> Dirección: {{$event->direccion}}</li>
                             </ul>
                         </div>
                         <div class="event_details_widget">
-                            <h4 class="title">Event Details</h4>
+                            <h4 class="title">Localidad</h4>
                             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3987.037103533422!2d-79.90849798554905!3d-2.139457798440452!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x902d6d6fb93fd127%3A0x781974caaad09b64!2sEleodoro%20Aviles%20Minuche%20%26%20Sozoranga%2C%20Guayaquil%20090508%2C%20Ecuador!5e0!3m2!1ses!2sve!4v1599595277215!5m2!1ses!2sve"  frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
                             <ul>
                                 <li><span class="flaticon-phone-call"></span> +593 980877300</li>
@@ -134,13 +134,12 @@
                             </ul>
                         </div>
                         <div class="blog_tag_widget">
-                            <h4 class="title">Tags</h4>
+                            <h4 class="title">Etiquetas</h4>
+                            @foreach($event->tags as $tag)
                             <ul class="tag_list">
-                                <li class="list-inline-item"><a href="#">Photoshop</a></li>
-                                <li class="list-inline-item"><a href="#">Sketch</a></li>
-                                <li class="list-inline-item"><a href="#">Beginner</a></li>
-                                <li class="list-inline-item"><a href="#">UX/UI</a></li>
+                                <li class="list-inline-item"><a href="{{route('filtrarEtiqueta', $tag->slug)}}">{{$tag->name}}</a></li>
                             </ul>
+                            @endforeach
                         </div>
                     </div>
                 </div>

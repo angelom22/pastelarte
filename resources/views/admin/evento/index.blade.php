@@ -42,7 +42,7 @@
 							<a href="{{route('EventCreate')}}" class="btn btn-primary pull-right"><i class="fa fa-plus"></i>
 							Crear Evento</a>
 						@endcan
-							<h4>Eventos</h4>
+							<h4>Editando Evento</h4>
 							@include('custom.message')
 							<div class="card">
 								<div class="card-body">
@@ -64,7 +64,7 @@
                                                 <td>{{$event->title}}</td>
                                                 <td>{{$event->category->name}}</td>
                                                 <td>{{$event->extracto}}</td>
-                                                <td>{{$event->created_at->format('Y/m/d')}}</td>
+                                                <td>{{$event->fecha->format('Y/m/d')}}</td>
                                                 <td>
                                                 
 													<a href="{{route('evento.show', $event->slug)}}" class="btn btn-secondary btn-sm" title="Ver"> 
@@ -82,7 +82,7 @@
 													<form action="{{route('evento.destroy', $event)}}" method="POST" style="display: inline;">
 														@csrf
 														@method('DELETE')
-														<button title="eliminar" class="btn btn-danger btn-sm" onclick="return alert('Esta seguro de querer eliminar esta publicacion?')">
+														<button title="eliminar" class="btn btn-danger btn-sm" onclick="return alert('Esta seguro de querer eliminar este evento?')">
 															<i class="fa fa-times"></i>
 														</button>
 													</form>

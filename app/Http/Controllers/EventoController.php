@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Gate;
+use App\Http\Requests\StoreEventRequest;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\Tag;
@@ -44,8 +45,11 @@ class EventoController extends Controller
 
     public function index()
     {
-        $events = Event::orderBy('id', 'DESC')->paginate(4);
-
+        $events = Event::orderBy('id', 'DESC')
+                            ->whereNotNull('fecha')
+                            ->where('fecha', '>=' , Carbon::now() )
+                            ->latest('fecha')->paginate(4);
+        
         $categories = Category::orderBy('name', 'ASC')->get();
 
         $tags = Tag::orderBy('name', 'ASC')->get();
@@ -62,10 +66,12 @@ class EventoController extends Controller
     {
         Gate::authorize('haveaccess', 'event.create');
 
+        // Nueva instancia de blog
+        $evento = new Event;
         $categories = Category::all();
         $tags       = Tag::all();
 
-        return view('admin.evento.create', compact('categories', 'tags'));
+        return view('admin.evento.create', compact('categories', 'tags', 'evento'));
     }
 
     /**
@@ -74,9 +80,32 @@ class EventoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreEventRequest $request)
     {
-        return $request->all();
+        Gate::authorize('haveaccess', 'event.create');
+        // Nueva instancia de blog
+        $event = new Event;
+        
+        $file = Storage::disk('public')->put('eventos/'.$request->title, $request->file('file'));
+
+        $event->user_id = auth()->id();
+        $event->category_id = $request->get('category_id');
+        $event->title = $request->get('title');
+        $event->extracto = $request->get('extracto');
+        $event->content = $request->get('content');
+        $event->fecha = Carbon::parse($request->get('fecha'))->toDateTimeString();
+        $event->hora = Carbon::parse($request->get('hora'))->toDateTimeString();
+        $event->direccion = $request->get('direccion');
+        $event->file = $file;
+        $event->iframe = $request->get('iframe');
+        
+        // se guarda el post en la base da datos
+        $event->save();
+
+        // guardar etiquetas en la tabla relacional
+        $event->syncTags($request->get('tag_id'));
+    
+        return redirect()->route('admin.evento')->with('status_success', 'El Evento ha sido creado exitosamente');
     }
 
     /**
@@ -102,9 +131,17 @@ class EventoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Event $evento)
     {
-        //
+        // dd($evento);
+        $this->authorize('haveaccess', 'event.edit');
+        // $event = Event::findOrfail($id);
+        // dd($event);
+
+        $categories = Category::all();
+        $tags       = Tag::all();
+
+        return view('admin.evento.edit', compact('evento','categories', 'tags'));
     }
 
     /**
@@ -114,9 +151,43 @@ class EventoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Event $evento)
     {
-        //
+        $this->authorize('haveaccess', 'event.edit');
+
+        $request->validate([
+            'title'          => 'required|min:5|unique:events,title,'.$evento->title,
+            'content' => 'required',
+            'category_id' => 'required',
+            'tag_id' => 'required',
+            'extracto' => 'required',
+            'fecha' => 'required|date',
+            'hora' => 'required',
+            'direccion' => 'required',
+            // 'file' => 'required|image|max:2048' 
+        ]);
+
+         // se actualiza el evento en la base da datos
+         $evento->update([
+            'user_id' => auth()->id(),
+            'category_id' => $request->get('category_id'),
+            'title' => $request->get('title'),
+            'extracto' => $request->get('extracto'),
+            'content' => $request->get('content'),
+            'fecha' => Carbon::parse($request->get('fecha'))->toDateTimeString(),
+            'hora' => Carbon::parse($request->get('hora'))->toDateTimeString(),
+            'direccion' => $request->get('direccion'),
+            // 'file' => $file,
+            'iframe' => $request->get('iframe')
+         ]);
+
+
+        // guardar etiquetas en la tabla relacional
+        $evento->syncTags($request->get('tag_id'));
+    
+        return redirect()->route('admin.evento')->with('status_success', 'El Evento ha sido actualizado exitosamente');
+
+
     }
 
     /**
@@ -127,6 +198,17 @@ class EventoController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $this->authorize('haveaccess', 'event.destroy');
+
+        $event = Event::findOrfail($id);
+
+        $event->tags()->detach();
+        
+        Storage::disk('public')->delete($event->file);
+        
+        $event->delete();
+
+        return redirect()->route('admin.evento')->with('status_success', 'El evento ha sido eliminado');
     }
+    
 }

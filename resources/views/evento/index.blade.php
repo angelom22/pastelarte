@@ -32,8 +32,8 @@
 							<div class="col-xl-5 pr15-xl pr0">
 								<div class="blog_grid_post event_lists mb35">
 									<div class="thumb">
-										<img class="img-fluid w100" src="img/blog/el1.jpg" alt="el1.jpg">
-										<div class="post_date"><h2>28</h2> <span>DECEMBER</span></div>
+										<img class="img-fluid w100" src="{{ asset('storage/'.$event->file)}}" alt="{{$event->slug}}" style="width: 600px; height:385px;">
+										<div class="post_date"><h2>{{$event->created_at->format('d')}}</h2> <span>{{$event->created_at->format('M')}}</span></div>
 									</div>
 								</div>
 							</div>
@@ -43,9 +43,9 @@
 										<a href="{{route('evento.show', $event->slug)}}"><h3>{{$event->title}}</h3></a>
 										<p>{{$event->extracto}}</p>
 										<ul class="mb0">
-											<li><a href="#"><span class="flaticon-appointment"></span> Fecha: 01-11-2020</a></li>
-											<li><a href="#"><span class="flaticon-clock"></span>Hora: 8:00 am - 5:00 pm</a></li>
-											<li><a href="#"><span class="flaticon-placeholder"></span>Diección: Ecuador</a></li>
+											<li><a href="#"><span class="flaticon-appointment"></span> Fecha: {{$event->fecha->format('d-m-Y')}}</a></li>
+											<li><a href="#"><span class="flaticon-clock"></span>Hora: {{$event->hora->format('h:i:s')}}</a></li>
+											<li><a href="#"><span class="flaticon-placeholder"></span>Diección: {{$event->direccion}}</a></li>
 										</ul>
 									</div>
 								</div>

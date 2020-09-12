@@ -149,8 +149,9 @@ class BlogController extends Controller
      */
     public function edit(Blog $blog)
     {
+        // dd($blog);
         $this->authorize('haveaccess', 'blog.edit');
-
+        
         $categories = Category::all();
         $tags       = Tag::all();
 

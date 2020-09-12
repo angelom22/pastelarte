@@ -30,7 +30,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <!-- Scripts -->
-    <!-- <script src="{{ asset('js/app.js') }}" defer></script> -->
+    <!-- <script src="{{ asset('css/app.css') }}" defer></script> -->
 
      <!-- PNotify -->
      <link href="{{asset('plugins/pnotify/dist/PNotifyBrightTheme.css')}}" rel="stylesheet" type="text/css" />
@@ -123,6 +123,7 @@
 
     </div>
     
+    <!-- <script type="text/javascript" src="{{asset('js/app.js')}}"></script> -->
     <script type="text/javascript" src="{{asset('js/jquery-3.3.1.js')}}"></script>
     <script type="text/javascript" src="{{asset('js/jquery-migrate-3.0.0.min.js')}}"></script>
     <script type="text/javascript" src="{{asset('js/popper.min.js')}}"></script>
@@ -171,6 +172,39 @@
             });
         </script>
     @endunless
+
+    @if(Session::has('welcome'))
+    <script>
+        toastr.success('{{ session('welcome') }}');
+    </script>
+    @elseif(Session::has('bye'))
+    <script>
+        toastr.error('{{ session('bye') }}')
+    </script>
+    @elseif(Session::has('registro'))
+    <script>
+        toastr.success('{{ session('registro') }}')
+    </script>
+    @endif
+    <script>
+        toastr.options = {
+            "closeButton": true,
+            "debug": false,
+            "newestOnTop": false,
+            "progressBar": true,
+            "positionClass": "toast-top-right",
+            "preventDuplicates": false,
+            "onclick": null,
+            "showDuration": "300",
+            "hideDuration": "1000",
+            "timeOut": "5000",
+            "extendedTimeOut": "1000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+        }
+    </script>
 
     @stack('js')
 

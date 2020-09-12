@@ -42,12 +42,12 @@
 						</div>
 					</div>
 					@include('custom.message')
-					<form action="{{ route('EventStore') }}" method="POST" enctype="multipart/form-data" files="true">
-					@method('POST')
+					<form action="{{route('EventUpdate', $evento)}}" method="POST" enctype="multipart/form-data" files="true">
+					@method('PUT')
 					@csrf
 					
-					@include('admin.evento.resources.form',['btnSubmit' => 'Guardar Evento', 'titleform' => 'Crear Evento'])
-
+					@include('admin.evento.resources.form', ['btnSubmit' => 'Actualizar Evento', 'titleform' => 'Editar Evento'])
+						
 					</form>	
 
 					<div class="row mt50">

@@ -359,7 +359,7 @@ class AngelPermissionInfoSeeder extends Seeder
         $permission = Permission::create([
             'name' => 'Administrador del blog',
             'slug' => 'blog.admin',
-            'description' => 'El usuario puede listaradministrar los articulos',
+            'description' => 'El usuario puede administrar los articulos',
         ]);
 
         $permission_all[] = $permission->id;
@@ -400,6 +400,57 @@ class AngelPermissionInfoSeeder extends Seeder
             'name' => 'Destroy blog',
             'slug' => 'blog.destroy',
             'description' => 'El usuario puede eliminar  los articulos',
+        ]);
+
+        $permission_all[] = $permission->id;
+
+        // ----------------Permiso Para eventos------------------- //
+
+        // Permisos events
+        $permission = Permission::create([
+            'name' => 'Administrador de eventos',
+            'slug' => 'event.admin',
+            'description' => 'El usuario puede adminitrar los eventos',
+        ]);
+
+        $permission_all[] = $permission->id;
+
+        $permission = Permission::create([
+            'name' => 'Lista evento',
+            'slug' => 'event.index',
+            'description' => 'El usuario puede listar los eventos',
+        ]);
+
+        $permission_all[] = $permission->id;
+
+        $permission = Permission::create([
+            'name' => 'Show evento',
+            'slug' => 'event.show',
+            'description' => 'El usuario puede ver  los eventos',
+        ]);
+
+        $permission_all[] = $permission->id;
+
+        $permission = Permission::create([
+            'name' => 'Create evento',
+            'slug' => 'event.create',
+            'description' => 'El usuario puede crear los eventos',
+        ]);
+
+        $permission_all[] = $permission->id;
+
+        $permission = Permission::create([
+            'name' => 'Edit event',
+            'slug' => 'event.edit',
+            'description' => 'El usuario puede editar  los eventos',
+        ]);
+
+        $permission_all[] = $permission->id;
+
+        $permission = Permission::create([
+            'name' => 'Destroy event',
+            'slug' => 'event.destroy',
+            'description' => 'El usuario puede eliminar  los eventos',
         ]);
 
         $permission_all[] = $permission->id;

@@ -20,6 +20,7 @@ $factory->define(Event::class, function (Faker $faker) {
         'slug' => $slug,
         'extracto' => $faker->text(200),
         'content' => $faker->text(500),
+        'direccion' => $faker->text(50),
         // 'file' => $faker->imageUrl($width = 982, $height = 500),
         'file' => $img,
     ];

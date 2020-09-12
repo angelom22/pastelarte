@@ -94,34 +94,34 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-
+        dd($request->all());
         $request->validate([
             'name'          => 'required|max:50|unique:users,name,'.$user->id,
             'email'          => 'required|max:50|unique:users,email,'.$user->id,    
         ]);
 
-        // if ($request->file('avatar') != null) {
+        if ($request->file('avatar') != null) {
 
-        //     $deleteFile = $user->avatar;
+            $deleteFile = $user->avatar;
 
-        //     $file = Storage::disk('public')->delete($deleteFile);
+            $file = Storage::disk('public')->delete($deleteFile);
 
-        //     $avatar = Storage::dick('public')->put('perfil/'.$request->name, $request->file('avatar'));
+            $avatar = Storage::dick('public')->put('perfil/'.$request->name, $request->file('avatar'));
 
-        //     $user->update([
-        //         'name' => $request->name,
-        //         'email' => $request->email,
-        //         'avatar' => $avatar
-        //     ]);
-        // } else {
-        //     $user->update([
-        //         'name' => $request->name,
-        //         'email' => $request->email
-        //     ]);
-        // }
+            $user->update([
+                'name' => $request->name,
+                'email' => $request->email,
+                'avatar' => $avatar
+            ]);
+        } else {
+            $user->update([
+                'name' => $request->name,
+                'email' => $request->email
+            ]);
+        }
 
         // dd($request->all());
-        $user->update($request->all());
+        // $user->update($request->all());
         
         $user->roles()->sync($request->get('roles'));
         

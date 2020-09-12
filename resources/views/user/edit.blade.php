@@ -1,7 +1,7 @@
 @extends('admin.layouts.app')
 
-@push('js')
-
+@push('css')
+<link href="{{asset('plugins/dropzone/dist/min/dropzone.min.css')}}" rel="stylesheet" />
 @endpush
 
 @section('content')
@@ -83,18 +83,19 @@
 					<div class="col-xl-4">
 						<div class="recent_job_activity">
 							<h4 class="title">Avatar</h4>
-							<div class="grid mb0">
+							<div class="dropzone"></div>
+							<!-- <div class="grid mb0">
 								<div class="details">
 									<div class="col-xl-2">
 										<div class="wrap-custom-file">
 											<input style="display: hidden;" type="file" name="avatar" id="avatar" accept=".gif, .jpg, .png">
-											<label  for="avatar">
+											 <label  for="avatar">
 												<span>Subir</span>
 											</label>
 										</div>
 									</div>
 								</div>
-							</div>
+							</div> -->
 						</div>
 					</div>
 				</div>
@@ -110,5 +111,31 @@
 
 
 @push('js')
+<script src="{{asset('plugins/dropzone/dist/min/dropzone.min.js')}}"></script>
+<script>
+	var token = $('#token').val()
+	// new Dropzone("div#myId", { url: "/file/post"});
+	var MyDropzone = new Dropzone('.dropzone', {
+						type: "GET",
+						url: '/user',
+						paramName: 'file',
+						acceptedFiles: 'image/*',
+						maxFilesize:2,
+						maxFiles: 1,
+						dictDefaultMessage: 'Arrastre la foto aca para subirla',
+						headers: {'X-CSRF-TOKEN':token},
+			
+					});
+
+	// Disable auto discover for all elements:
+	Dropzone.autoDiscover = false;
+	
+	MyDropzone.on('error', function(file, res){
+		console.log(res);
+		var msg = res.message;
+		$('.dz-error-message:last > span').text(msg);
+	});
+	
+</script>
 
 @endpush

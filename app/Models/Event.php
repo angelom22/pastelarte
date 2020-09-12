@@ -44,8 +44,10 @@ class Event extends Model
 
     protected $table = 'events';
 
+    protected $dates = ['fecha', 'hora'];
+
     protected $fillable = [
-       'user_id', 'category_id', 'title', 'slug', 'extracto', 'content', 'fecha', 'file', 'iframe', 
+       'user_id', 'category_id', 'title', 'slug', 'extracto', 'content', 'fecha', 'hora', 'direccion', 'file', 'iframe', 
     ];
 
     public function user(){
@@ -58,5 +60,29 @@ class Event extends Model
 
     public function tags(){
         return $this->belongsToMany(Tag::class)->withTimestamps();
+    }
+
+    public function scopePublicados($query){
+
+        $query->orderBy('id', 'DESC')
+                ->whereNotNull('fecha')
+                ->where('fecha', '>=' , Carbon::now() )
+                ->latest('fecha');
+
+    }
+
+    public function setCategoryIdAttribute($category){
+        // Se guarda la categoria si a sido creada directamente desde el formulario
+        $this->attributes['category_id'] = Category::find($category) ? $category : Category::create(['name' =>  $category ])->id;
+    }
+
+    public function syncTags($tags){
+        // guardar las etiquetas si han sido creadas directamente desde el formulario
+        $tagIds = collect($tags)->map(function($tag){
+            return Tag::find($tag) ? $tag : Tag::create(['name' => $tag])->id;
+        });
+
+        // guardar etiquetas en la tabla relacional
+        return $this->tags()->sync($tagIds);
     }
 }

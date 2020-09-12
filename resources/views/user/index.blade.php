@@ -66,13 +66,19 @@
 												<td>
 
 												@can('view', [$user, ['user.show', 'userown.show'] ]) 
-													<a class="btn btn-xs btn-info" data-user_id="{{$user->id}}" data-user_name="{{$user->name}}" data-user_email="{{$user->email}}" data-user_roles="1" data-user_avatar="{{$user->avatar}}" data-toggle="modal" data-target="#AbrirModalUser" title="Ver"> 
+													<!-- <a class="btn btn-sm btn-info" data-user_id="{{$user->id}}" data-user_name="{{$user->name}}" data-user_email="{{$user->email}}" data-user_roles="1" data-user_avatar="{{$user->avatar}}" data-toggle="modal" data-target="#AbrirModalUser" title="Ver"> 
+														<i class="fa fa-eye"></i>
+													</a> -->
+													<a href="{{route('user.show', $user->id)}}" class="btn btn-sm btn-info" title="Ver"> 
 														<i class="fa fa-eye"></i>
 													</a>
 												@endcan
 												
 												@can('view', [$user, ['user.edit', 'userown.edit'] ]) 
-													<a class="btn btn-xs btn-success" data-user_id="{{$user->id}}" data-user_name="{{$user->name}}" data-user_email="{{$user->email}}" data-user_roles="1" data-user_avatar="{{$user->avatar}}" data-toggle="modal" data-target="#ModificarUser" title="Modificar">
+													<!-- <a class="btn btn-sm btn-success" data-user_id="{{$user->id}}" data-user_name="{{$user->name}}" data-user_email="{{$user->email}}" data-user_roles="1" data-user_avatar="{{$user->avatar}}" data-toggle="modal" data-target="#ModificarUser" title="Modificar">
+														<i class="fa fa-wpforms"></i>
+													</a> -->
+													<a href="{{route('user.edit', $user->id)}}" class="btn btn-sm btn-success" title="Modificar">
 														<i class="fa fa-wpforms"></i>
 													</a>
 												@endcan
@@ -81,7 +87,7 @@
 													<form action="{{route('user.destroy', $user->id)}}" method="POST" style="display: inline;">
 														@csrf
 														@method('DELETE')
-														<button title="eliminar" class="btn btn-xs btn-danger" onclick="return('Esta seguro de querer eliminar este usuario?')">
+														<button title="eliminar" class="btn btn-sm btn-danger" onclick="return alert('Esta seguro de querer eliminar este usuario?')">
 															<i class="fa fa-times"></i>
 														</button>
 													</form>
@@ -138,7 +144,6 @@
 @include('user.resources.modal')
 
 @endsection
-
 
 @push('js')
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.js"></script>
