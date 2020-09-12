@@ -113,11 +113,10 @@
 @push('js')
 <script src="{{asset('plugins/dropzone/dist/min/dropzone.min.js')}}"></script>
 <script>
-	var token = $('#token').val()
+	var token = $('#token').val();
 	// new Dropzone("div#myId", { url: "/file/post"});
 	var MyDropzone = new Dropzone('.dropzone', {
-						type: "GET",
-						url: '/user',
+						url: '{{url("/user")}}',
 						paramName: 'file',
 						acceptedFiles: 'image/*',
 						maxFilesize:2,

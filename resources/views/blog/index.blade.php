@@ -81,7 +81,7 @@
                                 <li><a href="#"><span class="flaticon-profile"></span></a></li>
                                 <li><a href="#"><span>{{$blog->user->name}}</span></a></li>
                                 <li><a href="#"><span class="flaticon-comment"></span></a></li>
-                                <li><a href="#"><span>7 comments</span></a></li>
+                                <li><a href="#"><span></span></a></li>
                             </ul>
                             <p>{{$blog->extracto}}</p>
                         </div>

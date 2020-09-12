@@ -95,13 +95,10 @@
 									</div>
 							</div>
 							<div class="col-md-4">
-									<div class="form-group">
-										<!-- <div class="dropzone">
-
-										</div> -->
-										<input type="file" id="file" name="file" value="{{ old('file', $blog->file) }}" />
-										
-									</div>
+								<div class="form-group">
+									<!-- <div class="dropzone"></div> -->
+									<input type="file" id="file" name="file" value="{{ old('file', $blog->file) }}" />					
+								</div>
 							</div>		
 						</div>	
 					</div>
@@ -129,35 +126,39 @@
 	<script src="{{asset('plugins/dropzone/dist/min/dropzone.min.js')}}"></script>
 	<script>
 		
-		$("#published_at").datepicker();
 		
 		CKEDITOR.replace( 'content' );
 		
 		$('.select2').select2({
 			tags: true
 		});
-		
 
-		var token = $('#token').val()
+		// $("#published_at").datepicker();
+
+		var token = $('meta[name="csrf-token"]').attr('content');
 		console.log(token);
 
 		var MyDropzone = new Dropzone('.dropzone', {
 			url: '/blog',
 			paramName: 'file',
-			// acceptedFiles: 'image/*',
-			// maxFilesize:2,
+			acceptedFiles: 'image/*',
+			maxFilesize:2,
 			maxFiles: 1,
+			dictDefaultMessage: 'Arrastre la foto aca para subirla',
 			headers: {'X-CSRF-TOKEN':token},
 
 		});
 
+		// Disable auto discover for all elements:
+		Dropzone.autoDiscover = false;
+		
 		MyDropzone.on('error', function(file, res){
 			console.log(res);
 			var msg = res.message;
 			$('.dz-error-message:last > span').text(msg);
 		});
 
-		// Disable auto discover for all elements:
-		Dropzone.autoDiscover = false;
+		
+
 	</script>
 @endpush

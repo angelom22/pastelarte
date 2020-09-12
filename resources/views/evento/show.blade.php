@@ -44,13 +44,7 @@
                                 <p>{!! $event->content !!} </p>
                             </div>
                             <ul class="blog_post_share mb0">
-                                <li><p>Share</p></li>
-                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                <li><a href="#"><i class="fa fa-google"></i></a></li>
-                                <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                                <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
-                                <li><a href="#"><i class="fa fa-google"></i></a></li>
+                            @include('resources.social-links', ['description' => $event->title])
                             </ul>
                         </div>
 

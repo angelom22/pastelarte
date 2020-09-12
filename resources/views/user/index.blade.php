@@ -97,21 +97,6 @@
 											@endforeach
 										</tbody>
 									</table>
-									<div class="row text-center">
-										<div class="col-lg-12">
-											<div class="mbp_pagination mt20">
-												<ul class="page_navigation">
-													<!-- <li class="page-item disabled">
-														<a class="page-link" href="#" tabindex="-1" aria-disabled="true"> <span class="flaticon-left-arrow"></span> Prev</a>
-													</li> -->
-												
-													<!-- <li class="page-item">
-														<a class="page-link" href="#">Next <span class="flaticon-right-arrow-1"></span></a>
-													</li> -->
-												</ul>
-											</div> 
-										</div>
-									</div>
 								</div>
 							</div>
 						

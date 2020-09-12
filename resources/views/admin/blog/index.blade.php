@@ -31,7 +31,7 @@
 							<h4 class="title float-left">Dashboard</h4>
 							<ol class="breadcrumb float-right">
 								<li class="breadcrumb-item"><a href="#">Home</a></li>
-								<li class="breadcrumb-item active" aria-current="page">Usuarios</li>
+								<li class="breadcrumb-item active" aria-current="page">Publicaciones</li>
 							</ol>
 						</nav>
 					</div>

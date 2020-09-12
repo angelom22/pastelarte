@@ -35,29 +35,23 @@
                             <div class="post_date"><h2>{{$blog->created_at->format('d')}}</h2> <span>{{$blog->created_at->format('M')}}</span></div>
                         </div>
                         <div class="details">
-                            <h3>{{$blog->name}}</h3>
+                            <h3>{{$blog->title}}</h3>
                             <ul class="post_meta">
                                 <li><a href="#"><span class="flaticon-profile"></span></a></li>
                                 <li><a href="#"><span>{{$blog->user->name}}</span></a></li>
                                 <li><a href="#"><span class="flaticon-comment"></span></a></li>
-                                <li><a href="#"><span>7 comments</span></a></li>
+                                <li><a href="http://foo.com/bar.html#disqus_thread"><span></span></a></li>
                             </ul>
                             <h4>Descripción</h4>
                             <p>{!! $blog->content !!}</p>
                         </div>
                         <ul class="blog_post_share">
-                            <li><p>Share</p></li>
-                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                            <li><a href="#"><i class="fa fa-google"></i></a></li>
-                            <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                            <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
-                            <li><a href="#"><i class="fa fa-google"></i></a></li>
+                            @include('resources.social-links', ['description' => $blog->title])
                         </ul>
                     </div>
 
 
-                    <div class="product_single_content style2 mb30">
+                    <!-- <div class="product_single_content style2 mb30">
                         <h4 class="aii_title">Comentarios</h4>
                         <div class="mbp_pagination_comments">
                             <div class="mbp_first media">
@@ -70,12 +64,9 @@
                             </div>
                             <div class="custom_hr style3"></div>
                         </div>
-                    </div>
+                    </div> -->
 
-
-
-
-                    <div class="product_single_content style2">
+                    <!-- <div class="product_single_content style2">
                         <div class="mbp_comment_form style2">
                             <h4>Agregar comentarios</h4>
                             <form class="comments_form">
@@ -90,7 +81,10 @@
                                 <button type="submit" class="btn btn-thm">Enviar <span class="flaticon-right-arrow-1"></span></button>
                             </form>
                         </div>
-                    </div>
+                    </div> -->
+                    
+                    @include('resources.disqus-comments')
+
                 </div>
             </div>
 
@@ -130,3 +124,7 @@
 
 
 @endsection
+
+@push('js')
+<script id="dsq-count-scr" src="//pastel-arte.disqus.com/count.js" async></script>
+@endpush
