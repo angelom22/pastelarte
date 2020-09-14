@@ -27,13 +27,7 @@
 						@include('admin.layouts.menu-lateralMobil')
 					</div>
 					<div class="col-lg-12">
-						<nav class="breadcrumb_widgets" aria-label="breadcrumb mb30">
-							<h4 class="title float-left">Dashboard</h4>
-							<ol class="breadcrumb float-right">
-								<li class="breadcrumb-item"><a href="#">Home</a></li>
-								<li class="breadcrumb-item active" aria-current="page">Publicaciones</li>
-							</ol>
-						</nav>
+					@include('admin.layouts.nav-admin', ['title' => 'Publicaciones', 'page' => 'publicación'] )
 					</div>
 					
 					<div class="col-xl-12">
@@ -85,13 +79,13 @@
                                                 <td>
                                                 
 													<a href="{{route('blog.show', $blog->slug)}}" class="btn btn-secondary btn-sm" title="Ver"> 
-														<i class="fa fa-eye"></i>
+														<span class="flaticon-preview"></span>
 													</a>
 											
 												
 												
 													<a href="{{route('BlogEdit', $blog)}}" style="color: #fff;" class="btn btn-primary btn-sm" title="Modificar">
-														<i class="fa fa-pencil"></i>
+														<span class="flaticon-edit"></span>
 													</a>
 												
 												
@@ -100,7 +94,7 @@
 														@csrf
 														@method('DELETE')
 														<button title="eliminar" class="btn btn-danger btn-sm" onclick="return alert('Esta seguro de querer eliminar esta publicacion?')">
-															<i class="fa fa-times"></i>
+															<span class="flaticon-delete-button"></span>
 														</button>
 													</form>
 												

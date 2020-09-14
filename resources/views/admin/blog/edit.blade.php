@@ -27,25 +27,19 @@
 							@include('admin.layouts.menu-lateralMobil')
 						</div>
 						<div class="col-lg-12">
-							<nav class="breadcrumb_widgets" aria-label="breadcrumb mb30">
-								<h4 class="title float-left">Dashboard</h4>
-								<ol class="breadcrumb float-right">
-									<li class="breadcrumb-item"><a href="#">Home</a></li>
-									<li class="breadcrumb-item active" aria-current="page">Dashboard</li>
-								</ol>
-							</nav>
+						@include('admin.layouts.nav-admin', ['title' => 'Publicaciones', 'page' => 'publicación'] )
 						</div>
 					</div>
+
 					@include('custom.message')
 					<form action="{{ route('BlogUpdate', $blog) }}" method="POST" enctype="multipart/form-data" files="true">
 					@method('PUT')
 					@csrf
-					
+				
 					<div class="card text-white bg-dark">
 						<div class="card-body">
 							<div class="col-md-12">	
-							
-								<h4 style="color: #fff;">Crear Publicación</h4>	
+									<h4 style="color: #fff;">Crear Publicación</h4>	
 										<div class="form-group {{ $errors->has('title') ? 'has-error' : ''}}">
 											<input type="text" class="form-control" id="title" name="title" placeholder="Titulo de la publicación" value="{{ old('title', $blog->title) }}">
 											{!! $errors->first('title', '<span class="help-block">:message</span>') !!}
@@ -56,13 +50,16 @@
 											<textarea rows="10" class="form-control" id="content" name="content" placeholder="Ingresa contenido de la publicación">{{ old('content', $blog->content) }}</textarea>
 											{!! $errors->first('content', '<span class="help-block">:message</span>') !!}
 										</div>
+								
 							</div>
-							<div class="col-md-8">
+							<div class="col-xl-12">
+								<div class="col-md-12">
 									<div class="form-group {{ $errors->has('extracto') ? 'has-error' : ''}}">
 										<textarea class="form-control" id="extracto" name="extracto" placeholder="Ingresa el extracto de la publicación">{{ old('extracto',  $blog->extracto) }}</textarea>
 										{!! $errors->first('extracto', '<span class="help-block">:message</span>') !!}
 									</div>
-
+								</div>
+								<div class="col-md-8">
 									<div class="form-group {{ $errors->has('category_id') ? 'has-error' : ''}}">
 										<label for="category_id">Categorias</label>
 										<select name="category_id" id="category_id" class="form-control select2">
@@ -93,18 +90,19 @@
 											<option value="PUBLICADO">PUBLICADO</option>
 										</select>
 									</div>
-							</div>
-							<div class="col-md-4">
-								<div class="form-group">
-									<!-- <div class="dropzone"></div> -->
-									<input type="file" id="file" name="file" value="{{ old('file', $blog->file) }}" />					
 								</div>
-							</div>		
+								<div class="col-md-4">
+									<div class="form-group">
+										<!-- <div class="dropzone"></div> -->
+										<input type="file" id="file" name="file" value="{{ old('file', $blog->file) }}" />					
+									</div>
+								</div>	
+							</div>
 						</div>	
 					</div>
-						<div class="form-group">
-							<button type="submit" class="btn mt-2 btn-primary btn-block" >Guardar Publicación</button>
-						</div>
+					<div class="form-group">
+						<button type="submit" class="btn mt-2 btn-primary btn-block" >Guardar Publicación</button>
+					</div>
 					</form>	
 
 					<div class="row mt50">

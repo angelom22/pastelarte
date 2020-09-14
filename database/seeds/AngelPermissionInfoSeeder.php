@@ -46,11 +46,18 @@ class AngelPermissionInfoSeeder extends Seeder
             'full_access' => 'yes'
         ]);
 
+        // Rol Estudiante
+        $roluser= Role::create([
+            'name' => 'Estudiante',
+            'slug' => 'estudiante',
+            'description' => 'Usuario estudiante',
+            'full_access' => 'no'
+        ]);
         // Rol Cliente
         $roluser= Role::create([
-            'name' => 'Cliente',
-            'slug' => 'cliente',
-            'description' => 'Usuario Cliente',
+            'name' => 'Autor',
+            'slug' => 'autor',
+            'description' => 'Usuario autor',
             'full_access' => 'no'
         ]);
 

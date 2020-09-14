@@ -17,6 +17,9 @@
             <li><a href="page-my-listing.html"><span class="flaticon-add-contact"></span> Add listing</a></li> -->
             
             <li {{ request()->is('dashboard') ? 'class=active' : '' }} ><a href="{{url('dashboard')}}"><span class="flaticon-puzzle-1"></span> Inicio</a></li>
+            @can('haveaccess','course.admin')
+            <li {{ request()->is('admin/curso') ? 'class=active' : '' }} ><a href="{{route('admin.curso')}}"><span class="flaticon-online-learning"></span>Cursos</a></li>
+            @endcan
             @can('haveaccess','blog.admin')
             <!-- @if(auth()->user()->roles[0]->full_access == 'yes') -->
             <li class="{{ request()->is('admin/blog') ? 'active' : '' }} nav-item dropdown ">

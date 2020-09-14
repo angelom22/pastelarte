@@ -22,13 +22,7 @@
 							@include('admin.layouts.menu-lateralMobil')
 						</div>
 						<div class="col-lg-12">
-							<nav class="breadcrumb_widgets" aria-label="breadcrumb mb30">
-								<h4 class="title float-left">Dashboard</h4>
-								<ol class="breadcrumb float-right">
-							    	<li class="breadcrumb-item"><a href="#">Home</a></li>
-							    	<li class="breadcrumb-item active" aria-current="page">Dashboard</li>
-								</ol>
-							</nav>
+						@include('admin.layouts.nav-admin', ['title' => 'Inicio', 'page' => 'inicio'] )
 						</div>
 						<div class="col-sm-6 col-md-6 col-lg-6 col-xl-3">
 							<div class="ff_one">

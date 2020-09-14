@@ -26,6 +26,13 @@ class AdminController extends Controller
         return view('admin.dashboard.dashboard');
     }
 
+    public function curso()
+    {
+        $this->authorize('haveaccess', 'course.admin');
+
+        
+        return view('admin.cursos.index');
+    }
     public function blog()
     {
         $this->authorize('haveaccess', 'blog.admin');

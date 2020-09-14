@@ -26,13 +26,7 @@
 						@include('admin.layouts.menu-lateralMobil')
 					</div>
 					<div class="col-lg-12">
-						<nav class="breadcrumb_widgets" aria-label="breadcrumb mb30">
-							<h4 class="title float-left">Dashboard</h4>
-							<ol class="breadcrumb float-right">
-								<li class="breadcrumb-item"><a href="#">Home</a></li>
-								<li class="breadcrumb-item active" aria-current="page">Usuarios</li>
-							</ol>
-						</nav>
+					@include('admin.layouts.nav-admin', ['title' => 'Usuarios', 'page' => 'usuario'] )
 					</div>
 					
 					<div class="col-xl-8">
@@ -90,7 +84,7 @@
 								<div class="details">
 									<div class="col-xl-2">
 										<div class="wrap-custom-file">
-											<img class="float-left" src="{{asset($user->avatar)}}" alt=".png">
+											<img style="object-fit: cover; object-position: center center;" class="float-left" src="{{asset('storage/'.$user->avatar)}}" alt="avatar">
 										</div>
 									</div>
 								</div>

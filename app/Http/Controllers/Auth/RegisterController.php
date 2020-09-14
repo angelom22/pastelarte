@@ -64,7 +64,7 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        $avatar = 'img/perfil.png';
+        $avatar = "https://ui-avatars.com/api/?background=0D8ABC&color=fff&name=".$data['name'];
 
         return User::create([
             'name' => $data['name'],

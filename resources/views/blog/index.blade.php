@@ -40,7 +40,7 @@
                         <div class="blog_post">
                             <div class="thumb">
                                  @if($blog->file)
-                                <img class="img-fluid w100" style="width:306px; height: 450px;" src=" {{ asset('storage/'.$blog->file)}}" alt="pastelarteblog.jpg">
+                                <img class="img-fluid w100" style="width:306px; height: 450px;" src=" {{asset($blog->file)}}" alt="{{$blog->slug}}">
                                 <a class="post_date" href="#">{{$blog->created_at->format('M d , Y')}} </a>
                                 @endif
                             </div>
@@ -69,7 +69,7 @@
                         <div class="thumb">
                             @if($blog->file)
                             <a href="#">
-                                <img class="img-fluid" src="{{ asset('storage/'.$blog->file)}}" style="width:982px; height:500px" alt="{{$blog->slug}}">
+                                <img class="img-fluid" src="{{ asset($blog->file)}}" style="width:982px; height:500px" alt="{{$blog->slug}}">
                             </a>
                             @endif
                             <div class="tag">{{$blog->category->name}} </div>
@@ -81,7 +81,8 @@
                                 <li><a href="#"><span class="flaticon-profile"></span></a></li>
                                 <li><a href="#"><span>{{$blog->user->name}}</span></a></li>
                                 <li><a href="#"><span class="flaticon-comment"></span></a></li>
-                                <li><a href="#"><span></span></a></li>
+                                <li><a href="#disqus_thread"><span></span></a></li>
+                                <!-- <li><a href="#"><span></span></a></li> -->
                             </ul>
                             <p>{{$blog->extracto}}</p>
                         </div>
@@ -135,3 +136,7 @@
 </section>
 
 @endsection
+
+@push('js')
+<script id="dsq-count-scr" src="//pastel-arte.disqus.com/count.js" async></script>
+@endpush

@@ -421,19 +421,19 @@ var Dropzone = function (_Emitter) {
         /**
          * The text used before any files are dropped.
          */
-        dictDefaultMessage: "Upload Portfolio",
+        dictDefaultMessage: "Subir thumbnail",
 
         /**
          * The text that replaces the default message text it the browser is not supported.
          */
-        dictFallbackMessage: "Your browser does not support drag'n'drop file uploads.",
+        dictFallbackMessage: "nuestro navegador no admite la carga de archivos mediante la función de arrastrar y soltar.",
 
         /**
          * The text that will be added before the fallback form.
          * If you provide a  fallback element yourself, or if this option is `null` this will
          * be ignored.
          */
-        dictFallbackText: "Please use the fallback form below to upload your files like in the olden days.",
+        dictFallbackText: "Utilice el formulario de respaldo a continuación para cargar sus archivos como en los viejos tiempos.",
 
         /**
          * If the filesize is too big.

@@ -23,13 +23,7 @@
                             @include('admin.layouts.menu-lateralMobil')
                         </div>
                         <div class="col-lg-12">
-                            <nav class="breadcrumb_widgets" aria-label="breadcrumb mb30">
-                                <h4 class="title float-left">Dashboard</h4>
-                                <ol class="breadcrumb float-right">
-                                    <li class="breadcrumb-item"><a href="{{url('/')}}">Home</a></li>
-                                    <li class="breadcrumb-item active" aria-current="page">Roles</li>
-                                </ol>
-                            </nav>
+                        @include('admin.layouts.nav-admin', ['title' => 'Roles', 'page' => 'rol'] )
                         </div>
                         
                         <!-- Contenio de la vista -->

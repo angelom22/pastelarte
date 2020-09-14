@@ -32,6 +32,7 @@
 							@include('admin.layouts.menu-lateralMobil')
 						</div>
 						<div class="col-lg-12">
+						@include('admin.layouts.nav-admin', ['title' => 'Eventos', 'page' => 'evento'] )
 							<nav class="breadcrumb_widgets" aria-label="breadcrumb mb30">
 								<h4 class="title float-left">Dashboard</h4>
 								<ol class="breadcrumb float-right">

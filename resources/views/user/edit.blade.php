@@ -25,13 +25,7 @@
 						@include('admin.layouts.menu-lateralMobil')
 					</div>
 					<div class="col-lg-12">
-						<nav class="breadcrumb_widgets" aria-label="breadcrumb mb30">
-							<h4 class="title float-left">Dashboard</h4>
-							<ol class="breadcrumb float-right">
-								<li class="breadcrumb-item"><a href="#">Home</a></li>
-								<li class="breadcrumb-item active" aria-current="page">Usuarios</li>
-							</ol>
-						</nav>
+					@include('admin.layouts.nav-admin', ['title' => 'Usuarios', 'page' => 'usuario'] )
 					</div>
 					
 					<div class="col-xl-8">
@@ -43,7 +37,7 @@
                                 <div class="card-body">
                                 @include('custom.message')
                                 
-                                    <form action="{{route('user.update', $user->id)}}" method="POST">
+                                    <form action="{{route('user.update', $user->id)}}" method="POST" enctype="multipart/form-data">
                                     @csrf
                                     @method('PUT')
 
@@ -73,9 +67,6 @@
                                             <input type="submit" class="btn btn-primary" value="Editar">
                                             <a class="btn btn-danger" href="{{route('user.index')}}">Regresar</a>
                                         </div>
-                    
-                                    </form>
-
                                 </div>
                             </div>
 						</div>
@@ -83,7 +74,8 @@
 					<div class="col-xl-4">
 						<div class="recent_job_activity">
 							<h4 class="title">Avatar</h4>
-							<div class="dropzone"></div>
+							<!-- <div class="dropzone"></div> -->
+							<!-- <input type="file" name="avatar" id="avatar"> -->
 							<!-- <div class="grid mb0">
 								<div class="details">
 									<div class="col-xl-2">
@@ -96,8 +88,18 @@
 									</div>
 								</div>
 							</div> -->
+							<div class="col-lg-12">
+								<div class="my_profile_setting_input2">
+									<form action="/file-upload" class="dropzone">
+										<div class="fallback">
+											<input name="avatar" type="file" />
+										</div>
+									</form>
+								</div>
+							</div>
 						</div>
 					</div>
+					</form>
 				</div>
 				<div class="row mt50">
 					@include('admin.layouts.footer')

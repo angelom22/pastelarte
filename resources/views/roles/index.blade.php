@@ -21,13 +21,7 @@
                             @include('admin.layouts.menu-lateralMobil')
                         </div>
                         <div class="col-lg-12">
-                            <nav class="breadcrumb_widgets" aria-label="breadcrumb mb30">
-                                <h4 class="title float-left">Dashboard</h4>
-                                <ol class="breadcrumb float-right">
-                                    <li class="breadcrumb-item"><a href="{{url('/')}}">Home</a></li>
-                                    <li class="breadcrumb-item active" aria-current="page">Roles</li>
-                                </ol>
-                            </nav>
+                        @include('admin.layouts.nav-admin', ['title' => 'Roles', 'page' => 'rol'] )
                         </div>
                      
                         <!-- Contenio de la vista -->
@@ -63,14 +57,14 @@
                                                     <td>{{$role['full_access']}}</td>
                                                     <td>
                                                     @can('haveaccess','role.show')   
-                                                        <a href="{{route('role.show', $role->id)}}" class="btn btn-sm btn-info" title="Ver"> 
-                                                            <i class="fa fa-eye"></i>
+                                                        <a href="{{route('role.show', $role->id)}}" class="btn btn-sm btn-secondary" title="Ver"> 
+                                                            <span class="flaticon-preview"></span>
                                                         </a>
                                                     @endcan
                         
                                                     @can('haveaccess','role.edit')  
-                                                        <a href="{{route('role.edit', $role->id)}}" class="btn btn-sm btn-success" title="Modificar">
-                                                            <i class="fa fa-wpforms"></i>
+                                                        <a href="{{route('role.edit', $role->id)}}" class="btn btn-sm btn-info" title="Modificar">
+                                                            <span class="flaticon-edit"></span>
                                                         </a>
                                                     @endcan
                                                     
@@ -79,7 +73,7 @@
                                                             @csrf
                                                             @method('DELETE')
                                                             <button title="eliminar" class="btn btn-sm btn-danger" onclick="return alert('Esta seguro de querer eliminar este rol?')">
-                                                                <i class="fa fa-times"></i>
+                                                                <span class="flaticon-delete-button"></span>
                                                             </button>
                                                         </form>
                                                     @endcan

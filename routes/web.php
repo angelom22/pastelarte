@@ -4,15 +4,7 @@ use Illuminate\Support\Facades\Route;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 use App\User;
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
-
 Auth::routes();
-
-// Route::get('api/users', function(){
-   
-// });
 
 Route::get('/', 'HomeController@index')->name('home');
 
@@ -40,10 +32,17 @@ Route::resource('/evento', 'EventoController')->names([
     'edit'      => 'EventEdit',
 ]);
 
+/**
+ *  Rutas para los Cursos
+ */
+Route::resource('/cursos', 'CursoController')->names([
+    'update'    => 'CourseUpdate',
+    'create'    => 'CourseCreate',
+    'store'     => 'CourseStore',
+    'edit'      => 'CourseEdit',
+]);
+
 Route::resource('/contacto', 'ContactoController')->names('contacto');
-
-Route::resource('/cursos', 'CursoController')->names('cursos');
-
 
 Route::resource('/cursosingle', 'CursoSingleController')->names([
     'cursosingle' => 'cursosingle',
@@ -63,3 +62,4 @@ Route::get('etiquetas/{slug}', 'BlogController@filtrarEtiqueta')->name('filtrarE
 Route::resource('/dashboard', 'AdminController')->names('dashboard');
 Route::get('admin/blog', 'AdminController@blog')->name('admin.blog');
 Route::get('admin/evento', 'AdminController@evento')->name('admin.evento');
+Route::get('admin/curso', 'AdminController@curso')->name('admin.curso');

@@ -25,13 +25,7 @@
 						@include('admin.layouts.menu-lateralMobil')
 					</div>
 					<div class="col-lg-12">
-						<nav class="breadcrumb_widgets" aria-label="breadcrumb mb30">
-							<h4 class="title float-left">Dashboard</h4>
-							<ol class="breadcrumb float-right">
-								<li class="breadcrumb-item"><a href="#">Home</a></li>
-								<li class="breadcrumb-item active" aria-current="page">Usuarios</li>
-							</ol>
-						</nav>
+					@include('admin.layouts.nav-admin', ['title' => 'Usuarios', 'page' => 'usuario'] )
 					</div>
 					
 					<div class="col-xl-12">
@@ -69,8 +63,8 @@
 													<!-- <a class="btn btn-sm btn-info" data-user_id="{{$user->id}}" data-user_name="{{$user->name}}" data-user_email="{{$user->email}}" data-user_roles="1" data-user_avatar="{{$user->avatar}}" data-toggle="modal" data-target="#AbrirModalUser" title="Ver"> 
 														<i class="fa fa-eye"></i>
 													</a> -->
-													<a href="{{route('user.show', $user->id)}}" class="btn btn-sm btn-info" title="Ver"> 
-														<i class="fa fa-eye"></i>
+													<a href="{{route('user.show', $user->id)}}" class="btn  btn-secondary btn-sm" title="Ver"> 
+														<span class="flaticon-preview"></span>
 													</a>
 												@endcan
 												
@@ -78,8 +72,8 @@
 													<!-- <a class="btn btn-sm btn-success" data-user_id="{{$user->id}}" data-user_name="{{$user->name}}" data-user_email="{{$user->email}}" data-user_roles="1" data-user_avatar="{{$user->avatar}}" data-toggle="modal" data-target="#ModificarUser" title="Modificar">
 														<i class="fa fa-wpforms"></i>
 													</a> -->
-													<a href="{{route('user.edit', $user->id)}}" class="btn btn-sm btn-success" title="Modificar">
-														<i class="fa fa-wpforms"></i>
+													<a href="{{route('user.edit', $user->id)}}" class="btn btn-sm btn-primary" title="Editar">
+														<span class="flaticon-edit"></span>
 													</a>
 												@endcan
 												
@@ -88,7 +82,7 @@
 														@csrf
 														@method('DELETE')
 														<button title="eliminar" class="btn btn-sm btn-danger" onclick="return alert('Esta seguro de querer eliminar este usuario?')">
-															<i class="fa fa-times"></i>
+															<span class="flaticon-delete-button"></span>
 														</button>
 													</form>
 												@endcan

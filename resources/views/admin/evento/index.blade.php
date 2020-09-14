@@ -68,13 +68,13 @@
                                                 <td>
                                                 
 													<a href="{{route('evento.show', $event->slug)}}" class="btn btn-secondary btn-sm" title="Ver"> 
-														<i class="fa fa-eye"></i>
+														<span class="flaticon-preview"></span>
 													</a>
 											
 												
 												
 													<a href="{{route('EventEdit', $event)}}" style="color: #fff;" class="btn btn-primary btn-sm" title="Modificar">
-														<i class="fa fa-pencil"></i>
+														<span class="flaticon-edit"></span>
 													</a>
 												
 												
@@ -83,7 +83,7 @@
 														@csrf
 														@method('DELETE')
 														<button title="eliminar" class="btn btn-danger btn-sm" onclick="return alert('Esta seguro de querer eliminar este evento?')">
-															<i class="fa fa-times"></i>
+															<span class="flaticon-delete-button"></span>
 														</button>
 													</form>
 												

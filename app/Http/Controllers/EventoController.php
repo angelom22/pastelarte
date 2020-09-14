@@ -86,7 +86,9 @@ class EventoController extends Controller
         // Nueva instancia de blog
         $event = new Event;
         
-        $file = Storage::disk('public')->put('eventos/'.$request->title, $request->file('file'));
+        // $file = Storage::disk('public')->put('eventos/'.$request->title, $request->file('file'));
+        $file = request()->file('file')->store('public/eventos/'.$request->title);
+        $fileUrl = Storage::url($file);
 
         $event->user_id = auth()->id();
         $event->category_id = $request->get('category_id');
@@ -96,7 +98,7 @@ class EventoController extends Controller
         $event->fecha = Carbon::parse($request->get('fecha'))->toDateTimeString();
         $event->hora = Carbon::parse($request->get('hora'))->toDateTimeString();
         $event->direccion = $request->get('direccion');
-        $event->file = $file;
+        $event->file = $fileUrl;
         $event->iframe = $request->get('iframe');
         
         // se guarda el post en la base da datos

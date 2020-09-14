@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Http\Request;
+use App\Models\Curso;
+use App\Models\Carrera;
 
 class CursoController extends Controller
 {
@@ -23,7 +26,11 @@ class CursoController extends Controller
      */
     public function create()
     {
-        //
+        Gate::authorize('haveaccess', 'course.create');
+        $carreras = Carrera::all();
+        // dd($carreras[0]->title);
+
+        return view('admin.cursos.create', compact('carreras'));
     }
 
     /**

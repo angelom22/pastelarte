@@ -36,7 +36,7 @@
                                 <h3 class="mb25">{{$event->title}}</h3>
                             </div>
                             <div class="thumb">
-                                <img class="img-fluid" src="{{ asset('storage/'.$event->file)}}" alt="{{$event->slug}}"  style="width: 982px; height:500px;">
+                                <img class="img-fluid" src="{{asset($event->file)}}" alt="{{$event->slug}}"  style="width: 982px; height:500px;">
                                 <div class="post_date"><h2>{{$event->created_at->format('d')}}</h2> <span>{{$event->created_at->format('M')}}</span></div>
                             </div>
                             <div class="details">
@@ -47,7 +47,7 @@
                             @include('resources.social-links', ['description' => $event->title])
                             </ul>
                         </div>
-
+<!-- 
                         <div class="product_single_content style2 mb30">
                             <div class="mbp_pagination_comments">
                                 <div class="mbp_first media">
@@ -71,10 +71,10 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
 
 
-                        <div class="product_single_content style2">
+                        <!-- <div class="product_single_content style2">
                             <div class="mbp_comment_form style2">
                                 <h4>Agregar comentarios</h4>
                                 <ul>
@@ -103,7 +103,9 @@
                                     <button type="submit" class="btn btn-thm"> Enviar <span class="flaticon-right-arrow-1"></span></button>
                                 </form>
                             </div>
-                        </div>
+                        </div> -->
+
+                        <div id="disqus_thread"></div>
 
                     </div>
                 </div>

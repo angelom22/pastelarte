@@ -30,7 +30,7 @@
                 <div class="main_blog_post_content">
                     <div class="mbp_thumb_post">
                         <div class="thumb">
-                            <img class="img-fluid" src="{{ asset('storage/'.$blog->file)}}" style="width:982px; height:500px" alt="{{$blog->slug}}">
+                            <img class="img-fluid" src="{{asset($blog->file)}}" style="width:982px; height:500px" alt="{{$blog->slug}}">
                             <div class="tag">{{$blog->category->name}}</div>
                             <div class="post_date"><h2>{{$blog->created_at->format('d')}}</h2> <span>{{$blog->created_at->format('M')}}</span></div>
                         </div>
@@ -40,11 +40,13 @@
                                 <li><a href="#"><span class="flaticon-profile"></span></a></li>
                                 <li><a href="#"><span>{{$blog->user->name}}</span></a></li>
                                 <li><a href="#"><span class="flaticon-comment"></span></a></li>
-                                <li><a href="http://foo.com/bar.html#disqus_thread"><span></span></a></li>
+                                <li><a href="#disqus_thread"><span></span></a></li>
                             </ul>
-                            <h4>Descripción</h4>
+                            <hr>
+                            <h4>Contenido</h4>
                             <p>{!! $blog->content !!}</p>
                         </div>
+                        <hr>
                         <ul class="blog_post_share">
                             @include('resources.social-links', ['description' => $blog->title])
                         </ul>

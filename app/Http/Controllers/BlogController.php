@@ -169,7 +169,9 @@ class BlogController extends Controller
     {
         $this->authorize('haveaccess', 'blog.edit');
         
-        $file = Storage::disk('public')->put('blog/'.$request->title, $request->file('file'));
+        // $file = Storage::disk('public')->put('blog/'.$request->title, $request->file('file'));
+        $file = request()->file('file')->store('public/blog/'.$request->title);
+        $fileUrl = Storage::url($file);
 
         $blog->user_id = auth()->id();
         $blog->category_id = $request->get('category_id');
@@ -177,7 +179,7 @@ class BlogController extends Controller
         $blog->extracto = $request->get('extracto');
         $blog->content = $request->get('content');
         $blog->status = $request->get('status');
-        $blog->file = $file;
+        $blog->file = $fileUrl;
         $blog->iframe = $request->get('iframe');
         
         // se guarda el post en la base da datos

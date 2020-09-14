@@ -17,7 +17,8 @@
 
     <!-- css file -->
     <link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}">
-    <link rel="stylesheet" href="{{asset('css/style.css')}}">
+    <link rel="stylesheet" href="{{asset('css/fileuploader.css')}}">
+    <link rel="stylesheet" href="{{asset('css/style.cs')}}s">
     <link rel="stylesheet" href="{{asset('css/dashbord_navitaion.css')}}">
 
     <!-- Responsive stylesheet -->
@@ -45,15 +46,12 @@
 </div>
 
 <!-- Wrapper End -->
-
 <script type="text/javascript" src="{{asset('js/jquery-3.3.1.js')}}"></script>
 <script type="text/javascript" src="{{asset('js/jquery-migrate-3.0.0.min.js')}}"></script>
 <script type="text/javascript" src="{{asset('js/popper.min.js')}}"></script>
 <script type="text/javascript" src="{{asset('js/bootstrap.min.js')}}"></script>
 <script type="text/javascript" src="{{asset('js/jquery.mmenu.all.js')}}"></script>
 <script type="text/javascript" src="{{asset('js/ace-responsive-menu.js')}}"></script>
-<script type="text/javascript" src="{{asset('js/chart.min.js')}}"></script>
-<script type="text/javascript" src="{{asset('js/chart-custome.js')}}"></script>
 <script type="text/javascript" src="{{asset('js/bootstrap-select.min.js')}}"></script>
 <script type="text/javascript" src="{{asset('js/snackbar.min.js')}}"></script>
 <script type="text/javascript" src="{{asset('js/simplebar.js')}}"></script>
@@ -66,9 +64,12 @@
 <script type="text/javascript" src="{{asset('js/slider.js')}}"></script>
 <script type="text/javascript" src="{{asset('js/timepicker.js')}}"></script>
 <script type="text/javascript" src="{{asset('js/wow.min.js')}}"></script>
+<script type="text/javascript" src="{{asset('js/jquery.smartuploader.js')}}"></script>
 <script type="text/javascript" src="{{asset('js/dashboard-script.js')}}"></script>
 <!-- Custom script for all pages --> 
 <script type="text/javascript" src="{{asset('js/script.js')}}"></script>
+
+
 @stack('js')
 </body>
 </html>

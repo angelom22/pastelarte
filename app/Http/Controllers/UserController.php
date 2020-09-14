@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\RolesPermisos\Models\Role;
 use App\User;
+use Storage;
 use DB;
 
 
@@ -94,37 +95,36 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        dd($request->all());
+        // dd($request->file('avatar'));
         $request->validate([
             'name'          => 'required|max:50|unique:users,name,'.$user->id,
             'email'          => 'required|max:50|unique:users,email,'.$user->id,    
         ]);
 
-        if ($request->file('avatar') != null) {
-
+        if ($request->hasFile('avatar')) { 
+            // Se elimina el avatar actual
             $deleteFile = $user->avatar;
-
             $file = Storage::disk('public')->delete($deleteFile);
-
-            $avatar = Storage::dick('public')->put('perfil/'.$request->name, $request->file('avatar'));
-
+            
+            // se guarda el avatar nuevo en la Url correcta
+            $foto = request()->file('avatar')->store('public/perfil/'.$request->name);
+            $fotoUrl = Storage::url($foto);
+            
+            // se actualiza el usuario con el avatar nuevo
             $user->update([
                 'name' => $request->name,
                 'email' => $request->email,
-                'avatar' => $avatar
+                'avatar' => $fotoUrl
             ]);
         } else {
+            // se actualiza el usuario son el avatar
             $user->update([
                 'name' => $request->name,
                 'email' => $request->email
             ]);
         }
-
-        // dd($request->all());
-        // $user->update($request->all());
         
-        $user->roles()->sync($request->get('roles'));
-        
+        $user->roles()->sync($request->roles);
         
         return redirect()->route('user.index')->with('status_success', 'Usuario actualizado correctamente'); 
     }
