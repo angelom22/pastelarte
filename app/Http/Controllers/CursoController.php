@@ -48,8 +48,9 @@ class CursoController extends Controller
     public function store(Request $request)
     {
         $user = auth()->id();
-        dd($user);
-        return response()->json('success', 200);
+        // dd($user);
+
+        return redirect()->route('admin.curso');
     }
 
     /**

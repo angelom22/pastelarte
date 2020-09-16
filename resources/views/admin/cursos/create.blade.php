@@ -1,5 +1,10 @@
 @extends('admin.layouts.app')
 
+@push('css')
+ <!-- PNotify -->
+ <link href="{{asset('plugins/pnotify/dist/PNotifyBrightTheme.css')}}" rel="stylesheet" type="text/css" />
+@endpush
+
 @section('content')
 
 	<!-- Main Header Nav -->
@@ -159,6 +164,10 @@
 <script src="{{asset('plugins/ckeditor/ckeditor.js')}}"></script>
 <script src="{{asset('plugins/ckeditor/styles.js')}}"></script>
 <script src="{{asset('plugins/datepicker/jquery.maskedinput.min.js')}}"></script>
+<!-- PNotify -->
+<script type="text/javascript" src="{{asset('plugins/pnotify/dist/iife/PNotify.js')}}"></script>
+<script type="text/javascript" src="{{asset('plugins/pnotify/dist/iife/PNotifyButtons.js')}}"></script>
+
 
 <script>
 	CKEDITOR.replace( 'description' );

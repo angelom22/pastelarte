@@ -15,11 +15,13 @@
             dataType: "json",
             success: function(respuesta) {
                 console.log(respuesta);
-                PNotify.success({
-                    title: 'Curso Creado !',
+                new PNotify({
+                    text: 'Bienvenido al sistema!',
+                    type: 'success',
+                    styling: 'bootstrap3',
                 });
                 setTimeout(function(){
-                        window.location = respuesta;
+                        window.location = '/cursos';
                     },2000);
             },
             error: function(respuesta) {
