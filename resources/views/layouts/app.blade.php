@@ -18,6 +18,7 @@
     <!-- css file -->
     <link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}">
     <link rel="stylesheet" href="{{asset('css/style.css')}}">
+    <link rel="stylesheet" href="{{asset('css/validation.css')}}">
 
     <!-- Responsive stylesheet -->
     <link rel="stylesheet" href="{{asset('css/responsive.css')}}">
@@ -32,8 +33,8 @@
     <!-- Scripts -->
     <!-- <script src="{{ asset('css/app.css') }}" defer></script> -->
 
-     <!-- PNotify -->
-     <link href="{{asset('plugins/pnotify/dist/PNotifyBrightTheme.css')}}" rel="stylesheet" type="text/css" />
+    <!-- PNotify -->
+    <link href="{{asset('plugins/pnotify/dist/PNotifyBrightTheme.css')}}" rel="stylesheet" type="text/css" />
 
     <!-- Menesaje ToastrJS -->
     <link rel="stylesheet" href="{{asset('plugins/toastrJS/build/toastr.min.css')}}">
@@ -153,6 +154,10 @@
     <script type="text/javascript" src="{{asset('plugins/pnotify/dist/iife/PNotifyButtons.js')}}"></script>
     
     <script type="text/javascript" src="{{asset('plugins/toastrJS/build/toastr.min.js')}}"></script>
+
+    <!-- jquery-validation -->
+    <script src="{{asset('plugins/jquery-validation/jquery.validate.min.js')}}"></script>
+    <script src="{{asset('plugins/jquery-validation/additional-methods.min.js')}}"></script>
 
     <!-- Script para trabajar el modal -->
     @unless(Auth::user())

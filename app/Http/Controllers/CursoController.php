@@ -2,10 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Facades\Gate;
-use Illuminate\Http\Request;
+use DB;
+use Storage;
+use App\User;
 use App\Models\Curso;
 use App\Models\Carrera;
+use Illuminate\Support\Facades\Gate;
+use App\Http\Controllers\Auth;
+use Illuminate\Http\Request;
 
 class CursoController extends Controller
 {
@@ -27,10 +31,12 @@ class CursoController extends Controller
     public function create()
     {
         Gate::authorize('haveaccess', 'course.create');
-        $carreras = Carrera::all();
-        // dd($carreras[0]->title);
 
-        return view('admin.cursos.create', compact('carreras'));
+        // Nueva instancia de blog
+        $curso = new Curso;
+        $carreras = Carrera::all();
+
+        return view('admin.cursos.create', compact('curso','carreras'));
     }
 
     /**
@@ -41,7 +47,9 @@ class CursoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $user = auth()->id();
+        dd($user);
+        return response()->json('success', 200);
     }
 
     /**

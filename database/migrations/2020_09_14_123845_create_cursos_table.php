@@ -25,7 +25,7 @@ class CreateCursosTable extends Migration
             $table->string('thumbnail');
             $table->mediumText('description')->nullable();
             $table->decimal('precio', 9, 2)->unsigned();
-            $table->time('duracion')->nullable();
+            $table->time('duracion_curso')->nullable();
             $table->string('nivel_habilidad', 128)->nullable();
             $table->string('lengueaje', 128)->nullable();
             $table->string('instructor', 128)->nullable();

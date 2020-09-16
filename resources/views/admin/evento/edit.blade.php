@@ -55,15 +55,6 @@
 @endsection
 
 @push('js')
-
-
-    <script type="text/javascript">
-      jQuery(function($) {
-        $('.time').mask('99:99');
-      });
-    </script>
-
-
 	<script src="{{asset('plugins/datepicker/jquery.maskedinput.min.js')}}"></script>
     <script src="{{asset('plugins/select2/dist/js/select2.min.js')}}"></script>
     <script src="{{asset('plugins/datepicker/jquery-ui.js')}}"></script>
@@ -112,6 +103,6 @@
 		// Disable auto discover for all elements:
             Dropzone.autoDiscover = false;
         
-        
+		$('.time').mask('99:99');
 	</script>
 @endpush

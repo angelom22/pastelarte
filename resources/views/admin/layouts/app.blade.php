@@ -20,9 +20,16 @@
     <link rel="stylesheet" href="{{asset('css/fileuploader.css')}}">
     <link rel="stylesheet" href="{{asset('css/style.cs')}}s">
     <link rel="stylesheet" href="{{asset('css/dashbord_navitaion.css')}}">
+    <link rel="stylesheet" href="{{asset('css/validation.css')}}">
 
     <!-- Responsive stylesheet -->
     <link rel="stylesheet" href="{{asset('css/responsive.css')}}">
+
+    <!-- PNotify -->
+    <link href="{{asset('plugins/pnotify/dist/PNotifyBrightTheme.css')}}" rel="stylesheet" type="text/css" />
+
+    <!-- Menesaje ToastrJS -->
+    <link rel="stylesheet" href="{{asset('plugins/toastrJS/build/toastr.min.css')}}">
 
     <!-- Favicon -->
     <link href="{{asset('img/favicon.ico')}}" sizes="128x128" rel="shortcut icon" type="image/x-icon" />
@@ -68,6 +75,18 @@
 <script type="text/javascript" src="{{asset('js/dashboard-script.js')}}"></script>
 <!-- Custom script for all pages --> 
 <script type="text/javascript" src="{{asset('js/script.js')}}"></script>
+<script type="text/javascript" src="{{asset('js/validacion.js')}}"></script>
+
+<!-- PNotify -->
+<script type="text/javascript" src="{{asset('plugins/pnotify/dist/iife/PNotify.js')}}"></script>
+<script type="text/javascript" src="{{asset('plugins/pnotify/dist/iife/PNotifyButtons.js')}}"></script>
+
+<!-- Notificacion ToastrJS -->
+<script type="text/javascript" src="{{asset('plugins/toastrJS/build/toastr.min.js')}}"></script>
+
+<!-- jquery-validation -->
+<script src="{{asset('plugins/jquery-validation/jquery.validate.min.js')}}"></script>
+<script src="{{asset('plugins/jquery-validation/additional-methods.min.js')}}"></script>
 
 
 @stack('js')

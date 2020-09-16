@@ -53,24 +53,25 @@
 				</div>
 				<div class="col-lg-6 form_grid">
 					<h4 class="mb5">Enviar mensaje</h4>
-		            <form class="contact_form" id="contact_form" name="contact_form" action="#" method="post" novalidate="novalidate">
+		            <form class="contact_form" id="contact_form" name="contact_form" action="#" method="POST" novalidate="novalidate">
+						@csrf
 						<div class="row">
 			                <div class="col-sm-12">
 			                    <div class="form-group">
 			                    	<label for="exampleInputName">Nombre y Apellido</label>
-									<input id="form_name" name="form_name" class="form-control" required="required" type="text">
+									<input id="form_name" name="form_name" class="form-control" required type="text">
 								</div>
 			                </div>
 			                <div class="col-sm-12">
 			                    <div class="form-group">
 			                    	<label for="exampleInputEmail">Email</label>
-			                    	<input id="form_email" name="form_email" class="form-control required email" required="required" type="email">
+			                    	<input id="form_email" name="form_email" class="form-control required email" required type="email">
 			                    </div>
 			                </div>
 			                <div class="col-sm-12">
 	                            <div class="form-group">
 	                            	<label for="exampleInputEmail1">Mensaje</label>
-	                                <textarea id="form_message" name="form_message" class="form-control required" rows="5" required="required"></textarea>
+	                                <textarea id="form_message" name="form_message" class="form-control required" rows="5" required></textarea>
 	                            </div>
 			                    <div class="form-group ui_kit_button mb0">
 				                    <button type="button" class="btn dbxshad btn-lg btn-thm circle white">Enviar</button>

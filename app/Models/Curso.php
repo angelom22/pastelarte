@@ -39,7 +39,7 @@ class Curso extends Model
     protected $table = 'cursos';
 
     protected $fillable = [
-       'user_id', 'leccion_id', 'carrera_id', 'title', 'slug', 'thumbnail', 'description', 'precio', 'duracion', 'nivel_habilidad', 'lengueaje', 'instructor', 'valoracion' 
+       'user_id', 'leccion_id', 'carrera_id', 'title', 'slug', 'thumbnail', 'description', 'precio', 'duracion_curso', 'nivel_habilidad', 'lengueaje', 'instructor', 'valoracion' 
     ];
 
     public function user(){

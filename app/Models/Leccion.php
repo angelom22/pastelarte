@@ -37,7 +37,7 @@ class Leccion extends Model
     protected $table = 'lecciones';
 
     protected $fillable = [
-       'title', 'slug', 'desciption', 'url_video'
+       'title_leccion', 'slug', 'desciption_leccion', 'duracion_leccion', 'url_video'
     ];
 
     public function curso(){
