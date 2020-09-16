@@ -7,9 +7,11 @@ use Storage;
 use App\User;
 use App\Models\Curso;
 use App\Models\Carrera;
+use App\Models\Leccion;
 use Illuminate\Support\Facades\Gate;
 use App\Http\Controllers\Auth;
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreCourseRequest;
 
 class CursoController extends Controller
 {
@@ -45,10 +47,41 @@ class CursoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreCourseRequest $request)
     {
+        Gate::authorize('haveaccess', 'course.create');
+
+        $thumbnail = request()->file('thumbnail')->store('public/thumbnail/'.$request->title);
+        $thumbnailUrl = Storage::url($thumbnail);
+
         $user = auth()->id();
-        // dd($user);
+
+        $curso = Curso::create([
+            'user_id' => $user,
+            // 'leccion_id' => $request->leccion_id;
+            'carrera_id'        => $request->carrera,
+            'title'             => $request->title,
+            'thumbnail'         => $thumbnailUrl,
+            'description'       => $request->description,
+            'precio'            => $request->precio,
+            'duracion_curso'    => $request->duracion_curso,
+            'nivel_habilidad'   => $request->nivel_habilidad,
+            'lengueaje'         => $request->lengueaje,
+            'instructor'        => $request->instructor
+            ]);
+
+        foreach($request->id_lecciones as $id_leccion)
+        {
+            $lecccion = Leccion::create([
+                'title_leccion'         => $request->title_leccion,
+                'desciption_leccion'    => $request->desciption_leccion,
+                'duracion_leccion'      => $request->duracion_leccion,
+                'url_video'             => $request->url_video,
+            ]);
+        }
+
+        // Crear una funcion en el modelo curso que me guarde las relaciones entre los cursos y las lecciones
+        $curso->lecciones()->sync($request->id_lecciones);
 
         return redirect()->route('admin.curso');
     }

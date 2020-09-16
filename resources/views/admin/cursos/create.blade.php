@@ -48,8 +48,8 @@
 												    	<input type="text" class="form-control" id="title" name="title" placeholder="Ej: Curso de Galletas" value="{{old('title')}}" maxlength="50" onkeypress="return soloLetras(event)">
 													</div>
 													<div class="my_profile_setting_input form-group" >
-												    	<label for="duracion">Duración:</label>
-														<input type="text" class="form-control time" id="duracion" name="duracion" value="{{old('duracion')}}"  placeholder="Ej: 30:00" onkeypress="return soloNumero(event)">
+												    	<label for="duracion_curso">Duración:</label>
+														<input type="text" class="form-control time" id="duracion_curso" name="duracion_curso" value="{{old('duracion_curso')}}"  placeholder="Ej: 30:00" onkeypress="return soloNumero(event)">
 						
 													</div>
 												</div>

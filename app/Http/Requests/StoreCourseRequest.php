@@ -24,7 +24,7 @@ class StoreCourseRequest extends FormRequest
     public function rules()
     {
         return [
-            'user_id' => 'required',
+            // 'user_id' => 'required',
             'leccion_id' => 'required',
             'carrera_id' => 'required',
             'title' => 'required|min:5|max:255|unique:cursos',
