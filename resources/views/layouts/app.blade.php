@@ -146,9 +146,7 @@
 
     <!-- Custom script for all pages --> 
     <script type="text/javascript" src="{{asset('js/script.js')}}"></script>
-    <script type="text/javascript" src="{{ asset('js/login.js') }}"></script>
-
-
+    
     <!-- PNotify -->
     <script type="text/javascript" src="{{asset('plugins/pnotify/dist/iife/PNotify.js')}}"></script>
     <script type="text/javascript" src="{{asset('plugins/pnotify/dist/iife/PNotifyButtons.js')}}"></script>
@@ -191,25 +189,12 @@
         toastr.success('{{ session('registro') }}')
     </script>
     @endif
-    <script>
-        toastr.options = {
-            "closeButton": true,
-            "debug": false,
-            "newestOnTop": false,
-            "progressBar": true,
-            "positionClass": "toast-top-right",
-            "preventDuplicates": false,
-            "onclick": null,
-            "showDuration": "300",
-            "hideDuration": "1000",
-            "timeOut": "5000",
-            "extendedTimeOut": "1000",
-            "showEasing": "swing",
-            "hideEasing": "linear",
-            "showMethod": "fadeIn",
-            "hideMethod": "fadeOut"
-        }
-    </script>
+
+    <!-- Validación login -->
+    <script type="text/javascript" src="{{ asset('js/login.js') }}"></script>
+    <!-- Validación Registro -->
+    <script type="text/javascript" src="{{ asset('js/register.js') }}"></script>
+    
 
     @stack('js')
 

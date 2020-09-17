@@ -28,13 +28,13 @@
 					@include('admin.layouts.nav-admin', ['title' => 'Usuarios', 'page' => 'usuario'] )
 					</div>
 					
-					<div class="col-xl-12">
+					<div class="col-lg-12">
 						
 							<h4>Usuarios</h4>
 							@include('custom.message')
 							<div class="card">
 								<div class="card-body">
-									<table class="table table-hover table-striped table-bordered" cellspacing="0" width="100%" id="users">
+									<table class="table table-hover table-striped table-bordered " cellspacing="0" width="100%" id="users">
 										<thead class="thead-dark">
 											<tr>
 											<th scope="col">#</th>
