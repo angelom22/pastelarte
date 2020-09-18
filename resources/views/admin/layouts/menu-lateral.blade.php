@@ -46,7 +46,7 @@
         </ul>
         <h4>Cuenta</h4>
         <ul>
-            <li><a href="page-my-setting.html"><span class="flaticon-settings"></span> Settings</a></li>
+            <li {{ request()->is('admin.user.Auth::user()') ? 'class=active' : '' }} ><a href="{{route('admin.user', Auth::user())}}"><span class="flaticon-settings"></span> Ajustes</a></li>
             <!-- <li><a href="page-login.html"><span class="flaticon-logout"></span> Logout</a></li> -->
             <li>
                 <a class="" href="{{ route('logout') }}"

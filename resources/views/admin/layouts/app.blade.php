@@ -49,6 +49,7 @@
 	@yield('content')
 
 <a class="scrollToHome" href="#"><i class="flaticon-up-arrow-1"></i></a>
+<a class="dn" id="countdown" href="#"></a>
 @include('admin.blog.resources.modal')
 </div>
 

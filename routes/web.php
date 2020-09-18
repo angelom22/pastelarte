@@ -42,11 +42,12 @@ Route::resource('/cursos', 'CursoController')->names([
     'edit'      => 'CourseEdit',
 ]);
 
-Route::resource('/contacto', 'ContactoController')->names('contacto');
+Route::resource('/contacto', 'ContactoController')->names([
+    'store'     => 'contactoStore', 
+]);
 
 Route::resource('/cursosingle', 'CursoSingleController')->names([
     'cursosingle' => 'cursosingle',
-
 ]);
 
 Route::resource('/categoria', 'CategoryController')->names('categoria');
@@ -59,7 +60,9 @@ Route::get('categorias/{slug}', 'BlogController@filtrarCategoria')->name('filtra
 // Ruta para filtrar las etiquetas
 Route::get('etiquetas/{slug}', 'BlogController@filtrarEtiqueta')->name('filtrarEtiqueta');
 
+// Rutas de la adminitración
 Route::resource('/dashboard', 'AdminController')->names('dashboard');
 Route::get('admin/blog', 'AdminController@blog')->name('admin.blog');
 Route::get('admin/evento', 'AdminController@evento')->name('admin.evento');
 Route::get('admin/curso', 'AdminController@curso')->name('admin.curso');
+Route::get('admin/user/{id}', 'AdminController@user')->name('admin.user');

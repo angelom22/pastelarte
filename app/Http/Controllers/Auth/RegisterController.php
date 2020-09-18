@@ -64,13 +64,15 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        // dd($data);
         $avatar = "https://ui-avatars.com/api/?background=0D8ABC&color=fff&name=".$data['name'];
 
         return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
-            'avatar' => $avatar,
+            'name'      => $data['name'],
+            'email'     => $data['email'],
+            // 'password' => Hash::make($data['password']),
+            'password'  => $data['password'],
+            'avatar'    => $avatar,
         ]);
     }
 }

@@ -3,10 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\User;
 use App\Models\Tag;
 use App\Models\Blog;
 use App\Models\Event;
 use App\Models\Category;
+use App\RolesPermisos\Models\Role;
+
 
 class AdminController extends Controller
 {
@@ -50,6 +53,19 @@ class AdminController extends Controller
         
         return view('admin.evento.index',compact('events'));
     }
+
+    public function user(User $id)
+    {    
+        $this->authorize('haveaccess', 'userown.show');
+
+        $roles = Role::orderBy('name')->get();
+
+        // $user = User::find($id);
+        // dd($user);
+
+        return view('admin.user.view', compact('id', 'roles'));
+    }
+
 
     /**
      * Show the form for creating a new resource.

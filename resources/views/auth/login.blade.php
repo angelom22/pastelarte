@@ -25,7 +25,7 @@
             <div class="row">
                 <div class="col-sm-12 col-lg-6 offset-lg-3">
                     <div class="login_form inner_page">
-                <form method="POST" action="{{ route('login', '#login') }}" class="login" id="login">
+                    <form method="POST" action="#" id="login">
                         <!-- <form method="POST" action="javascript: Login(this)" class="login" id="login"> -->
                         @csrf
                             <div class="heading">
@@ -33,7 +33,7 @@
                                 <p class="text-center">¿No tienes una cuenta? <a class="text-thm" href="{{url('register')}}">¡Regístrate!</a></p>
                             </div>
                                 <div class="form-group">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus placeholder="Correo Electronico">
+                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" autocomplete="email" autofocus placeholder="Correo Electronico">
                                 @error('email')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -41,7 +41,7 @@
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password" placeholder="Contraseña">
+                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" autocomplete="current-password" placeholder="Contraseña">
 
                                 @error('password')
                                     <span class="invalid-feedback" role="alert">

@@ -84,7 +84,7 @@
 								<div class="details">
 									<div class="col-xl-2">
 										<div class="wrap-custom-file">
-											<img style="object-fit: cover; object-position: center center;" class="float-left" src="{{asset('storage/'.$user->avatar)}}" alt="avatar">
+											<img style="object-fit: cover; object-position: center center;" class="float-left" src="{{asset($user->avatar)}}" alt="avatar">
 										</div>
 									</div>
 								</div>

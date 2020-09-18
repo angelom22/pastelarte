@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\RolesPermisos\Models\Role;
-use App\User;
-use Storage;
 use DB;
+use Storage;
+use App\User;
+use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
+use App\RolesPermisos\Models\Role;
+use Illuminate\Support\Facades\Hash;
 
 
 class UserController extends Controller
@@ -95,13 +97,27 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        // dd($request->file('avatar'));
-        $request->validate([
-            'name'          => 'required|max:50|unique:users,name,'.$user->id,
-            'email'          => 'required|max:50|unique:users,email,'.$user->id,    
-        ]);
+        $rules = [
+            'name'  => 'required|max:50|unique:users,name,'.$user->id,
+            'email' => 'required|max:50|unique:users,email,'.$user->id,
+        ];
+        
+        if ($request->filled('old_password')) {
+            $rules['old_password'] = ['required', 'confirmed'];
+            $rules['password'] = ['required','min:8'];
+            $rules['password_confirmation'] = ['required', 'same:password'];
+        }
 
-        if ($request->hasFile('avatar')) { 
+        // Comparacion de nueva contraseña y la que se enceunta en base de datos
+        if (Hash::check($request->password, $request->old_password)) {
+            $user->update($request->validate($rules));
+        }
+
+        // condicional para guardar el avatar del usuario
+        if ($request->hasFile('avatar')) {
+            // Se añade la regla de validacion para imagenes
+            $rules['avatar'] = ['image','max:2048'];
+
             // Se elimina el avatar actual
             $deleteFile = $user->avatar;
             $file = Storage::disk('public')->delete($deleteFile);
@@ -111,22 +127,22 @@ class UserController extends Controller
             $fotoUrl = Storage::url($foto);
             
             // se actualiza el usuario con el avatar nuevo
-            $user->update([
-                'name' => $request->name,
-                'email' => $request->email,
-                'avatar' => $fotoUrl
-            ]);
+            $user->update(
+                [
+                    'name'      => $request->name,
+                    'email'     => $request->email,
+                    'avatar'    => $fotoUrl
+                ]
+            );
         } else {
-            // se actualiza el usuario son el avatar
-            $user->update([
-                'name' => $request->name,
-                'email' => $request->email
-            ]);
+
+            $user->update($request->validate($rules));
+
         }
-        
+
         $user->roles()->sync($request->roles);
         
-        return redirect()->route('user.index')->with('status_success', 'Usuario actualizado correctamente'); 
+        return redirect()->route('admin.user', $user)->with('status_success', 'Usuario actualizado correctamente'); 
     }
 
     /**

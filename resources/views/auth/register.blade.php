@@ -25,10 +25,10 @@
             <div class="row">
                 <div class="col-sm-12 col-lg-6 offset-lg-3">
                     <div class="login_form inner_page">
-                        <form method="POST" action="{{ route('register') }}">
+                        <form method="POST" action="#" id="registro">
                         @csrf
                             <div class="form-group">
-                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus placeholder="Usuario">
+                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" autocomplete="name" autofocus placeholder="Usuario">
 
                                 @error('name')
                                     <span class="invalid-feedback" role="alert">
@@ -37,7 +37,7 @@
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" placeholder="Correo Electronico">
+                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" autocomplete="email" placeholder="Correo Electronico">
 
                                 @error('email')
                                     <span class="invalid-feedback" role="alert">
@@ -46,7 +46,7 @@
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password" placeholder="Contaseña">
+                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" autocomplete="new-password" placeholder="Contaseña">
 
                                 @error('password')
                                     <span class="invalid-feedback" role="alert">
@@ -55,7 +55,7 @@
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password"  placeholder="Confirmar Contraseña">
+                                <input id="password_confirmation" type="password" class="form-control" name="password_confirmation" autocomplete="new-password"  placeholder="Confirmar Contraseña">
                             </div>
                             <button type="submit" class="btn btn-log btn-block btn-thm2">{{ __('Registrar') }}</button>
                             <hr>
@@ -76,3 +76,7 @@
 
 
 @endsection
+
+@push('js')
+
+@endpush

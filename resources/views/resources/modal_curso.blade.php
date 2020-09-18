@@ -11,7 +11,7 @@
       	<div class="container-fluid">
 				    <div class="row">
 				      <div class="col-md-6">
-                    <iframe src="https://player.vimeo.com/video/454182996"  height="400" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+                    <!-- <iframe src="https://player.vimeo.com/video/454182996"  height="400" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe> -->
 				      </div>
 				       <div class="col-md-6">
 				       	<h2>Curso de decoración con papel de arróz</h2>

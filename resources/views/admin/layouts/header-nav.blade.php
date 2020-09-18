@@ -147,7 +147,7 @@
                                 <p>{{Auth::user()->name}} <br><span class="address">{{Auth::user()->email}}</span></p>
                             </div>
                             <div class="user_setting_content">
-                                <a class="dropdown-item active" href="#">Mi Perfil</a>
+                                <a class="dropdown-item active" href="{{route('admin.user', Auth::user())}}">Mi Perfil</a>
                                 <a class="dropdown-item" href="#">Mensajes</a>
                                 <!-- <a class="dropdown-item" href="#">Purchase history</a> -->
                                 <a class="dropdown-item" href="#">Ayuda</a>

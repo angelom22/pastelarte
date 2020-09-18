@@ -71,7 +71,7 @@
                             <h3 class="text-center">Crear una nueva cuenta</h3>
                             <p class="text-center">Si ya tienes cuenta, presiona en Entrar</p>
                         </div>
-                        <form method="POST" action="{{ route('register') }}" id="register">
+                        <form method="POST" action="{{ route('register') }}" id="registro">
                         @csrf
                             <div class="form-group">
                                 <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" autocomplete="name" autofocus placeholder="Usuario" >

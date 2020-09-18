@@ -158,14 +158,14 @@ class EventoController extends Controller
         $this->authorize('haveaccess', 'event.edit');
 
         $request->validate([
-            'title'          => 'required|min:5|unique:events,title,'.$evento->title,
-            'content' => 'required',
-            'category_id' => 'required',
-            'tag_id' => 'required',
-            'extracto' => 'required',
-            'fecha' => 'required|date',
-            'hora' => 'required',
-            'direccion' => 'required',
+            'title'         => 'required|min:5'.$evento->title,
+            'content'       => 'required',
+            'category_id'   => 'required',
+            'tag_id'        => 'required',
+            'extracto'      => 'required',
+            'fecha'         => 'required|date',
+            'hora'          => 'required',
+            'direccion'     => 'required',
             // 'file' => 'required|image|max:2048' 
         ]);
 

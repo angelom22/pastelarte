@@ -160,7 +160,7 @@
     <!-- Script para trabajar el modal -->
     @unless(Auth::user())
         <script>
-        if(window.location.hash === '#login')
+        if(window.location.hash === '#login' || window.location.hash === '#registro')
             {
                 $('#Modal_Login').modal('show');
             }

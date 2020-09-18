@@ -53,28 +53,33 @@
 				</div>
 				<div class="col-lg-6 form_grid">
 					<h4 class="mb5">Enviar mensaje</h4>
-		            <form class="contact_form" id="contact_form" name="contact_form" action="#" method="POST" novalidate="novalidate">
+					
+		            <form action="{{route('contactoStore')}}" method="POST" id="contact">
+                        @method('POST')
 						@csrf
 						<div class="row">
 			                <div class="col-sm-12">
 			                    <div class="form-group">
-			                    	<label for="exampleInputName">Nombre y Apellido</label>
-									<input id="form_name" name="form_name" class="form-control" required type="text">
+			                    	<label for="name">Nombre y Apellido</label>
+									<input id="name" name="name" class="form-control" type="text" value="{{old('name')}}" maxlength="50">
 								</div>
+								{!! $errors->first('name', '<small>:message</small><br>') !!} 
 			                </div>
 			                <div class="col-sm-12">
 			                    <div class="form-group">
-			                    	<label for="exampleInputEmail">Email</label>
-			                    	<input id="form_email" name="form_email" class="form-control required email" required type="email">
+			                    	<label for="email">Email</label>
+									<input id="email" name="email" class="form-control email" type="email"  value="{{old('email')}}">
+									{!! $errors->first('email', '<small>:message</small><br>') !!} 
 			                    </div>
 			                </div>
 			                <div class="col-sm-12">
 	                            <div class="form-group">
-	                            	<label for="exampleInputEmail1">Mensaje</label>
-	                                <textarea id="form_message" name="form_message" class="form-control required" rows="5" required></textarea>
+	                            	<label for="message">Mensaje</label>
+									<textarea id="message" name="message" class="form-control" rows="5">{{old('message')}}</textarea>
+									{!! $errors->first('message', '<small>:message</small><br>') !!}
 	                            </div>
 			                    <div class="form-group ui_kit_button mb0">
-				                    <button type="button" class="btn dbxshad btn-lg btn-thm circle white">Enviar</button>
+				                    <button type="submit" class="btn dbxshad btn-lg btn-thm circle white">Enviar</button>
 			                    </div>
 			                </div>
 		                </div>
@@ -86,3 +91,7 @@
 
 
 @endsection
+
+@push('js')
+<script src="{{asset('js/contact-validate.js')}}"></script>
+@endpush

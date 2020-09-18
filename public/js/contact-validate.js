@@ -4,7 +4,7 @@ $.validator.setDefaults({
     submitHandler: function () {
         $.ajax({
         type: "POST",
-        url: "login",
+        url: "contactoStore",
         dataType: "json",
         processData: false,
         contentType: false,
@@ -16,12 +16,12 @@ $.validator.setDefaults({
         success: function(respuesta) {
             console.log(respuesta);
             new PNotify({
-                text: 'Bienvenido al sistema!',
+                text: 'mensaje!',
                 type: 'success',
                 styling: 'bootstrap3',
             });
             setTimeout(function(){
-                    window.location = '/';
+                    window.location = '/contacto';
                 },2000);
         },
         error: function(respuesta) {
@@ -37,24 +37,35 @@ $.validator.setDefaults({
     }
 });
 
-$('#login').validate({
+$('#contact').validate({
 rules: {
+name: {
+    required: true,
+    minlength:5,
+    maxlength:50
+},
 email: {
     required: true,
     email:true
 },
-password: {
+message: {
     required: true,
     minlength: 5
 },
 },
 messages: {
+name: {
+    required: "Por favor ingrese un nombre valido",
+    minlength: "La longitud minima del nombre son 5 caracteres",
+    maxlength: "La longitud maxima del nombre son 50 caracteres"
+},
 email: {
     required: "Por favor ingrese un correo valido",
+    email:"Por favor, introduce una dirección de correo electrónico válida."
 },
-password: {
-    required: "Por favor ingrese su contreseña",
-    minlength: "La longitud minima del campo son 8 caracteres"
+message: {
+    required: "Por favor ingrese el contenido de su mensaje",
+    minlength: "La longitud minima del campo son 5 caracteres"
     },
 },
 errorElement: 'span',

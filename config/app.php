@@ -167,6 +167,7 @@ return [
          */
         Cviebrock\EloquentSluggable\ServiceProvider::class,
         Yajra\DataTables\DataTablesServiceProvider::class,
+        Sichikawa\LaravelSendgridDriver\SendgridTransportServiceProvider::class,
 
         /*
          * Application Service Providers...

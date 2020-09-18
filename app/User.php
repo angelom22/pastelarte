@@ -6,6 +6,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use App\RolesPermisos\Traits\UserTrait;
+use Illuminate\Support\Facades\Hash;
 use App\Models\Blog;
 
 class User extends Authenticatable
@@ -29,6 +30,11 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function setPasswordAttribute($password)
+    {
+        $this->attributes['password'] = Hash::make($password);
+    }
 
     /**
      * The attributes that should be cast to native types.
