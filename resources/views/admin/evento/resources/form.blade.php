@@ -78,4 +78,5 @@
 </div>
 <div class="form-group">
     <button type="submit" class="btn mt-2 btn-primary btn-block" >{{$btnSubmit}}</button>
+    <a href="{{route('admin.evento')}}" type="btn" class="btn mt-2 btn-danger btn-block" >Regresar</a>
 </div>

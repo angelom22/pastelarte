@@ -57,9 +57,9 @@
                     <li class="list-inline-item list_s"><a href="#" class="btn flaticon-user" data-toggle="modal" data-target="#Modal_Login"> <span class="dn-lg">{{ __('Login') }}/{{ __('Registro') }}</span></a>
                 @endif
             @else
-            
-            <img src="{{asset(Auth::user()->avatar)}}" style="object-fit: cover;
-                object-position: center center;" width="100px" class="rounded-circle img-fluid img-avatar" alt="avatar"> 
+
+            <img src="/storage/{{Auth::user()->avatar}}" style="object-fit: cover;
+                object-position: center center;" width="100px" class="rounded-circle img-fluid img-avatar" alt="{{Auth::user()->name}}"> 
 
             <li class="list-inline-item list_s">
                 

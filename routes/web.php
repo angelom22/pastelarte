@@ -4,6 +4,11 @@ use Illuminate\Support\Facades\Route;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 use App\User;
 
+
+// DB::listen(function($query){
+//     dd($query->sql);
+// });
+
 Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home');

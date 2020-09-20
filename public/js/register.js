@@ -52,10 +52,10 @@ rules: {
         required: true,
         minlength: 8
     },
-    password_confirmation: { 
-        equalTo: "#password",
-        minlength: 8,
-    }
+    // password_confirmation: { 
+    //     equalTo: "#password",
+    //     minlength: 8,
+    // }
 },
 messages: {
     name: {
@@ -70,10 +70,10 @@ messages: {
         required: "Por favor ingrese su contreseña",
         minlength: "La longitud minima del campo son 8 caracteres"
     },
-    password_confirmation: {
-        equalTo: "El password debe ser igual al anterior",
-        minlength: "Minimo 8 caracteres",
-    }
+    // password_confirmation: {
+    //     equalTo: "El password debe ser igual al anterior",
+    //     minlength: "Minimo 8 caracteres",
+    // }
 },
 errorElement: 'span',
 errorPlacement: function (error, element) {

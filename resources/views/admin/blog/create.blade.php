@@ -1,7 +1,7 @@
 <!-- Modal -->
 <div class="modal fade" id="tituloBlog" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <form action="{{ route('BlogStore') }}" method="POST">
-    @method('post')
+    @method('POST')
     @csrf
         <div class="modal-dialog">
             <div class="modal-content">

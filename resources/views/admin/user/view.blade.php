@@ -44,7 +44,7 @@
                                     <div class="row my_setting_content_details pb0">
                                         <div class="col-xl-6">
 											<div class="">
-                                                <img style="object-fit: cover; object-position: center center;" class="float-left" src="{{asset($id->avatar)}}" alt="{{$id->name}}">
+                                                <img style="object-fit: cover; object-position: center center;" class="float-left" src="/storage/{{$id->avatar}}" alt="{{$id->name}}">
             
 											    <input type="file" name="avatar" id="avatar" accept=".jpg, .png" value="{{old('avatar')}}"/>
 											    <!-- <label  for="avatar">

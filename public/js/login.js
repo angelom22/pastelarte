@@ -51,6 +51,7 @@ password: {
 messages: {
 email: {
     required: "Por favor ingrese un correo valido",
+    email: "El campo correo de contener '@'"
 },
 password: {
     required: "Por favor ingrese su contreseña",

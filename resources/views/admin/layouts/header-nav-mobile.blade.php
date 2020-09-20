@@ -89,10 +89,11 @@
             </li>
             <li class="user_setting">
                 <div class="dropdown">
-                    <a class="btn dropdown-toggle" href="#" data-toggle="dropdown"><img class="rounded-circle" src="{{asset(Auth::user()->avatar)}}" style="height: 50px; width:50px;" alt="avatar"></a>
+                    <a class="btn dropdown-toggle" href="#" data-toggle="dropdown">
+                    <img class="rounded-circle" src="/storage/{{Auth::user()->avatar}}"  style="height: 50px; width:50px;" alt="{{Auth::user()->name}}"></a>
                     <div class="dropdown-menu">
                         <div class="user_set_header">
-                            <img class="float-left" src="{{asset(Auth::user()->avatar)}}" style="height: 50px; width:50px;" alt="avatar">
+                            <img class="float-left" src="/storage/{{Auth::user()->avatar}}"  style="height: 50px; width:50px;" alt="{{Auth::user()->name}}">
                             <p>{{Auth::user()->name}} <br><span class="address">{{Auth::user()->email}}</span></p>
                         </div>
                         <div class="user_setting_content">

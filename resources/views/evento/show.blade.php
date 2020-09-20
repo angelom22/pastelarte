@@ -11,7 +11,7 @@
         <div class="row">
             <div class="col-xl-6 offset-xl-3 text-center">
                 <div class="breadcrumb_content">
-                    <h4 class="breadcrumb_title">Event</h4>
+                    <h4 class="breadcrumb_title">Evento</h4>
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{ url('/') }}">Home</a></li>
                         <li class="breadcrumb-item active" aria-current="page">{{$event->title}}</li>
@@ -36,7 +36,7 @@
                                 <h3 class="mb25">{{$event->title}}</h3>
                             </div>
                             <div class="thumb">
-                                <img class="img-fluid" src="{{asset($event->file)}}" alt="{{$event->slug}}"  style="width: 982px; height:500px;">
+                                <img class="img-fluid" src="/storage/{{$event->file}}" alt="{{$event->slug}}"  style="width: 982px; height:500px;">
                                 <div class="post_date"><h2>{{$event->created_at->format('d')}}</h2> <span>{{$event->created_at->format('M')}}</span></div>
                             </div>
                             <div class="details">

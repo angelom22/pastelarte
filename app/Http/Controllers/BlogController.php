@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\StoreBlogRequest;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Http\Request;
+use App\Models\Category;
 use App\Models\Tag;
 use App\Models\Blog;
-use App\Models\Category;
 use  Carbon\Carbon;
-use Storage;
+
 
 class BlogController extends Controller
 {
@@ -168,22 +169,31 @@ class BlogController extends Controller
     public function update(StoreBlogRequest $request, Blog $blog)
     {
         $this->authorize('haveaccess', 'blog.edit');
-        
-        // $file = Storage::disk('public')->put('blog/'.$request->title, $request->file('file'));
-        $file = request()->file('file')->store('public/blog/'.$request->title);
-        $fileUrl = Storage::url($file);
 
-        $blog->user_id = auth()->id();
-        $blog->category_id = $request->get('category_id');
-        $blog->title = $request->get('title');
-        $blog->extracto = $request->get('extracto');
-        $blog->content = $request->get('content');
-        $blog->status = $request->get('status');
-        $blog->file = $fileUrl;
-        $blog->iframe = $request->get('iframe');
+        // ddd($request->validated());
+
+        // Si se actualiza el articulo se elimina la imagen antigua del servidor
+        if ($request->hasFile('file')) {
+            // Se elimina el file actual
+            Storage::delete($blog->file);
+        }
         
+        // Seguarda la imagen nueva
+        // $file = request()->file('file')->store('blog/'.$request->title);
+        // $fileUrl = Storage::url($file);
+        $file = $request->file('file')->store('blog/'.$request->title);
+
         // se guarda el post en la base da datos
-        $blog->save();
+        $blog->update(array_filter([
+            'user_id' => auth()->id(),
+            'category_id' => $request->category_id,
+            'title' =>  $request->title,
+            'extracto' =>  $request->extracto,
+            'content' =>  $request->content,
+            'status' =>  $request->status,
+            'file' =>  $file,
+            'iframe' =>  $request->iframe,
+        ]));
 
         // guardar etiquetas en la tabla relacional
         $blog->syncTags($request->get('tag_id'));
@@ -202,8 +212,9 @@ class BlogController extends Controller
         $this->authorize('haveaccess', 'blog.destroy');
 
         $blog->tags()->detach();
-        
-        Storage::disk('public')->delete($blog->file);
+
+        // Se elimina el avatar actual
+        Storage::delete($blog->file);
         
         $blog->delete();
 

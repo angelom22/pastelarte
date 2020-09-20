@@ -2,14 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Facades\Gate;
 use App\Http\Requests\StoreEventRequest;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Gate;
+use Illuminate\Validation\Rule;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\Tag;
 use App\Models\Event;
 use  Carbon\Carbon;
-use Storage;
+
 
 class EventoController extends Controller
 {
@@ -87,8 +89,8 @@ class EventoController extends Controller
         $event = new Event;
         
         // $file = Storage::disk('public')->put('eventos/'.$request->title, $request->file('file'));
-        $file = request()->file('file')->store('public/eventos/'.$request->title);
-        $fileUrl = Storage::url($file);
+        // $fileUrl = Storage::url($file);
+        $file = request()->file('file')->store('eventos/'.$request->title);
 
         $event->user_id = auth()->id();
         $event->category_id = $request->get('category_id');
@@ -98,7 +100,7 @@ class EventoController extends Controller
         $event->fecha = Carbon::parse($request->get('fecha'))->toDateTimeString();
         $event->hora = Carbon::parse($request->get('hora'))->toDateTimeString();
         $event->direccion = $request->get('direccion');
-        $event->file = $fileUrl;
+        $event->file = $file;
         $event->iframe = $request->get('iframe');
         
         // se guarda el post en la base da datos
@@ -157,8 +159,8 @@ class EventoController extends Controller
     {
         $this->authorize('haveaccess', 'event.edit');
 
-        $request->validate([
-            'title'         => 'required|min:5'.$evento->title,
+        $datos = $request->validate([
+            'title'         => 'required|min:5',Rule::unique('events')->ignore($evento->title),
             'content'       => 'required',
             'category_id'   => 'required',
             'tag_id'        => 'required',
@@ -166,23 +168,31 @@ class EventoController extends Controller
             'fecha'         => 'required|date',
             'hora'          => 'required',
             'direccion'     => 'required',
-            // 'file' => 'required|image|max:2048' 
+            'file'          => 'image|max:2048' 
         ]);
 
-         // se actualiza el evento en la base da datos
-         $evento->update([
-            'user_id' => auth()->id(),
-            'category_id' => $request->get('category_id'),
-            'title' => $request->get('title'),
-            'extracto' => $request->get('extracto'),
-            'content' => $request->get('content'),
-            'fecha' => Carbon::parse($request->get('fecha'))->toDateTimeString(),
-            'hora' => Carbon::parse($request->get('hora'))->toDateTimeString(),
-            'direccion' => $request->get('direccion'),
-            // 'file' => $file,
-            'iframe' => $request->get('iframe')
-         ]);
+        if ($request->hasFile('file')){
+            // Se elimina la imagen del evento actual
+            Storage::delete($evento->file);
 
+            $file = request()->file('file')->store('eventos/'.$request->title);
+
+            // se actualiza el evento en la base da datos
+            $evento->update([
+               'user_id' => auth()->id(),
+               'category_id' => $request->get('category_id'),
+               'title' => $request->get('title'),
+               'extracto' => $request->get('extracto'),
+               'content' => $request->get('content'),
+               'fecha' => Carbon::parse($request->get('fecha'))->toDateTimeString(),
+               'hora' => Carbon::parse($request->get('hora'))->toDateTimeString(),
+               'direccion' => $request->get('direccion'),
+               'file' => $file,
+               'iframe' => $request->get('iframe')
+            ]);
+        } else {
+            $evento->update(array_filter($datos));
+        }
 
         // guardar etiquetas en la tabla relacional
         $evento->syncTags($request->get('tag_id'));
@@ -204,9 +214,9 @@ class EventoController extends Controller
 
         $event = Event::findOrfail($id);
 
-        $event->tags()->detach();
+        Storage::delete($event->file);
         
-        Storage::disk('public')->delete($event->file);
+        $event->tags()->detach();
         
         $event->delete();
 

@@ -29,6 +29,7 @@ class StoreBlogRequest extends FormRequest
             'category_id' => 'required',
             'tag_id' => 'required',
             'extracto' => 'required',
+            // 'file' => [$this->route('blog') ? 'nullable' : 'required|image|max:2048']
             'file' => 'required|image|max:2048'
         ];
     }

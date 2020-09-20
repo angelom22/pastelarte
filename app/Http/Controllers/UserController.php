@@ -3,12 +3,12 @@
 namespace App\Http\Controllers;
 
 use DB;
-use Storage;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use App\RolesPermisos\Models\Role;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 
 
 class UserController extends Controller
@@ -96,42 +96,46 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, User $user)
-    {
+    {   
+        // dd($user->avatar);
         $rules = [
-            'name'  => 'required|max:50|unique:users,name,'.$user->id,
-            'email' => 'required|max:50|unique:users,email,'.$user->id,
+            'name'      => 'required|max:50|unique:users,name,'.$user->id,
+            'email'     => 'required|max:50|unique:users,email,'.$user->id,
+            'avatar'    => 'image|max:2048'
         ];
         
+        // Comparacion de contraseña old y la que se encuentra en base de datos
+        if (Hash::check($request->old_password, $user->password)) 
+        {
+            $user->update($request->validate($rules));
+        }
+
+        // señaden las validaciones a los campos password
         if ($request->filled('old_password')) {
             $rules['old_password'] = ['required', 'confirmed'];
             $rules['password'] = ['required','min:8'];
             $rules['password_confirmation'] = ['required', 'same:password'];
         }
 
-        // Comparacion de nueva contraseña y la que se enceunta en base de datos
-        if (Hash::check($request->password, $request->old_password)) {
-            $user->update($request->validate($rules));
-        }
 
         // condicional para guardar el avatar del usuario
         if ($request->hasFile('avatar')) {
-            // Se añade la regla de validacion para imagenes
-            $rules['avatar'] = ['image','max:2048'];
-
-            // Se elimina el avatar actual
-            $deleteFile = $user->avatar;
-            $file = Storage::disk('public')->delete($deleteFile);
             
-            // se guarda el avatar nuevo en la Url correcta
-            $foto = request()->file('avatar')->store('public/perfil/'.$request->name);
-            $fotoUrl = Storage::url($foto);
+            // Se elimina el avatar actual
+            Storage::delete($user->avatar);
+            
+            // Seguarda la imagen nueva
+            $foto = $request->file('avatar')->store('perfil/'.$request->name);
+            // $foto = Storage::disk('public')->put('perfil/' . $request->name, $request->file('avatar'));
+            // $fileUrl = Storage::url($foto);
+            // dd($fileUrl);
             
             // se actualiza el usuario con el avatar nuevo
             $user->update(
                 [
                     'name'      => $request->name,
                     'email'     => $request->email,
-                    'avatar'    => $fotoUrl
+                    'avatar'    => $foto
                 ]
             );
         } else {
@@ -156,6 +160,10 @@ class UserController extends Controller
         $this->authorize('haveaccess', 'user.destroy');
 
         $user->delete();
+
+        // Se elimina el avatar actual
+        Storage::delete($user->avatar);
+
 
         return redirect()->route('user.index')->with('status_success', 'Se a eliminado el usuario correctamente'); 
     }

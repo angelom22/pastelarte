@@ -32,8 +32,8 @@ class CreateBlogsTable extends Migration
             $table->timestamps();
 
             // Relaciones
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade');
+            $table->foreign('category_id')->references('id')->on('categories')->onUpdate('cascade');
              
         });
     }

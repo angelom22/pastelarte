@@ -32,7 +32,7 @@
 							<div class="col-xl-5 pr15-xl pr0">
 								<div class="blog_grid_post event_lists mb35">
 									<div class="thumb">
-										<img class="img-fluid w100" src="{{asset($event->file)}}" alt="{{$event->slug}}" style="width: 600px; height:385px;">
+										<img class="img-fluid w100" src="/storage/{{$event->file}}" alt="{{$event->slug}}" style="width: 600px; height:385px;">
 										<div class="post_date"><h2>{{$event->created_at->format('d')}}</h2> <span>{{$event->created_at->format('M')}}</span></div>
 									</div>
 								</div>

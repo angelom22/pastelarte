@@ -84,10 +84,13 @@
 									<div class="form-group">
 										<label for="tag_id">Status de la publicación</label>
 										<select class="form-control" name="status" id="status">
-                                            <option value="{{$blog->status}}">{{$blog->status}}</option>
-                                            <hr>
+                                            <option value="{{$blog->status}}
+												@if($blog->status == 'BORRADOR') BORRADOR @else PUBLICADO @endif">{{$blog->status}}</option>
+											<hr>
 											<option value="BORRADOR">BORRADOR</option>
+											
 											<option value="PUBLICADO">PUBLICADO</option>
+										
 										</select>
 									</div>
 								</div>
@@ -102,6 +105,7 @@
 					</div>
 					<div class="form-group">
 						<button type="submit" class="btn mt-2 btn-primary btn-block" >Guardar Publicación</button>
+						<a href="{{route('admin.blog')}}" type="btn" class="btn mt-2 btn-danger btn-block" >Regresar</a>
 					</div>
 					</form>	
 
