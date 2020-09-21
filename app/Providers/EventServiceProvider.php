@@ -22,6 +22,10 @@ class EventServiceProvider extends ServiceProvider
         Registered::class => [
             'App\Listeners\RegisteredEvent',
         ],
+
+        \App\Events\EventSaved::class => [
+            \App\Listeners\OptimizeEventImage::class
+        ],
     ];
 
     /**

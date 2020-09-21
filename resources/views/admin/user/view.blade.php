@@ -37,9 +37,11 @@
                                     </div>
                                     @include('custom.message')
                                 
-                                    <form action="{{route('user.update', $id)}}" method="POST" enctype="multipart/form-data">
+                                    <form action="{{route('user.update', $id)}}" method="POST" enctype="multipart/form-data" id="UserUpdate">
                                     @csrf
-                                    @method('PUT')
+									@method('PUT')
+									
+									<input type="hidden" name="user_id" value="{{$id}}">
                                     
                                     <div class="row my_setting_content_details pb0">
                                         <div class="col-xl-6">
@@ -111,10 +113,10 @@
 										<div class="col-xl-6">
 											<div class="password_change_form">
 												
-													<div class="form-group">
+													<!-- <div class="form-group">
 												    	<label for="old_password">Antigua Contraseña</label>
 												    	<input type="password" class="form-control" id="old_password" name="old_password" placeholder="*******">
-													</div>
+													</div> -->
 													<div class="form-group">
 												    	<label for="password">Nueva Contraseña</label>
                                                         <input type="password" class="form-control @error('password') is-invalid @enderror" id="password" name="password">
@@ -150,3 +152,79 @@
 
 
 @endsection
+
+@push('js')
+
+<script>
+
+	var token = $('meta[name="csrf-token"]').attr('content');
+	var id = document.getElementsByName("user_id")[0].value;
+
+	$.validator.setDefaults({
+		submitHandler: function () {
+			$.ajax({
+			type: "POST",
+			url: "user/update/{id}",
+			dataType: "json",
+			processData: false,
+			contentType: false,
+			headers: {
+				'X-CSRF-TOKEN': token
+			},
+			data: datos,
+			dataType: "json",
+			success: function(respuesta) {
+				console.log(respuesta);
+				
+				setTimeout(function(){
+						window.location = '/';
+					},2000);
+			},
+			error: function(respuesta) {
+				if (respuesta.status == 422) {
+				
+				}
+			}
+		});
+		
+		}
+	});
+	
+	$('#UserUpdate').validate({
+	rules: {
+	name:{
+		minlength: 5
+	},
+	email: {
+		email:true
+	},
+	password: {
+		minlength: 8
+	},
+	},
+	messages: {
+	name:{
+		minlength: "La longitud minima del campo son 5 caracteres"
+	},
+	email: {
+		email: "El campo correo de contener '@'"
+	},
+	password: {
+		minlength: "La longitud minima de la contraseña deben ser 8 caracteres"
+		},
+	},
+	errorElement: 'span',
+	errorPlacement: function (error, element) {
+	error.addClass('invalid-feedback');
+	element.closest('.form-group').append(error);
+	},
+	highlight: function (element, errorClass, validClass) {
+	$(element).addClass('is-invalid');
+	},
+	unhighlight: function (element, errorClass, validClass) {
+	$(element).removeClass('is-invalid');
+	}
+	});
+</script>
+
+@endpush

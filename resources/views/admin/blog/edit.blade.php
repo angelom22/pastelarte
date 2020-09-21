@@ -84,8 +84,7 @@
 									<div class="form-group">
 										<label for="tag_id">Status de la publicación</label>
 										<select class="form-control" name="status" id="status">
-                                            <option value="{{$blog->status}}
-												@if($blog->status == 'BORRADOR') BORRADOR @else PUBLICADO @endif">{{$blog->status}}</option>
+                                            <option value="{{$blog->status}}">{{$blog->status}}</option>
 											<hr>
 											<option value="BORRADOR">BORRADOR</option>
 											

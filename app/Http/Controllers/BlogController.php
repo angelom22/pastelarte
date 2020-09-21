@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\StoreBlogRequest;
+use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Http\Request;
 use App\Models\Category;
@@ -178,7 +179,7 @@ class BlogController extends Controller
             Storage::delete($blog->file);
         }
         
-        // Seguarda la imagen nueva
+        // Se guarda la imagen nueva
         // $file = request()->file('file')->store('blog/'.$request->title);
         // $fileUrl = Storage::url($file);
         $file = $request->file('file')->store('blog/'.$request->title);
@@ -194,6 +195,15 @@ class BlogController extends Controller
             'file' =>  $file,
             'iframe' =>  $request->iframe,
         ]));
+
+        // optimización de la imagen
+        $image = Image::make(Storage::get($file))
+                        ->widen(600)
+                        // ->limitColors(255)
+                        ->encode();
+
+        // se reemplaza la imagen que subio el usuario por la imagen optimizada
+        Storage::put($blog->file, (string) $image);
 
         // guardar etiquetas en la tabla relacional
         $blog->syncTags($request->get('tag_id'));

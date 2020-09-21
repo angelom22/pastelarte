@@ -4,14 +4,15 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreEventRequest;
 use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Validation\Rule;
 use Illuminate\Http\Request;
+use App\Events\EventSaved;
 use App\Models\Category;
 use App\Models\Tag;
 use App\Models\Event;
 use  Carbon\Carbon;
-
 
 class EventoController extends Controller
 {
@@ -106,6 +107,9 @@ class EventoController extends Controller
         // se guarda el post en la base da datos
         $event->save();
 
+        // Se dispara el evento para la optimización de la imagen
+        EventSaved::dispatch($event);
+
         // guardar etiquetas en la tabla relacional
         $event->syncTags($request->get('tag_id'));
     
@@ -190,6 +194,18 @@ class EventoController extends Controller
                'file' => $file,
                'iframe' => $request->get('iframe')
             ]);
+
+            // Se dispara el evento para la optimización de la imagen
+            // EventSaved::dispatch($evento);
+
+            // optimización de la imagen
+            $image = Image::make(Storage::get($file))
+                            ->widen(600)
+                            ->encode();
+
+            // se reemplaza la imagen que subio el usuario por la imagen optimizada
+            Storage::put($evento->file, (string) $image);
+
         } else {
             $evento->update(array_filter($datos));
         }

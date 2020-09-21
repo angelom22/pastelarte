@@ -34,8 +34,9 @@ class AngelPermissionInfoSeeder extends Seeder
         $useradmin = User::create([
             'name' => 'admin',
             'email' => 'admin@admin.com',
-            'password' => Hash::make('admin123'),
-            'avatar' => 'img/perfil.png'
+            // 'password' => Hash::make('admin123'),
+            'password' => 'admin123',
+            'avatar' => 'perfil/perfil.png'
         ]);
         
         // Rol Admin

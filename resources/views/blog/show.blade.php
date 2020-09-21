@@ -30,7 +30,7 @@
                 <div class="main_blog_post_content">
                     <div class="mbp_thumb_post">
                         <div class="thumb">
-                            <img class="img-fluid" src="/storage/{{$blog->file}}" style="width:982px; height:500px" alt="{{$blog->slug}}">
+                            <img class="img-fluid" src="/storage/{{$blog->file}}" style="width:982px; height:500px;" alt="{{$blog->slug}}">
                             <div class="tag">{{$blog->category->name}}</div>
                             <div class="post_date"><h2>{{$blog->created_at->format('d')}}</h2> <span>{{$blog->created_at->format('M')}}</span></div>
                         </div>

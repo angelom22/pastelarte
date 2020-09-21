@@ -77,3 +77,10 @@
     </section>
 
 @endsection
+
+@push('js')
+    <!-- Validación login -->
+    <script type="text/javascript" src="{{ asset('js/login.js') }}"></script>
+@endpush
+
+

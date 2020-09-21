@@ -40,7 +40,7 @@
                         <div class="blog_post">
                             <div class="thumb">
                                  @if($blog->file)
-                                <img class="img-fluid w100" style="width:306px; height: 450px;" src="/storage/{{$blog->file}}" alt="{{$blog->slug}}">
+                                <img class="img-fluid w100" style="width:306px; height: 450px; object-fit: cover" src="/storage/{{$blog->file}}" alt="{{$blog->slug}}">
                                 <a class="post_date" href="#">{{$blog->created_at->format('M d , Y')}} </a>
                                 @endif
                             </div>
@@ -69,7 +69,7 @@
                         <div class="thumb">
                             @if($blog->file)
                             <a href="#">
-                                <img class="img-fluid" src="/storage/{{$blog->file}}" style="width:982px; height:500px" alt="{{$blog->slug}}">
+                                <img class="img-fluid" src="/storage/{{$blog->file}}" style="width:982px; height:500px;" alt="{{$blog->slug}}">
                             </a>
                             @endif
                             <div class="tag">{{$blog->category->name}} </div>

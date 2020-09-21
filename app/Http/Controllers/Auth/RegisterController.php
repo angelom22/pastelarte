@@ -64,7 +64,6 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        // dd($data);
         // $avatar = "https://ui-avatars.com/api/?background=0D8ABC&color=fff&name=".$data['name'];
         $avatar = 'perfil/perfil.png';
 
