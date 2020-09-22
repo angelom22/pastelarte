@@ -105,8 +105,6 @@ class UserController extends Controller
             'avatar'    => 'image|max:2048'
         ];
         
-      
-
         // señaden las validaciones a los campos password
         if ($request->filled('old_password')) {
             // $rules['old_password'] = ['required', 'confirmed'];
@@ -117,20 +115,19 @@ class UserController extends Controller
         // Comparacion de contraseña old y la que se encuentra en base de datos
         // if (Hash::check($request->old_password, $user->password)) {
         //     $user->update($request->validate($rules));
-        // }
+        // }        
         
         
         // condicional para guardar el avatar del usuario
-        if ($request->hasFile('avatar')) {
+        if ($request->hasFile('avatar') ) {
             
-            // Se elimina el avatar actual
-            Storage::delete($user->avatar);
-            
+            if ($user->avatar != 'perfil/perfil.png'){
+                // Se elimina el avatar actual
+                Storage::delete($user->avatar);
+            }
+
             // Se guarda la imagen nueva
             $foto = $request->file('avatar')->store('perfil/'.$request->name);
-            // $foto = Storage::disk('public')->put('perfil/' . $request->name, $request->file('avatar'));
-            // $fileUrl = Storage::url($foto);
-            // dd($fileUrl);
             
             // se actualiza el usuario con el avatar nuevo
             $user->update(
@@ -170,11 +167,12 @@ class UserController extends Controller
     {  
         $this->authorize('haveaccess', 'user.destroy');
 
+        if ($user->avatar != 'perfil/perfil.png'){
+            // Se elimina el avatar actual
+            Storage::delete($user->avatar);
+        }
+        
         $user->delete();
-
-        // Se elimina el avatar actual
-        Storage::delete($user->avatar);
-
 
         return redirect()->route('user.index')->with('status_success', 'Se a eliminado el usuario correctamente'); 
     }

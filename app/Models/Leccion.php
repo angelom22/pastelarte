@@ -9,11 +9,14 @@ use App\Models\Curso;
 
 class Leccion extends Model
 {
+    use Sluggable;
+    use SluggableScopeHelpers;
+
     public function sluggable()
     {
         return [
             'slug' => [
-                'source' => 'title',
+                'source' => 'title_leccion',
                 'maxLength'          => null,
                 'maxLengthKeepWords' => true,
                 'method'             => null,
@@ -37,7 +40,7 @@ class Leccion extends Model
     protected $table = 'lecciones';
 
     protected $fillable = [
-       'title_leccion', 'slug', 'desciption_leccion', 'duracion_leccion', 'url_video'
+       'title_leccion', 'slug', 'description_leccion', 'duration_leccion', 'url_video'
     ];
 
     public function curso(){

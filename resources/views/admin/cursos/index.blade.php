@@ -33,7 +33,7 @@
                                                 @can('haveaccess','course.create')                        
                                                     <a href="{{route('CourseCreate')}}" class="btn btn-primary pull-left">  
                                                         <i class="fa fa-plus"></i>
-                                                    Añadir Curso</a>
+                                                    Crear Curso</a>
                                                 @endcan
                                             </div>
                                            
@@ -61,32 +61,35 @@
 														    	<button class="btn my-2 my-sm-0" type="submit"><span class="flaticon-magnifying-glass"></span></button>
 														    </form>
 														</div>
-                                                    </li>
+													</li>
                                             
 												</ul>
 											</div>
 										</div>
 									</div>
+									@include('custom.message')
+									@foreach($cursos as $curso)
 									<div class="my_course_content_list">
 										<div class="mc_content_list">
 											<div class="thumb">
-												<img class="img-whp" src="{{asset('img/courses/t1.jpg')}}" alt="t1.jpg">
+												<img  style="width: 307px; height:200px; object-fit: cover;" src="/storage/{{$curso->thumbnail}}" alt="{{$curso->slug}}">
 												<div class="overlay">
 													<ul class="mb0">
+														<!-- Colocar Validación para estos botones -->
 														<li class="list-inline-item">
-															<a class="mcc_edit" href="#">Edit</a>
+															<a class="mcc_edit" href="#">Editar</a>
 														</li>
 														<li class="list-inline-item">
-															<a class="mcc_view" href="#">View</a>
+															<a class="mcc_view" href="#">Ver</a>
 														</li>
 													</ul>
 												</div>
 											</div>
 											<div class="details">
 												<div class="mc_content">
-													<p class="subtitle">Ali TUFAN</p>
-													<h5 class="title">Introduction Web Design with HTML <span><small class="tag">Published</small></span></h5>
-													<p>Lorem ipsum dolor sit amet, est ei idque voluptua copiosae, pro detracto disputando reformidans at, ex vel suas eripuit. Vel alii zril maiorum ex, mea id sale eirmod epicurei. Sit te possit senserit, eam alia veritus maluisset ei, id cibo vocent ocurreret per. Te qui doming doctus referrentur, usu debet tamquam et.</p>
+													<p class="subtitle">Carrera: {{$curso->carrera->title}}</p>
+													<h5 class="title">{{$curso->title}}<span><small class="tag">{{$curso->status}}</small></span></h5>
+													<p>{!! $curso->extracto !!}</p>
 												</div>
 												<div class="mc_footer">
 													<ul class="mc_meta fn-414">
@@ -94,6 +97,7 @@
 														<li class="list-inline-item"><a href="#">1548</a></li>
 														<li class="list-inline-item"><a href="#"><i class="flaticon-comment"></i></a></li>
 														<li class="list-inline-item"><a href="#">25</a></li>
+														
 													</ul>
 													<ul class="mc_review fn-414">
 														<li class="list-inline-item"><a href="#"><i class="fa fa-star"></i></a></li>
@@ -102,129 +106,36 @@
 														<li class="list-inline-item"><a href="#"><i class="fa fa-star"></i></a></li>
 														<li class="list-inline-item"><a href="#"><i class="fa fa-star"></i></a></li>
 														<li class="list-inline-item"><a href="#">(5)</a></li>
-														<li class="list-inline-item tc_price fn-414"><a href="#">$69.95</a></li>
-													</ul>
-												</div>
-											</div>
-										</div>
-										<div class="mc_content_list">
-											<div class="thumb">
-												<img class="img-whp" src="{{asset('img/courses/t2.jpg')}}" alt="t2.jpg">
-												<div class="overlay">
-													<ul class="mb0">
+														<li class="list-inline-item tc_price fn-414"><a href="#">${{$curso->precio}}</a></li>
 														<li class="list-inline-item">
-															<a class="mcc_edit" href="#">Edit</a>
+														@can('haveaccess','leccion.create')                        
+                                                    		<a href="{{route('crear_leccion', $curso->id)}}" class="btn btn-info pull-right">  
+                                                        	<i class="fa fa-plus"></i>
+														Anadir Lección</a>
+														@endcan
 														</li>
-														<li class="list-inline-item">
-															<a class="mcc_view" href="#">View</a>
-														</li>
-													</ul>
-												</div>
-											</div>
-											<div class="details">
-												<div class="mc_content">
-													<p class="subtitle">Ali TUFAN</p>
-													<h5 class="title">Designing a Responsive Mobile Website with Muse</h5>
-													<p>Lorem ipsum dolor sit amet, est ei idque voluptua copiosae, pro detracto disputando reformidans at, ex vel suas eripuit. Vel alii zril maiorum ex, mea id sale eirmod epicurei. Sit te possit senserit, eam alia veritus maluisset ei, id cibo vocent ocurreret per. Te qui doming doctus referrentur, usu debet tamquam et.</p>
-												</div>
-												<div class="mc_footer">
-													<ul class="mc_meta fn-414">
-														<li class="list-inline-item"><a href="#"><i class="flaticon-profile"></i></a></li>
-														<li class="list-inline-item"><a href="#">1548</a></li>
-														<li class="list-inline-item"><a href="#"><i class="flaticon-comment"></i></a></li>
-														<li class="list-inline-item"><a href="#">25</a></li>
-													</ul>
-													<ul class="mc_review fn-414">
-														<li class="list-inline-item"><a href="#"><i class="fa fa-star"></i></a></li>
-														<li class="list-inline-item"><a href="#"><i class="fa fa-star"></i></a></li>
-														<li class="list-inline-item"><a href="#"><i class="fa fa-star"></i></a></li>
-														<li class="list-inline-item"><a href="#"><i class="fa fa-star"></i></a></li>
-														<li class="list-inline-item"><a href="#"><i class="fa fa-star"></i></a></li>
-														<li class="list-inline-item"><a href="#">(5)</a></li>
-														<li class="list-inline-item tc_price fn-414"><a href="#">$69.95</a></li>
-													</ul>
-												</div>
-											</div>
-										</div>
-										<div class="mc_content_list">
-											<div class="thumb">
-												<img class="img-whp" src="{{asset('img/courses/t3.jpg')}}" alt="t3.jpg">
-												<div class="overlay">
-													<ul class="mb0">
-														<li class="list-inline-item">
-															<a class="mcc_edit" href="#">Edit</a>
-														</li>
-														<li class="list-inline-item">
-															<a class="mcc_view" href="#">View</a>
-														</li>
-													</ul>
-												</div>
-											</div>
-											<div class="details">
-												<div class="mc_content">
-													<p class="subtitle">Ali TUFAN</p>
-													<h5 class="title">Sketch: Creating Responsive SVG <span class="style2"><small class="tag">Cancelled</small></span></h5>
-													<p>Lorem ipsum dolor sit amet, est ei idque voluptua copiosae, pro detracto disputando reformidans at, ex vel suas eripuit. Vel alii zril maiorum ex, mea id sale eirmod epicurei. Sit te possit senserit, eam alia veritus maluisset ei, id cibo vocent ocurreret per. Te qui doming doctus referrentur, usu debet tamquam et.</p>
-												</div>
-												<div class="mc_footer">
-													<ul class="mc_meta fn-414">
-														<li class="list-inline-item"><a href="#"><i class="flaticon-profile"></i></a></li>
-														<li class="list-inline-item"><a href="#">1548</a></li>
-														<li class="list-inline-item"><a href="#"><i class="flaticon-comment"></i></a></li>
-														<li class="list-inline-item"><a href="#">25</a></li>
-													</ul>
-													<ul class="mc_review fn-414">
-														<li class="list-inline-item"><a href="#"><i class="fa fa-star"></i></a></li>
-														<li class="list-inline-item"><a href="#"><i class="fa fa-star"></i></a></li>
-														<li class="list-inline-item"><a href="#"><i class="fa fa-star"></i></a></li>
-														<li class="list-inline-item"><a href="#"><i class="fa fa-star"></i></a></li>
-														<li class="list-inline-item"><a href="#"><i class="fa fa-star"></i></a></li>
-														<li class="list-inline-item"><a href="#">(5)</a></li>
-														<li class="list-inline-item tc_price fn-414"><a href="#">$69.95</a></li>
-													</ul>
-												</div>
-											</div>
-										</div>
-										<div class="mc_content_list">
-											<div class="thumb">
-												<img class="img-whp" src="{{asset('img/courses/t4.jpg')}}" alt="t4.jpg">
-												<div class="overlay">
-													<ul class="mb0">
-														<li class="list-inline-item">
-															<a class="mcc_edit" href="#">Edit</a>
-														</li>
-														<li class="list-inline-item">
-															<a class="mcc_view" href="#">View</a>
-														</li>
-													</ul>
-												</div>
-											</div>
-											<div class="details">
-												<div class="mc_content">
-													<p class="subtitle">Ali TUFAN</p>
-													<h5 class="title">How to be a DJ? Make Electronic Music</h5>
-													<p>Lorem ipsum dolor sit amet, est ei idque voluptua copiosae, pro detracto disputando reformidans at, ex vel suas eripuit. Vel alii zril maiorum ex, mea id sale eirmod epicurei. Sit te possit senserit, eam alia veritus maluisset ei, id cibo vocent ocurreret per. Te qui doming doctus referrentur, usu debet tamquam et.</p>
-												</div>
-												<div class="mc_footer">
-													<ul class="mc_meta fn-414">
-														<li class="list-inline-item"><a href="#"><i class="flaticon-profile"></i></a></li>
-														<li class="list-inline-item"><a href="#">1548</a></li>
-														<li class="list-inline-item"><a href="#"><i class="flaticon-comment"></i></a></li>
-														<li class="list-inline-item"><a href="#">25</a></li>
-													</ul>
-													<ul class="mc_review fn-414">
-														<li class="list-inline-item"><a href="#"><i class="fa fa-star"></i></a></li>
-														<li class="list-inline-item"><a href="#"><i class="fa fa-star"></i></a></li>
-														<li class="list-inline-item"><a href="#"><i class="fa fa-star"></i></a></li>
-														<li class="list-inline-item"><a href="#"><i class="fa fa-star"></i></a></li>
-														<li class="list-inline-item"><a href="#"><i class="fa fa-star"></i></a></li>
-														<li class="list-inline-item"><a href="#">(5)</a></li>
-														<li class="list-inline-item tc_price fn-414"><a href="#">$69.95</a></li>
 													</ul>
 												</div>
 											</div>
 										</div>
 									</div>
+									@endforeach
+									<div class="row">
+										<div class="col-lg-12">
+											<div class="mbp_pagination mt20">
+												<ul class="page_navigation">
+													<!-- <li class="page-item disabled">
+														<a class="page-link" href="#" tabindex="-1" aria-disabled="true"> <span class="flaticon-left-arrow"></span> Prev</a>
+													</li> -->
+													{{ $cursos->links() }}
+													<!-- <li class="page-item">
+														<a class="page-link" href="#">Next <span class="flaticon-right-arrow-1"></span></a>
+													</li> -->
+												</ul>
+											</div> 
+										</div>
+									</div>
+										
 								</div>
 							</div>
 						</div>
@@ -236,4 +147,14 @@
 			</div>
 		</div>
 	</section>
+
 @endsection
+
+@push('js')
+
+<script src="{{asset('plugins/datepicker/jquery.maskedinput.min.js')}}"></script>
+<script>
+	$('.time').mask('99:99');
+</script>
+
+@endpush

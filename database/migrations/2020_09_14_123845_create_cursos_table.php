@@ -17,12 +17,13 @@ class CreateCursosTable extends Migration
             $table->id();
 
             $table->foreignId('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreignId('leccion_id')->references('id')->on('lecciones')->onDelete('cascade')->onUpdate('cascade');
+            // $table->foreignId('leccion_id')->references('id')->on('lecciones')->onDelete('cascade')->onUpdate('cascade');
             $table->foreignId('carrera_id')->references('id')->on('carreras')->onDelete('cascade')->onUpdate('cascade');
 
             $table->string('title', 128)->unique();
             $table->string('slug', 128)->unique();
             $table->string('thumbnail');
+            $table->mediumText('extracto');
             $table->mediumText('description')->nullable();
             $table->decimal('precio', 9, 2)->unsigned();
             $table->time('duracion_curso')->nullable();

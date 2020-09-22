@@ -2,24 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Http\Request;
-use App\User;
-use App\Models\Tag;
-use App\Models\Blog;
-use App\Models\Event;
+use App\Models\CursoLeccion;
 use App\Models\Curso;
-use App\Models\Category;
-use App\RolesPermisos\Models\Role;
+use App\Models\Leccion;
 
-
-class AdminController extends Controller
+class LeccionController extends Controller
 {
-
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-    
     /**
      * Display a listing of the resource.
      *
@@ -27,56 +17,24 @@ class AdminController extends Controller
      */
     public function index()
     {
-        return view('admin.dashboard.dashboard');
+        //
     }
-
-    public function curso()
-    {
-        $this->authorize('haveaccess', 'course.admin');
-
-        $cursos = Curso::paginate(5);
-        
-        return view('admin.cursos.index', compact('cursos'));
-    }
-    public function blog()
-    {
-        $this->authorize('haveaccess', 'blog.admin');
-
-        $blogs = Blog::orderBy('id', 'ASC')->get();
-        
-        return view('admin.blog.index',compact('blogs'));
-    }
-   
-    public function evento()
-    {
-        $this->authorize('haveaccess', 'event.admin');
-
-        $events = Event::orderBy('id', 'ASC')->get();
-        
-        return view('admin.evento.index',compact('events'));
-    }
-
-    public function user(User $id)
-    {    
-        $this->authorize('haveaccess', 'userown.show');
-
-        $roles = Role::orderBy('name')->get();
-
-        // $user = User::find($id);
-        // dd($user);
-
-        return view('admin.user.view', compact('id', 'roles'));
-    }
-
 
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Curso $id)
     {
-       
+        Gate::authorize('haveaccess', 'lesson.create');
+        
+        // $curso = Curso::findOrFail($id);
+        // dd($curso);
+        // Nueva instancia de leccion
+        $leccion = new Leccion;
+
+        return view('admin.leccion.create', compact('leccion','id'));
     }
 
     /**
@@ -87,7 +45,20 @@ class AdminController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // dd($request->all());
+        $lecccion = Leccion::create([
+                    'title_leccion'         => $request->title_leccion,
+                    'description_leccion'    => $request->description_leccion,
+                    'duration_leccion'      => $request->duration_leccion,
+                    'url_video'             => $request->url_video,
+                ]);
+        
+        CursoLeccion::create([
+            'curso_id'      => $request->curso_id,
+            'leccion_id'    => $lecccion->id
+        ]);
+
+        return 'guardado correcto';
     }
 
     /**

@@ -7,10 +7,14 @@ use Cviebrock\EloquentSluggable\Sluggable;
 use Cviebrock\EloquentSluggable\SluggableScopeHelpers;
 use App\Models\Carrera;
 use App\Models\Leccion;
+use App\Models\CursoLeccion;
 use App\User;
 
 class Curso extends Model
 {
+    use Sluggable;
+    use SluggableScopeHelpers;
+
     public function sluggable()
     {
         return [
@@ -30,6 +34,7 @@ class Curso extends Model
         ];
     }
 
+
     /**
      * The attributes that are mass assignable.
      *
@@ -39,7 +44,7 @@ class Curso extends Model
     protected $table = 'cursos';
 
     protected $fillable = [
-       'user_id', 'leccion_id', 'carrera_id', 'title', 'slug', 'thumbnail', 'description', 'precio', 'duracion_curso', 'nivel_habilidad', 'lengueaje', 'instructor', 'valoracion' 
+       'user_id', 'leccion_id', 'carrera_id', 'title', 'slug', 'thumbnail', 'extracto', 'description', 'precio', 'duracion_curso', 'nivel_habilidad', 'lengueaje', 'instructor', 'valoracion' 
     ];
 
     public function user(){
@@ -51,7 +56,11 @@ class Curso extends Model
     }
 
     public function lecciones(){
-        return $this->belongsToMany(Leccion::class)->withTimestamps();
+        return $this->belongsToMany(CursoLeccion::class, 'curso_leccion')->withTimestamps();
     }
+
+    // public function lecciones(){
+    //     return $this->hasMany(CursoLeccion::class, 'curso_id', 'id')->withTimestamps();
+    // }
     
 }

@@ -155,7 +155,7 @@
 
 @push('js')
 
-<script>
+<!-- <script>
 
 	var token = $('meta[name="csrf-token"]').attr('content');
 	var id = document.getElementsByName("user_id")[0].value;
@@ -163,7 +163,7 @@
 	$.validator.setDefaults({
 		submitHandler: function () {
 			$.ajax({
-			type: "POST",
+			type: "PUT",
 			url: "user/update/{id}",
 			dataType: "json",
 			processData: false,
@@ -225,6 +225,6 @@
 	$(element).removeClass('is-invalid');
 	}
 	});
-</script>
+</script> -->
 
 @endpush

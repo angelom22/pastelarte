@@ -18,7 +18,7 @@ class CreateLeccionesTable extends Migration
             $table->string('title_leccion', 128)->unique();
             $table->string('slug', 128)->unique();
             $table->string('description_leccion')->nullable();
-            $table->time('duracion_curso')->nullable();
+            $table->time('duration_leccion')->nullable();
             $table->mediumText('url_video');
 
             // Relaciones

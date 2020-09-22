@@ -187,45 +187,45 @@ class AngelPermissionInfoSeeder extends Seeder
         */
         
 
-    // ----------------Permiso Para Modulos------------------- //
+    // ----------------Permiso Para Las lecciones------------------- //
 
-        // Permisos modulos
+        // Permisos lecciones
         $permission = Permission::create([
-            'name' => 'Lista modulo',
-            'slug' => 'modulo.index',
-            'description' => 'El usuario puede listar los modulos',
+            'name' => 'Lista leccion',
+            'slug' => 'lesson.index',
+            'description' => 'El usuario puede listar las lecciones',
         ]);
 
         $permission_all[] = $permission->id;
         
         $permission = Permission::create([
-            'name' => 'Show modulo',
-            'slug' => 'modulo.show',
-            'description' => 'El usuario puede ver los modulos',
+            'name' => 'Show leccion',
+            'slug' => 'lesson.show',
+            'description' => 'El usuario puede ver las lecciones',
         ]);
 
         $permission_all[] = $permission->id;
         
         $permission = Permission::create([
-            'name' => 'Create modulo',
-            'slug' => 'modulo.create',
-            'description' => 'El usuario puede crear los modulos',
+            'name' => 'Create leccion',
+            'slug' => 'lesson.create',
+            'description' => 'El usuario puede crear las lecciones',
         ]);
 
         $permission_all[] = $permission->id;
 
         $permission = Permission::create([
-            'name' => 'Edit modulo',
-            'slug' => 'modulo.edit',
-            'description' => 'El usuario puede editar los modulos',
+            'name' => 'Edit leccion',
+            'slug' => 'lesson.edit',
+            'description' => 'El usuario puede editar las lecciones',
         ]);
 
         $permission_all[] = $permission->id;
         
         $permission = Permission::create([
-            'name' => 'Destroy modulo',
-            'slug' => 'modulo.destroy',
-            'description' => 'El usuario puede eliminar los modulos',
+            'name' => 'Destroy leccion',
+            'slug' => 'lesson.destroy',
+            'description' => 'El usuario puede eliminar las laecciones',
         ]);
 
         $permission_all[] = $permission->id;

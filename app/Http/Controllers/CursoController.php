@@ -49,20 +49,22 @@ class CursoController extends Controller
      */
     public function store(StoreCourseRequest $request)
     {
+        // dd($request->all());
         Gate::authorize('haveaccess', 'course.create');
 
-        $thumbnail = request()->file('thumbnail')->store('public/thumbnail/'.$request->title);
-        $thumbnailUrl = Storage::url($thumbnail);
+        $thumbnail = request()->file('thumbnail')->store('thumbnail/'.$request->title);
+        // $thumbnailUrl = Storage::url($thumbnail);
 
         $user = auth()->id();
-
+        
         $curso = Curso::create([
             'user_id' => $user,
             // 'leccion_id' => $request->leccion_id;
-            'carrera_id'        => $request->carrera,
+            'carrera_id'        => $request->carrera_id,
             'title'             => $request->title,
-            'thumbnail'         => $thumbnailUrl,
+            'thumbnail'         => $thumbnail,
             'description'       => $request->description,
+            'extracto'          => $request->extracto,
             'precio'            => $request->precio,
             'duracion_curso'    => $request->duracion_curso,
             'nivel_habilidad'   => $request->nivel_habilidad,
@@ -70,20 +72,20 @@ class CursoController extends Controller
             'instructor'        => $request->instructor
             ]);
 
-        foreach($request->id_lecciones as $id_leccion)
-        {
-            $lecccion = Leccion::create([
-                'title_leccion'         => $request->title_leccion,
-                'desciption_leccion'    => $request->desciption_leccion,
-                'duracion_leccion'      => $request->duracion_leccion,
-                'url_video'             => $request->url_video,
-            ]);
-        }
+        // foreach($request->id_lecciones as $id_leccion)
+        // {
+        //     $lecccion = Leccion::create([
+        //         'title_leccion'         => $request->title_leccion,
+        //         'desciption_leccion'    => $request->desciption_leccion,
+        //         'duracion_leccion'      => $request->duracion_leccion,
+        //         'url_video'             => $request->url_video,
+        //     ]);
+        // }
 
         // Crear una funcion en el modelo curso que me guarde las relaciones entre los cursos y las lecciones
-        $curso->lecciones()->sync($request->id_lecciones);
+        // $curso->lecciones()->sync($request->id_lecciones);
 
-        return redirect()->route('admin.curso');
+        return redirect()->route('admin.curso')->with('status_success', 'El curso ha sido creado exitosamente');
     }
 
     /**
