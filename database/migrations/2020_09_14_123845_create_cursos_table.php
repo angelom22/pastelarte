@@ -15,11 +15,10 @@ class CreateCursosTable extends Migration
     {
         Schema::create('cursos', function (Blueprint $table) {
             $table->id();
-
-            $table->foreignId('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
+            $table->integer('user_id')->unsigned()->nullable();
+            $table->integer('carrera_id')->unsigned()->nullable();
             // $table->foreignId('leccion_id')->references('id')->on('lecciones')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreignId('carrera_id')->references('id')->on('carreras')->onDelete('cascade')->onUpdate('cascade');
-
+            
             $table->string('title', 128)->unique();
             $table->string('slug', 128)->unique();
             $table->string('thumbnail');
@@ -35,6 +34,10 @@ class CreateCursosTable extends Migration
             $table->enum('status', ['DISPONIBLE', 'INHABILITADO'])->default('DISPONIBLE');
 
             $table->timestamps();
+
+            // Relaciones
+            $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade');
+            $table->foreign('carrera_id')->references('id')->on('carreras')->onUpdate('cascade');
         });
     }
 

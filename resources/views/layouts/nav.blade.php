@@ -37,8 +37,8 @@
                     <a href="#"><span class="title">Carreras</span></a>
                     <!-- Level Two-->
                     <ul>
-                        <li><a href="{{ url('cursosingle') }}">Pastelería</a></li>
-                        <li><a href="{{ url('cursosingle') }}">Decoración de tortas</a></li>
+                        <li><a href="{{ route('filtrarCarrera','pasteleria') }}">Pastelería</a></li>
+                        <li><a href="{{ route('filtrarCarrera','decoracion-de-tortas') }}">Decoración de tortas</a></li>
                     </ul>
                 </li>
                 <li>

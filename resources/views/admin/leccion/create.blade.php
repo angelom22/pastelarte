@@ -1,8 +1,7 @@
 @extends('admin.layouts.app')
 
 @push('css')
- <!-- PNotify -->
- <link href="{{asset('plugins/pnotify/dist/PNotifyBrightTheme.css')}}" rel="stylesheet" type="text/css" />
+ 
 @endpush
 
 @section('content')

@@ -16,7 +16,7 @@
 										<li class="list-inline-item"><a class="color-white" href="#">última actualización 06/09/2020</a></li>
 									</ul>
 								</div>
-								<h3 class="cs_title color-white">Técnicas de pastelería </h3>
+								<h3 class="cs_title color-white">{{$carrera->title}}</h3>
 								<ul class="cs_review_enroll">
 									<li class="list-inline-item color-white"><span class="flaticon-profile"></span> 20 estudiantes inscritos</li>
 									<li class="list-inline-item color-white"><span class="flaticon-comment"></span> 25 comentarios</li>
@@ -313,22 +313,54 @@
 					</div>
 
 
-
-
-
-
-
 					<div class="row">
 						<div class="col-lg-12">
-							<h3 class="r_course_title">Cursos relacionados</h3>
+							<h3 class="r_course_title">Cursos de la carrera:</h3>
 						</div>
-
-
+						@foreach($cursos as $curso)
 
                         <div class="col-lg-4 col-xl-4">
                             <div class="top_courses">
                                 <div class="thumb">
-                                    <img class="img-whp" src="img/courses/t1.jpg" alt="t1.jpg">
+									<div class="overlay">
+										<img class="img-whp" src="/storage/{{$curso->thumbnail}}" alt="{{$curso->slug}}">
+                                        <div class="tag" style="background: #441c42;">nuevo</div>
+                                        <div class="icon" style="background: #441c42; font-size: 15px;">decoración</div>
+                                        <a class="tc_preview_course" href="#" data-toggle="modal" data-target="#curso1"><i class="fa fa-play" style="font-size: 30px;"></i></a>
+                                    </div>
+                                </div>
+                                <div class="details">
+                                    <div class="tc_content">
+                                        <p>{{$curso->instructor}}</p>
+                                        <h5>{{$curso->title}}</h5>
+                                        <ul class="tc_review">
+                                            <li class="list-inline-item"><a href="#"><i class="fa fa-star"></i></a></li>
+                                            <li class="list-inline-item"><a href="#"><i class="fa fa-star"></i></a></li>
+                                            <li class="list-inline-item"><a href="#"><i class="fa fa-star"></i></a></li>
+                                            <li class="list-inline-item"><a href="#"><i class="fa fa-star"></i></a></li>
+                                            <li class="list-inline-item"><a href="#"><i class="fa fa-star"></i></a></li>
+                                            <li class="list-inline-item"><a href="#">(6)</a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="tc_footer">
+                                        <ul class="tc_meta float-left">
+                                            <li class="list-inline-item"><a href="#"><i class="flaticon-profile"></i></a></li>
+                                            <li class="list-inline-item"><a href="#">30</a></li>
+                                            <li class="list-inline-item"><a href="#"><i class="flaticon-comment"></i></a></li>
+                                            <li class="list-inline-item"><a href="#">10</a></li>
+                                        </ul>
+                                        <div class="tc_price float-right">$30.00</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+						@endforeach
+
+                        <div class="col-lg-4 col-xl-4">
+                            <div class="top_courses">
+                                <div class="thumb">
+                                    <img class="img-whp" src="{{asset('img/courses/t1.jpg')}}" alt="t1.jpg">
                                     <div class="overlay">
                                         <div class="tag" style="background: #441c42;">nuevo</div>
                                         <div class="icon" style="background: #441c42; font-size: 15px;">decoración</div>
@@ -360,50 +392,6 @@
                                 </div>
                             </div>
                         </div>
-
-
-
-
-
-                        <div class="col-lg-4 col-xl-4">
-                            <div class="top_courses">
-                                <div class="thumb">
-                                    <img class="img-whp" src="img/courses/t1.jpg" alt="t1.jpg">
-                                    <div class="overlay">
-                                        <div class="tag" style="background: #441c42;">nuevo</div>
-                                        <div class="icon" style="background: #441c42; font-size: 15px;">decoración</div>
-                                        <a class="tc_preview_course" href="#" data-toggle="modal" data-target="#curso1"><i class="fa fa-play" style="font-size: 30px;"></i></a>
-                                    </div>
-                                </div>
-                                <div class="details">
-                                    <div class="tc_content">
-                                        <p>Beatriz Román</p>
-                                        <h5>Curso de decoración con papel de arróz</h5>
-                                        <ul class="tc_review">
-                                            <li class="list-inline-item"><a href="#"><i class="fa fa-star"></i></a></li>
-                                            <li class="list-inline-item"><a href="#"><i class="fa fa-star"></i></a></li>
-                                            <li class="list-inline-item"><a href="#"><i class="fa fa-star"></i></a></li>
-                                            <li class="list-inline-item"><a href="#"><i class="fa fa-star"></i></a></li>
-                                            <li class="list-inline-item"><a href="#"><i class="fa fa-star"></i></a></li>
-                                            <li class="list-inline-item"><a href="#">(6)</a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="tc_footer">
-                                        <ul class="tc_meta float-left">
-                                            <li class="list-inline-item"><a href="#"><i class="flaticon-profile"></i></a></li>
-                                            <li class="list-inline-item"><a href="#">30</a></li>
-                                            <li class="list-inline-item"><a href="#"><i class="flaticon-comment"></i></a></li>
-                                            <li class="list-inline-item"><a href="#">10</a></li>
-                                        </ul>
-                                        <div class="tc_price float-right">$30.00</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-
-
-
 
 					</div>
 				</div>

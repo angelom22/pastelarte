@@ -26,6 +26,7 @@ class BlogController extends Controller
         // dd($slug);
         $category   = Category::where('slug', $slug)->pluck('id')->first();
         $blogs      = Blog::where('category_id', $category)->orderBy('id', 'DESC')->where('status', 'PUBLICADO')->paginate(3);
+        dd($blogs);
 
         $categories = Category::orderBy('name', 'ASC')->get();
         $tags       = Tag::orderBy('name', 'ASC')->get();

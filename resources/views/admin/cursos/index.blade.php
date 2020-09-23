@@ -76,11 +76,12 @@
 												<div class="overlay">
 													<ul class="mb0">
 														<!-- Colocar Validación para estos botones -->
+
 														<li class="list-inline-item">
 															<a class="mcc_edit" href="#">Editar</a>
 														</li>
 														<li class="list-inline-item">
-															<a class="mcc_view" href="#">Ver</a>
+															<a class="mcc_view" href="{{route('cursos.show', $curso->slug)}}">Ver</a>
 														</li>
 													</ul>
 												</div>
@@ -109,7 +110,12 @@
 														<li class="list-inline-item tc_price fn-414"><a href="#">${{$curso->precio}}</a></li>
 														<li class="list-inline-item">
 														@can('haveaccess','leccion.create')                        
-                                                    		<a href="{{route('crear_leccion', $curso->id)}}" class="btn btn-info pull-right">  
+															<a href="#" 
+															class="btn btn-info pull-right"
+															title="Añadir Lección" 
+															data-curso_id="{{$curso->id}}"
+															data-toggle="modal" data-target="#CrearLeccion"	
+															>  
                                                         	<i class="fa fa-plus"></i>
 														Anadir Lección</a>
 														@endcan
@@ -147,7 +153,7 @@
 			</div>
 		</div>
 	</section>
-
+@include('admin.cursos.resources.modal')
 @endsection
 
 @push('js')
@@ -155,6 +161,34 @@
 <script src="{{asset('plugins/datepicker/jquery.maskedinput.min.js')}}"></script>
 <script>
 	$('.time').mask('99:99');
+	
+	// Modal para crear lección
+	$('#CrearLeccion').on('show.bs.modal', function(event){
+		var button = $(event.relatedTarget);
+		var curso_id = button.data('curso_id');
+		console.log(curso_id);
+		
+		var modal = $(this);
+        
+        modal.find('.modal-body #curso_id').val(curso_id);
+	});
+	
+	// Para que la modal se quede fija si hay errores
+	if(window.location.hash === '#formLesson')
+	{
+		$('#CrearLeccion').modal('show');
+	}
+	
+	$('#CrearLeccion').on('hide.bs.modal', function(){
+		window.location.hash = '#';
+	});
+	
+	$('#CrearLeccion').on('shown.bs.modal', function(){
+		$('#email').focus();
+		window.location.hash = '#formLesson';
+	});
 </script>
+
+<script src="{{asset('js/validate-lesson.js')}}"></script>
 
 @endpush

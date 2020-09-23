@@ -8,6 +8,7 @@ use App\User;
 use App\Models\Curso;
 use App\Models\Carrera;
 use App\Models\Leccion;
+use App\Models\CursoLeccion;
 use Illuminate\Support\Facades\Gate;
 use App\Http\Controllers\Auth;
 use Illuminate\Http\Request;
@@ -94,9 +95,26 @@ class CursoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($slug)
     {
-        //
+        $curso = Curso::findBySlugOrFail($slug);
+        
+        $lecciones = Leccion::join('title_leccion', 'lecciones.id', '=', 'curso_leccion.leccion_id')
+                                // ->select('users.*', 'contacts.phone', 'orders.price')
+                                ->where('leccion_id', $curso->id);
+        dd($lecciones);
+        // $leccion = Leccion::
+        //     join('title_leccion', 'lecciones.id', '=', 'contacts.user_id')
+        //     ->join('orders', 'users.id', '=', 'orders.user_id')
+        //     ->select('users.*', 'contacts.phone', 'orders.price')
+        //     ->groupBy('account_id')
+        //     ->get();
+        
+        $cursos = Curso::orderBy('id', 'ASC')->get();
+
+        // $tags = Tag::orderBy('name', 'ASC')->get();
+
+        return view('cursos.show',compact('curso','cursos'));
     }
 
     /**

@@ -35,13 +35,7 @@ class StoreCourseRequest extends FormRequest
             'duracion_curso' => 'required',
             'nivel_habilidad' => 'required',
             'lengueaje'  => 'required',
-            'instructor'  => 'required',
-            // 'title_leccion'  => 'required',
-            // 'desciption_leccion' => 'required',
-            // 'duracion_leccion' => 'required',
-            // 'url_video' => 'required'
-
-            
+            'instructor'  => 'required',         
         ];
     }
 }

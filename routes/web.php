@@ -67,15 +67,21 @@ Route::resource('/cursosingle', 'CursoSingleController')->names([
     'cursosingle' => 'cursosingle',
 ]);
 
+Route::resource('/carrera', 'CarreraController')->names('carrera');
+
 Route::resource('/categoria', 'CategoryController')->names('categoria');
 
 Route::resource('/etiqueta', 'TagController')->names('etiqueta');
+
+// Ruta para filtrar las carreras
+Route::get('carreras/{slug}', 'CarreraController@filtrarCarrera')->name('filtrarCarrera');
 
 // Ruta para filtrar las categorias
 Route::get('categorias/{slug}', 'BlogController@filtrarCategoria')->name('filtrarCategoria');
 
 // Ruta para filtrar las etiquetas
 Route::get('etiquetas/{slug}', 'BlogController@filtrarEtiqueta')->name('filtrarEtiqueta');
+
 
 // Rutas de la adminitración
 Route::resource('/dashboard', 'AdminController')->names('dashboard');

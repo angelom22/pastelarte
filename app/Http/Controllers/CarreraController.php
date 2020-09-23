@@ -2,15 +2,29 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Facades\Gate;
-use App\Http\Requests\StoreLessonRequest;
 use Illuminate\Http\Request;
-use App\Models\CursoLeccion;
 use App\Models\Curso;
-use App\Models\Leccion;
+use App\Models\Carrera;
 
-class LeccionController extends Controller
+class CarreraController extends Controller
 {
+
+    public function filtrarCarrera($slug)
+    {
+        $carrera   = Carrera::select('id', 'title', 'description')->where('slug', $slug)->first();
+        $cursos    = Curso::where('carrera_id', $carrera)
+                            ->where('status', 'DISPONIBLE')
+                            // ->select('title', 'slug', 'thumbnail', 'precio', 'instructor')
+                            // ->orderBy('id', 'DESC')
+                            ->paginate(1);
+        // dd($cursos);
+        
+        // $categories = Category::orderBy('name', 'ASC')->get();
+        // $tags       = Tag::orderBy('name', 'ASC')->get();
+        
+        return view('carrera.index',compact('cursos','carrera'));
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -26,16 +40,9 @@ class LeccionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Curso $id)
+    public function create()
     {
-        Gate::authorize('haveaccess', 'lesson.create');
-        
-        // $curso = Curso::findOrFail($id);
-        // dd($curso);
-        // Nueva instancia de leccion
-        $leccion = new Leccion;
-
-        return view('admin.leccion.create', compact('leccion','id'));
+        //
     }
 
     /**
@@ -44,23 +51,9 @@ class LeccionController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreLessonRequest $request)
+    public function store(Request $request)
     {
-        // dd($request->all());
-        $lecccion = Leccion::create([
-                    'title_leccion'         => $request->title_leccion,
-                    'description_leccion'    => $request->description_leccion,
-                    'duration_leccion'      => $request->duration_leccion,
-                    'url_video'             => $request->url_video,
-                ]);
-        
-        CursoLeccion::create([
-            'curso_id'      => $request->curso_id,
-            'leccion_id'    => $lecccion->id
-        ]);
-
-        // Retornar la vista al curso individual "cursos.show, $request->curso_id"
-        return 'guardado correcto';
+        //
     }
 
     /**
