@@ -89,10 +89,10 @@
 											<div class="cs_row_three csv2">
 												<div class="course_content">
 													<div class="cc_headers">
-														<h4 class="title">Carreras:</h4>
+														<h4 class="title">Cursos:</h4>
 														<ul class="course_schdule float-right">
-															<li class="list-inline-item"><a href="#">3 Cursos</a></li>
-															<li class="list-inline-item"><a href="#">2020</a></li>
+															<li class="list-inline-item"><a href="#">{{$carrera->cursos->count()}} Cursos</a></li>
+															<li class="list-inline-item"><a href="#">10:00:00</a></li>
 														</ul>
 													</div>
 													<br>
@@ -307,7 +307,7 @@
 						<a href="#" class="cart_btnss_white">Comprar ahora</a>
 						<h5 class="subtitle text-left">Incluye</h5>
 						<ul class="price_quere_list text-left">
-							<li><a href="#"><span class="flaticon-play-button-1"></span> 11 horas de video</a></li>
+							<li><a href="#"><span class="flaticon-play-button-1"></span> 10 horas de video</a></li>
 							<li><a href="#"><span class="flaticon-download"></span> 6 recursos descagables</a></li>
 							<li><a href="#"><span class="flaticon-key-1"></span> Acceso de por vida completo</a></li>
 							<li><a href="#"><span class="flaticon-responsive"></span> Acceso en móvil, laptops, tablets y Tv</a></li>

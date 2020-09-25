@@ -32,7 +32,7 @@
                     <div class="col-xl-12">
                         <div class="my_profile_setting_input  form-group">
                             <label for="duration_leccion">Duración</label>   	
-                            <input type="text" class="form-control time" id="duration_leccion" name="duration_leccion" value="{{old('duration_leccion')}}"  placeholder="Ej: 30:00" onkeypress="return soloNumero(event)">
+                            <input type="text" class="form-control time" id="duration_leccion" name="duration_leccion" value="{{old('duration_leccion')}}"  placeholder="Ej: hh:mm" onkeypress="return soloNumero(event)">
                             {!! $errors->first('duration_leccion', '<span class="help-block">:message</span>') !!}
                         </div>
                     </div>

@@ -62,7 +62,7 @@ class LeccionController extends Controller
         ]);
 
         // Retornar la vista al curso individual "cursos.show, $request->curso_id"
-        return 'guardado correcto';
+        return back()->with('status_success', 'La leccón ha sido creada exitosamente');
     }
 
     /**

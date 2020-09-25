@@ -174,19 +174,19 @@
 	});
 	
 	// Para que la modal se quede fija si hay errores
-	if(window.location.hash === '#formLesson')
-	{
-		$('#CrearLeccion').modal('show');
-	}
+	// if(window.location.hash === '#formLesson')
+	// {
+	// 	$('#CrearLeccion').modal('show');
+	// }
 	
-	$('#CrearLeccion').on('hide.bs.modal', function(){
-		window.location.hash = '#';
-	});
+	// $('#CrearLeccion').on('hide.bs.modal', function(){
+	// 	window.location.hash = '#';
+	// });
 	
-	$('#CrearLeccion').on('shown.bs.modal', function(){
-		$('#email').focus();
-		window.location.hash = '#formLesson';
-	});
+	// $('#CrearLeccion').on('shown.bs.modal', function(){
+	// 	$('#email').focus();
+	// 	window.location.hash = '#formLesson';
+	// });
 </script>
 
 <script src="{{asset('js/validate-lesson.js')}}"></script>

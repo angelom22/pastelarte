@@ -9,6 +9,7 @@ use App\Models\Curso;
 use App\Models\Carrera;
 use App\Models\Leccion;
 use App\Models\CursoLeccion;
+use App\Models\CarreraCurso;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Auth;
 use Illuminate\Support\Facades\Gate;
@@ -76,6 +77,12 @@ class CursoController extends Controller
             'instructor'        => $request->instructor,
             'url_video_preview_curso' => $request->url_video_preview_curso,
             ]);
+        
+        // se guarda en la tabla relacion el curso creado con la carrera a la que fue asignado
+        CarreraCurso::create([
+            'carrera_id'    => $request->carrera_id,
+            'curso_id'      => $curso->id
+        ]);
 
         // optimización de la imagen
         $image = Image::make(Storage::get($thumbnail))
@@ -85,19 +92,6 @@ class CursoController extends Controller
 
         // se reemplaza la imagen que subio el usuario por la imagen optimizada
         Storage::put($curso->thumbnail, (string) $image);
-
-        // foreach($request->id_lecciones as $id_leccion)
-        // {
-        //     $lecccion = Leccion::create([
-        //         'title_leccion'         => $request->title_leccion,
-        //         'desciption_leccion'    => $request->desciption_leccion,
-        //         'duracion_leccion'      => $request->duracion_leccion,
-        //         'url_video'             => $request->url_video,
-        //     ]);
-        // }
-
-        // Crear una funcion en el modelo curso que me guarde las relaciones entre los cursos y las lecciones
-        // $curso->lecciones()->sync($request->id_lecciones);
 
         return redirect()->route('admin.curso')->with('status_success', 'El curso ha sido creado exitosamente');
     }
