@@ -50,7 +50,7 @@
 													</div>
 													<div class="my_profile_setting_input form-group" >
 												    	<label for="duracion_curso">Duración:</label>
-														<input type="text" class="form-control time" id="duracion_curso" name="duracion_curso" value="{{old('duracion_curso')}}"  placeholder="Ej: 30:00" onkeypress="return soloNumero(event)">
+														<input type="text" class="form-control time" id="duracion_curso" name="duracion_curso" value="{{old('duracion_curso')}}"  placeholder="Ej: hh:mm" onkeypress="return soloNumero(event)">
 
 													</div>
 												</div>
@@ -114,11 +114,17 @@
 										<div class="col-lg-12">
 											<div class="my_resume_textarea">
 												<div class="form-group">
-													<label for="description">Extracto del Curso:</label>
+													<label for="extracto">Extracto del Curso:</label>
 													<textarea class="form-control" id="extracto" name="extracto" placeholder="Ingresa el extracto del curso" rows="5">{{ old('extracto') }}</textarea>
 												</div>
 											</div>
 										</div>
+										<div class="col-xl-12">
+											<div class="my_profile_setting_input tt_video form-group">
+												<label for="url_video_preview_curso">URL Video Preview</label>
+												<input type="text" class="form-control" id="url_video_preview_curso" name="url_video_preview_curso" value="{{old('url_video_preview_curso')}}">
+											</div>
+                                        </div>
 									</div>
 									<div class="col-lg-12">
 										<button type="submit" class="my_setting_savechange_btn btn btn-thm">Guardar
@@ -141,7 +147,7 @@
 
 @push('js')
 
-<!-- <script src="{{asset('js/CrearCursos.js')}}"></script> -->
+<script src="{{asset('js/CrearCursos.js')}}"></script>
 <script src="{{asset('plugins/ckeditor/ckeditor.js')}}"></script>
 <script src="{{asset('plugins/ckeditor/styles.js')}}"></script>
 <script src="{{asset('plugins/datepicker/jquery.maskedinput.min.js')}}"></script>

@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Facades\Gate;
-use App\Http\Requests\StoreLessonRequest;
-use Illuminate\Http\Request;
-use App\Models\CursoLeccion;
+use  Carbon\Carbon;
 use App\Models\Curso;
 use App\Models\Leccion;
+use Illuminate\Http\Request;
+use App\Models\CursoLeccion;
+use Illuminate\Support\Facades\Gate;
+use App\Http\Requests\StoreLessonRequest;
 
 class LeccionController extends Controller
 {
@@ -50,7 +51,7 @@ class LeccionController extends Controller
         $lecccion = Leccion::create([
             'title_leccion'         => $request->title_leccion,
             'description_leccion'   => $request->description_leccion,
-            'duration_leccion'      => $request->duration_leccion,
+            'duration_leccion'      => Carbon::parse($request->duration_leccion)->toDateTimeString(),
             'url_video'             => $request->url_video,
             'curso_id'              => $request->curso_id,
         ]);

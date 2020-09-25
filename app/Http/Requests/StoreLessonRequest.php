@@ -24,10 +24,10 @@ class StoreLessonRequest extends FormRequest
     public function rules()
     {
         return [
-            'title_leccion'  => 'required|min:5|max:100',
-            'description_leccion' => 'required',
-            'duration_leccion' => 'required',
-            'url_video' => 'required'
+            'title_leccion'         => 'required|min:5|max:100',
+            'description_leccion'   => 'required',
+            'duration_leccion'      => 'required',
+            'url_video'             => 'required'
         ];
     }
 }

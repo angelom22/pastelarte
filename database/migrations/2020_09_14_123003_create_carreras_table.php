@@ -18,8 +18,10 @@ class CreateCarrerasTable extends Migration
             $table->string('title', 128)->unique();
             $table->string('slug', 128)->unique();
             $table->mediumText('description')->nullable();
-            $table->string('area')->nullable();
-
+            // $table->string('area')->nullable();
+            $table->decimal('precio', 9, 2)->unsigned();
+            $table->mediumText('url_video_preview_carrera');
+            
             // Relaciones
             $table->foreign('id')->references('carrera_id')->on('cursos')->onDelete('cascade')->onUpdate('cascade');
 

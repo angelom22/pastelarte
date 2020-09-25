@@ -37,7 +37,7 @@ class Carrera extends Model
     protected $table = 'carreras';
 
     protected $fillable = [
-       'title', 'slug', 'description', 'area' 
+       'title', 'slug', 'description', 'area', 'precio', 'url_video_preview_carrera'
     ];
 
     public function cursos(){

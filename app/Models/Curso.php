@@ -44,7 +44,7 @@ class Curso extends Model
     protected $table = 'cursos';
 
     protected $fillable = [
-       'user_id', 'carrera_id', 'title', 'slug', 'thumbnail', 'extracto', 'description', 'precio', 'duracion_curso', 'nivel_habilidad', 'lengueaje', 'instructor', 'valoracion', 'status' 
+       'user_id', 'carrera_id', 'title', 'slug', 'thumbnail', 'extracto', 'description', 'precio', 'duracion_curso', 'nivel_habilidad', 'lengueaje', 'instructor', 'valoracion', 'status', 'url_video_preview_curso' 
     ];
 
     public function user(){
@@ -52,7 +52,7 @@ class Curso extends Model
     }
 
     public function carrera(){
-        return $this->belongsTo(Carrera::class)->withDefault();
+        return $this->belongsTo(Carrera::class, 'carrera_id', 'id')->withDefault();
     }
 
     public function lecciones(){

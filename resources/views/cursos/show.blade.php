@@ -46,7 +46,7 @@
 									<div class="cs_ins_container">
 										<div class="courses_big_thumb">
 											<div class="thumb">
-												<iframe class="iframe_video" src="https://player.vimeo.com/video/454182996"  height="400" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+												<iframe class="iframe_video" src="{{$curso->url_video_preview_curso}}"  height="400" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
 											</div>
 										</div>
 									</div>
@@ -307,7 +307,7 @@
                         <div class="col-lg-4 col-xl-4">
                             <div class="top_courses">
                                 <div class="thumb">
-                                    <img class="img-whp" src="/storage/{{$curso->thumbnail}}" alt="t1.jpg">
+                                    <img class="img-whp" src="/storage/{{$curso->thumbnail}}" alt="{{$curso->title}}" style="width: 307px; height:200px;  object-fit: cover; object-position: center center;">
                                     <div class="overlay">
                                         <div class="tag" style="background: #441c42;">nuevo</div>
                                         <div class="icon" style="background: #441c42; font-size: 15px;">decoración</div>

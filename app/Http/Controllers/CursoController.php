@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use DB;
 use App\User;
+use  Carbon\Carbon;
 use App\Models\Curso;
 use App\Models\Carrera;
 use App\Models\Leccion;
@@ -68,10 +69,12 @@ class CursoController extends Controller
             'description'       => $request->description,
             'extracto'          => $request->extracto,
             'precio'            => $request->precio,
-            'duracion_curso'    => $request->duracion_curso,
+            'duracion_curso'    => Carbon::parse($request->duracion_curso)->toDateTimeString(),
+            // 'duracion_curso'    => $request->duracion_curso,
             'nivel_habilidad'   => $request->nivel_habilidad,
             'lengueaje'         => $request->lengueaje,
-            'instructor'        => $request->instructor
+            'instructor'        => $request->instructor,
+            'url_video_preview_curso' => $request->url_video_preview_curso,
             ]);
 
         // optimización de la imagen

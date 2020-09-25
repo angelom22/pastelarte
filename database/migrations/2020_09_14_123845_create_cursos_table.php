@@ -30,6 +30,7 @@ class CreateCursosTable extends Migration
             $table->string('lengueaje', 128)->nullable();
             $table->string('instructor', 128)->nullable();
             $table->mediumInteger('valoracion')->nullable();
+            $table->mediumText('url_video_preview_curso');
 
             $table->enum('status', ['DISPONIBLE', 'INHABILITADO'])->default('DISPONIBLE');
 

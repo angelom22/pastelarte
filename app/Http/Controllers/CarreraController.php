@@ -11,18 +11,19 @@ class CarreraController extends Controller
 
     public function filtrarCarrera($slug)
     {
-        $carrera   = Carrera::select('id', 'title', 'description')->where('slug', $slug)->first();
-        $cursos    = Curso::where('carrera_id', $carrera)
+        $carrera   = Carrera::select('id', 'title', 'description', 'precio')->where('slug', $slug)->first();
+        $carrera_cursos    = Curso::where('carrera_id', $carrera->id)
                             ->where('status', 'DISPONIBLE')
-                            // ->select('title', 'slug', 'thumbnail', 'precio', 'instructor')
-                            // ->orderBy('id', 'DESC')
-                            ->paginate(1);
-        // dd($cursos);
+                            ->select('cursos.*')
+                            ->orderBy('id', 'ASC')
+                            ->get();
+        $cursos    = Curso::where('carrera_id', $carrera->id)
+                            ->where('status', 'DISPONIBLE')
+                            ->select('cursos.*')
+                            // ->orderBy('id', 'ASC')
+                            ->paginate(3);
         
-        // $categories = Category::orderBy('name', 'ASC')->get();
-        // $tags       = Tag::orderBy('name', 'ASC')->get();
-        
-        return view('carrera.index',compact('cursos','carrera'));
+        return view('carrera.index',compact('carrera_cursos','carrera', 'cursos'));
     }
 
     /**

@@ -43,7 +43,7 @@ $('#formCourse').validate({
         required: true,
         minlength: 5,
     },
-    duracion: {
+    duracion_curso: {
         required: true,
     },
     precio: {
@@ -71,13 +71,21 @@ $('#formCourse').validate({
         required: true,
         minlength: 5,
     },
+    extracto: {
+        required: true,
+        minlength: 5,
+    },
+    url_video_preview_curso: {
+        required: true,
+        url: true,
+    },
     },
     messages: {
     title: {
         required: "Por favor introduzca el titulo del curso",
         minlength: "La longitud minima del campo son 5 caracteres"
     },
-    duracion: {
+    duracion_curso: {
         required: "Ingrese una duracion válida, entre las 00:00 y las 23:59",
     },
     precio: {
@@ -103,6 +111,14 @@ $('#formCourse').validate({
         required: "Ingrese el contenido descriptivo del curso",
         minlength: "La longitud minima del campo son 5 caracteres"
     }, 
+    extracto: {
+        required: "Ingrese el extracto descriptivo del curso",
+        minlength: "La longitud minima del campo son 5 caracteres"
+    },
+    url_video_preview_curso: {
+        required: "Ingrasa la url del preview",
+        url: "Ingresa una url correcta" 
+    },
     },
     errorElement: 'span',
     errorPlacement: function (error, element) {

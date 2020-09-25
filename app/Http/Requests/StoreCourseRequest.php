@@ -24,18 +24,19 @@ class StoreCourseRequest extends FormRequest
     public function rules()
     {
         return [
-            // 'user_id' => 'required',
-            // 'leccion_id' => 'required',
-            'carrera_id' => 'required',
-            'title' => 'required|min:5|max:255|unique:cursos',
-            'thumbnail' => 'required|image|max:2048',
-            'description' => 'required',
-            'extracto' => 'required',
-            'precio' => 'required|numeric',
-            'duracion_curso' => 'required',
-            'nivel_habilidad' => 'required',
-            'lengueaje'  => 'required',
-            'instructor'  => 'required',         
+            // 'user_id'        => 'required',
+            // 'leccion_id'     => 'required',
+            'carrera_id'        => 'required',
+            'title'             => 'required|min:5|max:255|unique:cursos',
+            'thumbnail'         => 'required|image|max:2048',
+            'description'       => 'required',
+            'extracto'          => 'required',
+            'precio'            => 'required|numeric',
+            'duracion_curso'    => 'required|date_format:H:i',
+            'nivel_habilidad'   => 'required',
+            'lengueaje'         => 'required',
+            'instructor'        => 'required',
+            'url_video_preview_curso' => 'required|active_url'         
         ];
     }
 }
