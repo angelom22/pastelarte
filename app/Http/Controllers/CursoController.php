@@ -3,15 +3,16 @@
 namespace App\Http\Controllers;
 
 use DB;
-use Storage;
 use App\User;
 use App\Models\Curso;
 use App\Models\Carrera;
 use App\Models\Leccion;
 use App\Models\CursoLeccion;
-use Illuminate\Support\Facades\Gate;
-use App\Http\Controllers\Auth;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Auth;
+use Illuminate\Support\Facades\Gate;
+use Intervention\Image\Facades\Image;
+use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\StoreCourseRequest;
 
 class CursoController extends Controller
@@ -73,6 +74,15 @@ class CursoController extends Controller
             'instructor'        => $request->instructor
             ]);
 
+        // optimización de la imagen
+        $image = Image::make(Storage::get($thumbnail))
+                        ->widen(600)
+                        // ->limitColors(255)
+                        ->encode();
+
+        // se reemplaza la imagen que subio el usuario por la imagen optimizada
+        Storage::put($curso->thumbnail, (string) $image);
+
         // foreach($request->id_lecciones as $id_leccion)
         // {
         //     $lecccion = Leccion::create([
@@ -103,7 +113,7 @@ class CursoController extends Controller
         
         // dd($lecciones);
         
-        $cursos = Curso::orderBy('id', 'ASC')->get();
+        $cursos = Curso::orderBy('id', 'ASC')->paginate(3);
 
         return view('cursos.show',compact('curso','cursos', 'lecciones'));
     }
