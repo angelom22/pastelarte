@@ -48,11 +48,12 @@ class LeccionController extends Controller
     {
         // dd($request->all());
         $lecccion = Leccion::create([
-                    'title_leccion'         => $request->title_leccion,
-                    'description_leccion'    => $request->description_leccion,
-                    'duration_leccion'      => $request->duration_leccion,
-                    'url_video'             => $request->url_video,
-                ]);
+            'title_leccion'         => $request->title_leccion,
+            'description_leccion'   => $request->description_leccion,
+            'duration_leccion'      => $request->duration_leccion,
+            'url_video'             => $request->url_video,
+            'curso_id'              => $request->curso_id,
+        ]);
         
         CursoLeccion::create([
             'curso_id'      => $request->curso_id,

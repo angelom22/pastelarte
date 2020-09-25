@@ -20,9 +20,11 @@ class CreateLeccionesTable extends Migration
             $table->string('description_leccion')->nullable();
             $table->time('duration_leccion')->nullable();
             $table->mediumText('url_video');
+            $table->integer('curso_id')->unsigned();
 
             // Relaciones
             $table->foreign('id')->references('leccion_id')->on('cursos')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('curso_id')->references('id')->on('cursos')->onDelete('set null')->onUpdate('cascade');
 
             $table->timestamps();
         });

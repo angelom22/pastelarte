@@ -79,39 +79,10 @@
 										<div class="tab-pane fade show active" id="Overview" role="tabpanel" aria-labelledby="Overview-tab">
 											<div class="cs_row_two csv2">
 												<div class="cs_overview">
-													<h4 class="title">Descripción</h4>
-													<h4 class="subtitle">Técnicas de pastelería</h4>
-													<p class="mb30">Técnicas de pastelería Técnicas de pastelería Técnicas de pastelería Técnicas de pastelería Técnicas de pastelería Técnicas de pastelería Técnicas de pastelería Técnicas de pastelería Técnicas de pastelería Técnicas de pastelería Técnicas de pastelería Técnicas de pastelería Técnicas de pastelería Técnicas de pastelería </p>
-													<h4 class="subtitle">Lo que aprenderas</h4>
-													<ul class="cs_course_syslebus">
-														<li><i class="fa fa-check"></i><p>Técnicas de pastelería.</p></li>
-														<li><i class="fa fa-check"></i><p>Técnicas de pastelería</p></li>
-														<li><i class="fa fa-check"></i><p>Técnicas de pastelería.</p></li>
-														<li><i class="fa fa-check"></i><p>Técnicas de pastelería.</p></li>
-														<li><i class="fa fa-check"></i><p>Técnicas de pastelería.</p></li>
-													</ul>
-													<ul class="cs_course_syslebus2">
-														<li><i class="fa fa-check"></i><p>Técnicas de pastelería.</p></li>
-														<li><i class="fa fa-check"></i><p>Técnicas de pastelería</p></li>
-														<li><i class="fa fa-check"></i><p>Técnicas de pastelería.</p></li>
-														<li><i class="fa fa-check"></i><p>Técnicas de pastelería.</p></li>
-														<li><i class="fa fa-check"></i><p>Técnicas de pastelería.</p></li>
-													</ul>
-													<h4 class="subtitle">Requerimientos</h4>
-													<ul class="list_requiremetn">
-														<li><i class="fa fa-circle"></i><p>Saber lo básico de pastelería.</p></li>
-														<li><i class="fa fa-circle"></i><p>Saber lo básico de pastelería.</p></li>
-														<li><i class="fa fa-circle"></i><p>Saber lo básico de pastelería.</p></li>
-													</ul>
+													<h4 class="title">{!! $curso->description !!}</h4>
 												</div>
 											</div>
 										</div>
-
-
-
-
-
-
 
 
 										<div class="tab-pane fade" id="course" role="tabpanel" aria-labelledby="review-tab">
@@ -120,36 +91,31 @@
 													<div class="cc_headers">
 														<h4 class="title">Contenido del curso</h4>
 														<ul class="course_schdule float-right">
-															<li class="list-inline-item"><a href="#">14 Lecciones</a></li>
-															<li class="list-inline-item"><a href="#">6:50:10</a></li>
+															<li class="list-inline-item"><a href="#">{{$curso->lecciones->count()}} Lecciones</a></li>
+															<li class="list-inline-item"><a href="#">{{$curso->duracion_curso}}</a></li>
 														</ul>
 													</div>
-													<br>
+                                                    <br>
+                                                    @foreach($lecciones as $leccion)
 													<div class="details">
 													  	<div id="accordion" class="panel-group cc_tab">
 														    <div class="panel">
 														      	<div class="panel-heading">
 															      	<h4 class="panel-title">
-															        	<a href="#panelBodyCourseStart" class="accordion-toggle link" data-toggle="collapse" data-parent="#accordion">Técnicas de pastelería</a>
+															        	<a href="#panelBodyCourseStart" class="accordion-toggle link" data-toggle="collapse" data-parent="#accordion">{{$leccion->title_leccion}}</a>
 															        </h4>
 														      	</div>
 															    <div id="panelBodyCourseStart" class="panel-collapse collapse show">
 															        <div class="panel-body">
 															        	<ul class="cs_list mb0">
-															        		<li><a href="#"><span class="flaticon-play-button-1 icon"></span> Lección 1.1 Herramientas e insumos <span class="cs_time">02:53</span> <span class="cs_preiew">Preview</span></a></li>
-															        		<li><a href="#"><span class="flaticon-play-button-1 icon"></span> Lección 1.2 Merengues <span class="cs_time">02:53</span> <span class="cs_preiew">Preview</span></a></li>
-															        		<li><a href="#"><span class="flaticon-play-button-1 icon"></span> Lección 1.3 Ganache <span class="cs_time">02:53</span> <span class="cs_preiew">Preview</span></a></li>
-															        		<li><a href="#"><span class="flaticon-play-button-1 icon"></span> Lección 1.4 Almibares  <span class="cs_time">02:53</span> <span class="cs_preiew">Preview</span></a></li>
-															        		<li><a href="#"><span class="flaticon-play-button-1 icon"></span> Lección 1.5 Salsas <span class="cs_time">02:53</span> <span class="cs_preiew">Preview</span></a></li>
-															        		<li><a href="#"><span class="flaticon-play-button-1 icon"></span> Lección 1.6 Cremas <span class="cs_time">02:53</span> <span class="cs_preiew">Preview</span></a></li>
-															        		<li><a href="#"><span class="flaticon-play-button-1 icon"></span> Lección 1.7 Glaseados <span class="cs_time">02:53</span> <span class="cs_preiew">Preview</span></a></li>
-															        		<li><a href="#"><span class="flaticon-play-button-1 icon"></span> Lección 1.8 Caramelos <span class="cs_time">02:53</span> <span class="cs_preiew">Preview</span></a></li>
+															        		<li><a href="{{$leccion->url_video}}"><span class="flaticon-play-button-1 icon"></span> {{$leccion->description_leccion}} <span class="cs_time">{{$leccion->duration_leccion}}</span> <span class="cs_preiew">Ver</span></a></li>
 															        	</ul>
 															        </div>
 															    </div>
 														    </div>
 														</div>
-													</div>
+                                                    </div>
+                                                    @endforeach
 												</div>
 											</div>
 										</div>
@@ -162,7 +128,7 @@
 												<div class="about_ins_container">
 													<h4 class="aii_title">Sobre el instructor</h4>
 													<div class="about_ins_info">
-														<div class="thumb"><img src="img/team/6.jpg" alt="6.jpg"></div>
+														<div class="thumb"><img src="{{asset('img/resource/chef.png')}}" alt="{{$curso->instructor}}" style="width: 120px; height: 120px;"></div>
 													</div>
 													<div class="details">
 														<ul class="review_list">
@@ -178,7 +144,7 @@
 															<li class="list-inline-item"><span class="flaticon-profile"></span> 100 Estudantes </li>
 															<li class="list-inline-item"><span class="flaticon-play-button-1"></span> +20 cursos </li>
 														</ul>
-														<h4>Beatriz Román</h4>
+														<h4>{{$curso->instructor}}</h4>
 														<p class="subtitle">Chef de Pastelería y Decoración de tortas</p>
 														<p class="mb25">Especialista en pastelería con más de 20 años de experiencia. </p>
 														<p class="mb25">Habilidades: Pastelería, decoración, fondant, masas, merengues, glaseados.</p>
@@ -412,7 +378,7 @@
 
 				<div class="col-lg-4 col-xl-3">
 					<div class="instructor_pricing_widget csv2">
-						<div class="price"><span>Precio</span> $30.00 <small>$50.00</small></div>
+						<div class="price"><span>Precio</span> ${{$curso->precio}} <small>$50.00</small></div>
 						<a href="#" class="cart_btnss">Agregar al carro</a>
 						<a href="#" class="cart_btnss_white">Comprar ahora</a>
 						<h5 class="subtitle text-left">Incluye</h5>
@@ -429,16 +395,16 @@
 						<ul class="list-group">
 							<h4 class="title">Características del curso</h4>
 							<li class="d-flex justify-content-between align-items-center">
-						    	Lecciones <span class="float-right">6</span>
+						    	Lecciones <span class="float-right">{{$curso->lecciones->count()}}</span>
 							</li>
 							<li class="d-flex justify-content-between align-items-center">
-						    	Duración de cada lección <span class="float-right">20 minu</span>
+						    	Duración de cada lección <span class="float-right">{{$curso->duracion_curso}}</span>
 							</li>
 							<li class="d-flex justify-content-between align-items-center">
-						    	Nivel de habilidad <span class="float-right">Básico</span>
+						    	Nivel de habilidad <span class="float-right">{{$curso->nivel_habilidad}}</span>
 							</li>
 							<li class="d-flex justify-content-between align-items-center">
-						    	Lenguaje <span class="float-right">Español</span>
+						    	Lenguaje <span class="float-right">{{$curso->lengueaje}}</span>
 							</li>
 						</ul>
 					</div>

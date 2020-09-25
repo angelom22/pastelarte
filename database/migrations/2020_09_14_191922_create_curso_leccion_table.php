@@ -22,13 +22,13 @@ class CreateCursoLeccionTable extends Migration
             $table->foreign('curso_id')
                     ->references('id')
                     ->on('cursos')
-                    ->onDelete('cascade')
+                    // ->onDelete('cascade')
                     ->onUpdate('cascade');
 
             $table->foreign('leccion_id')
                     ->references('id')
                     ->on('lecciones')
-                    ->onDelete('cascade')
+                    // ->onDelete('set null')
                     ->onUpdate('cascade');
 
             $table->timestamps();

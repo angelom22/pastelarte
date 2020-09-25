@@ -56,7 +56,7 @@ class Curso extends Model
     }
 
     public function lecciones(){
-        return $this->belongsToMany(CursoLeccion::class, 'curso_leccion')->withTimestamps();
+        return $this->belongsToMany(Leccion::class)->withTimestamps();
     }
 
     // public function lecciones(){

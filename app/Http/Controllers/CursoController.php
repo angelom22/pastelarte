@@ -99,22 +99,13 @@ class CursoController extends Controller
     {
         $curso = Curso::findBySlugOrFail($slug);
         
-        $lecciones = Leccion::join('title_leccion', 'lecciones.id', '=', 'curso_leccion.leccion_id')
-                                // ->select('users.*', 'contacts.phone', 'orders.price')
-                                ->where('leccion_id', $curso->id);
-        dd($lecciones);
-        // $leccion = Leccion::
-        //     join('title_leccion', 'lecciones.id', '=', 'contacts.user_id')
-        //     ->join('orders', 'users.id', '=', 'orders.user_id')
-        //     ->select('users.*', 'contacts.phone', 'orders.price')
-        //     ->groupBy('account_id')
-        //     ->get();
+        $lecciones = Leccion::where('curso_id', $curso->id)->get();
+        
+        // dd($lecciones);
         
         $cursos = Curso::orderBy('id', 'ASC')->get();
 
-        // $tags = Tag::orderBy('name', 'ASC')->get();
-
-        return view('cursos.show',compact('curso','cursos'));
+        return view('cursos.show',compact('curso','cursos', 'lecciones'));
     }
 
     /**

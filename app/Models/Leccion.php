@@ -40,10 +40,13 @@ class Leccion extends Model
     protected $table = 'lecciones';
 
     protected $fillable = [
-       'title_leccion', 'slug', 'description_leccion', 'duration_leccion', 'url_video'
+       'title_leccion', 'slug', 'description_leccion', 'duration_leccion', 'url_video', 'curso_id'
     ];
 
+    // public function curso(){
+    //     return $this->belongsTo(Curso::class,'id', 'id_leccion')->withDefault();
+    // }
     public function curso(){
-        return $this->belongsTo(Curso::class,'id', 'id_leccion')->withDefault();
+        return $this->belongsToMany(Curso::class, 'cursos')->withTimestamps();
     }
 }
