@@ -48,6 +48,15 @@ Route::resource('/cursos', 'CursoController')->names([
 ]);
 
 /**
+ *  Rutas para las carreras
+ */
+Route::resource('/carrera', 'CarreraController')->names([
+    'update'    => 'careerUpdate',
+    'create'    => 'careerCreate',
+    'store'     => 'careerStore',
+    'edit'      => 'careerEdit',]);
+
+/**
  *  Rutas para las lecciones
  */
 Route::resource('/lecciones', 'LeccionController')->names([
@@ -67,7 +76,6 @@ Route::resource('/cursosingle', 'CursoSingleController')->names([
     'cursosingle' => 'cursosingle',
 ]);
 
-Route::resource('/carrera', 'CarreraController')->names('carrera');
 
 Route::resource('/categoria', 'CategoryController')->names('categoria');
 
@@ -85,7 +93,8 @@ Route::get('etiquetas/{slug}', 'BlogController@filtrarEtiqueta')->name('filtrarE
 
 // Rutas de la adminitración
 Route::resource('/dashboard', 'AdminController')->names('dashboard');
+Route::get('admin/curso', 'AdminController@curso')->name('admin.curso');
+Route::get('admin/carrera/', 'AdminController@carrera')->name('carrera.user');
 Route::get('admin/blog', 'AdminController@blog')->name('admin.blog');
 Route::get('admin/evento', 'AdminController@evento')->name('admin.evento');
-Route::get('admin/curso', 'AdminController@curso')->name('admin.curso');
 Route::get('admin/user/{id}', 'AdminController@user')->name('admin.user');

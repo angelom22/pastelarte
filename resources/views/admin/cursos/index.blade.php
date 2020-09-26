@@ -76,13 +76,16 @@
 												<div class="overlay">
 													<ul class="mb0">
 														<!-- Colocar Validación para estos botones -->
-
+														@can('haveaccess','lesson.edit') 
 														<li class="list-inline-item">
 															<a class="mcc_edit" href="#">Editar</a>
 														</li>
+														@endcan
+														@can('haveaccess','lesson.show') 
 														<li class="list-inline-item">
 															<a class="mcc_view" href="{{route('cursos.show', $curso->slug)}}">Ver</a>
 														</li>
+														@endcan
 													</ul>
 												</div>
 											</div>

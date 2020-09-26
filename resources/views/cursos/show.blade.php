@@ -100,15 +100,15 @@
 													<div class="details">
 													  	<div id="accordion" class="panel-group cc_tab">
 														    <div class="panel">
-														      	<div class="panel-heading">
+														      	<!-- <div class="panel-heading">
 															      	<h4 class="panel-title">
-															        	<a href="#panelBodyCourseStart" class="accordion-toggle link" data-toggle="collapse" data-parent="#accordion">{{$leccion->title_leccion}}</a>
+															        	<a href="#{{$leccion->slug}}" class="accordion-toggle link" data-toggle="collapse" data-parent="#accordion">{{$leccion->title_leccion}}</a>
 															        </h4>
-														      	</div>
-															    <div id="panelBodyCourseStart" class="panel-collapse collapse show">
+														      	</div> -->
+															    <div id="{{$leccion->slug}}" class="panel-collapse collapse show">
 															        <div class="panel-body">
 															        	<ul class="cs_list mb0">
-															        		<li><a href="{{$leccion->url_video}}"><span class="flaticon-play-button-1 icon"></span> {{$leccion->description_leccion}} <span class="cs_time">{{$leccion->duration_leccion}}</span> <span class="cs_preiew">Ver</span></a></li>
+															        		<li><a href="{{$leccion->url_video}}"><span class="flaticon-play-button-1 icon"></span> {{$leccion->title_leccion}} <span class="cs_time">{{$leccion->duration_leccion}}</span> <span class="cs_preiew">Ver</span></a></li>
 															        	</ul>
 															        </div>
 															    </div>

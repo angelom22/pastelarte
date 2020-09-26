@@ -20,6 +20,9 @@
             @can('haveaccess','course.admin')
             <li {{ request()->is('admin/curso') ? 'class=active' : '' }} ><a href="{{route('admin.curso')}}"><span class="flaticon-online-learning"></span>Cursos</a></li>
             @endcan
+            @can('haveaccess','career.admin')
+            <li {{ request()->is('admin/carrera') ? 'class=active' : '' }} ><a href="{{route('carrera.user')}}"><span class="flaticon-online-learning"></span>Carreras</a></li>
+            @endcan
             @can('haveaccess','blog.admin')
             <!-- @if(auth()->user()->roles[0]->full_access == 'yes') -->
             <li class="{{ request()->is('admin/blog') ? 'active' : '' }} nav-item dropdown ">

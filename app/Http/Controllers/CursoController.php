@@ -105,9 +105,9 @@ class CursoController extends Controller
     public function show($slug)
     {
         $curso = Curso::findBySlugOrFail($slug);
+        // dd($curso->precio);
         
         $lecciones = Leccion::where('curso_id', $curso->id)->get();
-        
         // dd($lecciones);
         
         $cursos = Curso::orderBy('id', 'ASC')->paginate(3);
