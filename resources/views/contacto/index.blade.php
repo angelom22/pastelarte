@@ -53,7 +53,7 @@
 				</div>
 				<div class="col-lg-6 form_grid">
 					<h4 class="mb5">Enviar mensaje</h4>
-					
+
 		            <form action="{{route('contactoStore')}}" method="POST" id="contact">
                         @method('POST')
 						@csrf
@@ -63,13 +63,13 @@
 			                    	<label for="name">Nombre y Apellido</label>
 									<input id="name" name="name" class="form-control" type="text" value="{{old('name')}}" maxlength="50">
 								</div>
-								{!! $errors->first('name', '<small>:message</small><br>') !!} 
+								{!! $errors->first('name', '<small>:message</small><br>') !!}
 			                </div>
 			                <div class="col-sm-12">
 			                    <div class="form-group">
 			                    	<label for="email">Email</label>
 									<input id="email" name="email" class="form-control email" type="email"  value="{{old('email')}}">
-									{!! $errors->first('email', '<small>:message</small><br>') !!} 
+									{!! $errors->first('email', '<small>:message</small><br>') !!}
 			                    </div>
 			                </div>
 			                <div class="col-sm-12">
@@ -95,3 +95,5 @@
 @push('js')
 <script src="{{asset('js/contact-validate.js')}}"></script>
 @endpush
+
+

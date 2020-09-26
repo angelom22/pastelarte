@@ -29,14 +29,14 @@
 									<div class="my_course_content_header">
 										<div class="col-xl-4">
 											<div class="instructor_search_result style2">
-                                                <h4 class="mt10">Mis Cursos</h4>
-                                                @can('haveaccess','course.create')                        
-                                                    <a href="{{route('CourseCreate')}}" class="btn btn-primary pull-left">  
+                                                <h4 class="mt10">Lista de cursos</h4>
+                                                @can('haveaccess','course.create')
+                                                    <a href="{{route('CourseCreate')}}" class="btn btn-primary pull-left">
                                                         <i class="fa fa-plus"></i>
                                                     Crear Curso</a>
                                                 @endcan
                                             </div>
-                                           
+
 										</div>
 										<div class="col-xl-8">
 											<div class="candidate_revew_select style2 text-right">
@@ -62,7 +62,7 @@
 														    </form>
 														</div>
 													</li>
-                                            
+
 												</ul>
 											</div>
 										</div>
@@ -98,7 +98,7 @@
 														<li class="list-inline-item"><a href="#">1548</a></li>
 														<li class="list-inline-item"><a href="#"><i class="flaticon-comment"></i></a></li>
 														<li class="list-inline-item"><a href="#">25</a></li>
-														
+
 													</ul>
 													<ul class="mc_review fn-414">
 														<li class="list-inline-item"><a href="#"><i class="fa fa-star"></i></a></li>
@@ -109,13 +109,13 @@
 														<li class="list-inline-item"><a href="#">(5)</a></li>
 														<li class="list-inline-item tc_price fn-414"><a href="#">${{$curso->precio}}</a></li>
 														<li class="list-inline-item">
-														@can('haveaccess','leccion.create')                        
-															<a href="#" 
+														@can('haveaccess','leccion.create')
+															<a href="#"
 															class="btn btn-info pull-right"
-															title="Añadir Lección" 
+															title="Añadir Lección"
 															data-curso_id="{{$curso->id}}"
-															data-toggle="modal" data-target="#CrearLeccion"	
-															>  
+															data-toggle="modal" data-target="#CrearLeccion"
+															>
                                                         	<i class="fa fa-plus"></i>
 														Anadir Lección</a>
 														@endcan
@@ -138,10 +138,10 @@
 														<a class="page-link" href="#">Next <span class="flaticon-right-arrow-1"></span></a>
 													</li> -->
 												</ul>
-											</div> 
+											</div>
 										</div>
 									</div>
-										
+
 								</div>
 							</div>
 						</div>
@@ -161,28 +161,28 @@
 <script src="{{asset('plugins/datepicker/jquery.maskedinput.min.js')}}"></script>
 <script>
 	$('.time').mask('99:99');
-	
+
 	// Modal para crear lección
 	$('#CrearLeccion').on('show.bs.modal', function(event){
 		var button = $(event.relatedTarget);
 		var curso_id = button.data('curso_id');
 		console.log(curso_id);
-		
+
 		var modal = $(this);
-        
+
         modal.find('.modal-body #curso_id').val(curso_id);
 	});
-	
+
 	// Para que la modal se quede fija si hay errores
 	// if(window.location.hash === '#formLesson')
 	// {
 	// 	$('#CrearLeccion').modal('show');
 	// }
-	
+
 	// $('#CrearLeccion').on('hide.bs.modal', function(){
 	// 	window.location.hash = '#';
 	// });
-	
+
 	// $('#CrearLeccion').on('shown.bs.modal', function(){
 	// 	$('#email').focus();
 	// 	window.location.hash = '#formLesson';
