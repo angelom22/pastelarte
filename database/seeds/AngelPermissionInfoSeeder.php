@@ -322,6 +322,14 @@ class AngelPermissionInfoSeeder extends Seeder
 
         // Permisos courses
         $permission = Permission::create([
+            'name' => 'Administrador de los cursos',
+            'slug' => 'course.admin',
+            'description' => 'El usuario puede administrar los articulos',
+        ]);
+
+        $permission_all[] = $permission->id;
+
+        $permission = Permission::create([
             'name' => 'Lista cursos',
             'slug' => 'course.index',
             'description' => 'El usuario puede listar los cursos',
@@ -360,6 +368,58 @@ class AngelPermissionInfoSeeder extends Seeder
         ]);
 
         $permission_all[] = $permission->id;
+
+    // ----------------Permiso Para Carreras------------------- //
+
+        // Permisos carreras
+        $permission = Permission::create([
+            'name' => 'Administrador de las carreras',
+            'slug' => 'career.admin',
+            'description' => 'El usuario puede administrar las carreras',
+        ]);
+
+        $permission_all[] = $permission->id;
+
+        $permission = Permission::create([
+            'name' => 'Lista carrera',
+            'slug' => 'career.index',
+            'description' => 'El usuario puede listar las carreras',
+        ]);
+
+        $permission_all[] = $permission->id;
+
+        $permission = Permission::create([
+            'name' => 'Show carrera',
+            'slug' => 'career.show',
+            'description' => 'El usuario puede ver  las carreras',
+        ]);
+
+        $permission_all[] = $permission->id;
+
+        $permission = Permission::create([
+            'name' => 'Create carrera',
+            'slug' => 'career.create',
+            'description' => 'El usuario puede crear las carreras',
+        ]);
+
+        $permission_all[] = $permission->id;
+
+        $permission = Permission::create([
+            'name' => 'Edit carrera',
+            'slug' => 'career.edit',
+            'description' => 'El usuario puede editar  las carreras',
+        ]);
+
+        $permission_all[] = $permission->id;
+
+        $permission = Permission::create([
+            'name' => 'Destroy carrera',
+            'slug' => 'career.destroy',
+            'description' => 'El usuario puede eliminar  las carreras',
+        ]);
+
+        $permission_all[] = $permission->id;
+
 
     // ----------------Permiso Para Blogs------------------- //
 

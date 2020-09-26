@@ -102,10 +102,10 @@
 														    <div class="panel">
 														      	<div class="panel-heading">
 															      	<h4 class="panel-title">
-															        	<a href="#panelBodyCourseStart" class="accordion-toggle link" data-toggle="collapse" data-parent="#accordion">{{$curso->title}}</a>
+															        	<a href="#{{$curso->slug}}" class="accordion-toggle link" data-toggle="collapse" data-parent="#accordion">{{$curso->title}}</a>
 															        </h4>
 														      	</div>
-															    <div id="panelBodyCourseStart" class="panel-collapse collapse show">
+															    <div id="{{$curso->slug}}" class="panel-collapse collapse show">
 															        <div class="panel-body">
 															        	<ul class="cs_list mb0">
 																			@foreach($curso->lecciones as $lecciones)

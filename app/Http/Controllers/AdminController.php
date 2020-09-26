@@ -9,6 +9,7 @@ use App\Models\Blog;
 use App\Models\Event;
 use App\Models\Curso;
 use App\Models\Category;
+use App\Models\Carrera;
 use App\RolesPermisos\Models\Role;
 
 
@@ -38,6 +39,16 @@ class AdminController extends Controller
         
         return view('admin.cursos.index', compact('cursos'));
     }
+
+    public function carrera()
+    {
+        $this->authorize('haveaccess', 'career.admin');
+
+        $carreras = Carrera::orderBy('id', 'ASC')->get();
+        
+        return view('admin.carreras.index', compact('carreras'));
+    }
+
     public function blog()
     {
         $this->authorize('haveaccess', 'blog.admin');
@@ -69,6 +80,26 @@ class AdminController extends Controller
     }
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
     /**
      * Show the form for creating a new resource.
      *

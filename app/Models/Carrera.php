@@ -9,6 +9,9 @@ use App\Models\Curso;
 
 class Carrera extends Model
 {
+    use Sluggable;
+    use SluggableScopeHelpers;
+    
     public function sluggable()
     {
         return [
@@ -37,7 +40,7 @@ class Carrera extends Model
     protected $table = 'carreras';
 
     protected $fillable = [
-       'title', 'slug', 'description', 'area', 'precio', 'url_video_preview_carrera'
+       'title', 'slug', 'description', 'precio', 'url_video_preview_carrera'
     ];
 
     public function cursos(){
