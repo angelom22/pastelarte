@@ -46,7 +46,7 @@
 									<div class="cs_ins_container">
 										<div class="courses_big_thumb">
 											<div class="thumb">
-												<iframe class="iframe_video" src="{{$carrera->url_video_preview_carrera}}"  height="400" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+												<iframe class="iframe_video" src="{{$carrera->url_video_preview_carrera}}" height="400" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
 											</div>
 										</div>
 									</div>
@@ -315,23 +315,7 @@
 							<li><a href="#"><span class="flaticon-award"></span> Certificación de finalización</a></li>
 						</ul>
 					</div>
-					<div class="feature_course_widget csv1">
-						<ul class="list-group">
-							<h4 class="title">Características del curso</h4>
-							<li class="d-flex justify-content-between align-items-center">
-						    	Cursos <span class="float-right">2</span>
-							</li>
-							<li class="d-flex justify-content-between align-items-center">
-						    	Duración de cada lección <span class="float-right">20 minu</span>
-							</li>
-							<li class="d-flex justify-content-between align-items-center">
-						    	Nivel de habilidad <span class="float-right">Básico</span>
-							</li>
-							<li class="d-flex justify-content-between align-items-center">
-						    	Lenguaje <span class="float-right">Español</span>
-							</li>
-						</ul>
-					</div>
+					
 				</div>
 
 

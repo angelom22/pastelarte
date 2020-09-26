@@ -11,12 +11,14 @@ class CarreraController extends Controller
 
     public function filtrarCarrera($slug)
     {
-        $carrera   = Carrera::select('id', 'title', 'description', 'precio')->where('slug', $slug)->first();
+        $carrera   = Carrera::select('carreras.*')->where('slug', $slug)->first();
+    
         $carrera_cursos    = Curso::where('carrera_id', $carrera->id)
                             ->where('status', 'DISPONIBLE')
                             ->select('cursos.*')
                             ->orderBy('id', 'ASC')
                             ->get();
+
         $cursos    = Curso::where('carrera_id', $carrera->id)
                             ->where('status', 'DISPONIBLE')
                             ->select('cursos.*')
