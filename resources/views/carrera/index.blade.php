@@ -12,8 +12,8 @@
 							<div class="cs_ins_container">
 								<div class="cs_instructor">
 									<ul class="cs_instrct_list float-left mb0">
-										<li class="list-inline-item"><a class="color-white" href="#">Chef Beatriz Román</a></li>
-										<li class="list-inline-item"><a class="color-white" href="#">última actualización 06/09/2020</a></li>
+										<li class="list-inline-item"><div class="color-white">Chef Beatriz Román</div></li>
+										<li class="list-inline-item"><div class="color-white">última actualización 06/09/2020</div></li>
 									</ul>
 								</div>
 								<h3 class="cs_title color-white">{{$carrera->title}}</h3>
@@ -109,7 +109,9 @@
 															        <div class="panel-body">
 															        	<ul class="cs_list mb0">
 																			@foreach($curso->lecciones as $lecciones)
-															        		<li><a href="#"><span class="flaticon-play-button-1 icon"></span> {{$lecciones->title_leccion}}  <span class="cs_time">{{$lecciones->duration_leccion}}</span> <span class="cs_preiew">Ver</span></a></li>
+															        		<li>
+															      					<span class="flaticon-play-button-1 icon"></span> {{$lecciones->title_leccion}} --- {{$lecciones->duration_leccion}}
+															        		</li>
 															        		@endforeach
 															        	</ul>
 															        </div>
@@ -118,7 +120,7 @@
 														</div>
 													</div>
 													@endforeach
-													
+
 												</div>
 											</div>
 										</div>
@@ -131,7 +133,7 @@
 												<div class="about_ins_container">
 													<h4 class="aii_title">Sobre el instructor</h4>
 													<div class="about_ins_info">
-														<div class="thumb">><img src="{{asset('img/resource/chef.png')}}" alt="{{$curso->instructor}}" style="width: 120px; height: 120px;"></div>
+														<div class="thumb"><img src="{{asset('img/resource/chef.png')}}" alt="{{$curso->instructor}}" style="width: 120px; height: 140px;"></div>
 													</div>
 													<div class="details">
 														<ul class="review_list">
@@ -241,14 +243,17 @@
 					</div>
 
 
-					<div class="row">
-						<div class="col-lg-12">
-							<h3 class="r_course_title">Cursos de la carrera:</h3>
-						</div>
-						@foreach($cursos as $curso)
 
-						<div class="col-lg-4 col-xl-4">
-                            <div class="top_courses">
+						<div class="col-lg-12">
+							<h3 class="r_course_title">Adquirir curso por separado:</h3>
+						</div>
+
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="popular_course_slider">
+@foreach($cursos as $curso)
+						<div class="item">
+							<div class="top_courses home2 mb0">
                                 <div class="thumb">
                                     <img class="img-whp" src="/storage/{{$curso->thumbnail}}" alt="{{$curso->title}}" style="width: 307px; height:200px;  object-fit: cover; object-position: center center;">
                                     <div class="overlay">
@@ -280,15 +285,13 @@
                                         <div class="tc_price float-right">${{$curso->precio}}</div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-
-						@endforeach
-
-                        
-
+							</div>
+						</div>
+@endforeach
 					</div>
 				</div>
+			</div>
+</div>
 
 
 
@@ -302,26 +305,29 @@
 
 				<div class="col-lg-4 col-xl-3">
 					<div class="instructor_pricing_widget csv2">
-						<div class="price"><span>Precio</span> ${{$carrera->precio}} <small>$50.00</small></div>
+						<div class="price"><span>Precio</span> ${{$carrera->precio}}</div>
 						<a href="#" class="cart_btnss">Agregar al carro</a>
 						<a href="#" class="cart_btnss_white">Comprar ahora</a>
 						<h5 class="subtitle text-left">Incluye</h5>
 						<ul class="price_quere_list text-left">
-							<li><a href="#"><span class="flaticon-play-button-1"></span> 10 horas de video</a></li>
-							<li><a href="#"><span class="flaticon-download"></span> 6 recursos descagables</a></li>
-							<li><a href="#"><span class="flaticon-key-1"></span> Acceso de por vida completo</a></li>
-							<li><a href="#"><span class="flaticon-responsive"></span> Acceso en móvil, laptops, tablets y Tv</a></li>
-							<li><a href="#"><span class="flaticon-flash"></span> Asignaciones</a></li>
-							<li><a href="#"><span class="flaticon-award"></span> Certificación de finalización</a></li>
+							<li><span class="flaticon-play-button-1"></span>10 horas de video</li><br>
+							<li><span class="flaticon-key-1"></span> Acceso de por vida completo</li><br>
+							<li><span class="flaticon-responsive"></span> Acceso en móvil, laptops, tablets y Tv</li><br>
+							<li><span class="flaticon-flash"></span> Asignaciones</li><br>
+							<li><span class="flaticon-award"></span> Certificación de finalización</li>
 						</ul>
 					</div>
-					
+
+								<div class="blog_recent_post_widget media_widget">
+			                        <h4 class="title">Chef Beatriz Román</h4>
+			                        <img src="{{ asset('img/gallery/chefroman.jpg') }}" alt="chefroman.jpg">
+			                    </div>
+
+			                   	<div class="blog_recent_post_widget media_widget">
+			                        <h4 class="title">Inicia ya con nuestros cursos GRATUITOS</h4>
+			                    </div>
+
 				</div>
-
-
-
-
-
 
 
 			</div>

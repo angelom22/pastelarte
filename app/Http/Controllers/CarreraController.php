@@ -15,7 +15,7 @@ class CarreraController extends Controller
     public function filtrarCarrera($slug)
     {
         $carrera   = Carrera::select('carreras.*')->where('slug', $slug)->first();
-    
+
         $carrera_cursos    = Curso::where('carrera_id', $carrera->id)
                             ->where('status', 'DISPONIBLE')
                             ->select('cursos.*')
@@ -27,7 +27,7 @@ class CarreraController extends Controller
                             ->select('cursos.*')
                             // ->orderBy('id', 'ASC')
                             ->paginate(3);
-        
+
         return view('carrera.index',compact('carrera_cursos','carrera', 'cursos'));
     }
 
@@ -86,7 +86,7 @@ class CarreraController extends Controller
     public function show($slug)
     {
         $carrera   = Carrera::select('carreras.*')->where('slug', $slug)->first();
-    
+
         $carrera_cursos    = Curso::where('carrera_id', $carrera->id)
                             ->where('status', 'DISPONIBLE')
                             ->select('cursos.*')
@@ -98,7 +98,7 @@ class CarreraController extends Controller
                             ->select('cursos.*')
                             // ->orderBy('id', 'ASC')
                             ->paginate(3);
-        
+
         return view('carrera.index',compact('carrera_cursos','carrera', 'cursos'));
     }
 
@@ -124,7 +124,7 @@ class CarreraController extends Controller
     {
         // dd($request->carrera_id);
         $this->authorize('haveaccess', 'career.edit');
-        
+
         $carrera = Carrera::findOrFail($request->carrera_id);
 
         $datos = $request->validate([

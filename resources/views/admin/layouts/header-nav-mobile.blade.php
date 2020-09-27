@@ -127,65 +127,19 @@
     </div><!-- /.mobile-menu -->
     <nav id="menu" class="stylehome1">
         <ul>
-            <li><span>Home</span>
-                <ul>
-                   
-                </ul>
+            <li><a href="{{ url('cursos') }}">Cursos</a></li>
+            <li>
+                    <span>Carreras</span>
+                    <ul>
+                        <li><a href="#">Pastelería</a></li>
+                        <li><a href="#">Decoración de tortas</a></li>
+                    </ul>
             </li>
-            <li><span>Courses</span>
-                <ul>
-                    <li><span>Courses List</span>
-                        <ul>
-                           
-                        </ul>
-                    </li>
-                    <li><span>Courses Single</span>
-                        <ul>
-                            
-                        </ul>
-                    </li>
-                    <li><a href="#">Instructors</a></li>
-                    <li><a href="#">Instructor Single</a></li>
-                </ul>
-            </li>
-            <li><span>Events</span>
-                <ul>
-                    <li><a href="#">Event List</a></li>
-                    <li><a href="#">Event Single</a></li>
-                </ul>
-            </li>
-            <li><span>Pages</span>
-                <ul>
-                    <li><span>Shop Pages</span>
-                        <ul>
-                            
-                        </ul>
-                    </li>
-                    <li><span>User Admin</span>
-                        <ul>
-                            
-                        </ul>
-                    </li>
-                    <li><a href="#">About Us</a></li>
-                    <li><a href="#">Gallery</a></li>
-                    <li><a href="#">Faq</a></li>
-                    <li><a href="#">LogIn</a></li>
-                    <li><a href="#">Register</a></li>
-                    <li><a href="#">Membership</a></li>
-                    <li><a href="#">404 Page</a></li>
-                    <li><a href="#">Terms and Conditions</a></li>
-                    <li><a href="#">Become an Instructor</a></li>
-                    <li><a href="#">UI Elements</a></li>
-                </ul>
-            </li>
-            <li><span>Blog</span>
-                <ul>
-                    
-                </ul>
-            </li>
-            <li><a href="#">Contact</a></li>
-            <li><a href="#"><span class="flaticon-user"></span> Login</a></li>
-            <li><a href="#"><span class="flaticon-edit"></span> Register</a></li>
+            <li><a href="{{ url('evento') }}">Eventos</a></li>
+            <li><a href="{{ url('blog') }}">Blog</a></li>
+            <li><a href="{{ url('contacto') }}">Contacto</a></li>
+            <li><a href="{{ url('login') }}"><span class="flaticon-user"></span> Entrar</a></li>
+            <li><a href="{{ url('register') }}"><span class="flaticon-edit"></span> Registrar</a></li>
         </ul>
     </nav>
 </div>

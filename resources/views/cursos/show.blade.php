@@ -12,8 +12,8 @@
 							<div class="cs_ins_container">
 								<div class="cs_instructor">
 									<ul class="cs_instrct_list float-left mb0">
-										<li class="list-inline-item"><a class="color-white" href="#">{{$curso->instructor}}</a></li>
-										<li class="list-inline-item"><a class="color-white" href="#">última actualización {{$curso->created_at->format('d/m/Y')}}</a></li>
+										<li class="list-inline-item"><p class="color-white">{{$curso->instructor}}</p></li>
+										<li class="list-inline-item"><p class="color-white">última actualización {{$curso->created_at->format('d/m/Y')}}</p></li>
 									</ul>
 								</div>
 								<h3 class="cs_title color-white">{{$curso->title}}</h3>
@@ -108,7 +108,10 @@
 															    <div id="{{$leccion->slug}}" class="panel-collapse collapse show">
 															        <div class="panel-body">
 															        	<ul class="cs_list mb0">
-															        		<li><a href="{{$leccion->url_video}}"><span class="flaticon-play-button-1 icon"></span> {{$leccion->title_leccion}} <span class="cs_time">{{$leccion->duration_leccion}}</span> <span class="cs_preiew">Ver</span></a></li>
+															        		<li>
+															        	<span class="flaticon-play-button-1 icon"></span> {{$leccion->title_leccion}}
+															        	<span class="cs_time">--- {{$leccion->duration_leccion}}</span>
+															        		</li>
 															        	</ul>
 															        </div>
 															    </div>
@@ -225,8 +228,8 @@
                                             })();
                                             </script>
                                             <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-                    
-                                            
+
+
 											<!-- <div class="cs_row_six csv2">
 												<div class="sfeedbacks">
 													<div class="mbp_pagination_comments">
@@ -243,7 +246,7 @@
 																			<li class="list-inline-item"><a href="#"><i class="fa fa-star"></i></a></li>
 																			<li class="list-inline-item"></li>
 																		</ul>
-																	</span>										    		
+																	</span>
 														    	</h4>
 														    	<a class="sspd_postdate fz14" href="#">06/09/2020</a>
 														    	<p class="fz15 mt20">Excelente curso.</p>
@@ -298,14 +301,18 @@
 					</div>
 
 
-					<div class="row">
+
+
 						<div class="col-lg-12">
-							<h3 class="r_course_title">Cursos relacionados:</h3>
+							<h3 class="r_course_title">Cursos Relacionados</h3>
 						</div>
-                        @foreach($cursos as $curso)
-                        
-                        <div class="col-lg-4 col-xl-4">
-                            <div class="top_courses">
+
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="popular_course_slider">
+@foreach($cursos as $curso)
+						<div class="item">
+							<div class="top_courses home2 mb0">
                                 <div class="thumb">
                                     <img class="img-whp" src="/storage/{{$curso->thumbnail}}" alt="{{$curso->title}}" style="width: 307px; height:200px;  object-fit: cover; object-position: center center;">
                                     <div class="overlay">
@@ -337,53 +344,13 @@
                                         <div class="tc_price float-right">${{$curso->precio}}</div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-
-                        <!-- <div class="col-lg-4 col-xl-4">
-                            <div class="top_courses">
-                                <div class="thumb">
-									<div class="overlay">
-										<img class="img-whp" src="/storage/{{$curso->thumbnail}}" alt="{{$curso->slug}}">
-                                        <div class="tag" style="background: #441c42;">nuevo</div>
-                                        <div class="icon" style="background: #441c42; font-size: 15px;">decoración</div>
-                                        <a class="tc_preview_course" href="#" data-toggle="modal" data-target="#curso1"><i class="fa fa-play" style="font-size: 30px;"></i></a>
-                                    </div>
-                                </div>
-                                <div class="details">
-                                    <div class="tc_content">
-                                        <p>{{$curso->instructor}}</p>
-                                        <h5>{{$curso->title}}</h5>
-                                        <ul class="tc_review">
-                                            <li class="list-inline-item"><a href="#"><i class="fa fa-star"></i></a></li>
-                                            <li class="list-inline-item"><a href="#"><i class="fa fa-star"></i></a></li>
-                                            <li class="list-inline-item"><a href="#"><i class="fa fa-star"></i></a></li>
-                                            <li class="list-inline-item"><a href="#"><i class="fa fa-star"></i></a></li>
-                                            <li class="list-inline-item"><a href="#"><i class="fa fa-star"></i></a></li>
-                                            <li class="list-inline-item"><a href="#">(6)</a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="tc_footer">
-                                        <ul class="tc_meta float-left">
-                                            <li class="list-inline-item"><a href="#"><i class="flaticon-profile"></i></a></li>
-                                            <li class="list-inline-item"><a href="#">30</a></li>
-                                            <li class="list-inline-item"><a href="#"><i class="flaticon-comment"></i></a></li>
-                                            <li class="list-inline-item"><a href="#">10</a></li>
-                                        </ul>
-                                        <div class="tc_price float-right">$30.00</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div> -->
-
-						@endforeach
-
-                        
-
-                        
-
+							</div>
+						</div>
+@endforeach
 					</div>
 				</div>
+			</div>
+</div>
 
 
 
@@ -397,17 +364,15 @@
 
 				<div class="col-lg-4 col-xl-3">
 					<div class="instructor_pricing_widget csv2">
-						<div class="price"><span>Precio</span> ${{$curso->precio}} <small>$50.00</small></div>
+						<div class="price"><span>Precio</span> ${{$curso->precio}}</div>
 						<a href="#" class="cart_btnss">Agregar al carro</a>
 						<a href="#" class="cart_btnss_white">Comprar ahora</a>
 						<h5 class="subtitle text-left">Incluye</h5>
 						<ul class="price_quere_list text-left">
-							<li><a href="#"><span class="flaticon-play-button-1"></span> 11 horas de video</a></li>
-							<li><a href="#"><span class="flaticon-download"></span> 6 recursos descagables</a></li>
-							<li><a href="#"><span class="flaticon-key-1"></span> Acceso de por vida completo</a></li>
-							<li><a href="#"><span class="flaticon-responsive"></span> Acceso en móvil, laptops, tablets y Tv</a></li>
-							<li><a href="#"><span class="flaticon-flash"></span> Asignaciones</a></li>
-							<li><a href="#"><span class="flaticon-award"></span> Certificación de finalización</a></li>
+							<li><span class="flaticon-key-1"></span> Acceso de por vida completo</li><br>
+							<li><span class="flaticon-responsive"></span> Acceso en móvil, laptops, tablets y Tv</li><br>
+							<li><span class="flaticon-flash"></span> Asignaciones</li><br>
+							<li><span class="flaticon-award"></span> Certificación de finalización</li><br>
 						</ul>
 					</div>
 					<div class="feature_course_widget csv1">
@@ -427,6 +392,12 @@
 							</li>
 						</ul>
 					</div>
+
+
+								<div class="blog_recent_post_widget media_widget">
+			                        <h4 class="title">Chef Beatriz Román</h4>
+			                        <img src="{{ asset('img/gallery/chefroman.jpg') }}" alt="chefroman.jpg">
+			                    </div>
 				</div>
 
 

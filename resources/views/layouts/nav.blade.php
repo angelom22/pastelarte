@@ -23,15 +23,7 @@
                     <a href="{{url('/')}}"><span class="title">Home</span></a>
                 </li>
                 <li>
-                    <a href="#"><span class="title">Cursos</span></a>
-                    <!-- Level Two-->
-                    <ul>
-                        <li><a href="{{ url('cursos') }}">Todos los cursos</a></li>
-                        <li><a href="#">Técnicas de pastelería</a></li>
-                        <li><a href="#">Masas</a></li>
-                        <li><a href="#">Decoración de tortas comerciales</a></li>
-                        <li><a href="#">Técnicas en fondant</a></li>
-                    </ul>
+                    <a href="{{ url('cursos') }}"><span class="title">Cursos</span></a>
                 </li>
                 <li>
                     <a href="#"><span class="title">Carreras</span></a>
@@ -59,14 +51,14 @@
             @else
 
             <img src="/storage/{{Auth::user()->avatar}}" style="object-fit: cover;
-                object-position: center center;" width="100px" class="rounded-circle img-fluid img-avatar" alt="{{Auth::user()->name}}"> 
+                object-position: center center;" width="100px" class="rounded-circle img-fluid img-avatar" alt="{{Auth::user()->name}}">
 
             <li class="list-inline-item list_s">
-                
+
                 <a id="navbarDropdown" style="font-size: 12px;" class="btn nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                     {{ Auth::user()->name }} <span class="caret"></span>
                 </a>
-                
+
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item" href="{{url('dashboard')}}"> <i class="fa fa-user fa-fw"></i> Dashboard</a>
                     <span class="dropdown-divider"></span>
@@ -83,7 +75,7 @@
                         @csrf
                     </form>
                 </div>
-                
+
             </li>
 
             @endguest
@@ -92,28 +84,12 @@
                 <div class="cart_btn">
                     <ul class="cart">
                         <li>
-                            <a href="#" class="btn cart_btn flaticon-shopping-bag"><span>5</span></a>
+                            <a href="#" class="btn cart_btn flaticon-shopping-bag"><span>1</span></a>
                             <ul class="dropdown_content">
                                 <li class="list_content">
                                     <a href="#">
                                         <img class="float-left" src="http://via.placeholder.com/50x50" alt="50x50">
                                         <p>Dolar Sit Amet</p>
-                                        <small>1 × $7.90</small>
-                                        <span class="close_icon float-right"><i class="fa fa-plus"></i></span>
-                                    </a>
-                                </li>
-                                <li class="list_content">
-                                    <a href="#">
-                                        <img class="float-left" src="http://via.placeholder.com/50x50" alt="50x50">
-                                        <p>Lorem Ipsum</p>
-                                        <small>1 × $7.90</small>
-                                        <span class="close_icon float-right"><i class="fa fa-plus"></i></span>
-                                    </a>
-                                </li>
-                                <li class="list_content">
-                                    <a href="#">
-                                        <img class="float-left" src="http://via.placeholder.com/50x50" alt="50x50">
-                                        <p>Is simply</p>
                                         <small>1 × $7.90</small>
                                         <span class="close_icon float-right"><i class="fa fa-plus"></i></span>
                                     </a>

@@ -76,7 +76,7 @@
                             <div class="post_date"><h2>{{$blog->created_at->format('d')}}</h2> <span>{{$blog->created_at->format('M')}}</span></div>
                         </div>
                         <div class="details">
-                           <a href="{{route('blog.show', $blog->slug )}}"><h3>{{$blog->title}}</h3></a> 
+                           <a href="{{route('blog.show', $blog->slug )}}"><h3>{{$blog->title}}</h3></a>
                             <ul class="post_meta">
                                 <li><a href="#"><span class="flaticon-profile"></span></a></li>
                                 <li><a href="#"><span>{{$blog->user->name}}</span></a></li>
@@ -100,7 +100,7 @@
                                         <a class="page-link" href="#">Next <span class="flaticon-right-arrow-1"></span></a>
                                     </li> -->
                                 </ul>
-                            </div> 
+                            </div>
                         </div>
                     </div>
                 </div>

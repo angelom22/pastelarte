@@ -23,15 +23,7 @@
                     <a href="{{url('/')}}"><span class="title">Home</span></a>
                 </li>
                 <li>
-                    <a href="#"><span class="title">Cursos</span></a>
-                    <!-- Level Two-->
-                    <ul>
-                        <li><a href="{{ url('/cursos') }}">Todos los cursos</a></li>
-                        <li><a href="#">Técnicas de pastelería</a></li>
-                        <li><a href="#">Masas</a></li>
-                        <li><a href="#">Decoración de tortas comerciales</a></li>
-                        <li><a href="#">Técnicas en fondant</a></li>
-                    </ul>
+                    <a href="{{ url('/cursos') }}"><span class="title">Cursos</span></a>
                 </li>
                 <li>
                     <a href="#"><span class="title">Carreras</span></a>
@@ -143,9 +135,9 @@
                         <a class="btn dropdown-toggle" href="#" data-toggle="dropdown">
                         @if (Session::has('registro'))
                         <img class="rounded-circle" src="{{Auth::user()->avatar}}" style="height: 50px; width:50px; object-fit: cover;
-                            object-position: center center;" alt="{{Auth::user()->name}}"> 
+                            object-position: center center;" alt="{{Auth::user()->name}}">
                         @elseif(Auth::user()->avatar)
-                        <img class="rounded-circle" src="/storage/{{Auth::user()->avatar}}" style="height: 50px; width:50px; object-fit: cover; object-position: center center;" alt="{{Auth::user()->name}}"> 
+                        <img class="rounded-circle" src="/storage/{{Auth::user()->avatar}}" style="height: 50px; width:50px; object-fit: cover; object-position: center center;" alt="{{Auth::user()->name}}">
                         @endif
                             <!-- <img class="rounded-circle" src="/storage/{{Auth::user()->avatar}}" style="height: 50px; width:50px; object-fit: cover; object-position: center center;" alt="avatar"> -->
                         </a>

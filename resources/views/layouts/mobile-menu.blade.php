@@ -13,16 +13,7 @@
     </div><!-- /.mobile-menu -->
     <nav id="menu" class="stylehome1">
         <ul>
-            <li>
-                    <span>Cursos</span>
-                    <ul>
-                        <li><a href="{{ url('cursos') }}">Todos los cursos</a></li>
-                        <li><a href="#">Técnicas de pastelería</a></li>
-                        <li><a href="#">Masas</a></li>
-                        <li><a href="#">Decoración de tortas comerciales</a></li>
-                        <li><a href="#">Técnicas en fondant</a></li>
-                    </ul>
-            </li>
+            <li><a href="{{ url('cursos') }}">Cursos</a></li>
             <li>
                     <span>Carreras</span>
                     <ul>
