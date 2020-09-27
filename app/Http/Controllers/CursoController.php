@@ -60,7 +60,7 @@ class CursoController extends Controller
         // $thumbnailUrl = Storage::url($thumbnail);
 
         $user = auth()->id();
-        
+
         $curso = Curso::create([
             'user_id' => $user,
             // 'leccion_id' => $request->leccion_id;
@@ -77,7 +77,7 @@ class CursoController extends Controller
             'instructor'        => $request->instructor,
             'url_video_preview_curso' => $request->url_video_preview_curso,
             ]);
-        
+
         // se guarda en la tabla relacion el curso creado con la carrera a la que fue asignado
         CarreraCurso::create([
             'carrera_id'    => $request->carrera_id,
@@ -106,10 +106,10 @@ class CursoController extends Controller
     {
         $curso = Curso::findBySlugOrFail($slug);
         // dd($curso->precio);
-        
+
         $lecciones = Leccion::where('curso_id', $curso->id)->get();
         // dd($lecciones);
-        
+
         $cursos = Curso::orderBy('id', 'ASC')->paginate(3);
 
         return view('cursos.show',compact('curso','cursos', 'lecciones'));

@@ -69,7 +69,7 @@ Route::resource('/lecciones', 'LeccionController')->names([
 Route::get('crear-leccion/{id}', ['as' => 'crear_leccion', 'uses' => 'LeccionController@create']);
 
 Route::resource('/contacto', 'ContactoController')->names([
-    'store'     => 'contactoStore', 
+    'store'     => 'contactoStore',
 ]);
 
 Route::resource('/cursosingle', 'CursoSingleController')->names([
