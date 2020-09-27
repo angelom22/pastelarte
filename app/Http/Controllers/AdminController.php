@@ -37,6 +37,7 @@ class AdminController extends Controller
 
         $cursos = Curso::paginate(5);
         
+        
         return view('admin.cursos.index', compact('cursos'));
     }
 

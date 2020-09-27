@@ -14,7 +14,7 @@
                     <!-- <iframe src="https://player.vimeo.com/video/454182996"  height="400" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe> -->
 				      </div>
 				       <div class="col-md-6">
-				       	<h2>Curso de decoración con papel de arróz</h2>
+				       	<h2 id="titulo"></h2>
 				       	<h5>Chef Beatriz Román</h5>
 				       	<h3><span class="badge badge-info">Nuevo</span></h3>
 				       	<p class="text-justify">Aprenderas una técnica nueva para hacer decoración con papel de arróz, solo necesitaras miel de maíz, papel de arróz impreso, pincel y mota con maizena.</p>
@@ -29,7 +29,7 @@
   		</div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-warning" data-dismiss="modal">Comprar US$30.00</button>
+        <button type="button" class="btn btn-warning" data-dismiss="modal">Comprar US$30</button>
         <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Cerrar</button>
       </div>
     </div>

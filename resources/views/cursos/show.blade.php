@@ -1,5 +1,8 @@
 @extends('layouts.app')
 
+@section('meta_title', $curso->title)
+@section('meta_description', $curso->extracto)
+
 @section('content')
 
 	<!-- Inner Page Breadcrumb -->
@@ -311,7 +314,14 @@
                                     <div class="overlay">
                                         <div class="tag" style="background: #441c42;">nuevo</div>
                                         <div class="icon" style="background: #441c42; font-size: 15px;">decoración</div>
-                                        <a class="tc_preview_course" href="#" data-toggle="modal" data-target="#curso1"><i class="fa fa-play" style="font-size: 30px;"></i></a>
+										<a class="tc_preview_course" 
+										href="#" 
+										data-curso_title="{{$curso->title}}" 
+										data-curso_precio="{{$curso->precio}}" 
+										data-curso_instructor="{{$curso->instructor}}" 
+										data-toggle="modal" 
+										data-target="#curso1"
+										><i class="fa fa-play" style="font-size: 30px;"></i></a>
                                     </div>
                                 </div>
                                 <div class="details">
@@ -440,3 +450,25 @@
 	</section>
 
 @endsection
+
+
+@push('js')
+
+<script>
+    // Modal para crear lección
+	$('#curso1').on('show.bs.modal', function(event){
+		var button = $(event.relatedTarget);
+        var curso_title = button.data('curso_title');
+		var curso_precio = button.data('curso_precio');
+		var curso_instructor = button.data('curso_instructor');
+        console.log(carrera_id);
+		
+		var modal = $(this);
+        
+        modal.find('.modal-body #titulo').val(curso_title);
+        modal.find('.modal-body #precio').val(curso_precio);
+        modal.find('.modal-body #instructor').val(curso_instructor);
+	});
+</script>
+
+@endpush
