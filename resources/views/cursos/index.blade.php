@@ -60,8 +60,8 @@
                         </div>
                     </div>
                     <div class="row">
+                        @foreach($cursos as $curso)
                         <div class="col-sm-6 col-lg-6 col-xl-4">
-                            @foreach($cursos as $curso)            
                             <div class="top_courses">
                                 <div class="thumb">
                                     <img class="img-whp" src="/storage/{{$curso->thumbnail}}" alt="{{$curso->slug}}">
@@ -93,11 +93,11 @@
                                         <a class="float-right" href="#">Agregar al carro <span class="flaticon-shopping-bag" style="font-size: 20px; color: red;"></span></a>
                                     </div>
                                 </div>
-                                @endforeach   
                             </div>
                         </div>
-                    
-                        
+                        @endforeach
+
+
                         <div class="col-lg-12">
                             <div class="mbp_pagination mt20">
                                 <ul class="page_navigation">
