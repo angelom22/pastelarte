@@ -70,8 +70,8 @@
 										</div>
 									</div>
 									@include('custom.message')
-									@foreach($cursos as $curso)
 									<div class="my_course_content_list">
+										@foreach($cursos as $curso)
 										<div class="mc_content_list">
 											<div class="thumb">
 												<img  style="width: 307px; height:200px; object-fit: cover;" src="/storage/{{$curso->thumbnail}}" alt="{{$curso->slug}}">
@@ -113,10 +113,13 @@
 														<li class="list-inline-item"><a href="#"><i class="fa fa-star"></i></a></li>
 														<li class="list-inline-item"><a href="#">(5)</a></li>
 														<li class="list-inline-item tc_price fn-414"><a href="#">${{$curso->precio}}</a></li>
+														
+													</ul>
+													<ul class="mc_meta fn-414">
 														<li class="list-inline-item">
 														@can('haveaccess','leccion.create')
 															<a href="#"
-															class="btn btn-info pull-right"
+															class="btn btn-info"
 															title="Añadir Lección"
 															data-curso_id="{{$curso->id}}"
 															data-toggle="modal" data-target="#CrearLeccion"
@@ -126,22 +129,44 @@
 														@endcan
 														</li>
 													</ul>
+													<ul class="view_edit_delete_list float-right">
+														<li class="list-inline-item">
+															@can('haveaccess','course.show') 
+															<a href="{{route('cursos.show', $curso->slug)}}" data-toggle="tooltip" data-placement="top" title="Ver" data-original-title="View"><span class="flaticon-preview"></span></a>
+															@endcan
+														</li>
+														<li class="list-inline-item">
+															@can('haveaccess','course.edit') 
+															<a href="{{route('CourseEdit', $curso)}}" data-toggle="tooltip" data-placement="top" title="Editar" data-original-title="Edit"><span class="flaticon-edit"></span></a>
+															@endcan
+														</li>
+									    				<li class="list-inline-item">
+														@can('haveaccess','course.destroy') 
+															<form action="{{route('cursos.destroy', $curso)}}" method="POST" style="display: inline;">
+																@csrf
+																@method('DELETE')
+																<button title="Eliminar" class="btn btn-sm btn-danger" data-original-title="Delete" onclick="return alert('Esta seguro de querer eliminar este cuso?')">
+																<span class="flaticon-delete-button"></span>
+																</button>
+															</form>
+														@endcan
+														</li>
+									    			</ul>
 												</div>
 											</div>
 										</div>
+										@endforeach
 									</div>
-									@endforeach
+
+									
+
 									<div class="row">
 										<div class="col-lg-12">
 											<div class="mbp_pagination mt20">
 												<ul class="page_navigation">
-													<!-- <li class="page-item disabled">
-														<a class="page-link" href="#" tabindex="-1" aria-disabled="true"> <span class="flaticon-left-arrow"></span> Prev</a>
-													</li> -->
+													
 													{{ $cursos->links() }}
-													<!-- <li class="page-item">
-														<a class="page-link" href="#">Next <span class="flaticon-right-arrow-1"></span></a>
-													</li> -->
+													
 												</ul>
 											</div>
 										</div>

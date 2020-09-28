@@ -197,8 +197,16 @@ class CursoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Curso $curso)
     {
-        //
+        // dd($curso);
+        $this->authorize('haveaccess', 'course.destroy');
+
+        // Se elimina el thumbnail actual del curso
+        Storage::delete($curso->thumbnail);
+    
+        $curso->delete();
+
+        return redirect()->route('admin.curso')->with('status_success', 'Se a eliminado el curso correctamente'); 
     }
 }
