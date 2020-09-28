@@ -98,3 +98,14 @@ Route::get('admin/carrera/', 'AdminController@carrera')->name('carrera.user');
 Route::get('admin/blog', 'AdminController@blog')->name('admin.blog');
 Route::get('admin/evento', 'AdminController@evento')->name('admin.evento');
 Route::get('admin/user/{id}', 'AdminController@user')->name('admin.user');
+
+
+
+
+// Rutas del check out
+Route::resource('/cart', 'PaymentController')->names([
+    'update'    => 'CartUpdate',
+    'create'    => 'CartCreate',
+    'store'     => 'CartStore',
+    'edit'      => 'CartEdit',
+]);

@@ -3,10 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Mail\ContactMessageReceived;
-use Illuminate\Support\Facades\Mail;
 
-class ContactoController extends Controller
+class PaymentController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +13,7 @@ class ContactoController extends Controller
      */
     public function index()
     {
-        return view('contacto.index');
+        return view('payment.cart');
     }
 
     /**
@@ -36,16 +34,7 @@ class ContactoController extends Controller
      */
     public function store(Request $request)
     {
-        $message = $request->validate([
-            'name' => 'required',
-            'email' => 'required|email',
-            'message' => 'required|min:5'
-        ]);
-
-        // cambiar el correo por el de pastelarte
-        Mail::to('angelo.jm2202@gmail.com')->queue(new ContactMessageReceived($message));
-
-        return redirect()->route('contacto.index')->with('welcome', 'Menesaje enviado, pronto le estaremos dando una respuesta');
+        //
     }
 
     /**
