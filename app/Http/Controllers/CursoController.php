@@ -27,7 +27,13 @@ class CursoController extends Controller
      */
     public function index()
     {
-        return view('cursos.index');
+        $cursos = Curso::where('status', 'DISPONIBLE')
+                        ->select('cursos.*')
+                        ->orderBy('id', 'ASC')
+                        ->paginate(6);
+        // dd($cursos->count());
+
+        return view('cursos.index', compact('cursos'));
     }
 
     /**

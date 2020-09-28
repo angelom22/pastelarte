@@ -57,14 +57,14 @@ $('#formCourse').validate({
         required: true,
         minlength: 5,
     },
-    lengueaje: {
+    lenguaje: {
         required: true,
         minlength: 5,
     },
     thumbnail: {
         required: true,
     },
-    carrera: {
+    carrera_id: {
         required: true,
     },
     description: {
@@ -97,14 +97,14 @@ $('#formCourse').validate({
     instructor: {
         required: "Ingrese el nombre del instructor",
     },
-    lengueaje: {
+    lenguaje: {
         required: "Ingrese el lenguaje del curso",
         minlength: "La longitud minima del campo son 5 caracteres"
     },
     thumbnail: {
         required: "Ingrese el la imagen del curso",
     },
-    carrera: {
+    carrera_id: {
         required: "Seleccione la carrera a la cual pertenece el curso",
     },
     description: {

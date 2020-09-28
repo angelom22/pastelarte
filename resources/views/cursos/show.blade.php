@@ -398,7 +398,7 @@
 						    	Nivel de habilidad <span class="float-right">{{$curso->nivel_habilidad}}</span>
 							</li>
 							<li class="d-flex justify-content-between align-items-center">
-						    	Lenguaje <span class="float-right">{{$curso->lengueaje}}</span>
+						    	Lenguaje <span class="float-right">{{$curso->lenguaje}}</span>
 							</li>
 						</ul>
 					</div>

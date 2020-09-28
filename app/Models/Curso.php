@@ -62,5 +62,10 @@ class Curso extends Model
     // public function lecciones(){
     //     return $this->hasMany(CursoLeccion::class, 'curso_id', 'id')->withTimestamps();
     // }
+
+    public function scopeSearch($query, $title){
+        return $query->where('title', 'LIKE', "%$title%");
+    }
+
     
 }

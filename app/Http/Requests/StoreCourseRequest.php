@@ -34,7 +34,7 @@ class StoreCourseRequest extends FormRequest
             'precio'            => 'required|numeric',
             'duracion_curso'    => 'required|date_format:H:i',
             'nivel_habilidad'   => 'required',
-            'lengueaje'         => 'required',
+            'lenguaje'          => 'required',
             'instructor'        => 'required',
             'url_video_preview_curso' => 'required|active_url'         
         ];

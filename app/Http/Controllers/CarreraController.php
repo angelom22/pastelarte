@@ -25,7 +25,7 @@ class CarreraController extends Controller
         $cursos    = Curso::where('carrera_id', $carrera->id)
                             ->where('status', 'DISPONIBLE')
                             ->select('cursos.*')
-                            // ->orderBy('id', 'ASC')
+                            ->orderBy('id', 'ASC')
                             ->paginate(3);
 
         return view('carrera.index',compact('carrera_cursos','carrera', 'cursos'));

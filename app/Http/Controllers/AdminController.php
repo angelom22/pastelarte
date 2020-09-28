@@ -31,12 +31,11 @@ class AdminController extends Controller
         return view('admin.dashboard.dashboard');
     }
 
-    public function curso()
+    public function curso(Request $request)
     {
         $this->authorize('haveaccess', 'course.admin');
 
-        $cursos = Curso::paginate(5);
-        
+        $cursos = Curso::Search($request->title)->paginate(5);
         
         return view('admin.cursos.index', compact('cursos'));
     }

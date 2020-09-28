@@ -72,8 +72,8 @@
 												</div>
 												<div class="col-xl-6">
 													<div class="my_profile_setting_input form-group">
-												    	<label for="lengueaje">Lenguaje:</label>
-												    	<input type="text" class="form-control" id="lengueaje" name="lengueaje" placeholder="Ej: Español" value="{{old('lengueaje')}}"  maxlength="50" onkeypress="return soloLetras(event)">
+												    	<label for="lenguaje">Lenguaje:</label>
+												    	<input type="text" class="form-control" id="lenguaje" name="lenguaje" placeholder="Ej: Español" value="{{old('lenguaje')}}"  maxlength="50" onkeypress="return soloLetras(event)">
 													</div>
 												</div>
 												<div class="col-lg-12">
@@ -96,7 +96,8 @@
 										<div class="col-lg-12">
 											<div class="my_profile_select_box form-group">
 												<label for="carrera_id">Carrera:</label><br>
-										    	<select class="selectpicker" name="carrera_id" id="carrera_id" >
+										    	<select class="selectpicker" name="carrera_id" id="carrera_id">
+													<option value="">Seleccione una opción</option>
 													@foreach($carreras as $carrera)
 													<option value="{{$carrera->id}}"  {{ old('carrera_id') == $carrera->id ? 'selected' : ''}}>{{$carrera->title}}</option>
 													@endforeach

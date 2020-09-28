@@ -68,7 +68,7 @@
 												<div class="col-xl-6">
 													<div class="my_profile_setting_input form-group">
 												    	<label for="precio">Precio:</label>
-												    	<input type="text" class="form-control" id="precio" name="precio" placeholder="Ej: $89" pattern="[0-9/.]{0,100}" value="{{old('precio', $curso->precio)}}"  onkeypress="return soloNumero(event)">
+												    	<input type="text" class="form-control" id="precio" name="precio" placeholder="Ej: $20" pattern="[0-9/.]{0,100}" value="{{old('precio', $curso->precio)}}"  onkeypress="return soloNumero(event)">
 													</div>
 													<div class="my_profile_setting_input form-group">
 												    	<label for="nivel_habilidad">Nivel de Habilidad:</label>

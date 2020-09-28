@@ -53,7 +53,7 @@ $('#UpdateCourse').validate({
         required: true,
         minlength: 5,
     },
-    lengueaje: {
+    lenguaje: {
         required: true,
         minlength: 5,
     },
@@ -93,7 +93,7 @@ $('#UpdateCourse').validate({
     instructor: {
         required: "Ingrese el nombre del instructor",
     },
-    lengueaje: {
+    lenguaje: {
         required: "Ingrese el lenguaje del curso",
         minlength: "La longitud minima del campo son 5 caracteres"
     },
