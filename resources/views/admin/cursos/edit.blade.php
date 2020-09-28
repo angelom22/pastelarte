@@ -141,8 +141,9 @@
 									<div class="col-lg-12">
 										<button type="submit" class="my_setting_savechange_btn btn btn-thm">Actualizar
 										<span class="flaticon-right-arrow-1 ml15"></span></button>
-										<a class="my_setting_savechange_btn btn btn-thm">Actualizar
-										<span class="flaticon-left-arrow-1 ml15"></span>Regresar</a>
+										<a href="{{route('admin.curso')}}" class="btn btn-danger">Regresar
+										<span class="flaticon-left-arrow-1 ml15"></span></a>
+										<!-- <a class="btn btn-danger" href="{{route('user.index')}}">Regresar</a> -->
 									</div>
 									</form>
 								</div>
