@@ -78,7 +78,7 @@
 														<!-- Colocar Validación para estos botones -->
 														@can('haveaccess','lesson.edit') 
 														<li class="list-inline-item">
-															<a class="mcc_edit" href="#">Editar</a>
+															<a class="mcc_edit" href="{{route('CourseEdit', $curso)}}">Editar</a>
 														</li>
 														@endcan
 														@can('haveaccess','lesson.show') 
@@ -92,7 +92,7 @@
 											<div class="details">
 												<div class="mc_content">
 													<p class="subtitle">Carrera: {{$curso->carrera->title}}</p>
-													<h5 class="title">{{$curso->title}}<span><small class="tag">{{$curso->status}}</small></span></h5>
+													<h5 class="title">{{$curso->title}}<span {{ $curso->status === 'INHABILITADO' ? 'class=style2' : '' }} ><small class="tag">{{$curso->status}}</small></span></h5>
 													<p>{!! $curso->extracto !!}</p>
 												</div>
 												<div class="mc_footer">

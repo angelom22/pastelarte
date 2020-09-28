@@ -14,6 +14,13 @@ class CarrerasTableSeeder extends Seeder
         DB::table('carreras')->insert(
             [
                 [
+                'title'         => 'No Posee',
+                'slug'          => "no-posee",
+                'description'   => 'este es un curso que no esta no esta asociado a ninguna de las carreras de pastel arte',
+                'precio'        => 0,
+                'url_video_preview_carrera' => ''
+                ],
+                [
                 'title'         => 'Pastelería',
                 'slug'          => "pasteleria",
                 'description'   => 'descripcion de la carrera pastelería',

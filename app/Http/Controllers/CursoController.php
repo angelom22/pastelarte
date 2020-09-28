@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Gate;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\StoreCourseRequest;
+use App\Http\Requests\UpdateCourseRequest;
 
 class CursoController extends Controller
 {
@@ -73,7 +74,7 @@ class CursoController extends Controller
             'duracion_curso'    => Carbon::parse($request->duracion_curso)->toDateTimeString(),
             // 'duracion_curso'    => $request->duracion_curso,
             'nivel_habilidad'   => $request->nivel_habilidad,
-            'lengueaje'         => $request->lengueaje,
+            'lenguaje'         => $request->lenguaje,
             'instructor'        => $request->instructor,
             'url_video_preview_curso' => $request->url_video_preview_curso,
             ]);
@@ -121,9 +122,14 @@ class CursoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Curso $curso)
     {
-        //
+        // dd($curso);
+        $this->authorize('haveaccess', 'course.edit');
+
+        $carreras = Carrera::all();
+
+        return view('admin.cursos.edit', compact('curso','carreras'));
     }
 
     /**
@@ -133,9 +139,50 @@ class CursoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateCourseRequest $request, Curso $curso)
     {
-        //
+        // dd($request->all());
+        $this->authorize('haveaccess', 'course.edit');
+
+        // Si se actualiza el articulo se elimina la imagen antigua del servidor
+        if ($request->hasFile('thumbnail')) {
+
+            // Se elimina el thumbnail del curso
+            Storage::delete($curso->thumbnail);
+
+            // Se guarda la imagen nueva
+            $thumbnail = request()->file('thumbnail')->store('thumbnail/'.$request->title);
+    
+            // se guarda el post en la base da datos
+            $curso->update([
+                'user_id'                   => auth()->id(),
+                'carrera_id'                => $request->carrera_id,
+                'title'                     => $request->title,
+                'thumbnail'                 => $thumbnail,
+                'description'               => $request->description,
+                'extracto'                  => $request->extracto,
+                'precio'                    => $request->precio,
+                'duracion_curso'            => Carbon::parse($request->duracion_curso)->toDateTimeString(),
+                'nivel_habilidad'           => $request->nivel_habilidad,
+                'lenguaje'                  => $request->lenguaje,
+                'instructor'                => $request->instructor,
+                'url_video_preview_curso'   => $request->url_video_preview_curso,
+                'status'                    => $request->status,
+            ]);
+
+            // optimización de la imagen
+            $image = Image::make(Storage::get($thumbnail))
+                            ->widen(600)
+                            // ->limitColors(255)
+                            ->encode();
+    
+            // se reemplaza la imagen que subio el usuario por la imagen optimizada
+            Storage::put($curso->thumbnail, (string) $image);
+        }else {
+            $curso->update(array_filter($request->all()));
+        }
+
+        return redirect()->route('admin.curso')->with('status_success', 'El curso ha sido actualizado exitosamente');
     }
 
     /**
