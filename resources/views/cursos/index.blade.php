@@ -32,9 +32,7 @@
 
 
 
-{{-- @foreach($cursos as $curso)
 
-@endforeach --}}
 
 
     <section class="our-team pb50">
@@ -44,7 +42,7 @@
                     <div class="row">
                         <div class="col-sm-6 col-lg-6 col-xl-6">
                             <div class="instructor_search_result">
-                                <p class="mt10 fz15"><span class="color-dark pr10">15 results</span></p>
+                                <p class="mt10 fz15"><span class="color-dark pr10">{{$cursos->count()}} Resultados</span></p>
                             </div>
                         </div>
                         <div class="col-sm-6 col-lg-6 col-xl-6">
@@ -62,21 +60,19 @@
                         </div>
                     </div>
                     <div class="row">
-
-
-
-                            <div class="col-sm-6 col-lg-6 col-xl-4">
+                        <div class="col-sm-6 col-lg-6 col-xl-4">
+                            @foreach($cursos as $curso)            
                             <div class="top_courses">
                                 <div class="thumb">
-                                    <img class="img-whp" src="{{ asset('img/courses/t1.jpg') }}" alt="t1.jpg">
+                                    <img class="img-whp" src="/storage/{{$curso->thumbnail}}" alt="{{$curso->slug}}">
                                     <div class="overlay">
                                         <a class="tc_preview_course" href="#" data-toggle="modal" data-target="#curso1"><i class="fa fa-play" style="font-size: 30px;"></i></a>
                                     </div>
                                 </div>
                                 <div class="details">
                                     <div class="tc_content">
-                                        <p>Beatriz Román</p>
-                                        <h5>Curso de decoración con papel de arróz</h5>
+                                        <p>{{$curso->instructor}}</p>
+                                        <h5>{{$curso->title}}</h5>
                                         <ul class="tc_review">
                                             <li class="list-inline-item"><a href="#"><i class="fa fa-star"></i></a></li>
                                             <li class="list-inline-item"><a href="#"><i class="fa fa-star"></i></a></li>
@@ -91,38 +87,26 @@
                                             <li class="list-inline-item"><a href="#"><i class="flaticon-profile"></i></a></li>
                                             <li class="list-inline-item"><a href="#">30</a></li>
                                         </ul>
-                                        <div class="tc_price float-right">$30.00 </div>
+                                        <div class="tc_price float-right">${{$curso->precio}} </div>
                                     </div>
                                     <div class="tc_footer">
                                         <a class="float-right" href="#">Agregar al carro <span class="flaticon-shopping-bag" style="font-size: 20px; color: red;"></span></a>
                                     </div>
                                 </div>
+                                @endforeach   
                             </div>
-                            </div>
-
-
-
-
-
+                        </div>
+                    
+                        
                         <div class="col-lg-12">
                             <div class="mbp_pagination mt20">
                                 <ul class="page_navigation">
-                                    <li class="page-item disabled">
-                                        <a class="page-link" href="#" tabindex="-1" aria-disabled="true"> <span class="flaticon-left-arrow"></span> Prev</a>
-                                    </li>
-                                    <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                    <li class="page-item active" aria-current="page">
-                                        <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
-                                    </li>
-                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">...</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">14</a></li>
-                                    <li class="page-item">
-                                        <a class="page-link" href="#">Next <span class="flaticon-right-arrow-1"></span></a>
-                                    </li>
+                                    {{ $cursos->links() }}
                                 </ul>
                             </div>
                         </div>
+
+
                     </div>
                 </div>
 

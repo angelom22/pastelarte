@@ -1,10 +1,10 @@
-    var token = $('meta[name="csrf-token"]').attr('content');
+var token = $('meta[name="csrf-token"]').attr('content');
     
 $.validator.setDefaults({
     submitHandler: function () {
         $.ajax({
         type: "POST",
-        url: "cursos.store",
+        url: "CourseUpdate",
         dataType: "json",
         processData: false,
         contentType: false,
@@ -15,21 +15,14 @@ $.validator.setDefaults({
         dataType: "json",
         success: function(respuesta) {
             console.log(respuesta);
-            new PNotify({
-                text: 'Bienvenido al sistema!',
-                type: 'success',
-                styling: 'bootstrap3',
-            });
+           
             setTimeout(function(){
-                    window.location = '/cursos';
+                    window.location = '/';
                 },2000);
         },
         error: function(respuesta) {
             if (respuesta.status == 422) {
-                PNotify.error({
-                    title: 'Error al crear!',
-                    text: respuesta.responseJSON,
-                });
+                
             }
         }
     });
@@ -37,8 +30,11 @@ $.validator.setDefaults({
     }
 });
 
-$('#formCourse').validate({
+$('#UpdateCourse').validate({
     rules: {
+    status:{
+        required: true,
+    },
     title: {
         required: true,
         minlength: 5,
@@ -61,10 +57,7 @@ $('#formCourse').validate({
         required: true,
         minlength: 5,
     },
-    thumbnail: {
-        required: true,
-    },
-    carrera_id: {
+    carrera: {
         required: true,
     },
     description: {
@@ -81,6 +74,9 @@ $('#formCourse').validate({
     },
     },
     messages: {
+    status:{
+        required: "Seleccione el Status",
+    },
     title: {
         required: "Por favor introduzca el titulo del curso",
         minlength: "La longitud minima del campo son 5 caracteres"
@@ -101,10 +97,7 @@ $('#formCourse').validate({
         required: "Ingrese el lenguaje del curso",
         minlength: "La longitud minima del campo son 5 caracteres"
     },
-    thumbnail: {
-        required: "Ingrese el la imagen del curso",
-    },
-    carrera_id: {
+    carrera: {
         required: "Seleccione la carrera a la cual pertenece el curso",
     },
     description: {

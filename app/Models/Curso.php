@@ -44,7 +44,7 @@ class Curso extends Model
     protected $table = 'cursos';
 
     protected $fillable = [
-       'user_id', 'carrera_id', 'title', 'slug', 'thumbnail', 'extracto', 'description', 'precio', 'duracion_curso', 'nivel_habilidad', 'lengueaje', 'instructor', 'valoracion', 'status', 'url_video_preview_curso' 
+       'user_id', 'carrera_id', 'title', 'slug', 'thumbnail', 'extracto', 'description', 'precio', 'duracion_curso', 'nivel_habilidad', 'lenguaje', 'instructor', 'valoracion', 'status', 'url_video_preview_curso' 
     ];
 
     public function user(){
@@ -62,5 +62,10 @@ class Curso extends Model
     // public function lecciones(){
     //     return $this->hasMany(CursoLeccion::class, 'curso_id', 'id')->withTimestamps();
     // }
+
+    public function scopeSearch($query, $title){
+        return $query->where('title', 'LIKE', "%$title%");
+    }
+
     
 }

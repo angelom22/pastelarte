@@ -25,7 +25,7 @@ class CarreraController extends Controller
         $cursos    = Curso::where('carrera_id', $carrera->id)
                             ->where('status', 'DISPONIBLE')
                             ->select('cursos.*')
-                            // ->orderBy('id', 'ASC')
+                            ->orderBy('id', 'ASC')
                             ->paginate(3);
 
         return view('carrera.index',compact('carrera_cursos','carrera', 'cursos'));
@@ -146,8 +146,13 @@ class CarreraController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Carrera $carrera)
     {
-        //
+        $this->authorize('haveaccess', 'career.destroy');
+
+        // Se elimina la carrera
+        $carrera->delete();
+
+        return redirect()->route('admin.carrera')->with('status_success', 'La carrera ha sido eliminada');
     }
 }

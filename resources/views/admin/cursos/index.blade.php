@@ -56,9 +56,11 @@
 													</li> -->
 													<li class="list-inline-item">
 														<div class="candidate_revew_search_box course fn-520">
-															<form class="form-inline my-2 my-lg-0">
-														    	<input class="form-control mr-sm-2" type="search" placeholder="Buscar curso" aria-label="Search">
-														    	<button class="btn my-2 my-sm-0" type="submit"><span class="flaticon-magnifying-glass"></span></button>
+															<!-- BUSCADOR DE CURSOS -->
+															<form action="{{route('admin.curso')}}" method="GET" class="form-inline my-2 my-lg-0">
+															
+														    	<input class="form-control mr-sm-2" type="search" placeholder="Buscar Curso" aria-label="Search" aria-describedby="search" name="title">
+														    	<button class="btn my-2 my-sm-0" type="submit"><span class="flaticon-magnifying-glass" id="search" aria-hidden="true"></span></button>
 														    </form>
 														</div>
 													</li>
@@ -78,7 +80,7 @@
 														<!-- Colocar Validación para estos botones -->
 														@can('haveaccess','lesson.edit') 
 														<li class="list-inline-item">
-															<a class="mcc_edit" href="#">Editar</a>
+															<a class="mcc_edit" href="{{route('CourseEdit', $curso)}}">Editar</a>
 														</li>
 														@endcan
 														@can('haveaccess','lesson.show') 
@@ -92,7 +94,7 @@
 											<div class="details">
 												<div class="mc_content">
 													<p class="subtitle">Carrera: {{$curso->carrera->title}}</p>
-													<h5 class="title">{{$curso->title}}<span><small class="tag">{{$curso->status}}</small></span></h5>
+													<h5 class="title">{{$curso->title}}<span {{ $curso->status === 'INHABILITADO' ? 'class=style2' : '' }} ><small class="tag">{{$curso->status}}</small></span></h5>
 													<p>{!! $curso->extracto !!}</p>
 												</div>
 												<div class="mc_footer">

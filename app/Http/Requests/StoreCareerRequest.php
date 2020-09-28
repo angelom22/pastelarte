@@ -24,7 +24,7 @@ class StoreCareerRequest extends FormRequest
     public function rules()
     {
         return [
-            'title'             => 'required|min:5|max:255|unique:carreras',
+            'title'             => 'required|min:5|max:255|unique:carreras,title',
             'precio'            => 'required|numeric',
             'description'       => 'required',
             'url_video_preview_carrera' => 'required|active_url'
