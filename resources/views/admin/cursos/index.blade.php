@@ -42,12 +42,12 @@
 											<div class="candidate_revew_select style2 text-right">
 												<ul class="mb0">
 												
-													// <li class="list-inline-item">
+													<!-- // <li class="list-inline-item">
 													// 	<select name="carrera" class="selectpicker show-tick">
 													// 		<option value="2">Pastelería</option>
 													// 		<option value="3">Decoración de Tortas</option>
 													// 	</select>
-													// </li>
+													// </li> -->
 													<li class="list-inline-item">
 														<div class="candidate_revew_search_box course fn-520">
 															<!-- BUSCADOR DE CURSOS -->
@@ -70,12 +70,12 @@
 												<div class="overlay">
 													<ul class="mb0">
 														<!-- Colocar Validación para estos botones -->
-														@can('haveaccess','lesson.edit') 
+														@can('haveaccess','lesson.edit')
 														<li class="list-inline-item">
 															<a class="mcc_edit" href="{{route('CourseEdit', $curso)}}">Editar</a>
 														</li>
 														@endcan
-														@can('haveaccess','lesson.show') 
+														@can('haveaccess','lesson.show')
 														<li class="list-inline-item">
 															<a class="mcc_view" href="{{route('cursos.show', $curso->slug)}}">Ver</a>
 														</li>
@@ -91,21 +91,18 @@
 												</div>
 												<div class="mc_footer">
 													<ul class="mc_meta fn-414">
-														<li class="list-inline-item"><a href="#"><i class="flaticon-profile"></i></a></li>
-														<li class="list-inline-item"><a href="#">1548</a></li>
-														<li class="list-inline-item"><a href="#"><i class="flaticon-comment"></i></a></li>
-														<li class="list-inline-item"><a href="#">25</a></li>
-
+														<li class="list-inline-item"><i class="flaticon-profile"></i></li>
+														<li class="list-inline-item">1548</li>
 													</ul>
 													<ul class="mc_review fn-414">
-														<li class="list-inline-item"><a href="#"><i class="fa fa-star"></i></a></li>
-														<li class="list-inline-item"><a href="#"><i class="fa fa-star"></i></a></li>
-														<li class="list-inline-item"><a href="#"><i class="fa fa-star"></i></a></li>
-														<li class="list-inline-item"><a href="#"><i class="fa fa-star"></i></a></li>
-														<li class="list-inline-item"><a href="#"><i class="fa fa-star"></i></a></li>
-														<li class="list-inline-item"><a href="#">(5)</a></li>
+														<li class="list-inline-item"><i class="fa fa-star"></i></li>
+														<li class="list-inline-item"><i class="fa fa-star"></i></li>
+														<li class="list-inline-item"><i class="fa fa-star"></i></li>
+														<li class="list-inline-item"><i class="fa fa-star"></i></li>
+														<li class="list-inline-item"><i class="fa fa-star"></i></li>
+														<li class="list-inline-item">(5)</li>
 														<li class="list-inline-item tc_price fn-414"><a href="#">${{$curso->precio}}</a></li>
-														
+
 													</ul>
 													<ul class="mc_meta fn-414">
 														<li class="list-inline-item">
@@ -123,17 +120,17 @@
 													</ul>
 													<ul class="view_edit_delete_list float-right">
 														<li class="list-inline-item">
-															@can('haveaccess','course.show') 
+															@can('haveaccess','course.show')
 															<a href="{{route('cursos.show', $curso->slug)}}" data-toggle="tooltip" data-placement="top" title="Ver" data-original-title="View"><span class="flaticon-preview"></span></a>
 															@endcan
 														</li>
 														<li class="list-inline-item">
-															@can('haveaccess','course.edit') 
+															@can('haveaccess','course.edit')
 															<a href="{{route('CourseEdit', $curso)}}" data-toggle="tooltip" data-placement="top" title="Editar" data-original-title="Edit"><span class="flaticon-edit"></span></a>
 															@endcan
 														</li>
 									    				<li class="list-inline-item">
-														@can('haveaccess','course.destroy') 
+														@can('haveaccess','course.destroy')
 															<form action="{{route('cursos.destroy', $curso)}}" method="POST" style="display: inline;">
 																@csrf
 																@method('DELETE')
@@ -150,15 +147,15 @@
 										@endforeach
 									</div>
 
-									
+
 
 									<div class="row">
 										<div class="col-lg-12">
 											<div class="mbp_pagination mt20">
 												<ul class="page_navigation">
-													
+
 													{{ $cursos->links() }}
-													
+
 												</ul>
 											</div>
 										</div>

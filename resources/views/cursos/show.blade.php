@@ -319,14 +319,12 @@
                                 <div class="thumb">
                                     <img class="img-whp" src="/storage/{{$curso->thumbnail}}" alt="{{$curso->title}}" style="width: 307px; height:200px;  object-fit: cover; object-position: center center;">
                                     <div class="overlay">
-                                        <div class="tag" style="background: #441c42;">nuevo</div>
-                                        <div class="icon" style="background: #441c42; font-size: 15px;">decoración</div>
-										<a class="tc_preview_course" 
-										href="#" 
-										data-curso_title="{{$curso->title}}" 
-										data-curso_precio="{{$curso->precio}}" 
-										data-curso_instructor="{{$curso->instructor}}" 
-										data-toggle="modal" 
+										<a class="tc_preview_course"
+										href="#"
+										data-curso_title="{{$curso->title}}"
+										data-curso_precio="{{$curso->precio}}"
+										data-curso_instructor="{{$curso->instructor}}"
+										data-toggle="modal"
 										data-target="#curso1"
 										><i class="fa fa-play" style="font-size: 30px;"></i></a>
                                     </div>
@@ -348,8 +346,6 @@
                                         <ul class="tc_meta float-left">
                                             <li class="list-inline-item"><a href="#"><i class="flaticon-profile"></i></a></li>
                                             <li class="list-inline-item"><a href="#">30</a></li>
-                                            <li class="list-inline-item"><a href="#"><i class="flaticon-comment"></i></a></li>
-                                            <li class="list-inline-item"><a href="#">10</a></li>
                                         </ul>
                                         <div class="tc_price float-right">${{$curso->precio}}</div>
                                     </div>
@@ -433,9 +429,9 @@
 		var curso_precio = button.data('curso_precio');
 		var curso_instructor = button.data('curso_instructor');
         console.log(carrera_id);
-		
+
 		var modal = $(this);
-        
+
         modal.find('.modal-body #titulo').val(curso_title);
         modal.find('.modal-body #precio').val(curso_precio);
         modal.find('.modal-body #instructor').val(curso_instructor);

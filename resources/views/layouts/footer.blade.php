@@ -16,7 +16,7 @@
 						<h4>Pastel Arte</h4>
 						<ul class="list-unstyled">
 							<li><a href="{{ url('cursos') }}">Cursos</a></li>
-							<li><a href="#">Eventos</a></li>
+							<li><a href="{{ url('evento') }}">Eventos</a></li>
 							<li><a href="{{ url('blog') }}">Blog</a></li>
 							<li><a href="{{ url('Contacto') }}">Contacto</a></li>
 						</ul>
@@ -27,10 +27,6 @@
 						<h4>Cursos</h4>
 						<ul class="list-unstyled">
 							<li><a href="{{ url('cursos') }}">Todos los cursos</a></li>
-							<li><a href="#">Técnicas de pastelería</a></li>
-							<li><a href="#">Masas</a></li>
-							<li><a href="#">Decoración de tortas comerciales</a></li>
-							<li><a href="#">Técnicas en fondant</a></li>
 						</ul>
 					</div>
 				</div>
@@ -38,8 +34,8 @@
 					<div class="footer_support_widget">
 						<h4>Carreras</h4>
 						<ul class="list-unstyled">
-							<li><a href="#">Pastelería</a></li>
-							<li><a href="#">Decoración de tortas</a></li>
+							<li><a href="{{ route('filtrarCarrera','pasteleria') }}">Pastelería</a></li>
+                        <li><a href="{{ route('filtrarCarrera','decoracion-de-tortas') }}">Decoración de tortas</a></li>
 						</ul>
 					</div>
 				</div>
@@ -111,7 +107,7 @@
 			<div class="row">
 				<div class="col-lg-6 offset-lg-3">
 					<div class="copyright-widget text-center">
-						<p>Copyright Pastel Arte © <?php echo date('Y');?>. Todos los derechos reservados. Desarrollo<a href="https://www.Veneztec.com" target="_blank" style="color: #ffffff;"> Veneztec</a></p>
+						<p>Copyright Pastel Arte © <?php echo date('Y');?>. Todos los derechos reservados. Desarrollo<a href="https://www.veneztec.com" target="_blank" style="color: #ffffff;"> Veneztec</a></p>
 					</div>
 				</div>
 			</div>

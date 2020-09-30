@@ -16,8 +16,10 @@ Route::get('/', 'HomeController@index')->name('home');
 // Ruta para la activacion del usuario 
 Route::get('activate/{token}', 'UserActivationTokenController@activate')->name('activation');
 
+// Ruta para la asinacion de roles
 Route::resource('/role', 'RoleController')->names('role');
 
+// Ruta para la vista administrativa de usuarios
 Route::resource('/user', 'UserController',['except' => ['create','store']])->names('user');
 
 /**

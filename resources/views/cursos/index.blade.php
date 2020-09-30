@@ -64,7 +64,7 @@
                         <div class="col-sm-6 col-lg-6 col-xl-4">
                             <div class="top_courses">
                                 <div class="thumb">
-                                    <img class="img-whp" src="/storage/{{$curso->thumbnail}}" alt="{{$curso->slug}}">
+                                    <img class="img-whp" style="width: 307px; height: 200px;" src="/storage/{{$curso->thumbnail}}" alt="{{$curso->slug}}">
                                     <div class="overlay">
                                         <a class="tc_preview_course" href="#" data-toggle="modal" data-target="#curso1"><i class="fa fa-play" style="font-size: 30px;"></i></a>
                                     </div>

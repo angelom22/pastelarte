@@ -20,7 +20,6 @@
                         @csrf
                             <div class="heading">
                                 <h3 class="text-center">Ingrese a su cuenta</h3>
-                                <p class="text-center">¿No tienes una cuenta? <a class="text-thm" href="#profile">¡Regístrate!</a></p>
                             </div>
                             <div class="form-group">
                                 <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" autocomplete="email" autofocus placeholder="Correo Electronico">
@@ -38,11 +37,11 @@
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
-                                
+
                             </div>
                             <div class="form-group custom-control custom-checkbox">
                                 <input type="checkbox" class="custom-control-input"  name="remember" id="exampleCheck1" id="remember" {{ old('remember') ? 'checked' : '' }} >
-                                <label class="custom-control-label" for="exampleCheck1">Recordar me</label>
+                                <label class="custom-control-label" for="exampleCheck1">Recordarme</label>
                                 @if (Route::has('password.request'))
                                 <a class="btn btn-link" href="{{ route('password.request') }}">
                                     {{ __('¿Se te olvidó tu contraseña?') }}
@@ -74,7 +73,7 @@
                         <form method="POST" action="{{ route('register') }}" id="registro">
                         @csrf
                             <div class="form-group">
-                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" autocomplete="name" autofocus placeholder="Usuario" >
+                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" autocomplete="name" autofocus placeholder="Nombre y Apellido" >
 
                                 @error('name')
                                     <span class="invalid-feedback" role="alert">

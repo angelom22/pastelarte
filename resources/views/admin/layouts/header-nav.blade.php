@@ -150,7 +150,7 @@
                                 <a class="dropdown-item active" href="{{route('admin.user', Auth::user())}}">Mi Perfil</a>
                                 <a class="dropdown-item" href="#">Mensajes</a>
                                 <!-- <a class="dropdown-item" href="#">Purchase history</a> -->
-                                <a class="dropdown-item" href="#">Ayuda</a>
+                                <a class="dropdown-item" href="#">Reportar Problema</a>
                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                     onclick="event.preventDefault();
                                                     document.getElementById('logout-form').submit();">

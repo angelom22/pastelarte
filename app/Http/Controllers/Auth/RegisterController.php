@@ -22,7 +22,7 @@ class RegisterController extends Controller
     |
     */
 
-    // propiedad publica de l user
+    // propiedad publica del user
     // public $user; 
 
     use RegistersUsers;

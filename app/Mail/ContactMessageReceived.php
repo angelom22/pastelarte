@@ -11,7 +11,7 @@ class ContactMessageReceived extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $subject = 'Mensaje recibido';
+    public $subject = 'Mensaje de contacto recibido';
     public $msg;
 
     /**
