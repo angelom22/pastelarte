@@ -36,7 +36,8 @@ class AngelPermissionInfoSeeder extends Seeder
             'email' => 'admin@admin.com',
             // 'password' => Hash::make('admin123'),
             'password' => 'admin123',
-            'avatar' => 'perfil/perfil.png'
+            'avatar' => 'perfil/perfil.png',
+            'status' => true
         ]);
         
         // Rol Admin

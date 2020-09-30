@@ -41,30 +41,22 @@
 										<div class="col-xl-8">
 											<div class="candidate_revew_select style2 text-right">
 												<ul class="mb0">
-													<li class="list-inline-item">
-														<select class="selectpicker show-tick">
-															<option>Pastelería</option>
-															<option>Decoración de Tortas</option>
-														</select>
-													</li>
-													<!-- <li class="list-inline-item">
-														<select class="selectpicker show-tick">
-															<option>Recientemente publicado</option>
-															<option>Recientes</option>
-															<option>Anteriores</option>
-														</select>
-													</li> -->
+												
+													// <li class="list-inline-item">
+													// 	<select name="carrera" class="selectpicker show-tick">
+													// 		<option value="2">Pastelería</option>
+													// 		<option value="3">Decoración de Tortas</option>
+													// 	</select>
+													// </li>
 													<li class="list-inline-item">
 														<div class="candidate_revew_search_box course fn-520">
 															<!-- BUSCADOR DE CURSOS -->
 															<form action="{{route('admin.curso')}}" method="GET" class="form-inline my-2 my-lg-0">
-															
-														    	<input class="form-control mr-sm-2" type="search" placeholder="Buscar Curso" aria-label="Search" aria-describedby="search" name="title">
-														    	<button class="btn my-2 my-sm-0" type="submit"><span class="flaticon-magnifying-glass" id="search" aria-hidden="true"></span></button>
-														    </form>
+																<input class="form-control mr-sm-2" type="search" placeholder="Buscar Curso" aria-label="Search" aria-describedby="search" name="title">
+																<button class="btn my-2 my-sm-0" type="submit"><span class="flaticon-magnifying-glass" id="search" aria-hidden="true"></span></button>
+															</form> 
 														</div>
 													</li>
-
 												</ul>
 											</div>
 										</div>

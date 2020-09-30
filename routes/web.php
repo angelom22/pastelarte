@@ -13,6 +13,9 @@ Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home');
 
+// Ruta para la activacion del usuario 
+Route::get('activate/{token}', 'UserActivationTokenController@activate')->name('activation');
+
 Route::resource('/role', 'RoleController')->names('role');
 
 Route::resource('/user', 'UserController',['except' => ['create','store']])->names('user');

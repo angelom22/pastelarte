@@ -133,7 +133,7 @@ class UserController extends Controller
             $user->update(
                 [
                     'name'      => $request->name,
-                    'email'     => $request->email,
+                    'email'     => $user->email,
                     'avatar'    => $foto
                 ]
             );
@@ -147,8 +147,11 @@ class UserController extends Controller
             Storage::put($user->avatar, (string) $image);
 
         } else {
-
-            $user->update($request->validate($rules));
+            // $user->update($request->validate($rules));
+            $user->update(array_filter([
+                'name'  => $request->name,
+                'email' => $user->email,
+            ]));
 
         }
 

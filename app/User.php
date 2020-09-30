@@ -6,8 +6,12 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use App\RolesPermisos\Traits\UserTrait;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use App\UserActivationToken;
+use Illuminate\Support\Str;
 use App\Models\Blog;
+
 
 class User extends Authenticatable
 {
@@ -19,7 +23,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'avatar',
+        'name', 'email', 'password', 'avatar', 'status'
     ];
 
     /**
@@ -47,5 +51,33 @@ class User extends Authenticatable
 
     public function blogs(){
         return $this->hasMany(Blog::class);
-   }
+    }
+
+    public function activate(){
+        $this->update(['status' => true]);
+
+        Auth::login($this);
+
+        $this->token->delete();
+    }
+    
+    public function token(){
+        return $this->hasOne(UserActivationToken::class);
+    }
+
+    public function generateToken(){
+
+        // Se le crea el token al usuario recien registrado
+        $token = Str::random(60);
+        $this->token()->create([
+            'token'     => $token
+        ]);
+        
+        // Se retorna la instancia del user
+        return $this;
+
+    }
+
+
+
 }
