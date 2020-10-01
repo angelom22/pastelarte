@@ -44,7 +44,7 @@ class AdminController extends Controller
     {
         $this->authorize('haveaccess', 'course.show');
 
-        // condicion para para que el usuario solo pieda ver los cursos que a adquierido
+        // realizar la condicion para que el usuario solo pueda ver los cursos que a adquirido
         $cursos = Curso::all();
         
         return view('admin.cursos.view', compact('cursos'));
