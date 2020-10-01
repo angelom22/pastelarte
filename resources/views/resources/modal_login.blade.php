@@ -73,7 +73,7 @@
                         <form method="POST" action="{{ route('register') }}" id="registro">
                         @csrf
                             <div class="form-group">
-                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" autocomplete="name" autofocus placeholder="Nombre y Apellido" >
+                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" autocomplete="name" autofocus placeholder="Tu Nombre y Apellido" >
 
                                 @error('name')
                                     <span class="invalid-feedback" role="alert">
@@ -100,7 +100,7 @@
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <input id="password_confirmation" type="password" class="form-control" name="password_confirmation" autocomplete="new-password"  placeholder="Confirmar Contraseña">
+                                <input id="password_confirmation" type="password" class="form-control" name="password_confirmation" autocomplete="new-password" placeholder="Confirmar Contraseña">
                             </div>
                             <button type="submit" class="btn btn-log btn-block btn-thm2">{{ __('Registrar') }}</button>
                             <hr>

@@ -42,12 +42,12 @@
 											<div class="candidate_revew_select style2 text-right">
 												<ul class="mb0">
 												
-													<!-- // <li class="list-inline-item">
-													// 	<select name="carrera" class="selectpicker show-tick">
-													// 		<option value="2">Pastelería</option>
-													// 		<option value="3">Decoración de Tortas</option>
-													// 	</select>
-													// </li> -->
+													<!-- <li class="list-inline-item">
+													 	<select name="carrera" class="selectpicker show-tick">
+													 		<option value="2">Pastelería</option>
+													 		<option value="3">Decoración de Tortas</option>
+													 	</select>
+													</li> -->
 													<li class="list-inline-item">
 														<div class="candidate_revew_search_box course fn-520">
 															<!-- BUSCADOR DE CURSOS -->
@@ -110,7 +110,8 @@
 															<a href="#"
 															class="btn btn-info"
 															title="Añadir Lección"
-															data-curso_id="{{$curso->id}}"
+															data-curso_id = "{{$curso->id}}"
+															data-curso_title = "{{$curso->title}}"
 															data-toggle="modal" data-target="#CrearLeccion"
 															>
                                                         	<i class="fa fa-plus"></i>
@@ -185,10 +186,11 @@
 	$('#CrearLeccion').on('show.bs.modal', function(event){
 		var button = $(event.relatedTarget);
 		var curso_id = button.data('curso_id');
-		console.log(curso_id);
-
+		let curso_title = button.data('curso_title');
+		
 		var modal = $(this);
-
+		modal.find('.modal-body').val(curso_title);
+		// document.getElementById("caja_valor").value = curso_title;
         modal.find('.modal-body #curso_id').val(curso_id);
 	});
 

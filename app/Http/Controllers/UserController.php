@@ -98,29 +98,35 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {   
-        
+        // dd($request->old_password);
         $rules = [
             'name'      => 'required|max:50|unique:users,name,'.$user->id,
             'email'     => 'required|max:50|unique:users,email,'.$user->id,
-            'avatar'    => 'image|max:2048'
         ];
         
-        // señaden las validaciones a los campos password
-        if ($request->filled('old_password')) {
-            // $rules['old_password'] = ['required', 'confirmed'];
-            $rules['password'] = ['required','min:8'];
+        // Comparacion de contraseña old y la que se encuentra en base de datos
+        // if (Hash::check($request->old_password, $user->password)) 
+        // {
+        //     $rules['old_password'] = ['required', 'confirmed'];
+        // } 
+
+        // se añaden las validaciones a los campos password
+        if ($request->filled('password')) 
+        {
+            $rules['password'] = ['required', 'string', 'min:8']; 
             $rules['password_confirmation'] = ['required', 'same:password'];
         }
+        
 
-        // Comparacion de contraseña old y la que se encuentra en base de datos
-        // if (Hash::check($request->old_password, $user->password)) {
-        //     $user->update($request->validate($rules));
-        // }        
-        
-        
+        $user->update($request->validate($rules));
+
+
         // condicional para guardar el avatar del usuario
-        if ($request->hasFile('avatar') ) {
-            
+        if ($request->hasFile('avatar') ) 
+        {
+            // se anade la regla de valdiacion
+            $rules['avatar'] =  ['image, max:2048'];
+
             if ($user->avatar != 'perfil/perfil.png'){
                 // Se elimina el avatar actual
                 Storage::delete($user->avatar);
@@ -148,11 +154,10 @@ class UserController extends Controller
 
         } else {
             // $user->update($request->validate($rules));
-            $user->update(array_filter([
-                'name'  => $request->name,
-                'email' => $user->email,
-            ]));
-
+            $user->update([
+                'name'      => $request->name,
+                'email'     => $user->email,
+            ]);
         }
 
         $user->roles()->sync($request->roles);

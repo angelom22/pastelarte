@@ -1,7 +1,7 @@
 @component('mail::message')
-# Activación de Cuenta
+# Hemos recibido su solicitud de registro en nuestra plataforma. Por favor, recuerde verificar su identidad para iniciar.
 
-Has Click en el siguiente enlace para activar tu cuenta.
+Has Click en el siguiente enlace para activar su cuenta.
 
 @component('mail::button', ['url' => route('activation', $user->token)])
 Activa tu cuenta

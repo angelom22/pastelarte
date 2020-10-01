@@ -155,24 +155,24 @@
 
 @push('js')
 
-<!-- <script>
-
-	var token = $('meta[name="csrf-token"]').attr('content');
-	var id = document.getElementsByName("user_id")[0].value;
-
+<script>
+	
 	$.validator.setDefaults({
 		submitHandler: function () {
+			var datos = $("#UserUpdate").serialize();
+			var token = $('meta[name="csrf-token"]').attr('content');
 			$.ajax({
 			type: "PUT",
-			url: "user/update/{id}",
+			url: "user.update",
 			dataType: "json",
-			processData: false,
+			data: formData,
+			cache: false,
 			contentType: false,
+			processData: false,
 			headers: {
 				'X-CSRF-TOKEN': token
 			},
 			data: datos,
-			dataType: "json",
 			success: function(respuesta) {
 				console.log(respuesta);
 				
@@ -193,25 +193,47 @@
 	$('#UserUpdate').validate({
 	rules: {
 	name:{
+		required: true,
 		minlength: 5
 	},
 	email: {
+		required: true,
 		email:true
+	},
+	avatar: {
+		accept: "image/*",
+		// extension: "png,jpg,jpeg,gif"
+	},
+	old_password: {
+		minlength: 8
 	},
 	password: {
 		minlength: 8
 	},
+	password_confirmation: {
+        minlength: 8,
+        equalTo: "#password"
+      },
 	},
 	messages: {
 	name:{
+		required: "El nombre es un campo obligatorio",
 		minlength: "La longitud minima del campo son 5 caracteres"
 	},
 	email: {
+		required: "El correo es un campo obligatorio",
 		email: "El campo correo de contener '@'"
+	},
+	avatar: {
+		extension: "extencion no valida"
 	},
 	password: {
 		minlength: "La longitud minima de la contraseña deben ser 8 caracteres"
-		},
+	},
+	password_confirmation: {
+        minlength: "La longitud minima de la contraseña deben ser 8 caracteres",
+        equalTo: "El password no coincide"
+      },
 	},
 	errorElement: 'span',
 	errorPlacement: function (error, element) {
@@ -225,6 +247,6 @@
 	$(element).removeClass('is-invalid');
 	}
 	});
-</script> -->
+</script>
 
 @endpush

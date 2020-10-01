@@ -1,6 +1,6 @@
 <!-- Modal -->
 <div class="sign_up_modal modal fade" id="CrearLeccion" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"  role="dialog">
-    <form action="{{route('lessonStore', '#formLesson')}}" method="POST" id="formLesson">
+    <form action="{{route('lessonStore', $curso, '#formLesson')}}" method="POST" id="formLesson">
     @method('POST')
     @csrf
     <div class="modal-dialog modal-dialog-centered" role="document">
@@ -10,7 +10,7 @@
             </div>
             
             <div class="modal-body">  
-                <h5 class="modal-title">Añadir Lección</h5>
+                <h5 class="modal-title">Añadir Lección a: {{$curso->title}}</h5>
                 <div class="row my_setting_content_details">
                     <div class="col-xl-12">
 

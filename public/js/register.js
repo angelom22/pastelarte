@@ -42,7 +42,7 @@ rules: {
     name: {
         required: true,
         minlength: 5,
-        maxlength: 50
+        maxlength: 60
         },
     email: {
         required: true,
@@ -52,15 +52,16 @@ rules: {
         required: true,
         minlength: 8
     },
-    // password_confirmation: { 
-    //     equalTo: "#password",
+    // password_confirmation: {
     //     minlength: 8,
-    // }
+    //     equalTo: "#password"
+    //   },
 },
 messages: {
     name: {
         required: "Por favor ingrese un nombre de usuario valido",
-        minlength: "La longitud minima del campo son 8 caracteres"
+        minlength: "La longitud minima del campo son 8 caracteres",
+        maxlength: "La longitud maxima del campo son 60 caracteres"
     },
     email: {
         required: "Por favor ingrese un correo valido",
@@ -71,9 +72,9 @@ messages: {
         minlength: "La longitud minima del campo son 8 caracteres"
     },
     // password_confirmation: {
-    //     equalTo: "El password debe ser igual al anterior",
-    //     minlength: "Minimo 8 caracteres",
-    // }
+    //     minlength: "La longitud minima de la contraseña deben ser 8 caracteres",
+    //     equalTo: "El password no coincide"
+    //   },
 },
 errorElement: 'span',
 errorPlacement: function (error, element) {

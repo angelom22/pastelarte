@@ -129,7 +129,9 @@
 									</div>
 									<div class="col-lg-12">
 										<button type="submit" class="my_setting_savechange_btn btn btn-thm">Guardar
-												<span class="flaticon-right-arrow-1 ml15"></span></button>
+										<span class="flaticon-right-arrow-1 ml15"></span></button>
+										<a href="{{route('admin.curso')}}" class="my_setting_savechange_btn btn btn-thm3">Regrasar
+										<span class="flaticon-right-arrow-1 ml15"></span></a>
 									</div>
 									</form>
 								</div>

@@ -212,7 +212,7 @@
                                             </div>
 
                                             <!-- DISQUS -->
-                                            <div id="disqus_thread"></div>
+                                            <!-- <div id="disqus_thread"></div>
                                             <script>
                                             /**
                                             *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
@@ -230,10 +230,10 @@
                                             (d.head || d.body).appendChild(s);
                                             })();
                                             </script>
-                                            <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+                                            <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript> -->
 
 
-											<!-- <div class="cs_row_six csv2">
+											<div class="cs_row_six csv2">
 												<div class="sfeedbacks">
 													<div class="mbp_pagination_comments">
 														<div class="mbp_first media csv1">
@@ -280,20 +280,20 @@
 																</span>
 															</li>
 														</ul>
-														<form class="comments_form">
-															<div class="form-group">
+														<form action="javascript: comentarios(this)" id="comentario" class="comments_form">
+															<!-- <div class="form-group">
 														    	<label for="exampleInputName1">Titulo del comentario</label>
 														    	<input type="text" class="form-control" id="exampleInputName1" aria-describedby="textHelp">
-															</div>
+															</div> -->
 															<div class="form-group">
-															    <label for="exampleFormControlTextarea1">Contenido</label>
-															    <textarea class="form-control" id="exampleFormControlTextarea1" rows="6"></textarea>
+															    <label for="contenido">Contenido</label>
+															    <textarea class="form-control" id="contenido" name="contenido" rows="6"></textarea>
 															</div>
-															<button type="submit" class="btn btn-thm">Enviar <span class="flaticon-right-arrow-1"></span></button>
+															<button type="submit" class="btn btn-thm">Publicar <span class="flaticon-right-arrow-1"></span></button>
 														</form>
 													</div>
 												</div>
-											</div> -->
+											</div>
 
 
 										</div>
@@ -420,7 +420,7 @@
 
 
 @push('js')
-
+<script src="{{asset('js/comentarios.js')}}"></script>
 <script>
     // Modal para crear lección
 	$('#curso1').on('show.bs.modal', function(event){

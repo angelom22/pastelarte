@@ -104,7 +104,8 @@ Route::get('admin/blog', 'AdminController@blog')->name('admin.blog');
 Route::get('admin/evento', 'AdminController@evento')->name('admin.evento');
 Route::get('admin/user/{id}', 'AdminController@user')->name('admin.user');
 
-
+// Ruta para los comentarios
+Route::post('cursos/{comentario}/comentarios', 'ComentariosController@store')->name('cursos.comentarios.store');
 
 
 // Rutas del check out
