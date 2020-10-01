@@ -40,6 +40,16 @@ class AdminController extends Controller
         return view('admin.cursos.index', compact('cursos'));
     }
 
+    public function mis_cursos(Curso $curso)
+    {
+        $this->authorize('haveaccess', 'course.show');
+
+        // condicion para para que el usuario solo pieda ver los cursos que a adquierido
+        $cursos = Curso::all();
+        
+        return view('admin.cursos.view', compact('cursos'));
+    }
+
     public function carrera()
     {
         $this->authorize('haveaccess', 'career.admin');

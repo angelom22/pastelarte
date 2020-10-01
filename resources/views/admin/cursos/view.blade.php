@@ -1,0 +1,1 @@
+vista de los cursos adquiridos por el user

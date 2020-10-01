@@ -99,6 +99,7 @@ Route::get('etiquetas/{slug}', 'BlogController@filtrarEtiqueta')->name('filtrarE
 // Rutas de la adminitración
 Route::resource('/dashboard', 'AdminController')->names('dashboard');
 Route::get('admin/curso', 'AdminController@curso')->name('admin.curso');
+Route::get('admin/mis-cursos', 'AdminController@mis_cursos')->name('admin.mis-cursos');
 Route::get('admin/carrera/', 'AdminController@carrera')->name('carrera.user');
 Route::get('admin/blog', 'AdminController@blog')->name('admin.blog');
 Route::get('admin/evento', 'AdminController@evento')->name('admin.evento');
