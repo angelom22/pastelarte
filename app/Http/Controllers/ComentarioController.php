@@ -11,7 +11,7 @@ class ComentarioController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth',['only' => ['store']]);
+        $this->middleware('auth');
         
     }
 
@@ -42,8 +42,8 @@ class ComentarioController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request, Curso $curso)
-    {
-        dd($curso);
+    {   
+        // dd($request->contenido);
         $comentario = Comentario::create([
             'user_id'   => auth()->id(),
             'curso_id'  => $curso->id,

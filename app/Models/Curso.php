@@ -7,7 +7,7 @@ use Cviebrock\EloquentSluggable\Sluggable;
 use Cviebrock\EloquentSluggable\SluggableScopeHelpers;
 use App\Models\Carrera;
 use App\Models\Leccion;
-use App\Models\CursoLeccion;
+use App\Models\Comentario;
 use App\User;
 
 class Curso extends Model
@@ -57,6 +57,10 @@ class Curso extends Model
 
     public function lecciones(){
         return $this->belongsToMany(Leccion::class)->withTimestamps();
+    }
+
+    public function comentarios(){
+        return $this->belongsToMany(Comentario::class)->withTimestamps();
     }
 
     // public function lecciones(){

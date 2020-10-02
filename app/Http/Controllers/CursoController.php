@@ -18,6 +18,9 @@ use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\StoreCourseRequest;
 use App\Http\Requests\UpdateCourseRequest;
 
+use App\Models\Comentario;
+use App\Http\Resources\ComentarioResource;
+
 class CursoController extends Controller
 {
     /**
@@ -112,14 +115,16 @@ class CursoController extends Controller
     public function show($slug)
     {
         $curso = Curso::findBySlugOrFail($slug);
-        // dd($curso->precio);
+        // dd($curso->comentarios);
 
         $lecciones = Leccion::where('curso_id', $curso->id)->get();
-        // dd($lecciones);
-
+        
         $cursos = Curso::orderBy('id', 'ASC')->paginate(3);
+        
+        $comentarios = Comentario::where('curso_id', $curso->id)->orderBy('id', 'DESC')->get();
+        // dd($comentarios[1]->user());
 
-        return view('cursos.show',compact('curso','cursos', 'lecciones'));
+        return view('cursos.show', compact('curso','cursos', 'lecciones', 'comentarios'));
     }
 
     /**

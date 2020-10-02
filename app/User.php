@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Hash;
 use App\UserActivationToken;
 use Illuminate\Support\Str;
 use App\Models\Blog;
-
+use App\Models\Comentario;
 
 class User extends Authenticatable
 {
@@ -76,6 +76,11 @@ class User extends Authenticatable
         // Se retorna la instancia del user
         return $this;
 
+    }
+
+    public function comentarios ()
+    {
+        return $this->belongsToMany(Comentario::class)->withTimestamps();
     }
 
 

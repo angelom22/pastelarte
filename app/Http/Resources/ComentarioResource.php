@@ -16,6 +16,6 @@ class ComentarioResource extends JsonResource
     {
         return [
             'contenido' => $this->contenido
-        ]
+        ];
     }
 }

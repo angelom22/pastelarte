@@ -236,10 +236,11 @@
 											<div class="cs_row_six csv2">
 												<div class="sfeedbacks">
 													<div class="mbp_pagination_comments">
+														@foreach($comentarios as $comentario)
 														<div class="mbp_first media csv1">
-															<img src="img/resource/review1.png" class="mr-3" alt="review1.png">
+															<img src="/storage/{{$comentario->user->avatar}}" class="mr-3" alt="review1.png">
 															<div class="media-body">
-														    	<h4 class="sub_title mt-0">Angelo Meneses
+														    	<h4 class="sub_title mt-0">{{$comentario->user->name}}
 																	<span class="sspd_review float-right">
 																		<ul>
 																			<li class="list-inline-item"><a href="#"><i class="fa fa-star"></i></a></li>
@@ -251,16 +252,15 @@
 																		</ul>
 																	</span>
 														    	</h4>
-														    	<a class="sspd_postdate fz14" href="#">06/09/2020</a>
-														    	<p class="fz15 mt20">Excelente curso.</p>
-														    	<p class="fz15 mt25 mb25">Excelente curso.</p> <div class="ssp_reply float-right"><span class="flaticon-consulting-message"></span></div>
+														    	<a class="sspd_postdate fz14" href="#">{{$comentario->created_at->diffForHumans()}}</a>
+														    	<p class="fz15 mt25 mb25" id="comentario">{{$comentario->contenido}}</p> <div class="ssp_reply float-right"><span class="flaticon-consulting-message"></span></div>
 															</div>
 														</div>
+														@endforeach
 														<div class="custom_hr"></div>
 													</div>
 												</div>
 											</div>
-
 
 											<div class="cs_row_seven csv2">
 												<div class="sfeedbacks">
@@ -280,21 +280,19 @@
 																</span>
 															</li>
 														</ul>
-														<form action="javascript: comentarios(this)" id="comentario" class="comments_form">
-															<!-- <div class="form-group">
-														    	<label for="exampleInputName1">Titulo del comentario</label>
-														    	<input type="text" class="form-control" id="exampleInputName1" aria-describedby="textHelp">
-															</div> -->
+														<form action="{{route('cursos.comentarios.store', $curso)}}" id="comentarios" method="POST" class="comments_form">
+														@method('POST')
+														@csrf
+															<input type="hidden" class="form-control" name="curso_id" id="curso_id" value="{{$curso->id}}" >
 															<div class="form-group">
 															    <label for="contenido">Contenido</label>
-															    <textarea class="form-control" id="contenido" name="contenido" rows="6"></textarea>
+																<textarea class="form-control" id="contenido" name="contenido" placeholder="Ingresa tu comentario" rows="5">{{ old('contenido') }}</textarea>
 															</div>
 															<button type="submit" class="btn btn-thm">Publicar <span class="flaticon-right-arrow-1"></span></button>
 														</form>
 													</div>
 												</div>
 											</div>
-
 
 										</div>
 									</div>
@@ -415,7 +413,7 @@
 			</div>
 		</div>
 	</section>
-
+@include('resources.modal_curso')
 @endsection
 
 

@@ -1,24 +1,34 @@
 // Validacion del formulario para los comentarios en los cursos
- 
-function comentarios(form) {
-
-    var myForm = document.getElementById('comentario');
-    var datos = new FormData(myForm);
-    var token = $('meta[name="csrf-token"]').attr('content');
 
     $.validator.setDefaults({
         submitHandler: function () {
+            // var datos = $("#comentarios").serialize();
+            var curso_id = $("#curso_id").val();    
+            var myForm = document.getElementById('comentarios');
+            var datos = new FormData(myForm);
+            var token = $('meta[name="csrf-token"]').attr('content');
             $.ajax({
                 type: "POST",
-                url: "cursos.comentarios.store",
+                url: `../cursos/${curso_id}/comentarios`,
+                cache: false,
                 processData: false,
                 contentType: false,
                 dataType: "json",
                 headers: {
                     'X-CSRF-TOKEN': token
                 },
-                data: datos,
+                data:datos,
                 success: function(respuesta) {
+                    console.log(respuesta);
+                    // .then(res => {
+                    //     this.NewComment = '',
+                    //     this.datos.push(res.data.data)
+                    // });
+                    ;
+                    respuesta.forEach(element => {
+                        $("#comentario").append('<p> ' + element.comentario + ' </p>');
+                    });
+                    
                     new PNotify({
                         text: 'Comentario Publicado!',
                         type: 'success',
@@ -36,7 +46,7 @@ function comentarios(form) {
         }
     });
 
-    $('#comentario').validate({
+    $('#comentarios').validate({
         rules: {
             contenido: {
                 required: true,
@@ -63,9 +73,8 @@ function comentarios(form) {
             $(element).removeClass('is-invalid');
         }
         });
+  
         
-    
-}
    
 
     
