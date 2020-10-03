@@ -20,7 +20,7 @@ class AdminController extends Controller
     {
         $this->middleware('auth');
     }
-    
+
     /**
      * Display a listing of the resource.
      *
@@ -36,7 +36,7 @@ class AdminController extends Controller
         $this->authorize('haveaccess', 'course.admin');
 
         $cursos = Curso::Search($request->title)->paginate(5);
-        
+
         return view('admin.cursos.index', compact('cursos'));
     }
 
@@ -46,8 +46,17 @@ class AdminController extends Controller
 
         // realizar la condicion para que el usuario solo pueda ver los cursos que a adquirido
         $cursos = Curso::all();
-        
+
         return view('admin.cursos.view', compact('cursos'));
+    }
+
+    public function mis_cursossingle(Curso $curso)
+    {
+        $this->authorize('haveaccess', 'course.show');
+
+        // realizar la condicion para que el usuario solo pueda ver los cursos que a adquirido
+        $cursos = Curso::all();
+        return view('admin.cursos.viewsingle', compact('cursos'));
     }
 
     public function carrera()
@@ -55,7 +64,7 @@ class AdminController extends Controller
         $this->authorize('haveaccess', 'career.admin');
 
         $carreras = Carrera::orderBy('id', 'ASC')->get();
-        
+
         return view('admin.carreras.index', compact('carreras'));
     }
 
@@ -64,21 +73,21 @@ class AdminController extends Controller
         $this->authorize('haveaccess', 'blog.admin');
 
         $blogs = Blog::orderBy('id', 'ASC')->get();
-        
+
         return view('admin.blog.index',compact('blogs'));
     }
-   
+
     public function evento()
     {
         $this->authorize('haveaccess', 'event.admin');
 
         $events = Event::orderBy('id', 'ASC')->get();
-        
+
         return view('admin.evento.index',compact('events'));
     }
 
     public function user(User $id)
-    {    
+    {
         $this->authorize('haveaccess', 'userown.show');
 
         $roles = Role::orderBy('name')->get();
@@ -109,7 +118,7 @@ class AdminController extends Controller
 
 
 
-    
+
     /**
      * Show the form for creating a new resource.
      *
@@ -117,7 +126,7 @@ class AdminController extends Controller
      */
     public function create()
     {
-       
+
     }
 
     /**

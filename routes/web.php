@@ -13,7 +13,7 @@ Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home');
 
-// Ruta para la activacion del usuario 
+// Ruta para la activacion del usuario
 Route::get('activate/{token}', 'UserActivationTokenController@activate')->name('activation');
 
 // Ruta para la asinacion de roles
@@ -100,6 +100,7 @@ Route::get('etiquetas/{slug}', 'BlogController@filtrarEtiqueta')->name('filtrarE
 Route::resource('/dashboard', 'AdminController')->names('dashboard');
 Route::get('admin/curso', 'AdminController@curso')->name('admin.curso');
 Route::get('admin/mis-cursos', 'AdminController@mis_cursos')->name('admin.mis-cursos');
+Route::get('admin/micursosingle', 'AdminController@mis_cursossingle')->name('admin.micursosingle');
 Route::get('admin/carrera/', 'AdminController@carrera')->name('carrera.user');
 Route::get('admin/blog', 'AdminController@blog')->name('admin.blog');
 Route::get('admin/evento', 'AdminController@evento')->name('admin.evento');

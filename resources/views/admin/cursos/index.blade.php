@@ -41,7 +41,7 @@
 										<div class="col-xl-8">
 											<div class="candidate_revew_select style2 text-right">
 												<ul class="mb0">
-												
+
 													<!-- <li class="list-inline-item">
 													 	<select name="carrera" class="selectpicker show-tick">
 													 		<option value="2">Pastelería</option>
@@ -54,7 +54,7 @@
 															<form action="{{route('admin.curso')}}" method="GET" class="form-inline my-2 my-lg-0">
 																<input class="form-control mr-sm-2" type="search" placeholder="Buscar Curso" aria-label="Search" aria-describedby="search" name="title">
 																<button class="btn my-2 my-sm-0" type="submit"><span class="flaticon-magnifying-glass" id="search" aria-hidden="true"></span></button>
-															</form> 
+															</form>
 														</div>
 													</li>
 												</ul>
@@ -187,7 +187,7 @@
 		var button = $(event.relatedTarget);
 		var curso_id = button.data('curso_id');
 		let curso_title = button.data('curso_title');
-		
+
 		var modal = $(this);
 		modal.find('.modal-body').val(curso_title);
 		// document.getElementById("caja_valor").value = curso_title;

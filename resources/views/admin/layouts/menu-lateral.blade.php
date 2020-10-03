@@ -17,9 +17,9 @@
             <li><a href="page-my-listing.html"><span class="flaticon-add-contact"></span> Add listing</a></li> -->
 
             <li {{ request()->is('dashboard') ? 'class=active' : '' }} ><a href="{{url('dashboard')}}"><span class="flaticon-puzzle-1"></span> Inicio</a></li>
-            @can('haveaccess','course.show')
+{{--             @can('haveaccess','course.show') --}}
             <li {{ request()->is('admin.mis-cursos') ? 'class=active' : '' }} ><a href="{{route('admin.mis-cursos')}}"><span class="flaticon-online-learning"></span>Mis Cursos</a></li>
-            @endcan
+            {{-- @endcan --}}
             @can('haveaccess','course.admin')
             <li {{ request()->is('admin/curso') ? 'class=active' : '' }} ><a href="{{route('admin.curso')}}"><span class="flaticon-online-learning"></span>Cursos</a></li>
             @endcan

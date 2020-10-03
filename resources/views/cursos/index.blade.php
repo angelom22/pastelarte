@@ -72,7 +72,7 @@
                                 <div class="details">
                                     <div class="tc_content">
                                         <p>{{$curso->instructor}}</p>
-                                        <h5>{{$curso->title}}</h5>
+                                        <h5><a href="{{route('cursos.show', $curso->slug)}}">{{$curso->title}}</a></h5>
                                         <ul class="tc_review">
                                             <li class="list-inline-item"><a href="#"><i class="fa fa-star"></i></a></li>
                                             <li class="list-inline-item"><a href="#"><i class="fa fa-star"></i></a></li>
@@ -195,7 +195,7 @@
 
 <script>
 
-    
+
 </script>
 
 @endpush
