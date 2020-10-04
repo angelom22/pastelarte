@@ -46,7 +46,7 @@ class CursoTableSeeder extends Seeder
                 "gratis" => 0,
                 "featured" => 1,
             ],
-            
+
             [
                 "user_id" => 1,
                 "carrera_id" => 2,
@@ -124,8 +124,8 @@ class CursoTableSeeder extends Seeder
                 "featured" => 1,
             ],
         ]
-    
-    );       
+
+    );
 
     }
 }

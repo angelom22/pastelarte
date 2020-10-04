@@ -28,14 +28,14 @@
 					<div class="col-lg-12">
                     @include('admin.layouts.nav-admin', ['title' => 'Carreras', 'page' => 'carrera'] )
 					</div>
-					
+
 					<div class="col-xl-12">
 						<div class="application_statics">
-						@can('haveaccess','career.create')                        
+						@can('haveaccess','career.create')
 							<a href="{{route('careerCreate')}}" class="btn btn-primary pull-right"><i class="fa fa-plus"></i>
 							Crear Carrera</a>
 						@endcan
-							<h4>Listando Carrera</h4>
+							<h4>Listado de Carreras</h4>
 							@include('custom.message')
 							<div class="card">
 								<div class="card-body">
@@ -59,27 +59,27 @@
                                                 <td>{{$carrera->precio}}</td>
                                                 <td>{{$carrera->url_video_preview_carrera}}</td>
                                                 <td>
-                                                @can('haveaccess','career.show') 
-													<a href="{{route('carrera.show', $carrera->slug)}}" class="btn btn-secondary btn-sm" title="Ver"> 
+                                                @can('haveaccess','career.show')
+													<a href="{{route('carrera.show', $carrera->slug)}}" class="btn btn-secondary btn-sm" title="Ver">
 														<span class="flaticon-preview"></span>
 													</a>
                                                 @endcan
-												@can('haveaccess','career.edit') 
-                                                    <a href="#" 
-                                                    style="color: #fff;" 
-                                                    class="btn btn-primary btn-sm" 
+												@can('haveaccess','career.edit')
+                                                    <a href="#"
+                                                    style="color: #fff;"
+                                                    class="btn btn-primary btn-sm"
                                                     title="Modificar"
                                                     data-carrera_id="{{$carrera->id}}"
                                                     data-carrera_titulo = "{{$carrera->title}}"
 		                                            data-carrera_precio = "{{$carrera->precio}}"
 		                                            data-carrera_url_video = "{{$carrera->url_video_preview_carrera}}"
-                                                    data-toggle="modal" 
+                                                    data-toggle="modal"
                                                     data-target="#EditarCarrera"
                                                     >
 														<span class="flaticon-edit"></span>
 													</a>
                                                 @endcan
-												@can('haveaccess','career.destroy') 
+												@can('haveaccess','career.destroy')
 													<form action="{{route('carrera.destroy', $carrera)}}" method="POST" style="display: inline;">
 														@csrf
 														@method('DELETE')
@@ -101,12 +101,12 @@
 													<!-- <li class="page-item disabled">
 														<a class="page-link" href="#" tabindex="-1" aria-disabled="true"> <span class="flaticon-left-arrow"></span> Prev</a>
 													</li> -->
-												
+
 													<!-- <li class="page-item">
 														<a class="page-link" href="#">Next <span class="flaticon-right-arrow-1"></span></a>
 													</li> -->
 												</ul>
-											</div> 
+											</div>
 										</div>
 									</div>
 								</div>
@@ -141,7 +141,7 @@
 @endsection
 
 
-@push('js')  
+@push('js')
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.js"></script>
 
 <script>
@@ -175,7 +175,7 @@
             "lengthMenu": [[5, 15, 50, -1], [5, 15, 50, "All"]]
         });
     });
-	
+
 </script>
 
 <script>
@@ -188,10 +188,10 @@
 		// var carrera_descipcion = button.data('carrera_descipcion');
 		var carrera_url_video = button.data('carrera_url_video');
         console.log(carrera_id);
-		
-		
+
+
 		var modal = $(this);
-        
+
         modal.find('.modal-body #carrera_id').val(carrera_id);
         modal.find('.modal-body #title').val(carrera_titulo);
         modal.find('.modal-body #precio').val(carrera_precio);
