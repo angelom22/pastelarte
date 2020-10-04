@@ -30,30 +30,50 @@
 						<div class="col-lg-12">
 							<div class="my_course_content_container">
 								<div class="my_setting_content mb30">
-									<div class="my_setting_content_header">
-										<div class="my_sch_title">
-											<h4 class="m0">Lección de : <strong>{{$id->title}}</strong></h4>
-										</div>
-									</div>
 									@include('custom.message')
 									<form action="{{ route('lessonStore') }}" method="POST" enctype="multipart/form-data" files="true" id="formLesson">
 									@method('POST')
                                     @csrf
-                                    <input type="hidden" name="curso_id" value="{{$id->id}}">
+									<div class="my_setting_content_header">
+										<div class="my_sch_title">
+											<h4 class="m0">Curso: 
+											<div class="my_profile_select_box form-group">
+												<!-- <label for="curso_id">Curso</label><br> -->
+												<select class="selectpicker" name="curso_id" id="curso_id">
+													@foreach($cursos as $curso)
+													<option value="{{$curso->id}}">{{$curso->title}}</option>
+													@endforeach
+												</select>
+											</div>
+											</h4>
+										</div>
+									</div>
+									
+                                    	
 									<div class="row my_setting_content_details pb0">
+										
 										<div class="col-xl-12">
 											<!-- <div class="row"> -->
                                                 <div class="my_profile_setting_input form-group">
                                                     <label for="title_leccion">Nombre Leccion</label>
-                                                    <input type="text" class="form-control" id="title_leccion" name="title_leccion" placeholder="Ej: Preparación y Utensilios" value="{{old('title_leccion')}}" maxlength="50" onkeypress="return soloLetras(event)">
+                                                    <input type="text" class="form-control" id="title_leccion" name="title_leccion" placeholder="Ej: Preparación y Utensilios" value="{{old('title_leccion')}}" maxlength="100">
                                                 </div>
-                                        </div>
-                                            <div class="col-xl-12">
+										</div>
+										<div class="col-lg-12">
+											<div class="my_profile_select_box form-group">
+												<label for="leccion_type">Tipo de Lección</label><br>
+												<select class="selectpicker" name="leccion_type" id="leccion_type">
+													<option value="\App\Models\Leccion::VIDEO">Video</option>
+													<option value="\App\Models\Leccion::ZIP">Archivo</option>
+												</select>
+											</div>
+										</div>
+                                            <!-- <div class="col-xl-12">
                                                 <div class="my_profile_setting_input form-group">
                                                     <label for="description_leccion">Descripción</label>
                                                     <input type="text" class="form-control" id="description_leccion" name="description_leccion" placeholder="Ej: Lección 1.1 Preparación de mezcla" maxlength="120" value="{{old('description_leccion')}}">
                                                 </div>
-                                            </div>
+                                            </div> -->
                                             <div class="col-xl-12">
                                                 <div class="my_profile_setting_input  form-group">
                                                     <label for="duration_leccion">Duración</label>   	
@@ -92,10 +112,18 @@
 
 @push('js')
 <script src="{{asset('plugins/datepicker/jquery.maskedinput.min.js')}}"></script>
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
 
 <script>
-	$('.time').mask('99:99');
+	$(document).ready(function() {
+		$('#summernote').summernote({
+			height: 300,
+		});
+		$('.time').mask('99:99');
+    });
 </script>
 
 @endpush
+
+
 

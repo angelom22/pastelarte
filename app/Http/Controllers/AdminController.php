@@ -62,7 +62,10 @@ class AdminController extends Controller
     public function leccion(Curso $curso)
     {
         $this->authorize('haveaccess', 'lesson.admin');
-        return 'Vista para las lecciones';
+
+        $cursos = Curso::all();
+
+        return view('admin.leccion.create', compact('cursos'));
        
     }
 

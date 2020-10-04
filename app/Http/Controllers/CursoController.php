@@ -190,8 +190,8 @@ class CursoController extends Controller
                 'nivel_habilidad'           => $request->nivel_habilidad,
                 'lenguaje'                  => $request->lenguaje,
                 'instructor'                => $request->instructor,
-                'gratis'                    => $request->gratis,
-                'featured'                  => $request->featured,
+                'gratis'                    => $curso->gratis,
+                'featured'                  => $curso->featured,
                 'status'                    => $request->status,
                 'url_video_preview_curso'   => $request->url_video_preview_curso,
             ]);
