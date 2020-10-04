@@ -35,7 +35,7 @@ class AdminController extends Controller
     {
         $this->authorize('haveaccess', 'course.admin');
 
-        $cursos = Curso::Search($request->title)->paginate(5);
+        $cursos = Curso::Search($request->title)->orderBy('id', 'DESC')->paginate(5);
 
         return view('admin.cursos.index', compact('cursos'));
     }
@@ -57,6 +57,13 @@ class AdminController extends Controller
         // realizar la condicion para que el usuario solo pueda ver los cursos que a adquirido
         $cursos = Curso::all();
         return view('admin.cursos.viewsingle', compact('cursos'));
+    }
+
+    public function leccion(Curso $curso)
+    {
+        $this->authorize('haveaccess', 'lesson.admin');
+        return 'Vista para las lecciones';
+       
     }
 
     public function carrera()

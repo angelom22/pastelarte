@@ -73,7 +73,7 @@
                         <form method="POST" action="{{ route('register') }}" id="registro">
                         @csrf
                             <div class="form-group">
-                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" autocomplete="name" autofocus placeholder="Tu Nombre y Apellido" >
+                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" autocomplete="name" autofocus placeholder="Tu Nombre y Apellido" onkeypress="return soloLetras(event)">
 
                                 @error('name')
                                     <span class="invalid-feedback" role="alert">

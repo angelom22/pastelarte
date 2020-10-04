@@ -3733,7 +3733,7 @@ header.header-nav.menu_style_home_seven .ace-responsive-menu > li.last{
 .my_course_content_list .mc_content_list .details .mc_footer ul.mc_review li:nth-child(6) a{
   font-size: 14px;
   font-family: "Open Sans";
-  color: rgb(126, 126, 126);
+  color: rgb(125, 125, 125);
   line-height: 1.2;
 }
 .my_course_content_list .mc_content_list .details .mc_footer ul.mc_review li a i{
@@ -3743,7 +3743,7 @@ header.header-nav.menu_style_home_seven .ace-responsive-menu > li.last{
 .my_course_content_list .mc_content_list .details .mc_content .subtitle{
   font-size: 15px;
   font-family: "Open Sans";
-  color: rgb(126, 126, 126);
+  color: rgb(126, 126, 126)
   line-height: 1.2;
   margin-bottom: 5px;
 }
@@ -3764,6 +3764,12 @@ header.header-nav.menu_style_home_seven .ace-responsive-menu > li.last{
 }
 .my_course_content_list .mc_content_list .details .mc_content h5.title span.style2{
   background-color: #ff1053;
+}
+.my_course_content_list .mc_content_list .details .mc_content h5.title span.style3{
+  background-color: #d0d23c;
+}
+.my_course_content_list .mc_content_list .details .mc_content h5.title span.style4{
+  background-color: #7e7e7e;
 }
 .my_course_content_list .mc_content_list .details .mc_content h5.title span .tag{
   color: #ffffff;

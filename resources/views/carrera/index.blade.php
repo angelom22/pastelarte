@@ -257,8 +257,8 @@
                                 <div class="thumb">
                                     <img class="img-whp" src="/storage/{{$curso->thumbnail}}" alt="{{$curso->title}}" style="width: 307px; height:200px;  object-fit: cover; object-position: center center;">
                                     <div class="overlay">
-                                        <div class="tag" style="background: #441c42;">nuevo</div>
-                                        <div class="icon" style="background: #441c42; font-size: 15px;">decoración</div>
+                                        <div class="tag" style="background: #441c42;">{{ $curso->status === '1' ? 'Destacado' : '' }}</div>
+                                        <!-- <div class="icon" style="background: #441c42; font-size: 15px;">decoración</div> -->
                                         <a class="tc_preview_course" href="#" data-toggle="modal" data-target="#curso1"><i class="fa fa-play" style="font-size: 30px;"></i></a>
                                     </div>
                                 </div>

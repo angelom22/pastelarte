@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Curso;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -17,8 +18,6 @@ class CreateCursosTable extends Migration
             $table->id();
             $table->integer('user_id')->unsigned()->nullable();
             $table->integer('carrera_id')->unsigned()->nullable();
-            // $table->foreignId('leccion_id')->references('id')->on('lecciones')->onDelete('cascade')->onUpdate('cascade');
-            
             $table->string('title', 128)->unique();
             $table->string('slug', 128)->unique();
             $table->string('thumbnail');
@@ -31,8 +30,12 @@ class CreateCursosTable extends Migration
             $table->string('instructor', 128)->nullable();
             $table->mediumInteger('valoracion')->nullable();
             $table->mediumText('url_video_preview_curso');
-
-            $table->enum('status', ['DISPONIBLE', 'INHABILITADO'])->default('DISPONIBLE');
+            // $table->enum('status', ['DISPONIBLE', 'INHABILITADO'])->default('DISPONIBLE');
+            $table->enum('status', [
+                Curso::DISPONIBLE, Curso::INHABILITADO, Curso::PENDIENTE, Curso::RECHAZADO
+            ])->default(Curso::PENDIENTE);
+            $table->boolean('gratis')->default(false);
+            $table->boolean('featured')->default(false);
 
             $table->timestamps();
 

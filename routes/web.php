@@ -89,11 +89,15 @@ Route::resource('/etiqueta', 'TagController')->names('etiqueta');
 // Ruta para filtrar las carreras
 Route::get('carreras/{slug}', 'CarreraController@filtrarCarrera')->name('filtrarCarrera');
 
+// Ruta para filtrar los cursos
+Route::post('cursos/search', 'CursoController@search')->name('cursos.search');
+
 // Ruta para filtrar las categorias
 Route::get('categorias/{slug}', 'BlogController@filtrarCategoria')->name('filtrarCategoria');
 
 // Ruta para filtrar las etiquetas
 Route::get('etiquetas/{slug}', 'BlogController@filtrarEtiqueta')->name('filtrarEtiqueta');
+
 
 
 // Rutas de la adminitración
@@ -105,6 +109,7 @@ Route::get('admin/carrera/', 'AdminController@carrera')->name('carrera.user');
 Route::get('admin/blog', 'AdminController@blog')->name('admin.blog');
 Route::get('admin/evento', 'AdminController@evento')->name('admin.evento');
 Route::get('admin/user/{id}', 'AdminController@user')->name('admin.user');
+Route::get('admin/lecciones/', 'AdminController@leccion')->name('admin.lecciones');
 
 // Ruta para los comentarios
 Route::post('cursos/{curso}/comentarios', 'ComentarioController@store')->name('cursos.comentarios.store');

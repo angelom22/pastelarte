@@ -2,8 +2,6 @@
 
 @section('content')
 
-
-
 <!-- Inner Page Breadcrumb -->
 	<section class="inner_page_breadcrumb">
 		<div class="container">
@@ -21,20 +19,14 @@
 		</div>
 	</section>
 
+<!-- CURSOS -->
+<!-- CURSOS -->
+<!-- CURSOS -->
+<!-- CURSOS -->
+<!-- CURSOS -->
+<!-- CURSOS -->
 
-<!-- CURSOS -->
-<!-- CURSOS -->
-<!-- CURSOS -->
-<!-- CURSOS -->
-<!-- CURSOS -->
-<!-- CURSOS -->
     <!-- Our Team Members -->
-
-
-
-
-
-
     <section class="our-team pb50">
         <div class="container">
             <div class="row">
@@ -45,9 +37,9 @@
                                 <p class="mt10 fz15"><span class="color-dark pr10">{{$cursos->count()}} Resultados</span></p>
                             </div>
                         </div>
-                        <div class="col-sm-6 col-lg-6 col-xl-6">
+                        <div class="col-sm-6 col-lg-6 col-xl-12">
                             <div class="candidate_revew_select text-right tac-xsd mb25">
-                                <ul>
+                                <ul class="mb0">
                                     <li class="list-inline-item">
                                         <select class="selectpicker show-tick">
                                             <option>Todos</option>
@@ -55,12 +47,23 @@
                                             <option>Pagos</option>
                                         </select>
                                     </li>
+                                    <li class="list-inline-item">
+                                        <div class="candidate_revew_search_box course fn-520">
+                                            <!-- BUSCADOR DE CURSOS -->
+                                            <form action="{{route('cursos.search')}}" method="POST" class="form-inline my-2 my-lg-0">
+                                            @method('POST')
+                                            @csrf
+                                                <input class="form-control mr-sm-2" type="search" placeholder="Buscar Cursos..." aria-label="Search" aria-describedby="search" autocomplete="off" value="{{session('search[cursos]')}}" name="search">
+                                                <button class="btn my-2 my-sm-0" type="submit"><span class="flaticon-magnifying-glass" id="search" aria-hidden="true"></span></button>
+                                            </form>
+                                        </div>
+                                    </li>
                                 </ul>
                             </div>
                         </div>
                     </div>
                     <div class="row">
-                        @foreach($cursos as $curso)
+                        @forelse($cursos as $curso)
                         <div class="col-sm-6 col-lg-6 col-xl-4">
                             <div class="top_courses">
                                 <div class="thumb">
@@ -85,7 +88,7 @@
                                     <div class="tc_footer">
                                         <ul class="tc_meta float-left">
                                             <li class="list-inline-item"><a href="#"><i class="flaticon-profile"></i></a></li>
-                                            <li class="list-inline-item"><a href="#">30</a></li>
+                                            <li class="list-inline-item"><a href="#">{{$curso->estudiantes_count}}</a></li>
                                         </ul>
                                         <div class="tc_price float-right">${{$curso->precio}} </div>
                                     </div>
@@ -95,27 +98,27 @@
                                 </div>
                             </div>
                         </div>
-                        @include('resources.modal_curso')
-                        @endforeach
-
-
+                        @empty
+                        <div class="col-12">
+                            <div class="empty-results">
+                                <h3>No hay ningún curso relacionado con tu busqueda...!</h3>
+                            </div>
+                        </div>
+                        @endforelse
                         <div class="col-lg-12">
                             <div class="mbp_pagination mt20">
                                 <ul class="page_navigation">
-                                    {{ $cursos->links() }}
+                                    @if(count($cursos))
+                                        {{ $cursos->links() }}
+                                    @endif
                                 </ul>
                             </div>
                         </div>
-
-
                     </div>
                 </div>
 
 
-
-
                 <div class="col-lg-4 col-xl-3">
-
                     <div class="selected_filter_widget style2 mb30">
                         <div id="accordion" class="panel-group">
                             <div class="panel">
@@ -184,18 +187,8 @@
         </div>
     </section>
 
-
-
-
-
-
 @endsection
 
 @push('js')
-
-<script>
-
-
-</script>
 
 @endpush

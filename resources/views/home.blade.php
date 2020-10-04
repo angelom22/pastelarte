@@ -23,5 +23,4 @@
 	<!-- SUSCRIPCION-->
 	@include('layouts.suscripcion')
 
-
 @endsection

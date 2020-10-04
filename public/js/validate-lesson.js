@@ -40,10 +40,13 @@ var token = $('meta[name="csrf-token"]').attr('content');
                 minlength: 5,
                 maxlength:100,
             },
-            description_leccion: {
+            leccion_type: {
                 required: true,
-                minlength: 5,
             },
+            // description_leccion: {
+            //     required: true,
+            //     minlength: 5,
+            // },
             duration_leccion:{
                 required: true,
             },
@@ -56,12 +59,12 @@ var token = $('meta[name="csrf-token"]').attr('content');
             title_leccion: {
                 required: "Por favor ingrese el titulo de la lección",
                 minlength: "La longitud minima del campo son 5 caracteres",
-                // maxlength: "La longitud maxima del campo son 100 caracteres",
+                maxlength: "La longitud maxima del campo son 100 caracteres",
             },
-            description_leccion: {
-                required: "Por favor ingrese la descripción de la lección",
-                minlength: "La longitud minima del campo son 5 caracteres"
-            },
+            // description_leccion: {
+            //     required: "Por favor ingrese la descripción de la lección",
+            //     minlength: "La longitud minima del campo son 5 caracteres"
+            // },
             duration_leccion: {
                 required: "Ingrese una duracion válida, entre las 00:00 y las 23:59"
             },

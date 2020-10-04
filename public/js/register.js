@@ -2,6 +2,12 @@ var token = $('meta[name="csrf-token"]').attr('content');
     
 $.validator.setDefaults({
     submitHandler: function () {
+        const fields = ['name', 'email', 'password', 'password_confirmation'];
+        fields.map(field => $(`#registro input[name=${field}]`)
+            .removeClass('field-is-invalid'));
+        
+        console.log("hola");
+
         $.ajax({
         type: "POST",
         url: "registro",

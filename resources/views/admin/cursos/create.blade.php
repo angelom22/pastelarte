@@ -31,15 +31,41 @@
 						<div class="col-lg-12">
 							<div class="my_course_content_container">
 								<div class="my_setting_content mb30">
+									@include('custom.message')
+									<form action="{{ route('CourseStore') }}" method="POST" enctype="multipart/form-data" files="true" id="formCourse">
+									@method('POST')
+									@csrf
 									<div class="my_setting_content_header">
 										<div class="my_sch_title">
 											<h4 class="m0">Información Basica</h4>
 										</div>
 									</div>
-									@include('custom.message')
-									<form action="{{ route('CourseStore') }}" method="POST" enctype="multipart/form-data" files="true" id="formCourse">
-									@method('POST')
-									@csrf
+
+									<div class="row my_setting_content_details pb0">
+										<div class="col-xl-12">
+											<div class="row">
+												<div class="col-xl-6">
+													<div class="my_profile_select_box form-group">
+														<label for="gratis">Curso Gratuito?:</label>
+														<select class="selectpicker" name="gratis" id="gratis">
+															<option value="0">No</option>
+															<option value="1">Si</option>
+														</select>
+													</div>
+												</div>
+												<div class="col-xl-6">
+													<div class="my_profile_select_box form-group">
+														<label for="featured">Destacado</label>
+														<select class="selectpicker" name="featured" id="featured">
+															<option value="0">No</option>
+															<option value="1">Si</option>
+														</select>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<hr>
 									<div class="row my_setting_content_details pb0">
 										<div class="col-xl-12">
 											<div class="row">
@@ -48,10 +74,9 @@
 												    	<label for="title">Titulo del Curso:</label>
 												    	<input type="text" class="form-control" id="title" name="title" placeholder="Ej: Curso de Galletas" value="{{old('title')}}" maxlength="50" onkeypress="return soloLetras(event)">
 													</div>
-													<div class="my_profile_setting_input form-group" >
-												    	<label for="duracion_curso">Duración:</label>
-														<input type="text" class="form-control time" id="duracion_curso" name="duracion_curso" value="{{old('duracion_curso')}}"  placeholder="Ej: hh:mm" onkeypress="return soloNumero(event)">
-
+													<div class="my_profile_setting_input form-group">
+												    	<label for="instructor">Intructor:</label>
+												    	<input type="text" class="form-control" id="instructor" name="instructor" placeholder="Ej: Chef Beatriz Román"  value="{{old('instructor')}}"  maxlength="50" onkeypress="return soloLetras(event)">
 													</div>
 												</div>
 												<div class="col-xl-6">
@@ -65,28 +90,39 @@
 													</div>
 												</div>
 												<div class="col-xl-6">
-													<div class="my_profile_setting_input form-group">
-												    	<label for="instructor">Intructor:</label>
-												    	<input type="text" class="form-control" id="instructor" name="instructor" placeholder="Ej: Chef Beatriz Román"  value="{{old('instructor')}}"  maxlength="50" onkeypress="return soloLetras(event)">
+													<label for="duracion_curso">Duración:</label>
+													<div class="input-group form-group date" id="timepicker" data-target-input="nearest">
+														<input type="text" class="form-control datetimepicker-input time" id="duracion_curso" name="duracion_curso" value="{{old('duracion_curso')}}"  placeholder="Duracion de la leccion si es video" onkeypress="return soloNumero(event)" data-target="#timepicker">
+														<div class="input-group-append" data-target="#timepicker" data-toggle="datetimepicker">
+															<div class="input-group-text"><i class="fa fa-clock-o" aria-hidden="true"></i></div>
+														</div>
 													</div>
 												</div>
 												<div class="col-xl-6">
 													<div class="my_profile_setting_input form-group">
-												    	<label for="lenguaje">Lenguaje:</label>
-												    	<input type="text" class="form-control" id="lenguaje" name="lenguaje" placeholder="Ej: Español" value="{{old('lenguaje')}}"  maxlength="50" onkeypress="return soloLetras(event)">
+														<label for="lenguaje">Lenguaje:</label>
+														<input type="text" class="form-control" id="lenguaje" name="lenguaje" placeholder="Ej: Español" value="{{old('lenguaje')}}"  maxlength="50" onkeypress="return soloLetras(event)">
 													</div>
-												</div>
-												<div class="col-lg-12">
+												</div>	
+											</div>
+										</div>
+									</div>
+									<hr>
+									<div class="row my_setting_content_details pb0">
+										<div class="col-xl-12">
+											<div class="row">
+											<div class="col-lg-12">
 													<div class="my_profile_setting_input2 form-group">
 														<label for="lengueaje">thumbnail:</label>
-														  	<div class="fallback">
-														    	<input name="thumbnail" type="file" value="{{old('thumbnail')}}">
-														  	</div>
+															<div class="fallback">
+																<input name="thumbnail" type="file" value="{{old('thumbnail')}}">
+															</div>
 													</div>
 												</div>
 											</div>
 										</div>
 									</div>
+									<hr>
 									<div class="my_setting_content_header style2">
 										<div class="my_sch_title">
 											<h4 class="m0">Descripción:</h4>

@@ -17,16 +17,16 @@ class CarreraController extends Controller
         $carrera   = Carrera::select('carreras.*')->where('slug', $slug)->first();
 
         $carrera_cursos    = Curso::where('carrera_id', $carrera->id)
-                            ->where('status', 'DISPONIBLE')
+                            ->where("status", Curso::DISPONIBLE)
                             ->select('cursos.*')
                             ->orderBy('id', 'ASC')
                             ->get();
 
         $cursos    = Curso::where('carrera_id', $carrera->id)
-                            ->where('status', 'DISPONIBLE')
+                            ->where("status", Curso::DISPONIBLE)
                             ->select('cursos.*')
                             ->orderBy('id', 'ASC')
-                            ->paginate(3);
+                            ->paginate();
 
         return view('carrera.index',compact('carrera_cursos','carrera', 'cursos'));
     }

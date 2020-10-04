@@ -81,7 +81,7 @@ class AngelPermissionInfoSeeder extends Seeder
         // Permisos
         $permission_all = [];
 
-    // ----------------Permiso Para Usuarios------------------- //
+    // ----------------Permiso Para los Roles------------------- //
         // Permisos Roles
         $permission = Permission::create([
             'name' => 'Lista role',
@@ -191,6 +191,12 @@ class AngelPermissionInfoSeeder extends Seeder
     // ----------------Permiso Para Las lecciones------------------- //
 
         // Permisos lecciones
+        $permission = Permission::create([
+            'name' => 'Administrador las lecciones',
+            'slug' => 'lesson.admin',
+            'description' => 'El usuario puede administrar las lecciones',
+        ]);
+
         $permission = Permission::create([
             'name' => 'Lista leccion',
             'slug' => 'lesson.index',

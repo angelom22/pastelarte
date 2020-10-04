@@ -86,7 +86,28 @@
 											<div class="details">
 												<div class="mc_content">
 													<p class="subtitle">Carrera: {{$curso->carrera->title}}</p>
-													<h5 class="title">{{$curso->title}}<span {{ $curso->status === 'INHABILITADO' ? 'class=style2' : '' }} ><small class="tag">{{$curso->status}}</small></span></h5>
+													<h5 class="title">{{$curso->title}}
+														@if($curso->status === '1')
+														<span>
+															<small class="tag">DISPONIBLE</small>
+														</span>
+														@elseif($curso->status === '2')
+														<span class="style2">
+															<small class="tag">INHABILITADO</small>
+														</span>
+														@elseif($curso->status === '3')
+														<span class="style3">
+															<small class="tag">PENDIENTE</small>
+														</span>
+														@elseif($curso->status === '4')
+														<span class=style4>
+															<small class="tag">RECHAZADO</small>
+														</span>
+														@endif
+														<!-- <span {{ $curso->status === '3' ? 'class=style3' : '' }} >
+															<small class="tag">{{$curso->status}}</small>
+														</span> -->
+													</h5>
 													<p>{!! $curso->extracto !!}</p>
 												</div>
 												<div class="mc_footer">

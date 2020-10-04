@@ -30,13 +30,26 @@ class CursoController extends Controller
      */
     public function index()
     {
-        $cursos = Curso::where('status', 'DISPONIBLE')
-                        ->select('cursos.*')
-                        ->orderBy('id', 'ASC')
-                        ->paginate(9);
-        // dd($cursos->count());
+        // $cursos = Curso::where('status', 1)
+        //                 ->select('cursos.*')
+        //                 ->orderBy('id', 'ASC')
+        //                 ->paginate(9);
+        $cursos = Curso::filtro();
+        $totalCursos = $cursos->count();
+    
+        $session = session('search[cursos]');
 
-        return view('cursos.index', compact('cursos'));
+        return view('cursos.index', compact('cursos', 'session'));
+    }
+
+    public function search()
+    {
+        session()->remove('search[cursos]');
+        if(request('search')){
+            session()->put('search[cursos]', request('search'));
+            session()->save();
+        };
+        return redirect(route('cursos.index'));
     }
 
     /**
@@ -69,10 +82,8 @@ class CursoController extends Controller
         $thumbnail = request()->file('thumbnail')->store('thumbnail/'.$request->title);
         // $thumbnailUrl = Storage::url($thumbnail);
 
-        $user = auth()->id();
-
         $curso = Curso::create([
-            'user_id' => $user,
+            'user_id'           => auth()->id(),
             // 'leccion_id' => $request->leccion_id;
             'carrera_id'        => $request->carrera_id,
             'title'             => $request->title,
@@ -83,8 +94,10 @@ class CursoController extends Controller
             'duracion_curso'    => Carbon::parse($request->duracion_curso)->toDateTimeString(),
             // 'duracion_curso'    => $request->duracion_curso,
             'nivel_habilidad'   => $request->nivel_habilidad,
-            'lenguaje'         => $request->lenguaje,
+            'lenguaje'          => $request->lenguaje,
             'instructor'        => $request->instructor,
+            'gratis'            => $request->gratis,
+            'featured'          => $request->featured,
             'url_video_preview_curso' => $request->url_video_preview_curso,
             ]);
 
@@ -152,7 +165,7 @@ class CursoController extends Controller
      */
     public function update(UpdateCourseRequest $request, Curso $curso)
     {
-        // dd($request->all());
+        // dd($request->status);
         $this->authorize('haveaccess', 'course.edit');
 
         // Si se actualiza el articulo se elimina la imagen antigua del servidor
@@ -177,8 +190,10 @@ class CursoController extends Controller
                 'nivel_habilidad'           => $request->nivel_habilidad,
                 'lenguaje'                  => $request->lenguaje,
                 'instructor'                => $request->instructor,
-                'url_video_preview_curso'   => $request->url_video_preview_curso,
+                'gratis'                    => $request->gratis,
+                'featured'                  => $request->featured,
                 'status'                    => $request->status,
+                'url_video_preview_curso'   => $request->url_video_preview_curso,
             ]);
 
             // optimización de la imagen

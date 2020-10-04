@@ -16,7 +16,7 @@
 								<div class="cs_instructor">
 									<ul class="cs_instrct_list float-left mb0">
 										<li class="list-inline-item"><p class="color-white">{{$curso->instructor}}</p></li>
-										<li class="list-inline-item"><p class="color-white">última actualización {{$curso->created_at->format('d/m/Y')}}</p></li>
+										<li class="list-inline-item"><p class="color-white">última actualización {{$curso->updated_at->format('d/m/Y')}}</p></li>
 									</ul>
 								</div>
 								<h3 class="cs_title color-white">{{$curso->title}}</h3>

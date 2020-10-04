@@ -36,21 +36,33 @@
                                 @csrf
 								<div class="my_setting_content mb30">
 									<div class="my_setting_content_header">
-										<div class="my_sch_title">
-											<h4 class="m0"><span {{ $curso->status === 'INHABILITADO' ? 'class=style2' : '' }} ><small class="tag">Status:</small></span>
+										<div class="my_sch_title my_profile_select_box col-lg-4">
+										<h4>Edición del Curso</h4>
+										</div>
+									</div>
+
+									<div class="row my_setting_content_details pb0">
+										<div class="col-xl-12">
+											<div class="row">
+												<div class="col-xl-6">
+												<h4 class="m0"><span {{ $curso->status === 'INHABILITADO' ? 'class=style2' : '' }} ><small class="tag">Status:</small></span>
 												<!-- <small class="tag">{{$curso->status}}</small> -->
                                                 <select class="selectpicker" name="status" id="status">
                                                     <option value="{{$curso->status}}" {{ old('status', $curso->status) === $curso->status ? 'selected' : ''}}>
                                                         {{$curso->status}}
                                                     </option>
-                                                    <option value="INHABILITADO">INHABILITADO</option>
-                                                    <option value="DISPONIBLE">DISPONIBLE</option>
+                                                    <option value="1">DISPONIBLE</option>
+                                                    <option value="2">INHABILITADO</option>
+                                                    <option value="3">PENDIENTE</option>
+                                                    <option value="4">RECHAZADO</option>
 												</select>
 												
-                                            </h4>
+                                            	</h4>
+												</div>
+											</div>
 										</div>
 									</div>
-									
+									<hr>
 									<div class="row my_setting_content_details pb0">
 										<div class="col-xl-12">
 											<div class="row">

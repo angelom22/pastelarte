@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCursoUserTable extends Migration
+class CreateOrderLinesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,15 @@ class CreateCursoUserTable extends Migration
      */
     public function up()
     {
-        Schema::create('curso_user', function (Blueprint $table) {
-            $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users');
+        Schema::create('order_lines', function (Blueprint $table) {
+            $table->id();
+            $table->unsignedBigInteger('order_id');
+            $table->foreign('order_id')->references('id')->on('orders');
             $table->unsignedBigInteger('curso_id');
             $table->foreign('curso_id')->references('id')->on('cursos');
-            $table->boolean('curso_inscripcion')->nullable();
-            $table->boolean('curso_completado')->nullable();
+            $table->unsignedBigInteger('carrera_id');
+            $table->foreign('carrera_id')->references('id')->on('carreras');
+            $table->float('precio');
             $table->timestamps();
         });
     }
@@ -31,6 +33,6 @@ class CreateCursoUserTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('curso_user');
+        Schema::dropIfExists('order_lines');
     }
 }

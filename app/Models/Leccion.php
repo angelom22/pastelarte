@@ -9,6 +9,9 @@ use App\Models\Curso;
 
 class Leccion extends Model
 {
+    const ZIP = 'ZIP'; 
+    const VIDEO = 'VIDEO';
+
     use Sluggable;
     use SluggableScopeHelpers;
 
@@ -40,13 +43,13 @@ class Leccion extends Model
     protected $table = 'lecciones';
 
     protected $fillable = [
-       'title_leccion', 'slug', 'description_leccion', 'duration_leccion', 'url_video', 'curso_id'
+       'title_leccion', 'slug', 'leccion_type', 'description_leccion', 'duracion_leccion', 'url_video', 'curso_id', 'file'
     ];
 
     // public function curso(){
     //     return $this->belongsTo(Curso::class,'id', 'id_leccion')->withDefault();
     // }
     public function curso(){
-        return $this->belongsToMany(Curso::class, 'cursos')->withTimestamps();
+        return $this->belongsTo(Curso::class)->withTimestamps();
     }
 }

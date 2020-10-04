@@ -23,6 +23,9 @@
             @can('haveaccess','course.admin')
             <li {{ request()->is('admin/curso') ? 'class=active' : '' }} ><a href="{{route('admin.curso')}}"><span class="flaticon-online-learning"></span>Cursos</a></li>
             @endcan
+            @can('haveaccess','course.admin')
+            <li {{ request()->is('admin/lecciones') ? 'class=active' : '' }} ><a href="{{route('admin.lecciones')}}"><span class="flaticon-online-learning"></span>Lecciones</a></li>
+            @endcan
             @can('haveaccess','career.admin')
             <li {{ request()->is('admin/carrera') ? 'class=active' : '' }} ><a href="{{route('carrera.user')}}"><span class="flaticon-online-learning"></span>Carreras</a></li>
             @endcan
