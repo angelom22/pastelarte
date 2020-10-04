@@ -5,14 +5,14 @@
 	<!-- SLIDER -->
 	@include('layouts.slider')
 
-	<!-- CATEGORIAS -->
-	@include('layouts.categorias')
+		<!-- CURSOS -->
+	@include('layouts.cursos')
 
 	<!-- SEPARADOR -->
 	@include('layouts.separador')
 
-	<!-- CURSOS -->
-	@include('layouts.cursos')
+		<!-- CATEGORIAS -->
+	@include('layouts.categorias')
 
 	<!-- BLOG -->
 	@include('layouts.blog')

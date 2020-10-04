@@ -41,13 +41,6 @@
                             <div class="candidate_revew_select text-right tac-xsd mb25">
                                 <ul class="mb0">
                                     <li class="list-inline-item">
-                                        <select class="selectpicker show-tick">
-                                            <option>Todos</option>
-                                            <option>Gratis</option>
-                                            <option>Pagos</option>
-                                        </select>
-                                    </li>
-                                    <li class="list-inline-item">
                                         <div class="candidate_revew_search_box course fn-520">
                                             <!-- BUSCADOR DE CURSOS -->
                                             <form action="{{route('cursos.search')}}" method="POST" class="form-inline my-2 my-lg-0">
@@ -132,19 +125,19 @@
                                         <div class="ui_kit_checkbox">
 
                                             <div class="custom-control">
-                                                <label for="customCheck14"><a href="#">Técnicas de pastelería</a></label>
+                                                <label for="customCheck14">Técnicas de pastelería</label>
                                             </div>
 
                                             <div class="custom-control">
-                                                <label for="customCheck14"> <a href="#">Masas</a></label>
+                                                <label for="customCheck14">Masas</label>
                                             </div>
 
                                              <div class="custom-control">
-                                                <label for="customCheck14"> <a href="#">Decoración de tortas comerciales</a></label>
+                                                <label for="customCheck14">Decoración de tortas comerciales</label>
                                             </div>
 
                                              <div class="custom-control">
-                                                <label for="customCheck14"> <a href="#">Técnicas de Fondant</a></label>
+                                                <label for="customCheck14">Técnicas de Fondant</label>
                                             </div>
                                         </div>
                                     </div>

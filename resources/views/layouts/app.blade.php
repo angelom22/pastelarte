@@ -9,7 +9,7 @@
     <meta name="robots" content="index, follow">
     <meta name="google" content="nositelinkssearchbox">
     <!-- css file -->
-    
+
     <title>@yield('meta_title',  "Pastel Arte | Escuela online de pastelería | Decoración de tortas | cursos" )
     </title>
     <!-- <title>Pastel Arte | Escuela online de pastelería | Decoración de tortas | cursos</title> -->
@@ -43,10 +43,10 @@
 </head>
 
 <body>
-    
+
     <div id="app" class="wrapper">
         <div class="preloader"></div>
-           
+
         <!-- Main Header Nav -->
         @include('layouts.nav')
 
@@ -55,7 +55,7 @@
 
         <!-- Main Header Nav For Mobile -->
         @include('layouts.mobile-menu')
-            
+
         @yield('content')
 
         <!-- Our Footer -->
@@ -67,7 +67,7 @@
         <a class="scrollToHome" href="#"><i class="flaticon-up-arrow-1"></i></a>
 
     </div>
-    
+
     <!-- <script type="text/javascript" src="{{asset('js/app.js')}}"></script> -->
     <script type="text/javascript" src="{{asset('js/jquery-3.3.1.js')}}"></script>
     <script type="text/javascript" src="{{asset('js/jquery-migrate-3.0.0.min.js')}}"></script>
@@ -88,14 +88,14 @@
     <script type="text/javascript" src="{{asset('js/slider.js')}}"></script>
     <script type="text/javascript" src="{{asset('js/timepicker.js')}}"></script>
 
-    <!-- Custom script for all pages --> 
+    <!-- Custom script for all pages -->
     <script type="text/javascript" src="{{asset('js/script.js')}}"></script>
     <script type="text/javascript" src="{{asset('js/validacion.js')}}"></script>
-    
+
     <!-- PNotify -->
     <script type="text/javascript" src="{{asset('plugins/pnotify/dist/iife/PNotify.js')}}"></script>
     <script type="text/javascript" src="{{asset('plugins/pnotify/dist/iife/PNotifyButtons.js')}}"></script>
-    
+
     <script type="text/javascript" src="{{asset('plugins/toastrJS/build/toastr.min.js')}}"></script>
 
     <!-- jquery-validation -->
@@ -113,7 +113,7 @@
             $('#Modal_Login').on('hide.bs.modal', function(){
                 window.location.hash = '#';
             });
-            
+
             $('#Modal_Login').on('shown.bs.modal', function(){
                 $('#email').focus();
                 window.location.hash = '#login';
@@ -139,7 +139,7 @@
     <script type="text/javascript" src="{{ asset('js/login.js') }}"></script>
     <!-- Validación Registro -->
     <script type="text/javascript" src="{{ asset('js/register.js') }}"></script>
-    
+
 
     @stack('js')
 

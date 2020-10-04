@@ -21,7 +21,7 @@
         </div>
         <div class="row">
             <div class="col-sm-6 col-lg-3">
-                <div class="img_hvr_box" style="background-image: url({{asset('img/courses/2.jpg')}});">
+                <div class="img_hvr_box" style="background-image: url({{asset('img/courses/2.jpg')}}); pointer-events: none;">
                     <div class="overlay">
                         <div class="details">
                             <h5>Técnicas de pastelería</h5>
@@ -31,7 +31,7 @@
                 </div>
             </div>
             <div class="col-sm-6 col-lg-3">
-                <div class="img_hvr_box" style="background-image: url({{asset('img/courses/4.jpg')}});">
+                <div class="img_hvr_box" style="background-image: url({{asset('img/courses/4.jpg')}}); pointer-events: none;">
                     <div class="overlay">
                         <div class="details">
                             <h5>Masas</h5>
@@ -41,7 +41,7 @@
                 </div>
             </div>
             <div class="col-sm-6 col-lg-3">
-                <div class="img_hvr_box" style="background-image: url({{asset('img/courses/3.jpg')}});">
+                <div class="img_hvr_box" style="background-image: url({{asset('img/courses/3.jpg')}}); pointer-events: none;">
                     <div class="overlay">
                         <div class="details">
                             <h5>Decoración de tortas</h5>
@@ -51,7 +51,7 @@
                 </div>
             </div>
             <div class="col-sm-6 col-lg-3">
-                <div class="img_hvr_box" style="background-image: url({{asset('img/courses/1.jpg')}});">
+                <div class="img_hvr_box" style="background-image: url({{asset('img/courses/1.jpg')}}); pointer-events: none;">
                     <div class="overlay">
                         <div class="details">
                             <h5>Técnicas en Fondant</h5>
@@ -62,7 +62,7 @@
             </div>
             <div class="col-lg-6 offset-lg-3">
                 <div class="courses_all_btn text-center">
-                    <a class="btn btn-transparent" href="#">Ver todos los cursos</a>
+                    <a class="btn btn-transparent" href="{{ url('cursos') }}">Ver todos los cursos</a>
                 </div>
             </div>
         </div>

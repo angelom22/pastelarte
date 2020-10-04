@@ -10,7 +10,7 @@
 					                    <div class="col-lg-12 text-center p0">
 					                        <h3 class="banner-title">Aprende y Emprende</h3>
 					                        <p>Escuela de Pastelería y Decoración de Tortas.</p>
-					                        <div class="btn-block"><a href="#" class="banner-btn">Listo para comenzar?</a></div>
+					                        <div class="btn-block"><a href="{{ url('cursos') }}" class="banner-btn">Comienza ya mismo!!</a></div>
 					                    </div>
 					                </div>
 					            </div>
@@ -21,7 +21,7 @@
 					                    <div class="col-lg-12 text-center p0">
 					                        <h3 class="banner-title">Carrera de pastelería</h3>
 					                        <p>Aprende a preparar más de 10 recetas</p>
-					                        <div class="btn-block"><a href="#" class="banner-btn">Listo para comenzar?</a></div>
+					                        <div class="btn-block"><a href="{{ route('filtrarCarrera','pasteleria') }}" class="banner-btn">Iniciar Carrera</a></div>
 					                    </div>
 					                </div>
 					            </div>
@@ -32,7 +32,7 @@
 					                    <div class="col-lg-12 text-center p0">
 					                        <h3 class="banner-title">Carrera de Decoración de Tortas</h3>
 					                        <p>Chef Beatriz Román</p>
-					                        <div class="btn-block"><a href="#" class="banner-btn">Listo para comenzar?</a></div>
+					                        <div class="btn-block"><a href="{{ route('filtrarCarrera','decoracion-de-tortas') }}" class="banner-btn">Iniciar Carrera</a></div>
 					                    </div>
 					                </div>
 					            </div>
