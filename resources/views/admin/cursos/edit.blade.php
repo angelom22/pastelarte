@@ -39,6 +39,10 @@
 										<div class="my_sch_title my_profile_select_box col-lg-4">
 										<h4>Edición del Curso</h4>
 										</div>
+										@can('haveaccess','lesson.show')                       
+											<a href="{{route('lecciones.show', $curso->id )}}" class="btn btn-primary "><i class="flaticon-preview"></i>
+											Ver Lecciones</a>
+										@endcan
 									</div>
 
 									<div class="row my_setting_content_details pb0">

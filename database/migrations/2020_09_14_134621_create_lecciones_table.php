@@ -17,6 +17,8 @@ class CreateLeccionesTable extends Migration
         Schema::create('lecciones', function (Blueprint $table) {
             $table->id();
             $table->integer('curso_id')->unsigned();
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
             $table->string('title_leccion', 128);
             $table->string('slug', 128);
             $table->tinyInteger('order');

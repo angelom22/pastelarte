@@ -17,16 +17,17 @@
                         <div class="my_profile_setting_input form-group">
                             <label for="title_leccion">Nombre Lección</label>
                             <input type="text" class="form-control" id="title_leccion" name="title_leccion" placeholder="preparación y utensilios" value="{{old('title_leccion')}}" maxlength="100" >
-                            {!! $errors->first('title_leccion', '<span class="help-block">:message</span>') !!}
+                           
                         </div>
                     </div>
                     <div class="col-lg-12">
                         <div class="my_profile_select_box form-group">
                             <label for="leccion_type">Tipo de Lección</label><br>
                             <select class="selectpicker" name="leccion_type" id="leccion_type">
-                                <option value="\App\Models\Leccion::VIDEO">Video</option>
-                                <option value="\App\Models\Leccion::ZIP">Archivo</option>
+                                <option value="VIDEO">Video</option>
+                                <option value="ZIP">Archivo</option>
                             </select>
+                            {!! $errors->first('leccion_type', '<span class="help-block">:message</span>') !!}
                         </div>
                     </div>
                     <!-- <div class="col-xl-12">
@@ -37,10 +38,6 @@
                         </div>
                     </div> -->
                     <div class="col-xl-12">
-                        <!-- <div class="my_profile_setting_input  form-group">
-                            <input type="text" class="form-control time" id="duration_leccion" name="duration_leccion" value="{{old('duration_leccion')}}"  placeholder="Ej: hh:mm" onkeypress="return soloNumero(event)">
-                            {!! $errors->first('duration_leccion', '<span class="help-block">:message</span>') !!}
-                        </div> -->
                         <label for="duracion_leccion">Duración</label>
                         <div class="input-group form-group">
                             <div class="input-group-prepend">
@@ -48,8 +45,9 @@
                                     <i class="fa fa-clock-o" aria-hidden="true"></i>
                                 </div>
                             </div>
-                            <input id="duracion_leccion" name="duracion_leccion" value="{{old('duracion_leccion')}}" class="form-control" placeholder="Duración de la unidad si es vídeo" name="unit_time" type="number" onkeypress="return soloNumero(event)">
+                            <input id="duracion_leccion" name="duracion_leccion" value="{{old('duracion_leccion')}}" class="form-control" placeholder="Duración de la Lección si es vídeo" name="unit_time" type="number" onkeypress="return soloNumero(event)">
                         </div>
+                        {!! $errors->first('duracion_leccion', '<span class="help-block">:message</span>') !!}
                     </div>
                     <div class="col-xl-12">
                         <div class="my_profile_setting_input tt_video form-group">
@@ -58,6 +56,15 @@
                             {!! $errors->first('url_video', '<span class="help-block">:message</span>') !!}
                         </div>
                     </div>
+                    <!-- <div class="col-xl-12">
+                        <div class="my_profile_setting_input tt_video form-group">
+                            <div class="custom-file">
+                                <label class="custom-file-label" for="file">Subir Archivo</label>
+                                <input type="file" id="file" name="file" class="custom-file-input">
+                            </div>
+                            {!! $errors->first('file', '<span class="help-block">:message</span>') !!}
+                        </div>
+                    </div> -->
                 </div>
             </div>
             <div class="modal-footer">

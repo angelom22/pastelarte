@@ -63,7 +63,7 @@ class AdminController extends Controller
     {
         $this->authorize('haveaccess', 'lesson.admin');
 
-        $cursos = Curso::all();
+        $cursos = Curso::orderBy('id', 'DESC')->get();
 
         return view('admin.leccion.create', compact('cursos'));
        

@@ -17,7 +17,7 @@ var token = $('meta[name="csrf-token"]').attr('content');
 				console.log(respuesta);
 				
 				setTimeout(function(){
-						window.location = '/curso';
+						window.location = '/';
 					},2000);
 			},
 			error: function(respuesta) {

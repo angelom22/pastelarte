@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\Uploader;
 use  Carbon\Carbon;
 use App\Models\Curso;
 use App\Models\Leccion;
@@ -47,13 +48,22 @@ class LeccionController extends Controller
      */
     public function store(StoreLessonRequest $request)
     {
-        dd($request->all());
+        // dd($request->all());
+        // se Valida de el formilario contiene el campo file
+        $file = null;
+        if($request->hasFile("file"))
+        {
+            $file = Uploader::uploadFile("file", "lecciones");
+        }
+
         $lecccion = Leccion::create([
-            'title_leccion'         => $request->title_leccion,
-            // 'description_leccion'   => $request->description_leccion,
-            'duration_leccion'      => Carbon::parse($request->duration_leccion)->toDateTimeString(),
-            'url_video'             => $request->url_video,
             'curso_id'              => $request->curso_id,
+            'title_leccion'         => $request->title_leccion,
+            'leccion_type'          => $request->leccion_type,
+            'description_leccion'   => $request->description_leccion,
+            'duracion_leccion'      => $request->duracion_leccion,
+            'url_video'             => $request->url_video,
+            'file'                  => $file,
         ]);
         
         CursoLeccion::create([
@@ -62,7 +72,7 @@ class LeccionController extends Controller
         ]);
 
         // Retornar la vista al curso individual "cursos.show, $request->curso_id"
-        return back()->with('status_success', 'La leccón ha sido creada exitosamente');
+        return back()->with('status_success', 'La lección ha sido creada exitosamente');
     }
 
     /**
@@ -73,7 +83,12 @@ class LeccionController extends Controller
      */
     public function show($id)
     {
-        //
+        $lecciones = Leccion::whereCursoId($id)
+                                ->orderBy('order', 'desc')
+                                ->take(1)
+                                ->first();
+        return view('admin.leccion.show', compact('lecciones'));
+        
     }
 
     /**

@@ -1,7 +1,7 @@
 @extends('admin.layouts.app')
 
 @push('css')
- 
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet"/>
 @endpush
 
 @section('content')
@@ -63,28 +63,39 @@
 											<div class="my_profile_select_box form-group">
 												<label for="leccion_type">Tipo de Lección</label><br>
 												<select class="selectpicker" name="leccion_type" id="leccion_type">
-													<option value="\App\Models\Leccion::VIDEO">Video</option>
-													<option value="\App\Models\Leccion::ZIP">Archivo</option>
+													<option value="VIDEO">Video</option>
+													<option value="ZIP">ZIP ó Archivo</option>
 												</select>
 											</div>
 										</div>
-                                            <!-- <div class="col-xl-12">
+                                            <div class="col-xl-12">
                                                 <div class="my_profile_setting_input form-group">
                                                     <label for="description_leccion">Descripción</label>
                                                     <input type="text" class="form-control" id="description_leccion" name="description_leccion" placeholder="Ej: Lección 1.1 Preparación de mezcla" maxlength="120" value="{{old('description_leccion')}}">
                                                 </div>
-                                            </div> -->
+                                            </div>
                                             <div class="col-xl-12">
-                                                <div class="my_profile_setting_input  form-group">
-                                                    <label for="duration_leccion">Duración</label>   	
-                                                    <input type="text" class="form-control time" id="duration_leccion" name="duration_leccion" value="{{old('duration_leccion')}}"  placeholder="Ej: 30:00" onkeypress="return soloNumero(event)">
-                                                </div>
+												<label for="duracion_leccion">Duración</label>
+												<div class="input-group form-group">
+													<div class="input-group-prepend">
+														<div class="input-group-text">
+															<i class="fa fa-clock-o" aria-hidden="true"></i>
+														</div>
+													</div>
+													<input id="duracion_leccion" name="duracion_leccion" value="{{old('duracion_leccion')}}" class="form-control" placeholder="Duración de la unidad si es vídeo" name="unit_time" type="number" onkeypress="return soloNumero(event)">
+												</div>   
                                             </div>
                                             <div class="col-xl-12">
                                                 <div class="my_profile_setting_input tt_video form-group">
                                                     <label for="url_video">Video URL</label>
                                                     <input type="text" class="form-control" id="url_video" name="url_video" value="{{old('url_video')}}">
                                                 </div>
+                                            </div>
+                                            <div class="col-xl-12">
+												<div class="custom-file">
+													<label class="custom-file-label" for="file">Subir Archivo</label>
+													<input type="file" id="file" name="file" class="custom-file-input">
+												</div>
                                             </div>
                                         </div>        
                                     </div>
@@ -116,8 +127,8 @@
 
 <script>
 	$(document).ready(function() {
-		$('#summernote').summernote({
-			height: 300,
+		$('#description_leccion').summernote({
+			height: 200,
 		});
 		$('.time').mask('99:99');
     });

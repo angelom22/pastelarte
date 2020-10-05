@@ -135,6 +135,13 @@ return [
         'email'    => [
             'unique' => 'El :attribute ya ha sido registrado.',
         ],
+        'title_leccion'=> [
+            'min' => 'El campo :attribute debe contener un minimo de :min caracteres',
+            'max' => 'El campo :attribute debe contener un maximo de :max caracteres'
+        ],
+        'duracion_leccion' => [
+            'numeric' => 'El campo :attribute debe ser numérico'
+        ],
     ],
 
     /*
@@ -181,5 +188,11 @@ return [
         'title'                 => 'título',
         'username'              => 'usuario',
         'year'                  => 'año',
+
+        'title_leccion'         => 'titulo de la lección',
+        'duracion_leccion'      => 'duración de la lección',
+        'leccion_type'          => 'tipo de lección',
+        'url_video'             => 'video URL',
+        'file'                  => 'archivo'
     ],
 ];
