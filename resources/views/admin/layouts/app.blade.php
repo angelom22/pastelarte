@@ -89,6 +89,24 @@
 <script src="{{asset('plugins/jquery-validation/jquery.validate.min.js')}}"></script>
 <script src="{{asset('plugins/jquery-validation/additional-methods.min.js')}}"></script>
 
+<!-- JConfirm -->
+<script src="{{asset('plugins/jconfirm/jConfirm.js')}}"></script>
+<script>
+    $(document).ready(function() {
+        $.jConfirm.defaults.question = '{{ __("¿Estás seguro?") }}';
+        $.jConfirm.defaults.confirm_text = '{{ __("Sí") }}';
+        $.jConfirm.defaults.deny_text = '{{ __("No") }}';
+        $.jConfirm.defaults.position = 'top';
+        $.jConfirm.defaults.theme = 'black';
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+    });
+</script>
+<script src="/js/functions.js"></script>
+
 
 @stack('js')
 </body>

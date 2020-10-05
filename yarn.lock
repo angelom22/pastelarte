@@ -3906,6 +3906,13 @@ isobject@^3.0.0, isobject@^3.0.1:
   resolved "https://registry.yarnpkg.com/isobject/-/isobject-3.0.1.tgz#4e431e92b11a9731636aa1f9c8d1ccbcfdab78df"
   integrity sha1-TkMekrEalzFjaqH5yNHMvP2reN8=
 
+jconfirm@^4.5.3:
+  version "4.5.3"
+  resolved "https://registry.yarnpkg.com/jconfirm/-/jconfirm-4.5.3.tgz#6f148fda400de5ef0f1b827d5818fb570318cdaa"
+  integrity sha512-5xCirj9EgZESCF3DenSTOpmA93Jyn8Vl36/3CninnIOKKj76S4xapgwdlLGp93WqDMCegTx4HinrFk6jb6T76Q==
+  dependencies:
+    jquery "^3.0.0"
+
 jest-worker@^25.4.0:
   version "25.5.0"
   resolved "https://registry.yarnpkg.com/jest-worker/-/jest-worker-25.5.0.tgz#2611d071b79cea0f43ee57a3d118593ac1547db1"
@@ -3914,7 +3921,7 @@ jest-worker@^25.4.0:
     merge-stream "^2.0.0"
     supports-color "^7.0.0"
 
-jquery@>=1.12.0, jquery@^3.2:
+jquery@>=1.12.0, jquery@^3.0.0, jquery@^3.2:
   version "3.5.1"
   resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.5.1.tgz#d7b4d08e1bfdb86ad2f1a3d039ea17304717abb5"
   integrity sha512-XwIBPqcMn57FxfT+Go5pzySnm4KWkT1Tv7gjrpT1srtf8Weynl6R273VJ5GjkRb51IzMp5nbaPjJXMWeju2MKg==

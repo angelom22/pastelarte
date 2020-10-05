@@ -22,6 +22,7 @@ Route::resource('/role', 'RoleController')->names('role');
 // Ruta para la vista administrativa de usuarios
 Route::resource('/user', 'UserController',['except' => ['create','store']])->names('user');
 
+
 /**
  *  Rutas para los articulos
  */
@@ -70,6 +71,8 @@ Route::resource('/lecciones', 'LeccionController')->names([
     'store'             => 'lessonStore',
     'edit'              => 'lessonEdit',
 ]);
+Route::delete('/lecciones/{leccion}', 'LeccionController@destroy')
+        ->name('leccion.destroy');
 
 Route::get('crear-leccion/{id}', ['as' => 'crear_leccion', 'uses' => 'LeccionController@create']);
 
@@ -110,6 +113,8 @@ Route::get('admin/blog', 'AdminController@blog')->name('admin.blog');
 Route::get('admin/evento', 'AdminController@evento')->name('admin.evento');
 Route::get('admin/user/{id}', 'AdminController@user')->name('admin.user');
 Route::get('admin/lecciones/', 'AdminController@leccion')->name('admin.lecciones');
+// Route::get('admin/lecciones/', 'AdminController@leccion')->name('admin.lecciones');
+
 
 // Ruta para los comentarios
 Route::post('cursos/{curso}/comentarios', 'ComentarioController@store')->name('cursos.comentarios.store');

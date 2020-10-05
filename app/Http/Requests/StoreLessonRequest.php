@@ -46,7 +46,7 @@ class StoreLessonRequest extends FormRequest
             case 'PUT':
             {
                 return [
-                    'title' => 'required|min:6|max:150',
+                    'title_leccion' => 'required|min:6|max:150',
                     'url_video' => 'required_if:leccion_type,'.Leccion::VIDEO,
                     'curso_id' => [
                         'required',

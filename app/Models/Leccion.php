@@ -101,7 +101,7 @@ class Leccion extends Model
     }
     
     public function curso(){
-        return $this->belongsTo(Curso::class)->withTimestamps();
+        return $this->belongsTo(Curso::class);
     }
 
     public static function LeccionTypes() {

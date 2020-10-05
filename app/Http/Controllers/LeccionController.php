@@ -48,15 +48,16 @@ class LeccionController extends Controller
      */
     public function store(StoreLessonRequest $request)
     {
-        // dd($request->all());
+        Gate::authorize('haveaccess', 'lesson.create');
+
         // se Valida de el formilario contiene el campo file
         $file = null;
         if($request->hasFile("file"))
         {
-            $file = Uploader::uploadFile("file", "lecciones");
+            $file = Uploader::uploadFile("file", "lecciones/".$request->title_leccion);
         }
 
-        $lecccion = Leccion::create([
+        $leccion = Leccion::create([
             'curso_id'              => $request->curso_id,
             'title_leccion'         => $request->title_leccion,
             'leccion_type'          => $request->leccion_type,
@@ -68,7 +69,7 @@ class LeccionController extends Controller
         
         CursoLeccion::create([
             'curso_id'      => $request->curso_id,
-            'leccion_id'    => $lecccion->id
+            'leccion_id'    => $leccion->id
         ]);
 
         // Retornar la vista al curso individual "cursos.show, $request->curso_id"
@@ -84,9 +85,10 @@ class LeccionController extends Controller
     public function show($id)
     {
         $lecciones = Leccion::whereCursoId($id)
-                                ->orderBy('order', 'desc')
-                                ->take(1)
-                                ->first();
+                            ->select('lecciones.*')
+                            ->orderBy('order', 'desc')
+                            ->paginate();
+        // dd($lecciones);
         return view('admin.leccion.show', compact('lecciones'));
         
     }
@@ -99,7 +101,12 @@ class LeccionController extends Controller
      */
     public function edit($id)
     {
-        //
+        $this->authorize('haveaccess', 'lesson.edit');
+
+        $leccion = Leccion::findOrfail($id);
+        // dd($leccion);
+
+        return view('admin.leccion.edit', compact('leccion'));
     }
 
     /**
@@ -109,9 +116,37 @@ class LeccionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StoreLessonRequest $request, $id)
     {
-        //
+        $this->authorize('haveaccess', 'lesson.edit');
+
+        $leccion = Leccion::where('id', $id)->first();
+
+        // Se comprueba se se tiene un archivo en la colunma file
+        $file = $leccion->file;
+        if ($request->hasFile('file')) {
+            if ($leccion->file) {
+                Uploader::removeFile("lecciones/".$leccion->title_leccion, $leccion->file);
+            }
+            $file = Uploader::uploadFile('file', "lecciones/".$leccion->title_leccion);
+        }
+
+        $leccion->fill([
+            'curso_id' => $request->curso_id,
+            'title_leccion' => $request->title_leccion,
+            'leccion_type' => $request->leccion_type,
+            'description_leccion' => $request->description_leccion,
+            'duracion_leccion' => $request->duracion_leccion,
+            'url_video' => $request->url_video,
+            'file' => $file
+        ])->save();
+        // dd($leccion->curso->id);
+
+        return redirect()->action(
+            [LeccionController::class, 'show'], [$leccion->curso->id]
+        )->with('status_success', 'La lección ha sido actualizada exitosamente');
+       
+
     }
 
     /**
@@ -121,7 +156,26 @@ class LeccionController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
-    {
-        //
+    {   
+        
+        $this->authorize('haveaccess', 'course.destroy');
+
+        try {
+            $leccion = Leccion::where('id', $id)->first();
+            if (request()->ajax()) {
+                if ($leccion->file) {
+                    Uploader::removeFile("lecciones/".$leccion->title_leccion, $leccion->file);
+                }
+                $leccion->delete();
+                session()->with('status_success', 'La lección :id del curso :curso ha sido eliminada correctamente', [
+                    "id" => $leccion->id,
+                    "curso" => $leccion->curso->title
+                ]);
+            } else {
+                abort(401);
+            }
+        } catch (\Exception $exception) {
+            session()->flash("message", ["danger", $exception->getMessage()]);
+        }
     }
 }
