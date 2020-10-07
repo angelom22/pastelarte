@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\Currency;
 use DB;
 use App\User;
 use App\Models\Curso;
@@ -129,7 +130,6 @@ class CursoController extends Controller
     {
         $curso = Curso::findBySlugOrFail($slug)
                         ->load("lecciones", "estudiantes", "reviews");
-        // dd($curso);
         
         $TotalCursos = Curso::orderBy('id', 'ASC')->get();
 

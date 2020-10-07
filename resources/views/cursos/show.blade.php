@@ -21,7 +21,7 @@
 								</div>
 								<h3 class="cs_title color-white">{{$curso->title}}</h3>
 								<ul class="cs_review_enroll">
-									<li class="list-inline-item color-white"><span class="flaticon-profile"></span>{{$curso->estudiantes_count}}estudiantes inscritos</li>
+									<li class="list-inline-item color-white"><span class="flaticon-profile"></span> {{$curso->estudiantes->count()}} Estudiantes inscritos</li>
 									<li class="list-inline-item color-white"><span class="flaticon-comment"></span> 0 comentarios</li>
 								</ul>
 							</div>
@@ -36,6 +36,7 @@
 	<section class="course-single2 pb40">
 		<div class="container">
 			<div class="row">
+
 				<div class="col-md-12 col-lg-8 col-xl-9">
 					<div class="row">
 						<div class="col-lg-12">
@@ -101,7 +102,11 @@
 															        		<li>
 																				<span class="flaticon-play-button-1 icon"></span> {{$leccion->title_leccion}}
 																				<span class="cs_time badge badge-dark float-right mr-1 mt-2">
-																						{{ __(":duracion min", ["duracion" => $leccion->duracion_leccion]) }}
+																				@if($leccion->duracion_leccion)
+																					{{ __(":duracion min", ["duracion" => $leccion->duracion_leccion]) }}min
+																				@elseif(!$leccion->duracion_leccion)
+																					{{ __("N/A") }}
+																				@endif
 																				</span>
 																			</li>	
 															        	</ul>
@@ -301,26 +306,23 @@
 					<div class="row">
 						<div class="col-lg-12">
 							<div class="popular_course_slider">
-							@foreach($TotalCursos as $cursoindiviaul)
+							@forelse($TotalCursos as $cursoindividual)
 								<div class="item">
 									<div class="top_courses home2 mb0">
 										<div class="thumb">
-											<img class="img-whp" src="/storage/{{$cursoindiviaul->thumbnail}}" alt="{{$cursoindiviaul->slug}}" style="width: 307px; height:200px;  object-fit: cover; object-position: center center;">
+											<img class="img-whp" src="/storage/{{$cursoindividual->thumbnail}}" alt="{{$cursoindividual->slug}}" style="width: 307px; height:200px;  object-fit: cover; object-position: center center;">
 											<div class="overlay">
 												<a class="tc_preview_course"
 												href="#"
-												data-curso_title="{{$cursoindiviaul->title}}"
-												data-curso_precio="{{$cursoindiviaul->precio}}"
-												data-curso_instructor="{{$cursoindiviaul->instructor}}"
 												data-toggle="modal"
-												data-target="#curso1"
+												data-target="#CursoResumen"
 												><i class="fa fa-play" style="font-size: 30px;"></i></a>
 											</div>
 										</div>
 										<div class="details">
 											<div class="tc_content">
-												<p></p>
-												<h5></h5>
+												<p>{{$cursoindividual->instructor}}</p>
+												<a href="{{route('cursos.show', $cursoindividual->slug)}}"><h5>{{$cursoindividual->title}}</h5></a>
 												<ul class="tc_review fn-414">
 													stars
 												</ul>
@@ -328,15 +330,18 @@
 											<div class="tc_footer">
 												<ul class="tc_meta float-left">
 													<li class="list-inline-item"><a href="#"><i class="flaticon-profile"></i></a></li>
-													<li class="list-inline-item"><a href="#">30</a></li>
+													<li class="list-inline-item"><a href="#">{{$curso->estudiantes_count}}</a></li>
 												</ul>
-												<div class="tc_price float-right">${{$cursoindiviaul->precio}}</div>
+												<div class="tc_price float-right">${{$cursoindividual->precio}}</div>
 											</div>
 										</div>
 									</div>
 								</div>
+								@empty
+								<h3>No hay cursos relacionados</h3>
+								@endforelse
+								@include('resources.modal_curso')
 							
-							@endforeach
 							</div>
 						</div>
 					</div>
@@ -352,8 +357,7 @@
 						<div class="price">
 							<span>Precio</span> ${{$curso->precio}}
 						</div>
-						<a href="#" class="cart_btnss">Agregar al carro</a>
-						<a href="#" class="cart_btnss_white">Comprar ahora</a>
+						@include('payment.button_cart')
 						<h5 class="subtitle text-left">Incluye</h5>
 						<ul class="price_quere_list text-left">
 							<li><span class="flaticon-key-1"></span> Acceso de por vida completo</li><br>
@@ -390,6 +394,7 @@
 							</li>
 						</ul>
 					</div>
+					
 
 
 					<div class="blog_recent_post_widget media_widget">
@@ -401,27 +406,12 @@
 			</div>
 		</div>
 	</section>
-@include('resources.modal_curso')
+	
 @endsection
 
 
 @push('js')
 <script src="{{asset('js/comentarios.js')}}"></script>
-<script>
-    // Modal para crear lección
-	$('#curso1').on('show.bs.modal', function(event){
-		var button = $(event.relatedTarget);
-        var curso_title = button.data('curso_title');
-		var curso_precio = button.data('curso_precio');
-		var curso_instructor = button.data('curso_instructor');
-        console.log(carrera_id);
 
-		var modal = $(this);
-
-        modal.find('.modal-body #titulo').val(curso_title);
-        modal.find('.modal-body #precio').val(curso_precio);
-        modal.find('.modal-body #instructor').val(curso_instructor);
-	});
-</script>
 
 @endpush

@@ -2,7 +2,7 @@
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header" style="background-color: #441c42;">
-      	<h4 class="modal-title" style="color: #ffffff;">Titulo</h4>
+      	<h4 class="modal-title" style="color: #ffffff;">TITLE</h4>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true" style="color: #ffffff;">&times;</span>
         </button>

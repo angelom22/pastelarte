@@ -72,10 +72,9 @@
 										@forelse($cursos as $curso)
 										<div class="mc_content_list">
 											<div class="thumb">
-												<img  style="width: 307px; height:200px; object-fit: cover;" src="/storage/{{$curso->thumbnail}}" alt="{{$curso->slug}}">
+												<img style="width: 307px; object-fit: cover;" src="/storage/{{$curso->thumbnail}}" alt="{{$curso->slug}}">
 												<div class="overlay">
 													<ul class="mb0">
-														<!-- Colocar Validación para estos botones -->
 														@can('haveaccess','lesson.edit')
 														<li class="list-inline-item">
 															<a class="mcc_edit" href="{{route('CourseEdit', $curso)}}">Editar</a>

@@ -131,10 +131,22 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth']], 
 Route::post('cursos/{curso}/comentarios', 'ComentarioController@store')->name('cursos.comentarios.store');
 
 
+
+// Rutas para anadir cursos y carreras al carrito de compras
+Route::get('/add-curso-to-cart/{curso}', 'EstudianteController@addCursoToCart')
+    ->name('add_curso_to_cart');
+Route::get('/cart', 'EstudianteController@showCart')
+    ->name('cart');
+Route::get('/remove-curso-from-cart/{curso}', 'EstudianteController@removeCursoFromCart')
+    ->name('remove_curso_from_cart');
+
+Route::post('/apply-coupon', 'EstudianteController@applyCoupon')
+    ->name('apply_coupon');
+
 // Rutas del check out
-Route::resource('/cart', 'PaymentController')->names([
-    'update'    => 'CartUpdate',
-    'create'    => 'CartCreate',
-    'store'     => 'CartStore',
-    'edit'      => 'CartEdit',
-]);
+// Route::resource('/cart', 'PaymentController')->names([
+//     'update'    => 'CartUpdate',
+//     'create'    => 'CartCreate',
+//     'store'     => 'CartStore',
+//     'edit'      => 'CartEdit',
+// ]);

@@ -2,24 +2,24 @@
 namespace App\Traits;
 
 use App\Models\Coupon;
-use App\Models\Course;
+use App\Models\Curso;
 use App\Services\Cart;
 
 trait ManageCart {
     public function showCart() {
-        return view("learning.cart");
+        return view('payment.cart');
     }
 
-    public function addCourseToCart(Course $course) {
+    public function addCursoToCart(Curso $curso) {
         $cart = new Cart;
-        $cart->addCourse($course);
+        $cart->addCurso($curso);
         session()->flash("message", ["success", __("Curso añadido al carrito correctamente")]);
         return redirect(route('cart'));
     }
 
-    public function removeCourseFromCart(Course $course) {
+    public function removeCursoFromCart(Curso $curso) {
         $cart = new Cart;
-        $cart->removeCourse($course->id);
+        $cart->removeCurso($curso->id);
         session()->flash("message", ["success", __("Curso eliminado del carrito correctamente")]);
         return back();
     }

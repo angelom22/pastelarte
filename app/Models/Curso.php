@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Helpers\Currency;
 use Illuminate\Database\Eloquent\Model;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Cviebrock\EloquentSluggable\SluggableScopeHelpers;
@@ -125,17 +126,17 @@ class Curso extends Model
     public function comentarios(){
         return $this->hasMany(Comentario::class);
     }
-
-    // public function lecciones(){
-    //     return $this->hasMany(CursoLeccion::class, 'curso_id', 'id')->withTimestamps();
-    // }
-
+    
     public function reviews(){
         return $this->hasMany(Review::class, "curso_id", "id");
     }
 
     public function getRatingAttribute () {
         return $this->reviews->avg('stars');
+    }
+
+    public function getFormattedPriceAttribute() {
+        return Currency::formatCurrency($this->precio);
     }
 
     // Sacar el total del los videos que hay en el curso

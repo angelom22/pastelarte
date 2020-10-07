@@ -62,7 +62,7 @@
         @include('layouts.footer')
 
         <!-- Modal CursosResumen-->
-        @include('resources.modal_curso')
+        
 
         <a class="scrollToHome" href="#"><i class="flaticon-up-arrow-1"></i></a>
 
