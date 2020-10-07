@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Builder;
 use App\Models\Carrera;
 use App\Models\Leccion;
 use App\Models\Comentario;
-use App\Models\Valoracion;
+use App\Models\Review;
 use App\Traits\Hashidable;
 use App\User;
 
@@ -85,7 +85,7 @@ class Curso extends Model
     protected $table = 'cursos';
 
     protected $fillable = [
-       'user_id', 'carrera_id', 'title', 'slug', 'thumbnail', 'extracto', 'description', 'precio', 'duracion_curso', 'nivel_habilidad', 'lenguaje', 'instructor', 'valoracion', 'status', 'url_video_preview_curso', 'gratis', 'featured' 
+       'user_id', 'carrera_id', 'title', 'slug', 'thumbnail', 'extracto', 'description', 'precio', 'duracion_curso', 'nivel_habilidad', 'lenguaje', 'instructor', 'status', 'url_video_preview_curso', 'gratis', 'featured' 
     ];
 
     const DISPONIBLE = 1;
@@ -93,6 +93,10 @@ class Curso extends Model
     const PENDIENTE = 3 ;
     const RECHAZADO = 4;
 
+    protected $appends = [
+        "rating", "formatted_price"
+    ];
+   
     protected static function boot() {
         parent::boot();
         if ( !app()->runningInConsole()) {
@@ -126,8 +130,28 @@ class Curso extends Model
     //     return $this->hasMany(CursoLeccion::class, 'curso_id', 'id')->withTimestamps();
     // }
 
-    public function valoraciones(){
-        return $this->hasMany(Valoracion::class);
+    public function reviews(){
+        return $this->hasMany(Review::class, "curso_id", "id");
+    }
+
+    public function getRatingAttribute () {
+        return $this->reviews->avg('stars');
+    }
+
+    // Sacar el total del los videos que hay en el curso
+    public function totalVideoLeccion() {
+        return $this->lecciones->where("leccion_type", 'VIDEO')->count();
+    }
+
+    // Sacar el total de los archivos que hay en el curso
+    public function totalFileLeccion() {
+        return $this->lecciones->where("leccion_type", 'ZIP')->count();
+    }
+
+    // sumar el total los minitos del curso
+    public function totalTime() {
+        $minutes = $this->lecciones->where("leccion_type", "VIDEO")->sum("duracion_leccion");
+        return gmdate("H:i:s", $minutes * 60);
     }
 
     public function scopeSearch($query, $title){

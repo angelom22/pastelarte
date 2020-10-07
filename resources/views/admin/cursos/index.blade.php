@@ -69,7 +69,7 @@
 									</div>
 									@include('custom.message')
 									<div class="my_course_content_list">
-										@foreach($cursos as $curso)
+										@forelse($cursos as $curso)
 										<div class="mc_content_list">
 											<div class="thumb">
 												<img  style="width: 307px; height:200px; object-fit: cover;" src="/storage/{{$curso->thumbnail}}" alt="{{$curso->slug}}">
@@ -119,9 +119,9 @@
 												<div class="mc_footer">
 													<ul class="mc_meta fn-414">
 														<li class="list-inline-item"><i class="flaticon-profile"></i></li>
-														<li class="list-inline-item">1548</li>
+														<li class="list-inline-item">{{$curso->estudiantes_count}}</li>
 													</ul>
-													<ul class="mc_review fn-414">
+													<ul class="tc_review fn-414">
 														<li class="list-inline-item"><i class="fa fa-star"></i></li>
 														<li class="list-inline-item"><i class="fa fa-star"></i></li>
 														<li class="list-inline-item"><i class="fa fa-star"></i></li>
@@ -180,18 +180,22 @@
 												</div>
 											</div>
 										</div>
-										@endforeach
+										@empty
+										<div class="col-12">
+											<div class="empty-results">
+												<h3><strong> No ha cursos para listar...!</strong></h3>
+											</div>
+										</div>
+										@endforelse
 									</div>
-
-
 
 									<div class="row">
 										<div class="col-lg-12">
 											<div class="mbp_pagination mt20">
 												<ul class="page_navigation">
-
-													{{ $cursos->links() }}
-
+												@if(count($cursos))
+                                        			{{ $cursos->links() }}
+                                    			@endif
 												</ul>
 											</div>
 										</div>

@@ -35,8 +35,9 @@ class AdminController extends Controller
     {
         $this->authorize('haveaccess', 'course.admin');
 
-        $cursos = Curso::Search($request->title)->orderBy('id', 'DESC')->paginate(5);
-
+        $cursos = Curso::Search($request->title)->withCount("estudiantes")->orderBy('id', 'DESC')->paginate(5);
+        // dd($cursos[0]->estudiantes());
+        
         return view('admin.cursos.index', compact('cursos'));
     }
 

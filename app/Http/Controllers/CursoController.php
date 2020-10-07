@@ -36,6 +36,7 @@ class CursoController extends Controller
         //                 ->orderBy('id', 'ASC')
         //                 ->paginate(9);
         $cursos = Curso::filtro();
+        
         $totalCursos = $cursos->count();
     
         $session = session('search[cursos]');
@@ -126,17 +127,16 @@ class CursoController extends Controller
      */
     public function show($slug)
     {
-        $curso = Curso::findBySlugOrFail($slug);
-        // dd($curso->comentarios);
-
-        $lecciones = Leccion::where('curso_id', $curso->id)->get();
+        $curso = Curso::findBySlugOrFail($slug)
+                        ->load("lecciones", "estudiantes", "reviews");
+        // dd($curso);
         
-        $cursos = Curso::orderBy('id', 'ASC')->paginate(3);
+        $cursos = Curso::orderBy('id', 'ASC')->paginate();
         
         $comentarios = Comentario::where('curso_id', $curso->id)->orderBy('id', 'DESC')->get();
         // dd($comentarios[1]->user());
 
-        return view('cursos.show', compact('curso','cursos', 'lecciones', 'comentarios'));
+        return view('cursos.show', compact('curso','cursos', 'comentarios'));
     }
 
     /**
