@@ -6,9 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Cviebrock\EloquentSluggable\SluggableScopeHelpers;
 use App\Models\Curso;
+use App\Traits\Hashidable;
 
 class Carrera extends Model
 {
+   
     use Sluggable;
     use SluggableScopeHelpers;
     

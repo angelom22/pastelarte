@@ -63,7 +63,7 @@
 													<!-- <a class="btn btn-sm btn-info" data-user_id="{{$user->id}}" data-user_name="{{$user->name}}" data-user_email="{{$user->email}}" data-user_roles="1" data-user_avatar="{{$user->avatar}}" data-toggle="modal" data-target="#AbrirModalUser" title="Ver"> 
 														<i class="fa fa-eye"></i>
 													</a> -->
-													<a href="{{route('user.show', $user->id)}}" class="btn  btn-secondary btn-sm" title="Ver"> 
+													<a href="{{route('user.show', $user)}}" class="btn  btn-secondary btn-sm" title="Ver"> 
 														<span class="flaticon-preview"></span>
 													</a>
 												@endcan
@@ -72,7 +72,7 @@
 													<!-- <a class="btn btn-sm btn-success" data-user_id="{{$user->id}}" data-user_name="{{$user->name}}" data-user_email="{{$user->email}}" data-user_roles="1" data-user_avatar="{{$user->avatar}}" data-toggle="modal" data-target="#ModificarUser" title="Modificar">
 														<i class="fa fa-wpforms"></i>
 													</a> -->
-													<a href="{{route('user.edit', $user->id)}}" class="btn btn-sm btn-primary" title="Editar">
+													<a href="{{route('user.edit', $user)}}" class="btn btn-sm btn-primary" title="Editar">
 														<span class="flaticon-edit"></span>
 													</a>
 												@endcan

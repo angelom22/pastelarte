@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Cviebrock\EloquentSluggable\SluggableScopeHelpers;
 use App\Models\Curso;
+use App\Traits\Hashidable;
 
 /**
  * App\Models\Leccion
@@ -44,6 +45,7 @@ use App\Models\Curso;
 
 class Leccion extends Model
 {
+    // use Hashidable;
     use Sluggable;
     use SluggableScopeHelpers;
 

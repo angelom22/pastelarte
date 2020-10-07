@@ -1,5 +1,11 @@
 @extends('admin.layouts.app')
 
+@push('css')
+    <!-- JConfirm -->
+    <link rel="stylesheet" href="{{asset('plugins/jconfirm/jConfirm.min.css')}}">
+@endpush
+
+
 @section('content')
 
 	<!-- Main Header Nav -->
@@ -153,13 +159,21 @@
 														</li>
 									    				<li class="list-inline-item">
 														@can('haveaccess','course.destroy')
-															<form action="{{route('cursos.destroy', $curso)}}" method="POST" style="display: inline;">
+															<a
+															class="btn btn btn-sm btn-danger delete-record"
+															title="Eliminar"
+															data-route="{{route('cursos.destroy', $curso)}}"
+															href="#"
+															>
+																<span class="flaticon-delete-button"></span>
+															</a>
+															<!-- <form action="{{route('cursos.destroy', $curso)}}" method="POST" style="display: inline;">
 																@csrf
 																@method('DELETE')
 																<button title="Eliminar" class="btn btn-sm btn-danger" data-original-title="Delete" onclick="return alert('Esta seguro de querer eliminar este cuso?')">
 																<span class="flaticon-delete-button"></span>
 																</button>
-															</form>
+															</form> -->
 														@endcan
 														</li>
 									    			</ul>

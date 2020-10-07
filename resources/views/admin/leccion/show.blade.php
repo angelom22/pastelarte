@@ -74,13 +74,7 @@
                                                     >
                                                         <span class="flaticon-delete-button"></span>
                                                     </a>
-                                                        <!-- <form action="#" method="POST" style="display: inline;">
-                                                            @csrf
-                                                            @method('DELETE')
-                                                            <button title="eliminar" class="btn btn-danger btn-sm" onclick="return alert('Esta seguro de querer eliminar este evento?')">
-                                                                <span class="flaticon-delete-button"></span>
-                                                            </button>
-                                                        </form> -->
+                                                        
                                                     @endcan
                                                     </td>
                                                 </tr>
@@ -89,13 +83,7 @@
                                                         <td colspan="7">
                                                             <div class="empty-results">
                                                             @can('haveaccess','leccion.create')
-                                                                <a href="#"
-                                                                class="btn btn-info"
-                                                                title="Añadir Lección"
-                                                                data-toggle="modal" data-target="#CrearLeccion"
-                                                                >
-                                                                <i class="fa fa-plus"></i>
-                                                            Anadir Lección</a>
+                                                                <h4> <strong>Este curso no posee lecciones para listar</strong> </h4>
                                                             @endcan
                                                             </div>
                                                         </td>
@@ -141,7 +129,7 @@
 
 @push('js')
 
-
+    
 @endpush
 
 

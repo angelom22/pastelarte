@@ -170,6 +170,7 @@ return [
         Sichikawa\LaravelSendgridDriver\SendgridTransportServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
         Yajra\Disqus\DisqusServiceProvider::class,
+        
 
         /*
          * Application Service Providers...

@@ -27,7 +27,7 @@
             <li {{ request()->is('admin/lecciones') ? 'class=active' : '' }} ><a href="{{route('admin.lecciones')}}"><span class="flaticon-online-learning"></span>Lecciones</a></li>
             @endcan
             @can('haveaccess','career.admin')
-            <li {{ request()->is('admin/carrera') ? 'class=active' : '' }} ><a href="{{route('carrera.user')}}"><span class="flaticon-online-learning"></span>Carreras</a></li>
+            <li {{ request()->is('admin/carrera') ? 'class=active' : '' }} ><a href="{{route('admin.carrera')}}"><span class="flaticon-online-learning"></span>Carreras</a></li>
             @endcan
             @can('haveaccess','blog.admin')
             <!-- @if(auth()->user()->roles[0]->full_access == 'yes') -->

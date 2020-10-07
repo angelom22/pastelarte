@@ -9,7 +9,7 @@ use App\Models\Leccion;
 use Illuminate\Http\Request;
 use App\Models\CursoLeccion;
 use Illuminate\Support\Facades\Gate;
-use App\Http\Requests\StoreLessonRequest;
+use App\Http\Requests\LessonRequest;
 
 class LeccionController extends Controller
 {
@@ -46,7 +46,7 @@ class LeccionController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreLessonRequest $request)
+    public function store(LessonRequest $request)
     {
         Gate::authorize('haveaccess', 'lesson.create');
 
@@ -116,7 +116,7 @@ class LeccionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(StoreLessonRequest $request, $id)
+    public function update(LessonRequest $request, $id)
     {
         $this->authorize('haveaccess', 'lesson.edit');
 
@@ -167,10 +167,10 @@ class LeccionController extends Controller
                     Uploader::removeFile("lecciones/".$leccion->title_leccion, $leccion->file);
                 }
                 $leccion->delete();
-                session()->with('status_success', 'La lección :id del curso :curso ha sido eliminada correctamente', [
+                session()->flash("message", ["success", __("La lección :id del curso :course ha sido eliminada correctamente", [
                     "id" => $leccion->id,
-                    "curso" => $leccion->curso->title
-                ]);
+                    "course" => $leccion->curso->title
+                ])]);
             } else {
                 abort(401);
             }

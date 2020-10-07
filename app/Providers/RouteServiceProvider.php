@@ -2,6 +2,11 @@
 
 namespace App\Providers;
 
+use App\Models\Carrera;
+use App\Models\Curso;
+use App\Models\Leccion;
+use App\Models\Order;
+use App\User;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Route;
 
@@ -30,9 +35,37 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
-
         parent::boot();
+
+        Route::bind('user', function ($value, $route) {
+            return $this->getModel(User::class, $value);
+        });
+
+        Route::bind('lecciones', function ($value, $route) {
+            return $this->getModel(Leccion::class, $value);
+        });
+
+        Route::bind('cursos', function ($value, $route) {
+            return $this->getModel(Curso::class, $value);
+        });
+        
+        Route::bind('carrera', function ($value, $route) {
+            return $this->getModel(Carrera::class, $value);
+        });
+        
+        // Route::bind('coupon', function ($value, $route) {
+        //     return $this->getModel(Coupon::class, $value);
+        // });
+
+        Route::bind('order', function ($value, $route) {
+            return $this->getModel(Order::class, $value);
+        });
+    }
+
+    protected function getModel($model, $routeKey) {
+        $id = \Hashids::connection($model)->decode($routeKey)[0] ?? null;
+        $modelInstance = resolve($model);
+        return $modelInstance->findOrFail($id);
     }
 
     /**

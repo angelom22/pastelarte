@@ -12,11 +12,12 @@ use App\UserActivationToken;
 use Illuminate\Support\Str;
 use App\Models\Blog;
 use App\Models\Comentario;
+use App\Traits\Hashidable;
 
 class User extends Authenticatable
 {
     use Notifiable, UserTrait;
-
+    // use Hashidable;
     /**
      * The attributes that are mass assignable.
      *

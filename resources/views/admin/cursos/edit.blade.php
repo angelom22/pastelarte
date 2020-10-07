@@ -3,6 +3,46 @@
 @push('css')
  <!-- PNotify -->
  <link href="{{asset('plugins/pnotify/dist/PNotifyBrightTheme.css')}}" rel="stylesheet" type="text/css" />
+ <style>
+        .drag-list {
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        .drag-list > li {
+            list-style: none;
+            background: rgb(255, 255, 255);
+            border: 1px solid rgb(196, 196, 196);
+            margin: 5px 0;
+            font-size: 14px;
+        }
+
+        .drag-list .title {
+            display: inline-block;
+            width: 90%;
+            padding: 6px 6px 6px 12px;
+            vertical-align: top;
+        }
+
+        .drag-list .drag-area {
+            display: inline-block;
+            background: rgb(158, 211, 179);
+            width: 8%;
+            height: 34px;
+            vertical-align: center;
+            float: right;
+            cursor: move;
+            text-align: center;
+            padding-top: 5px;
+        }
+        .drag-list .VIDEO {
+            background: #e35a9a;
+		}
+		
+        .drag-list .ZIP {
+            background: #9e9e9e;
+        }
+    </style>
 @endpush
 
 @section('content')
@@ -33,7 +73,8 @@
                                 @include('custom.message')
                                 <form action="{{ route('CourseUpdate', $curso) }}" method="POST" enctype="multipart/form-data" files="true" id="UpdateCourse">
                                 @method('PUT')
-                                @csrf
+								@csrf
+								<input type="hidden" name="orderedLecciones">
 								<div class="my_setting_content mb30">
 									<div class="my_setting_content_header">
 										<div class="my_sch_title my_profile_select_box col-lg-4">
@@ -115,6 +156,60 @@
 											</div>
 										</div>
 									</div>
+
+
+									<div class="my_setting_content_header style2">
+										<div class="my_sch_title">
+											<h4 class="m0">{{ __("Organiza las lecciones del curso") }}:</h4>
+										</div>
+									</div>
+									<div class="row my_setting_content_details">
+										<div class="col-lg-12">
+											<ul class="drag-list">
+												@forelse($curso->lecciones as $leccion)
+													<li data-id="{{ $leccion->id }}">
+														<span class="title">
+															{{ $leccion->title_leccion }} --- 
+
+															@if($leccion->duracion_leccion)
+															 {{$leccion->duracion_leccion }}min
+															@elseif(!$leccion->duracion_leccion)
+															{{ __("N/A") }}
+															@endif
+
+															@if($leccion->leccion_type == 'VIDEO')
+																<span class="badge badge-success float-right">
+																	{{ __("VIDEO") }}
+																</span>
+															@elseif($leccion->leccion_type == 'ZIP')
+																<span class="badge badge-dark float-right">
+																	{{ __("ARCHIVO") }}
+																</span>
+															@endif
+														</span>
+														<span class="drag-area {{ $leccion->leccion_type }}">
+															@switch($leccion->leccion_type)
+																@case(\App\Models\Leccion::VIDEO)
+																	<i class="fa fa-file-video-o text-white"></i>
+																@break
+																
+																@case(\App\Models\Leccion::ZIP)
+																	<i class="fa fa-file-zip-o text-white"></i>
+																@break
+															@endswitch
+														</span>
+													</li>
+												@empty
+													<div class="empty-results">
+														<h4><strong>No tienes ninguna unidad todavía</strong></h4>
+													</div>
+												@endforelse
+											</ul>
+										</div>
+									</div>
+
+
+
 									<div class="my_setting_content_header style2">
 										<div class="my_sch_title">
 											<h4 class="m0">Descripción:</h4>
@@ -190,6 +285,31 @@
 	CKEDITOR.replace( 'description' );
 
 	$('.time').mask('99:99');
+    
 </script>
+
+<script src="/js/drag-arrange.min.js"></script>
+    
+    <script>
+        jQuery(document).ready(function () {
+
+            $('li').arrangeable({dragSelector: '.drag-area'});
+            $('.drag-list').on('drag.end.arrangeable', function () {
+                let orderedLecciones = [];
+                const listItems = $(".drag-list li");
+                let order = 1;
+                for (let li of listItems) {
+                    const id = $(li).data("id");
+                    orderedLecciones.push({
+                        id,
+                        order
+                    });
+                    order++;
+                }
+                $("input[name=orderedLecciones]").val(JSON.stringify(orderedLecciones));
+            });
+
+        });
+    </script>
 
 @endpush

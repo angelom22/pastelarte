@@ -10,6 +10,7 @@ use App\Models\Carrera;
 use App\Models\Leccion;
 use App\Models\Comentario;
 use App\Models\Valoracion;
+use App\Traits\Hashidable;
 use App\User;
 
 /**
@@ -51,7 +52,7 @@ use App\User;
 
 class Curso extends Model
 {
-    
+    // use Hashidable;
     use Sluggable;
     use SluggableScopeHelpers;
 
@@ -92,8 +93,17 @@ class Curso extends Model
     const PENDIENTE = 3 ;
     const RECHAZADO = 4;
 
+    protected static function boot() {
+        parent::boot();
+        if ( !app()->runningInConsole()) {
+            self::saving(function ($table) {
+                $table->user_id = auth()->id();
+            });
+        }
+    }
+
     public function user(){
-        return $this->belongsTo(User::class, 'user_id', 'id')->withDefault();
+        return $this->belongsTo(User::class, 'user_id');
     }
 
     public function estudiantes(){
@@ -105,7 +115,7 @@ class Curso extends Model
     }
 
     public function lecciones(){
-        return $this->belongsToMany(Leccion::class)->withTimestamps();
+        return $this->hasMany(Leccion::class)->orderBy("order", "asc");
     }
 
     public function comentarios(){

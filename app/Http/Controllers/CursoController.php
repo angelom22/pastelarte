@@ -4,19 +4,20 @@ namespace App\Http\Controllers;
 
 use DB;
 use App\User;
-use  Carbon\Carbon;
 use App\Models\Curso;
 use App\Models\Carrera;
 use App\Models\Leccion;
+use App\Helpers\Uploader;
 use App\Models\CursoLeccion;
 use App\Models\CarreraCurso;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use App\Http\Controllers\Auth;
 use Illuminate\Support\Facades\Gate;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Storage;
-use App\Http\Requests\StoreCourseRequest;
-use App\Http\Requests\UpdateCourseRequest;
+use App\Http\Requests\CourseRequest;
+
 
 use App\Models\Comentario;
 use App\Http\Resources\ComentarioResource;
@@ -74,7 +75,7 @@ class CursoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreCourseRequest $request)
+    public function store(CourseRequest $request)
     {
         // dd($request->all());
         Gate::authorize('haveaccess', 'course.create');
@@ -83,8 +84,6 @@ class CursoController extends Controller
         // $thumbnailUrl = Storage::url($thumbnail);
 
         $curso = Curso::create([
-            'user_id'           => auth()->id(),
-            // 'leccion_id' => $request->leccion_id;
             'carrera_id'        => $request->carrera_id,
             'title'             => $request->title,
             'thumbnail'         => $thumbnail,
@@ -153,6 +152,9 @@ class CursoController extends Controller
 
         $carreras = Carrera::all();
 
+        $curso->load("lecciones");
+        // dd($curso);
+        
         return view('admin.cursos.edit', compact('curso','carreras'));
     }
 
@@ -163,9 +165,9 @@ class CursoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateCourseRequest $request, Curso $curso)
+    public function update(CourseRequest $request, Curso $curso)
     {
-        // dd($request->status);
+        // dd($request->orderedLecciones);
         $this->authorize('haveaccess', 'course.edit');
 
         // Si se actualiza el articulo se elimina la imagen antigua del servidor
@@ -179,7 +181,6 @@ class CursoController extends Controller
     
             // se guarda el post en la base da datos
             $curso->update([
-                'user_id'                   => auth()->id(),
                 'carrera_id'                => $request->carrera_id,
                 'title'                     => $request->title,
                 'thumbnail'                 => $thumbnail,
@@ -208,6 +209,14 @@ class CursoController extends Controller
             $curso->update(array_filter($request->all()));
         }
 
+        // Se actualiza el orden de las lecciones en la tabla lecciones 
+        if ($request->orderedLecciones) {
+            $data = json_decode($request->orderedLecciones);
+            foreach($data as $leccion) {
+                Leccion::whereId($leccion->id)->update(["order" => $leccion->order]);
+            }
+        }
+
         return redirect()->route('admin.curso')->with('status_success', 'El curso ha sido actualizado exitosamente');
     }
 
@@ -222,11 +231,28 @@ class CursoController extends Controller
         // dd($curso);
         $this->authorize('haveaccess', 'course.destroy');
 
-        // Se elimina el thumbnail actual del curso
-        Storage::delete($curso->thumbnail);
-    
-        $curso->delete();
+        try {
+            
+            if (request()->ajax()) {
+                Storage::delete($curso->thumbnail);
+                $curso->Lecciones()->delete();
+                $curso->delete();
+                session()->flash("message", ["success", __("El :curso ha sido eliminado correctamente", [
+                    "curso" => $curso->title
+                ])]);
+            } else {
+                abort(401);
+            }
+        } catch (\Exception $exception) {
+            session()->flash("message", ["danger", $exception->getMessage()]);
+        }
 
-        return redirect()->route('admin.curso')->with('status_success', 'Se a eliminado el curso correctamente'); 
+
+        // Se elimina el thumbnail actual del curso
+        // Storage::delete($curso->thumbnail);
+    
+        // $curso->delete();
+
+        // return redirect()->route('admin.curso')->with('status_success', 'Se a eliminado el curso correctamente'); 
     }
 }
