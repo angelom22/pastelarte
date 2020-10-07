@@ -227,11 +227,11 @@
 											<div class="cs_row_six csv2">
 												<div class="sfeedbacks">
 													<div class="mbp_pagination_comments">
-														@forelse($comentarios as $comentario)
+														
 														<div class="mbp_first media csv1">
-															<img src="/storage/{{$comentario->user->avatar}}" class="mr-3" alt="review1.png">
+															<img src="/storage/" class="mr-3" alt="review1.png">
 															<div class="media-body">
-														    	<h4 class="sub_title mt-0">{{$comentario->user->name}}
+														    	<h4 class="sub_title mt-0">
 																	<span class="sspd_review float-right">
 																		<ul>
 																			<li class="list-inline-item"><a href="#"><i class="fa fa-star"></i></a></li>
@@ -243,13 +243,13 @@
 																		</ul>
 																	</span>
 														    	</h4>
-														    	<a class="sspd_postdate fz14" href="#">{{$comentario->created_at->diffForHumans()}}</a>
-														    	<p class="fz15 mt25 mb25" id="comentario">{{$comentario->contenido}}</p> <div class="ssp_reply float-right"><span class="flaticon-consulting-message"></span></div>
+														    	<a class="sspd_postdate fz14" href="#"></a>
+														    	<p class="fz15 mt25 mb25" id="comentario"></p> <div class="ssp_reply float-right"><span class="flaticon-consulting-message"></span></div>
 															</div>
 														</div>
-														@empty
+														
 														<h1>no hay comentarios</h1>
-														@endforelse
+														
 														<div class="custom_hr"></div>
 													</div>
 												</div>
@@ -301,17 +301,17 @@
 					<div class="row">
 						<div class="col-lg-12">
 							<div class="popular_course_slider">
-							@forelse($cursos as $curso)
+							@foreach($TotalCursos as $cursoindiviaul)
 								<div class="item">
 									<div class="top_courses home2 mb0">
 										<div class="thumb">
-											<img class="img-whp" src="/storage/{{$curso->thumbnail}}" alt="{{$curso->title}}" style="width: 307px; height:200px;  object-fit: cover; object-position: center center;">
+											<img class="img-whp" src="/storage/{{$cursoindiviaul->thumbnail}}" alt="{{$cursoindiviaul->slug}}" style="width: 307px; height:200px;  object-fit: cover; object-position: center center;">
 											<div class="overlay">
 												<a class="tc_preview_course"
 												href="#"
-												data-curso_title="{{$curso->title}}"
-												data-curso_precio="{{$curso->precio}}"
-												data-curso_instructor="{{$curso->instructor}}"
+												data-curso_title="{{$cursoindiviaul->title}}"
+												data-curso_precio="{{$cursoindiviaul->precio}}"
+												data-curso_instructor="{{$cursoindiviaul->instructor}}"
 												data-toggle="modal"
 												data-target="#curso1"
 												><i class="fa fa-play" style="font-size: 30px;"></i></a>
@@ -319,8 +319,8 @@
 										</div>
 										<div class="details">
 											<div class="tc_content">
-												<p>{{$curso->instructor}}</p>
-												<h5>{{$curso->title}}</h5>
+												<p></p>
+												<h5></h5>
 												<ul class="tc_review fn-414">
 													stars
 												</ul>
@@ -330,14 +330,13 @@
 													<li class="list-inline-item"><a href="#"><i class="flaticon-profile"></i></a></li>
 													<li class="list-inline-item"><a href="#">30</a></li>
 												</ul>
-												<div class="tc_price float-right">${{$curso->precio}}</div>
+												<div class="tc_price float-right">${{$cursoindiviaul->precio}}</div>
 											</div>
 										</div>
 									</div>
 								</div>
-							@empty
-							<h1>No hay cursos relacionados</h1>
-							@endforelse
+							
+							@endforeach
 							</div>
 						</div>
 					</div>

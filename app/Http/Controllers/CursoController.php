@@ -131,12 +131,9 @@ class CursoController extends Controller
                         ->load("lecciones", "estudiantes", "reviews");
         // dd($curso);
         
-        $cursos = Curso::orderBy('id', 'ASC')->paginate();
-        
-        $comentarios = Comentario::where('curso_id', $curso->id)->orderBy('id', 'DESC')->get();
-        // dd($comentarios[1]->user());
+        $TotalCursos = Curso::orderBy('id', 'ASC')->get();
 
-        return view('cursos.show', compact('curso','cursos', 'comentarios'));
+        return view('cursos.show', compact('curso', 'TotalCursos'));
     }
 
     /**
