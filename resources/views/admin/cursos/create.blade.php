@@ -53,15 +53,7 @@
 														</select>
 													</div>
 												</div>
-												<div class="col-xl-6">
-													<div class="my_profile_select_box form-group">
-														<label for="featured">Destacado</label>
-														<select class="selectpicker" name="featured" id="featured">
-															<option value="0">No</option>
-															<option value="1">Si</option>
-														</select>
-													</div>
-												</div>
+												
 											</div>
 										</div>
 									</div>
@@ -89,19 +81,20 @@
 												    	<input type="text" class="form-control" id="nivel_habilidad" name="nivel_habilidad" aria-describedby="phoneNumber" placeholder="Ej: Básico, Avanzado"   value="{{old('nivel_habilidad')}}"  maxlength="25" onkeypress="return soloLetras(event)">
 													</div>
 												</div>
-												<div class="col-xl-6">
-													<label for="duracion_curso">Duración:</label>
-													<div class="input-group form-group date" id="timepicker" data-target-input="nearest">
-														<input type="text" class="form-control datetimepicker-input time" id="duracion_curso" name="duracion_curso" value="{{old('duracion_curso')}}"  placeholder="Duracion de la leccion si es video" onkeypress="return soloNumero(event)" data-target="#timepicker">
-														<div class="input-group-append" data-target="#timepicker" data-toggle="datetimepicker">
-															<div class="input-group-text"><i class="fa fa-clock-o" aria-hidden="true"></i></div>
-														</div>
-													</div>
-												</div>
+												
 												<div class="col-xl-6">
 													<div class="my_profile_setting_input form-group">
 														<label for="lenguaje">Lenguaje:</label>
 														<input type="text" class="form-control" id="lenguaje" name="lenguaje" placeholder="Ej: Español" value="{{old('lenguaje')}}"  maxlength="50" onkeypress="return soloLetras(event)">
+													</div>
+												</div>
+												<div class="col-xl-6">
+													<div class="my_profile_select_box form-group">
+														<label for="featured">Destacado</label>
+														<select class="selectpicker" name="featured" id="featured">
+															<option value="0">No</option>
+															<option value="1">Si</option>
+														</select>
 													</div>
 												</div>	
 											</div>

@@ -7,6 +7,7 @@ use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use App\RolesPermisos\Models\Role;
+use App\Traits\ManageCart;
 use Illuminate\Support\Facades\Hash;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Storage;
@@ -14,6 +15,8 @@ use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
+    use ManageCart;
+    
     public function __construct()
     {
         $this->middleware('auth');

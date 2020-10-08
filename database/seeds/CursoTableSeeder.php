@@ -36,7 +36,6 @@ class CursoTableSeeder extends Seeder
                 "extracto" => "este es el extractor del curso de pasteleria",
                 "description" => "Esta es la descripción del curso.",
                 "precio" => 19.99,
-                "duracion_curso" => "01:00",
                 "nivel_habilidad" => "Básico",
                 "lenguaje" => "Español",
                 "instructor" => "chef Beatriz Roman",
@@ -44,6 +43,8 @@ class CursoTableSeeder extends Seeder
                 "url_video_preview_curso" => 'https://player.vimeo.com/video/454182996',
                 "gratis" => 0,
                 "featured" => 1,
+                'created_at' => now(),
+                'updated_at' => now(),
             ],
 
             [
@@ -55,7 +56,6 @@ class CursoTableSeeder extends Seeder
                 "extracto" => "este es el extractor del curso de masas",
                 "description" => "Esta es la descripción del curso.",
                 "precio" => 19.99,
-                "duracion_curso" => "00:30",
                 "nivel_habilidad" => "Básico",
                 "lenguaje" => "Español",
                 "instructor" => "chef Beatriz Roman",
@@ -63,6 +63,8 @@ class CursoTableSeeder extends Seeder
                 "url_video_preview_curso" => 'https://player.vimeo.com/video/454182996',
                 "gratis" => 0,
                 "featured" => 1,
+                'created_at' => now(),
+                'updated_at' => now(),
             ],
             [
                 "user_id" => 1,
@@ -73,7 +75,6 @@ class CursoTableSeeder extends Seeder
                 "extracto" => "este es el extractor del curso de decoración de tortas comerciales",
                 "description" => "Esta es la descripción del curso.",
                 "precio" => 19.99,
-                "duracion_curso" => "01:00",
                 "nivel_habilidad" => "Básico",
                 "lenguaje" => "Español",
                 "instructor" => "chef Beatriz Roman",
@@ -81,6 +82,8 @@ class CursoTableSeeder extends Seeder
                 "url_video_preview_curso" => 'https://player.vimeo.com/video/454182996',
                 "gratis" => 0,
                 "featured" => 1,
+                'created_at' => now(),
+                'updated_at' => now(),
             ],
             [
                 "user_id" => 1,
@@ -91,7 +94,6 @@ class CursoTableSeeder extends Seeder
                 "extracto" => "este es el extractor del curso de Ténicas de Fondant",
                 "description" => "Esta es la descripción del curso.",
                 "precio" => 19.99,
-                "duracion_curso" => "01:00",
                 "nivel_habilidad" => "Básico",
                 "lenguaje" => "Español",
                 "instructor" => "chef Beatriz Roman",
@@ -99,6 +101,8 @@ class CursoTableSeeder extends Seeder
                 "url_video_preview_curso" => 'https://player.vimeo.com/video/454182996',
                 "gratis" => 0,
                 "featured" => 1,
+                'created_at' => now(),
+                'updated_at' => now(),
             ],
             [
                 "user_id" => 1,
@@ -109,7 +113,6 @@ class CursoTableSeeder extends Seeder
                 "extracto" => "este es el extractor del curso gratis",
                 "description" => "Esta es la descripción del curso.",
                 "precio" => 19.99,
-                "duracion_curso" => "00:20",
                 "nivel_habilidad" => "Básico",
                 "lenguaje" => "Español",
                 "instructor" => "chef Beatriz Roman",
@@ -117,6 +120,8 @@ class CursoTableSeeder extends Seeder
                 "url_video_preview_curso" => 'https://player.vimeo.com/video/454182996',
                 "gratis" => 1,
                 "featured" => 1,
+                'created_at' => now(),
+                'updated_at' => now(),
             ],
         ]
 

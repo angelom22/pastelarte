@@ -133,15 +133,23 @@ Route::post('cursos/{curso}/comentarios', 'ComentarioController@store')->name('c
 
 
 // Rutas para anadir cursos y carreras al carrito de compras
-Route::get('/add-curso-to-cart/{curso}', 'EstudianteController@addCursoToCart')
+Route::get('/add-curso-to-cart/{curso}', 'UserController@addCursoToCart')
     ->name('add_curso_to_cart');
-Route::get('/cart', 'EstudianteController@showCart')
+Route::get('/cart', 'UserController@showCart')
     ->name('cart');
-Route::get('/remove-curso-from-cart/{curso}', 'EstudianteController@removeCursoFromCart')
+Route::get('/remove-curso-from-cart/{curso}', 'UserController@removeCursoFromCart')
     ->name('remove_curso_from_cart');
 
-Route::post('/apply-coupon', 'EstudianteController@applyCoupon')
+Route::post('/apply-coupon', 'UserController@applyCoupon')
     ->name('apply_coupon');
+
+// Ruta para el Checkout 
+Route::group(["middleware" => ["auth"]], function () {
+    Route::get('/checkout', 'CheckoutController@index')
+        ->name('checkout_form');
+    Route::post('/checkout', 'CheckoutController@processOrder')
+        ->name('process_checkout');
+});
 
 // Rutas del check out
 // Route::resource('/cart', 'PaymentController')->names([

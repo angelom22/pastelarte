@@ -7,5 +7,5 @@ use Illuminate\Http\Request;
 
 class EstudianteController extends Controller
 {
-    use ManageCart;
+    // use ManageCart;
 }

@@ -18,7 +18,7 @@
         <a  class="cart_btnss site-btn btn-block"
             href="#"
         >
-            {{ __("Ir al curso") }}
+            {{ __("Ver Curso") }}
         </a>
     @endcan
 @endguest

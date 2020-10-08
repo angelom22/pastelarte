@@ -43,12 +43,12 @@ $('#formCourse').validate({
         required: true,
         minlength: 5,
     },
-    duracion_curso: {
-        required: true,
-    },
-    precio: {
-        required: true,
-    },
+    // duracion_curso: {
+    //     required: true,
+    // },
+    // precio: {
+    //     required true,
+    // },
     nivel_habilidad: {
         required: true,
         minlength: 5,
@@ -85,12 +85,12 @@ $('#formCourse').validate({
         required: "Por favor introduzca el titulo del curso",
         minlength: "La longitud minima del campo son 5 caracteres"
     },
-    duracion_curso: {
-        required: "Ingrese una duracion válida, entre las 00:00 y las 23:59",
-    },
-    precio: {
-        required: "Ingrese una cantidad valida Ej: 20$",
-    },
+    // duracion_curso: {
+    //     required: "Ingrese una duracion válida, entre las 00:00 y las 23:59",
+    // },
+    // precio: {
+    //     required: "Ingrese una cantidad valida Ej: 20$",
+    // },
     nivel_habilidad: {
         required: "Ingrese el nivel de habilidad que se necesita para el curso",
     },

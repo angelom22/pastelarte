@@ -13,11 +13,15 @@ use Illuminate\Support\Str;
 use App\Models\Blog;
 use App\Models\Comentario;
 use App\Traits\Hashidable;
+use Laravel\Cashier\Billable;
+
 
 class User extends Authenticatable
 {
     use Notifiable, UserTrait;
+    use Billable;
     // use Hashidable;
+
     /**
      * The attributes that are mass assignable.
      *

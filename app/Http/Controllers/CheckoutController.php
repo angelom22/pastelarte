@@ -12,7 +12,7 @@ use Laravel\Cashier\Exceptions\IncompletePayment;
 class CheckoutController extends Controller
 {
     public function index() {
-        return view('learning.checkout.index');
+        return view('payment.checkout.index');
     }
 
     public function processOrder()

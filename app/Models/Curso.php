@@ -86,7 +86,7 @@ class Curso extends Model
     protected $table = 'cursos';
 
     protected $fillable = [
-       'user_id', 'carrera_id', 'title', 'slug', 'thumbnail', 'extracto', 'description', 'precio', 'duracion_curso', 'nivel_habilidad', 'lenguaje', 'instructor', 'status', 'url_video_preview_curso', 'gratis', 'featured' 
+       'user_id', 'carrera_id', 'title', 'slug', 'thumbnail', 'extracto', 'description', 'precio', 'nivel_habilidad', 'lenguaje', 'instructor', 'status', 'url_video_preview_curso', 'gratis', 'featured' 
     ];
 
     const DISPONIBLE = 1;
