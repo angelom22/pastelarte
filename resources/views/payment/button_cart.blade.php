@@ -13,7 +13,7 @@
         >
             {{ __("Agregar al carrito por: :precio", ["precio" => $curso->formatted_price]) }}
         </a>
-        <a href="#" class="cart_btnss_white">Comprar ahora</a>
+        <a href="{{ route("checkout_form",  $curso) }}" class="cart_btnss_white">Comprar ahora</a>
     @else
         <a  class="cart_btnss site-btn btn-block"
             href="#"

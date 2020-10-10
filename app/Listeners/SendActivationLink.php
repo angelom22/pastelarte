@@ -29,6 +29,6 @@ class SendActivationLink
      */
     public function handle(Registered $event)
     {
-        Mail::to($event->user->email)->send(new PleaseActiveYourAccount($event->user));
+        Mail::to($event->user->email)->queue(new PleaseActiveYourAccount($event->user));
     }
 }

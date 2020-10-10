@@ -33,13 +33,15 @@
 							<li class="subtitle"><p>Total <span class="float-right totals color-orose">${{$cart->totalAmount()}}</span></p></li>
 						</ul>
 					</div>
+
 					
 					@if($cart->hasProducts())
 					<div class="ui_kit_button payment_widget_btn">
 						<a href="{{ route('checkout_form') }}" type="button" class="btn dbxshad btn-lg btn-thm3 circle btn-block">{{ __("Procesar pedido") }}</a>
 					</div>
 					@endif
-        
+					
+				
 				</div>
 			</div>
 		</div>

@@ -118,16 +118,20 @@
 						</div>
 					</div>
 				</div>
+				@inject("cart", "App\Services\Cart")
 				<div class="col-lg-4 col-xl-4">
 					<div class="order_sidebar_widget mb30">
 						<h4 class="title">Tu pedido</h4>
 						<ul>
-							<li class="subtitle"><p>Producto <span class="float-right">Total</span></p></li>
-							<li><p>Academic English × 4 <span class="float-right">$590.00</span></p></li>
-							<li><p>Seo Books x 1 <span class="float-right">$99.00</span></p></li>
-							<li class="subtitle"><p>Subtotal <span class="float-right">Subtotal</span></p></li>
-							<li class="subtitle"><p>Total <span class="float-right totals color-orose">$3,589.00</span></p></li>
+							<li class="subtitle"><p>Producto <span class="float-right">Precio x C/u</span></p></li>
+							@foreach($cart->getContent() as $curso)
+							<li><p>{{$curso->title}} <span class="float-right">${{$curso->formatted_price}}</span></p></li>
+							@endforeach
+							<li class="subtitle"><p>Subtotal <span class="float-right">{{$cart->totalAmount()}}</span></p></li>
+							<li class="subtitle"><p>Total <span class="float-right totals color-orose">${{$cart->totalAmount()}}</span></p></li>
+							
 						</ul>
+							
 					</div>
 					<div class="payment_widget">
 						<div class="ui_kit_checkbox style2">
@@ -152,9 +156,16 @@
 							</div>
 						</div>
 					</div>
+					@if($cart->hasProducts())
 					<div class="ui_kit_button payment_widget_btn">
-						<button type="button" class="btn dbxshad btn-lg btn-thm3 circle btn-block">Procesar pago</button>
+						<form method="POST" action="{{ route('process_checkout') }}">
+							@csrf
+							<button type="submit" class="btn dbxshad btn-lg btn-thm3 circle btn-block">
+								{{ __("Pagar") }}
+							</button>
+						</form>
 					</div>
+					@endif
 				</div>
 			</div>
 		</div>

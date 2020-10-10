@@ -1,5 +1,7 @@
 <?php
+
 namespace App\Services;
+
 use App\Helpers\Currency;
 use App\Models\Coupon;
 use App\Models\Curso;
@@ -46,9 +48,9 @@ class Cart {
 
     /**
      *
-     * Add course on cart
+     * Add curso on cart
      *
-     * @param Course $course
+     * @param Curso $curso
      */
     public function addCurso(Curso $curso): void {
         $this->cart->push($curso);
@@ -57,7 +59,7 @@ class Cart {
 
     /**
      *
-     * Remove course from cart
+     * Remove curso from cart
      *
      * @param int $id
      */
@@ -138,26 +140,26 @@ class Cart {
                 return $amount;
             }
 
-            $coursesInCart = $this->getContent()->pluck("id");
-            if ($coursesInCart) {
-                // courses attached to coupon in database
-                $coursesForApply = $coupon->courses()->whereIn("id", $coursesInCart);
+            $cursosInCart = $this->getContent()->pluck("id");
+            if ($cursosInCart) {
+                // cursos adjuntos al cupón en la base de datos
+                $cursosForApply = $coupon->cursos()->whereIn("id", $cursosInCart);
 
-                // id courses attached on database for apply coupon
-                $idCourses = $coursesForApply->pluck("id")->toArray();
+                // id cursos adjunto en la base de datos para aplicar cupón
+                $idCursos = $cursosForApply->pluck("id")->toArray();
 
-                if (!count($idCourses)) {
+                if (!count($idCursos)) {
                     $this->removeCoupon();
                     session()->flash("message", ["danger", __("El cupón no se puede aplicar")]);
                     return $amount;
                 }
 
-                // total price courses without discount applied
-                $priceCourses = $coursesForApply->sum("price");
+                // precio total cursos sin descuento aplicado
+                $precioCursos = $cursosForApply->sum("precio");
 
-                // check discount type and apply
+                // verifica el tipo de descuento y aplica
                 if ($coupon->discount_type === Coupon::PORCENTAJE) {
-                    $discount = round($priceCourses - ($priceCourses * ((100 - $coupon->discount) / 100)), 2);
+                    $discount = round($precioCursos - ($precioCursos * ((100 - $coupon->discount) / 100)), 2);
                     $withDiscount = $amount - $discount;
                 }
                 if ($coupon->discount_type === Coupon::PRECIO) {

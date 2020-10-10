@@ -116,10 +116,9 @@
 												    	<label for="title">Titulo del Curso:</label>
 												    	<input type="text" class="form-control" id="title" name="title" placeholder="Ej: Curso de Galletas" value="{{old('title', $curso->title)}}" maxlength="50" onkeypress="return soloLetras(event)">
 													</div>
-													<div class="my_profile_setting_input form-group" >
-												    	<label for="duracion_curso">Duración:</label>
-														<input type="text" class="form-control time" id="duracion_curso" name="duracion_curso" value="{{old('duracion_curso', $curso->duracion_curso)}}"  placeholder="Ej: hh:mm" onkeypress="return soloNumero(event)">
-
+													<div class="my_profile_setting_input form-group">
+												    	<label for="lenguaje">Lenguaje:</label>
+												    	<input type="text" class="form-control" id="lenguaje" name="lenguaje" placeholder="Ej: Español" value="{{old('lenguaje', $curso->lenguaje)}}"  maxlength="50" onkeypress="return soloLetras(event)">
 													</div>
 												</div>
 												<div class="col-xl-6">
@@ -139,10 +138,13 @@
 													</div>
 												</div>
 												<div class="col-xl-6">
-													<div class="my_profile_setting_input form-group">
-												    	<label for="lengueaje">Lenguaje:</label>
-												    	<input type="text" class="form-control" id="lengueaje" name="lengueaje" placeholder="Ej: Español" value="{{old('lengueaje', $curso->lenguaje)}}"  maxlength="50" onkeypress="return soloLetras(event)">
+													<div class="my_profile_select_box form-group" >
+												    	<label for="duracion_curso">Destacado:</label>
+														<select class="selectpicker" name="featured" id="featured">
+															<option value="{{$curso->featured}}">{{$curso->featured}}</option>
+														</select>
 													</div>
+													
 												</div>
 												<div class="col-lg-12">
                                                     <label for="lengueaje">thumbnail:</label>

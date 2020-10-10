@@ -43,7 +43,7 @@ class AdminController extends Controller
 
     public function mis_cursos(Curso $curso)
     {
-        $this->authorize('haveaccess', 'course.show');
+        // $this->authorize('haveaccess', 'course.show');
 
         // realizar la condicion para que el usuario solo pueda ver los cursos que a adquirido
         $cursos = Curso::all();
@@ -53,7 +53,7 @@ class AdminController extends Controller
 
     public function mis_cursossingle(Curso $curso)
     {
-        $this->authorize('haveaccess', 'course.show');
+        // $this->authorize('haveaccess', 'course.show');
 
         // realizar la condicion para que el usuario solo pueda ver los cursos que a adquirido
         $cursos = Curso::all();

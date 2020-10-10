@@ -9,9 +9,14 @@ use App\User;
 //     dd($query->sql);
 // });
 
+Route::get('/', 'HomeController@index')->name('home');
+
 Auth::routes();
 
-Route::get('/', 'HomeController@index')->name('home');
+Route::post(
+    'stripe/webhook',
+    'StripeWebHookController@handleWebhook'
+);
 
 // Ruta para la activacion del usuario
 Route::get('activate/{token}', 'UserActivationTokenController@activate')->name('activation');
@@ -80,11 +85,6 @@ Route::resource('/contacto', 'ContactoController')->names([
     'store'     => 'contactoStore',
 ]);
 
-Route::resource('/cursosingle', 'CursoSingleController')->names([
-    'cursosingle' => 'cursosingle',
-]);
-
-
 Route::resource('/categoria', 'CategoryController')->names('categoria');
 
 Route::resource('/etiqueta', 'TagController')->names('etiqueta');
@@ -104,15 +104,6 @@ Route::get('etiquetas/{slug}', 'BlogController@filtrarEtiqueta')->name('filtrarE
 
 
 // Rutas de la adminitración
-// Route::get('admin/curso', 'AdminController@curso')->name('admin.curso');
-// Route::get('admin/mis-cursos', 'AdminController@mis_cursos')->name('admin.mis-cursos');
-// Route::get('admin/micursosingle', 'AdminController@mis_cursossingle')->name('admin.micursosingle');
-// Route::get('admin/carrera/', 'AdminController@carrera')->name('carrera.user');
-// Route::get('admin/blog', 'AdminController@blog')->name('admin.blog');
-// Route::get('admin/evento', 'AdminController@evento')->name('admin.evento');
-// Route::get('admin/user/{id}', 'AdminController@user')->name('admin.user');
-// Route::get('admin/lecciones/', 'AdminController@leccion')->name('admin.lecciones');
-
 Route::resource('/dashboard', 'AdminController')->names('dashboard');
 
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth']], function () {
@@ -133,28 +124,27 @@ Route::post('cursos/{curso}/comentarios', 'ComentarioController@store')->name('c
 
 
 // Rutas para anadir cursos y carreras al carrito de compras
-Route::get('/add-curso-to-cart/{curso}', 'UserController@addCursoToCart')
-    ->name('add_curso_to_cart');
-Route::get('/cart', 'UserController@showCart')
-    ->name('cart');
-Route::get('/remove-curso-from-cart/{curso}', 'UserController@removeCursoFromCart')
-    ->name('remove_curso_from_cart');
+Route::get('/add-curso-to-cart/{curso}', 'UserController@addCursoToCart')->name('add_curso_to_cart');
+Route::get('/cart', 'UserController@showCart')->name('cart');
+Route::get('/remove-curso-from-cart/{curso}', 'UserController@removeCursoFromCart')->name('remove_curso_from_cart');
 
-Route::post('/apply-coupon', 'UserController@applyCoupon')
-    ->name('apply_coupon');
+Route::post('/apply-coupon', 'UserController@applyCoupon')->name('apply_coupon');
 
 // Ruta para el Checkout 
 Route::group(["middleware" => ["auth"]], function () {
-    Route::get('/checkout', 'CheckoutController@index')
-        ->name('checkout_form');
-    Route::post('/checkout', 'CheckoutController@processOrder')
-        ->name('process_checkout');
+    Route::get('/checkout', 'CheckoutController@index')->name('checkout_form');
+    Route::post('/checkout', 'CheckoutController@processOrder')->name('process_checkout');
 });
 
-// Rutas del check out
-// Route::resource('/cart', 'PaymentController')->names([
-//     'update'    => 'CartUpdate',
-//     'create'    => 'CartCreate',
-//     'store'     => 'CartStore',
-//     'edit'      => 'CartEdit',
-// ]);
+// Rutas para los usuarios estudiantes
+Route::group(['prefix' => 'estudiante', 'as' => 'estudiante.', 'middleware' => ['auth']], function () {
+
+    Route::get("credit-card", 'BillingController@creditCardForm')->name("billing.credit_card_form");
+    Route::post("credit-card", 'BillingController@processCreditCardForm')->name("billing.process_credit_card");
+
+    Route::get('/cursos', 'UserController@cursos')->name('cursos');
+
+    Route::get('/orders', 'UserController@orders')->name('orders');
+    Route::get('/orders/{order}', 'UserController@showOrder')->name('orders.show');
+    Route::get('/orders/{order}/download_invoice', 'UserController@downloadInvoice')->name('orders.download_invoice');
+});

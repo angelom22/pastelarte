@@ -39,9 +39,9 @@ $('#UpdateCourse').validate({
         required: true,
         minlength: 5,
     },
-    duracion_curso: {
-        required: true,
-    },
+    // duracion_curso: {
+    //     required: true,
+    // },
     precio: {
         required: true,
     },
@@ -81,9 +81,9 @@ $('#UpdateCourse').validate({
         required: "Por favor introduzca el titulo del curso",
         minlength: "La longitud minima del campo son 5 caracteres"
     },
-    duracion_curso: {
-        required: "Ingrese una duracion válida, entre las 00:00 y las 23:59",
-    },
+    // duracion_curso: {
+    //     required: "Ingrese una duracion válida, entre las 00:00 y las 23:59",
+    // },
     precio: {
         required: "Ingrese una cantidad valida Ej: 20$",
     },

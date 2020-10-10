@@ -82,9 +82,9 @@
                                                     <tr class="text-center">
                                                         <td colspan="7">
                                                             <div class="empty-results">
-                                                            @can('haveaccess','leccion.create')
+                                                            
                                                                 <h4> <strong>Este curso no posee lecciones para listar</strong> </h4>
-                                                            @endcan
+                                                            
                                                             </div>
                                                         </td>
                                                     </tr>

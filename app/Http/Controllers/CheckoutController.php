@@ -19,12 +19,12 @@ class CheckoutController extends Controller
     {
         if ( !auth()->user()->hasPaymentMethod()) {
             return redirect(
-                route("student.billing.credit_card_form")
+                route("estudiante.billing.credit_card_form")
             )->with("message", ["warning", __("Debes añadir un método de pago antes de procesar el pedido")]);
         }
 
         $order = null;
-
+        
         try {
             DB::beginTransaction();
 
@@ -47,11 +47,13 @@ class CheckoutController extends Controller
             $order->save();
 
             $orderLines = [];
-            foreach ($cart->getContent() as $course) {
+            foreach ($cart->getContent() as $curso) {
+                // dd($curso->carrera_id);
                 $orderLines[] = [
-                    "course_id" => $course->id,
+                    "curso_id" => $curso->id,
+                    "carrera_id" => $curso->carrera_id,
                     "order_id" => $order->id,
-                    "price" => $course->price,
+                    "precio" => (float)$curso->precio,
                     "created_at" => now()
                 ];
             }
@@ -59,18 +61,18 @@ class CheckoutController extends Controller
             OrderLine::insert($orderLines);
             DB::commit();
 
-            auth()->user()->invoiceFor(__("Compra de cursos"), $order->total_amount * 100, [], [
+            auth()->user()->invoiceFor(__("Compra de cursos en Pastel Arte"), $order->total_amount * 100, [], [
                 'tax_percent' => env('STRIPE_TAXES'),
             ]);
             $cart->clear();
 
-            return redirect(route("student.index"))
+            return redirect(route("estudiante.cursos"))
                 ->with("message", ["success", __("Muchas gracias por tu pedido, ya puedes acceder a tus cursos")]);
 
         } catch (IncompletePayment $exception) {
             return redirect()->route(
                 'cashier.payment',
-                [$exception->payment->id, 'redirect' => route('student.index', ["order" => $order])]
+                [$exception->payment->id, 'redirect' => route('estudiante.cursos', ["order" => $order])]
             );
         } catch (\Exception $exception) {
             DB::rollBack();

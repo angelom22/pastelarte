@@ -49,7 +49,7 @@ class CourseRequest extends FormRequest
                     'extracto'          => 'required',
                     'precio'            => 'required|numeric',
                     'nivel_habilidad'   => 'required',
-                    'lengueaje'         => 'required',
+                    'lenguaje'         => 'required',
                     'instructor'        => 'required',
                     'url_video_preview_curso' => 'required|active_url'
                 ];

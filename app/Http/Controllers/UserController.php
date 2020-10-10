@@ -8,14 +8,17 @@ use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use App\RolesPermisos\Models\Role;
 use App\Traits\ManageCart;
+use App\Traits\Estudiante\ManageCursos;
+use App\Traits\Estudiante\ManageOrders;
 use Illuminate\Support\Facades\Hash;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Storage;
 
 
+
 class UserController extends Controller
 {
-    use ManageCart;
+    use ManageCart, ManageCursos, ManageOrders;
     
     public function __construct()
     {

@@ -19,7 +19,7 @@ class CreateCarrerasTable extends Migration
             $table->string('slug', 128)->unique();
             $table->mediumText('description')->nullable();
             // $table->string('area')->nullable();
-            $table->decimal('precio', 9, 2)->unsigned();
+            $table->float('precio')->unsigned();
             $table->mediumText('url_video_preview_carrera');
             
             // Relaciones

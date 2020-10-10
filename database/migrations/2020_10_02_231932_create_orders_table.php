@@ -18,8 +18,8 @@ class CreateOrdersTable extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
-            // $table->unsignedBigInteger('coupon_id')->nullable();
-            // $table->foreign('coupon_id')->references('id')->on('coupons');
+            $table->unsignedBigInteger('coupon_id')->nullable();
+            $table->foreign('coupon_id')->references('id')->on('coupons');
             $table->string("invoice_id")->nullable()->comment("Factura generada por Stripe");
             $table->float("total_amount")->comment("Costo total del pedido");
             $table->enum("status", [Order::ACEPTADA, Order::PENDIENTE])->default(Order::PENDIENTE);

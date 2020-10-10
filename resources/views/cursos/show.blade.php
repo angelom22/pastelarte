@@ -330,7 +330,7 @@
 											<div class="tc_footer">
 												<ul class="tc_meta float-left">
 													<li class="list-inline-item"><a href="#"><i class="flaticon-profile"></i></a></li>
-													<li class="list-inline-item"><a href="#">{{$curso->estudiantes_count}}</a></li>
+													<li class="list-inline-item"><a href="#">{{$cursoindividual->estudiantes->count()}}</a></li>
 												</ul>
 												<div class="tc_price float-right">${{$cursoindividual->precio}}</div>
 											</div>
