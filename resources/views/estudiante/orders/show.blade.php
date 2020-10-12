@@ -93,14 +93,14 @@
                             </section>
                             <!-- Boton para decargar factura -->
                             <div class="row justify-content-center">
-                                <a href="{{ route("estudiante.orders.download_invoice", ["order" => $order]) }}" class="site-btn">
-                                    {{ __("Descargar factura") }}
+                                <a class="btn btn-outline btn-thm" href="{{ route("estudiante.orders.download_invoice", ["order" => $order]) }}">
+                                   {{ __("Descargar factura") }}
                                 </a>
                             </div>
                             <div class="row">
                                 <div class="col-lg-12">
-                                    <a href="{{route('estudiante.orders')}}" class="my_setting_savechange_btn btn btn-thm3">Regrasar
-                                    <span class="flaticon-right-arrow-1 ml15"></span></a>
+                                    <a href="{{route('estudiante.orders')}}" class="my_setting_savechange_btn btn btn-thm3">
+                                    <i class="fa fa-arrow-left"></i> Regrasar</a>
                                 </div>
                             </div>
 						</div>

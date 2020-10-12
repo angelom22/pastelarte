@@ -57,6 +57,14 @@ Route::resource('/cursos', 'CursoController')->names([
     'store'     => 'CourseStore',
     'edit'      => 'CourseEdit',
 ]);
+// Ruta para que los estidiantes vean los cursos comprados
+Route::get('cursos/{curso}/aprende', 'CursoController@aprende')
+        ->name('cursos.aprende')->middleware("can_access_to_course");
+// Ruta para la valoración de los cursos
+Route::get('cursos/{curso}/review', 'CursoController@createReview')
+->name('reviews.create');
+Route::post('cursos/{curso}/review', 'CursoController@storeReview')
+        ->name('reviews.store');
 
 /**
  *  Rutas para las carreras
@@ -120,8 +128,6 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth']], 
 
 // Ruta para los comentarios
 Route::post('cursos/{curso}/comentarios', 'ComentarioController@store')->name('cursos.comentarios.store');
-
-
 
 // Rutas para anadir cursos y carreras al carrito de compras
 Route::get('/add-curso-to-cart/{curso}', 'UserController@addCursoToCart')->name('add_curso_to_cart');

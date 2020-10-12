@@ -36,7 +36,8 @@ class HomeController extends Controller
                                     ->whereFeatured(true)
                                     ->whereStatus(Curso::DISPONIBLE)
                                     ->get();
-        // dd($cursosFeatured[0]->carrera->title);
+
+        // dd($cursosFeatured[0]->rating);
         
         $total = $cursosFeatured->count();
         

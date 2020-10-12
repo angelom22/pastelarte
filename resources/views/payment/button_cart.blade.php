@@ -16,7 +16,7 @@
         <a href="{{ route("checkout_form",  $curso) }}" class="cart_btnss_white">Comprar ahora</a>
     @else
         <a  class="cart_btnss site-btn btn-block"
-            href="#"
+            href="{{route('cursos.aprende', ["curso" => $curso])}}"
         >
             {{ __("Ver Curso") }}
         </a>

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\User;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -9,7 +10,7 @@ use Illuminate\Database\Eloquent\Model;
  *
  * @property int $id
  * @property int $user_id
- * @property int $course_id
+ * @property int $curso_id
  * @property int $stars
  * @property string $review
  * @property \Illuminate\Support\Carbon|null $created_at
@@ -17,7 +18,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Review newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Review newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Review query()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Review whereCourseId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Review whereCursoId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Review whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Review whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Review whereReview($value)
@@ -33,7 +34,7 @@ class Review extends Model
     protected $fillable = ["user_id", "curso_id", "stars", "review"];
 
     public function curso() {
-        return $this->belongsTo(Course::class);
+        return $this->belongsTo(Curso::class);
     }
 
     public function autor() {

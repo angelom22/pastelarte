@@ -69,24 +69,20 @@
                                     <div class="tc_content">
                                         <p>{{$curso->instructor}}</p>
                                         <h5><a href="{{route('cursos.show', $curso->slug)}}">{{$curso->title}}</a></h5>
-                                        <ul class="tc_review">
-                                            <li class="list-inline-item"><a href="#"><i class="fa fa-star"></i></a></li>
-                                            <li class="list-inline-item"><a href="#"><i class="fa fa-star"></i></a></li>
-                                            <li class="list-inline-item"><a href="#"><i class="fa fa-star"></i></a></li>
-                                            <li class="list-inline-item"><a href="#"><i class="fa fa-star"></i></a></li>
-                                            <li class="list-inline-item"><a href="#"><i class="fa fa-star"></i></a></li>
-                                            <li class="list-inline-item"><a href="#">(6)</a></li>
-                                        </ul>
+                                        @include('estudiante.cursos.resources.valoraciones', ['rating' => $curso->rating])
                                     </div>
                                     <div class="tc_footer">
                                         <ul class="tc_meta float-left">
                                             <li class="list-inline-item"><a href="#"><i class="flaticon-profile"></i></a></li>
                                             <li class="list-inline-item"><a href="#">{{$curso->estudiantes_count}}</a></li>
+                                            <li class="list-inline-item"><a href="#"><i class="flaticon-comment"></i></a></li>
+                                            <li class="list-inline-item"><a href="#">{{$curso->reviews->count()}}</a></li>
                                         </ul>
                                         <div class="tc_price float-right">${{$curso->precio}} </div>
                                     </div>
                                     <div class="tc_footer">
-                                        <a class="float-right" href="#">Agregar al carro <span class="flaticon-shopping-bag" style="font-size: 20px; color: red;"></span></a>
+                                    
+                                        <a class="float-right" href="{{ route("add_curso_to_cart",  $curso) }}">Agregar al carro <span class="flaticon-shopping-bag" style="font-size: 20px; color: red;"></span></a>
                                     </div>
                                 </div>
                             </div>

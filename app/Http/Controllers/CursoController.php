@@ -22,6 +22,7 @@ use App\Http\Requests\CourseRequest;
 
 use App\Models\Comentario;
 use App\Http\Resources\ComentarioResource;
+use App\Models\Review;
 
 class CursoController extends Controller
 {
@@ -43,6 +44,48 @@ class CursoController extends Controller
         $session = session('search[cursos]');
 
         return view('cursos.index', compact('cursos', 'session'));
+    }
+    
+    public function aprende(Curso $curso)
+    {
+        $curso->load("lecciones");
+        return view('estudiante.cursos.show', compact('curso'));
+    }
+
+    public function createReview(Curso $curso) {
+        return view("estudiante.cursos.reviews.form", compact("curso"));
+    }
+
+    public function storeReview(Curso $curso) 
+    {
+        $reviewed = $curso->reviews->contains('user_id', auth()->id());
+        if ($reviewed) {
+            return redirect(route("cursos.aprende", ["curso" => $curso]))
+                ->with("message", ["danger", __("No puedes valorar este curso, ya lo has hecho antes")]);
+        }
+
+        // Valoracion si el usuario compro el curso
+        // $userOwner = $curso->estudiantes->contains(auth()->id());
+        // if ($userOwner) {
+        //     return redirect(route("cursos.aprende", ["curso" => $curso]))
+        //         ->with("message", ["danger", __("No puedes valorar este curso, ya que no lo has obtenido")]);
+        // }
+
+        $this->validate(request(), [
+            "review" => "required|string|min:10",
+            "stars" => "required"
+        ]);
+
+        $review = Review::create([
+            "user_id" => auth()->id(),
+            "curso_id" => $curso->id,
+            "stars" => (int) request("stars"),
+            "review" => request("review"),
+            "created_at" => now()
+        ]);
+
+        return redirect(route("cursos.aprende", ["curso" => $curso]))
+            ->with("message", ["success", __("Muchas gracias por valorar el curso")]);
     }
 
     public function search()
@@ -129,8 +172,8 @@ class CursoController extends Controller
     public function show($slug)
     {
         $curso = Curso::findBySlugOrFail($slug)
-                        ->load("lecciones", "estudiantes", "reviews");
-        
+                        ->load("lecciones", "estudiantes", "reviews.autor");
+        // dd($curso->reviews->count());
         $TotalCursos = Curso::orderBy('id', 'ASC')->get();
 
         return view('cursos.show', compact('curso', 'TotalCursos'));

@@ -65,7 +65,7 @@
                                             <div class="overlay">
                                                 <ul class="mb0">
                                                     <li class="list-inline-item">
-                                                        <a class="mcc_view" href="{{ route('cursos.show', ['curso' => $curso->slug]) }}">{{ __("Ver el curso") }}</a>
+                                                        <a class="mcc_view" href="{{ route('cursos.aprende', ['curso' => $curso]) }}">{{ __("Ver el curso") }}</a>
                                                     </li>
                                                 </ul>
                                             </div>

@@ -197,9 +197,9 @@
 													</div>
 													<div class="aii_average_review text-center">
 														<div class="av_content">
-															<h2>4.5</h2>
+															<h2>{{$curso->rating}}</h2>
 															<ul class="aii_rive_list mb0">
-																stars
+															@include('estudiante.cursos.resources.valoraciones', ['rating' => $curso->rating, 'hideCounter' => true])
 															</ul>
 															<p>Valoración del curso</p>
 														</div>
@@ -207,87 +207,11 @@
 												</div>
                                             </div>
 
-                                            <!-- DISQUS -->
-                                            <!-- <div id="disqus_thread"></div>
-                                            <script>
-                                            /**
-                                            *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
-                                            *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
-                                            /*
-                                            var disqus_config = function () {
-                                            this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
-                                            this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
-                                            };
-                                            */
-                                            (function() { // DON'T EDIT BELOW THIS LINE
-                                            var d = document, s = d.createElement('script');
-                                            s.src = 'https://pastel-arte.disqus.com/embed.js';
-                                            s.setAttribute('data-timestamp', +new Date());
-                                            (d.head || d.body).appendChild(s);
-                                            })();
-                                            </script>
-                                            <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript> -->
-
-
 											<div class="cs_row_six csv2">
 												<div class="sfeedbacks">
-													<div class="mbp_pagination_comments">
-														
-														<div class="mbp_first media csv1">
-															<img src="/storage/" class="mr-3" alt="review1.png">
-															<div class="media-body">
-														    	<h4 class="sub_title mt-0">
-																	<span class="sspd_review float-right">
-																		<ul>
-																			<li class="list-inline-item"><a href="#"><i class="fa fa-star"></i></a></li>
-																			<li class="list-inline-item"><a href="#"><i class="fa fa-star"></i></a></li>
-																			<li class="list-inline-item"><a href="#"><i class="fa fa-star"></i></a></li>
-																			<li class="list-inline-item"><a href="#"><i class="fa fa-star"></i></a></li>
-																			<li class="list-inline-item"><a href="#"><i class="fa fa-star"></i></a></li>
-																			<li class="list-inline-item"></li>
-																		</ul>
-																	</span>
-														    	</h4>
-														    	<a class="sspd_postdate fz14" href="#"></a>
-														    	<p class="fz15 mt25 mb25" id="comentario"></p> <div class="ssp_reply float-right"><span class="flaticon-consulting-message"></span></div>
-															</div>
-														</div>
-														
-														<h1>no hay comentarios</h1>
-														
-														<div class="custom_hr"></div>
-													</div>
-												</div>
-											</div>
-
-											<div class="cs_row_seven csv2">
-												<div class="sfeedbacks">
-													<div class="mbp_comment_form style2 pb0">
-														<h4>Agregar comentario</h4>
-														<ul>
-															<li class="list-inline-item">
-																<span class="sspd_review">
-																	<ul>
-																		<li class="list-inline-item"><a href="#"><i class="fa fa-star fz18"></i></a></li>
-																		<li class="list-inline-item"><a href="#"><i class="fa fa-star fz18"></i></a></li>
-																		<li class="list-inline-item"><a href="#"><i class="fa fa-star fz18"></i></a></li>
-																		<li class="list-inline-item"><a href="#"><i class="fa fa-star fz18"></i></a></li>
-																		<li class="list-inline-item"><a href="#"><i class="fa fa-star fz18"></i></a></li>
-																		<li class="list-inline-item"></li>
-																	</ul>
-																</span>
-															</li>
-														</ul>
-														<form action="{{route('cursos.comentarios.store', $curso)}}" id="comentarios" method="POST" class="comments_form">
-														@method('POST')
-														@csrf
-															<input type="hidden" class="form-control" name="curso_id" id="curso_id" value="{{$curso->id}}" >
-															<div class="form-group">
-															    <label for="contenido">Contenido</label>
-																<textarea class="form-control" id="contenido" name="contenido" placeholder="Ingresa tu comentario" rows="5">{{ old('contenido') }}</textarea>
-															</div>
-															<button type="submit" class="btn btn-thm">Publicar <span class="flaticon-right-arrow-1"></span></button>
-														</form>
+													<div class="mbp_pagination_comments">														
+													@include('estudiante.cursos.resources.comentarios')
+	
 													</div>
 												</div>
 											</div>
@@ -411,7 +335,7 @@
 
 
 @push('js')
-<script src="{{asset('js/comentarios.js')}}"></script>
+
 
 
 @endpush

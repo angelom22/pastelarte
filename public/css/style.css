@@ -7309,7 +7309,7 @@ ul.mc_parent_list ul.mc_child_list:hover .pricing_btn{
 /*== Dashbord details Page ==*/
 .our-dashbord {
   background-color: #f9fafc;
-  margin-top: 90px;
+  margin-top: 50px;
   position: relative;
 }
 .our-dashbord.dashbord .container-fluid{
@@ -9309,7 +9309,7 @@ ul.mc_parent_list ul.mc_child_list:hover .pricing_btn{
 
 .btn-thm3 {
   background-color: #ff1053;
-  border: 2px solid #ff1053;
+  border: 2px solid #ff1053 !important;
   border: none;
   color: #ffffff;
   border-radius: 0px;
@@ -11974,4 +11974,16 @@ textarea.form-control{
 
 .img-avatar{
   max-width: 15%;
+}
+
+.leccion-selected {
+  background-color: #4e224b;
+}
+
+.leccion-selected a {
+  color: #918188 !important;
+}
+
+.yellow {
+  color: #ffc107;
 }

@@ -2,16 +2,16 @@
 namespace App\Traits\Student;
 
 use App\Events\CourseAddedToWishlist;
-use App\Models\Course;
+use App\Models\Curso;
 use App\Models\Wishlist;
 
 trait ManageWishlists {
-    public function toggleItemOnWishlist(Course $course) {
+    public function toggleItemOnWishlist(Curso $curso) {
         if (request()->ajax()) {
-            $courseInMyWishlist = Wishlist::where("course_id", $course->id)->first();
+            $courseInMyWishlist = Wishlist::where("curso_id", $curso->id)->first();
             if (!$courseInMyWishlist) {
                 $wishlist = Wishlist::create([
-                    "course_id" => $course->id
+                    "curso_id" => $curso->id
                 ]);
 
                 $wishlist->load("user", "course.teacher");

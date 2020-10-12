@@ -61,7 +61,7 @@
         </tr>
         <tr valign="top">
             <td style="font-size: 28px; color: #ccc;">
-                <img src="{{asset('/img/partelarte.png')}}" alt="">
+                
             </td>
 
             <!-- Organization Name / Date -->

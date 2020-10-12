@@ -128,7 +128,7 @@ class Curso extends Model
     }
     
     public function reviews(){
-        return $this->hasMany(Review::class, "curso_id", "id");
+        return $this->hasMany(Review::class);
     }
 
     public function getRatingAttribute () {
