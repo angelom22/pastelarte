@@ -41,24 +41,6 @@ class AdminController extends Controller
         return view('admin.cursos.index', compact('cursos'));
     }
 
-    public function mis_cursos(Curso $curso)
-    {
-        // $this->authorize('haveaccess', 'course.show');
-
-        // realizar la condicion para que el usuario solo pueda ver los cursos que a adquirido
-        $cursos = Curso::all();
-
-        return view('admin.cursos.view', compact('cursos'));
-    }
-
-    public function mis_cursossingle(Curso $curso)
-    {
-        // $this->authorize('haveaccess', 'course.show');
-
-        // realizar la condicion para que el usuario solo pueda ver los cursos que a adquirido
-        $cursos = Curso::all();
-        return view('admin.cursos.viewsingle', compact('cursos'));
-    }
 
     public function leccion(Curso $curso)
     {
@@ -97,16 +79,17 @@ class AdminController extends Controller
         return view('admin.evento.index',compact('events'));
     }
 
-    public function user(User $id)
-    {
+    public function user($id)
+    {   
+        // dd($id);
         $this->authorize('haveaccess', 'userown.show');
 
         $roles = Role::orderBy('name')->get();
 
-        // $user = User::find($id);
-        // dd($user);
+        $user = User::findOrfail($id);
+        // dd($user->avatar);
 
-        return view('admin.user.view', compact('id', 'roles'));
+        return view('admin.user.view', compact('user', 'roles'));
     }
 
 

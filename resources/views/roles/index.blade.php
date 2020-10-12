@@ -57,19 +57,19 @@
                                                     <td>{{$role['full_access']}}</td>
                                                     <td>
                                                     @can('haveaccess','role.show')   
-                                                        <a href="{{route('role.show', $role->id)}}" class="btn btn-sm btn-secondary" title="Ver"> 
+                                                        <a href="{{route('role.show', $role)}}" class="btn btn-sm btn-secondary" title="Ver"> 
                                                             <span class="flaticon-preview"></span>
                                                         </a>
                                                     @endcan
                         
                                                     @can('haveaccess','role.edit')  
-                                                        <a href="{{route('role.edit', $role->id)}}" class="btn btn-sm btn-info" title="Modificar">
+                                                        <a href="{{route('role.edit', $role)}}" class="btn btn-sm btn-info" title="Modificar">
                                                             <span class="flaticon-edit"></span>
                                                         </a>
                                                     @endcan
                                                     
                                                     @can('haveaccess','role.destroy') 
-                                                        <form action="{{route('role.destroy', $role->id)}}" method="POST" style="display: inline;">
+                                                        <form action="{{route('role.destroy', $role)}}" method="POST" style="display: inline;">
                                                             @csrf
                                                             @method('DELETE')
                                                             <button title="eliminar" class="btn btn-sm btn-danger" onclick="return alert('Esta seguro de querer eliminar este rol?')">

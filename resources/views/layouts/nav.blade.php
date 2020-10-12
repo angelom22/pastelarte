@@ -63,7 +63,7 @@
                     <a class="dropdown-item" href="{{url('dashboard')}}"> <i class="fa fa-user fa-fw"></i> Dashboard</a>
                     <span class="dropdown-divider"></span>
                     <a class="dropdown-item" href="{{route('estudiante.cursos')}}"> <i class="fa fa-bookmark fa-fw"></i> Mis cursos</a>
-                    <a class="dropdown-item" href="{{route('admin.user', Auth::user())}}"> <i class="fa fa-cog fa-fw"></i> Configurar Cuenta</a>
+                    <a class="dropdown-item" href="{{route('admin.user', Auth::user()->id)}}"> <i class="fa fa-cog fa-fw"></i> Configurar Cuenta</a>
                     <a class="dropdown-item" href="{{ route('logout') }}"
                     onclick="event.preventDefault();
                                     document.getElementById('logout-form').submit();">

@@ -92,7 +92,8 @@ class UserController extends Controller
 
         // return $roles[0];
         // dd($user->avatar);
-        return view('user.edit', compact( 'roles','user'));
+        // return view('user.edit', compact( 'roles','user'));
+        return view('admin.user.view', compact( 'roles','user'));
     }
 
     /**

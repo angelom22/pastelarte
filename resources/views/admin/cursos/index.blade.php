@@ -121,14 +121,11 @@
 														<li class="list-inline-item">{{$curso->estudiantes_count}}</li>
 													</ul>
 													<ul class="tc_review fn-414">
-														<li class="list-inline-item"><i class="fa fa-star"></i></li>
-														<li class="list-inline-item"><i class="fa fa-star"></i></li>
-														<li class="list-inline-item"><i class="fa fa-star"></i></li>
-														<li class="list-inline-item"><i class="fa fa-star"></i></li>
-														<li class="list-inline-item"><i class="fa fa-star"></i></li>
-														<li class="list-inline-item">(5)</li>
-														<li class="list-inline-item tc_price fn-414"><a href="#">${{$curso->precio}}</a></li>
+														@include('estudiante.cursos.resources.valoraciones', ['rating' => $curso->rating])
 
+													</ul>
+													<ul class="tc_review fn-414">
+														<li class="list-inline-item tc_price fn-414"><a href="#">${{$curso->precio}}</a></li>
 													</ul>
 													<ul class="mc_meta fn-414">
 														<li class="list-inline-item">

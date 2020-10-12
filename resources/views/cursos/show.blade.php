@@ -247,14 +247,17 @@
 											<div class="tc_content">
 												<p>{{$cursoindividual->instructor}}</p>
 												<a href="{{route('cursos.show', $cursoindividual->slug)}}"><h5>{{$cursoindividual->title}}</h5></a>
+												
 												<ul class="tc_review fn-414">
-													stars
+												@include('estudiante.cursos.resources.valoraciones', ['rating' => $cursoindividual->rating])
 												</ul>
 											</div>
 											<div class="tc_footer">
 												<ul class="tc_meta float-left">
 													<li class="list-inline-item"><a href="#"><i class="flaticon-profile"></i></a></li>
 													<li class="list-inline-item"><a href="#">{{$cursoindividual->estudiantes->count()}}</a></li>
+													<li class="list-inline-item"><a href="#"><i class="flaticon-comment"></i></a></li>
+                                            		<li class="list-inline-item"><a href="#">{{$curso->reviews->count()}}</a></li>
 												</ul>
 												<div class="tc_price float-right">${{$cursoindividual->precio}}</div>
 											</div>

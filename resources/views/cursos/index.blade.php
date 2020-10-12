@@ -62,7 +62,7 @@
                                 <div class="thumb">
                                     <img class="img-whp" style="width: 307px; height: 200px;" src="/storage/{{$curso->thumbnail}}" alt="{{$curso->slug}}">
                                     <div class="overlay">
-                                        <a class="tc_preview_course" href="#" data-toggle="modal" data-target="#CursoResumen"><i class="fa fa-play" style="font-size: 30px;"></i></a>
+                                        <a class="tc_preview_course" href="#" id="curso_id" data-toggle="modal" data-target="#CursoResumen" ><i class="fa fa-play" style="font-size: 30px;"></i></a>
                                     </div>
                                 </div>
                                 <div class="details">
@@ -87,6 +87,7 @@
                                 </div>
                             </div>
                         </div>
+                        @include('cursos.resources.modal_curso')
                         @empty
                         <div class="col-12">
                             <div class="empty-results">
@@ -175,6 +176,9 @@
             </div>
         </div>
     </section>
+
+
+
 
 @endsection
 

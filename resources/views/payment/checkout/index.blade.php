@@ -33,7 +33,8 @@
 						    	<input class="form-control mr-sm-4" type="search" placeholder="Coupon Code" aria-label="Search">
 						    	<button type="button" class="btn">Apply Coupon</button>
 						    </form> -->
-						    <h4 class="mb15">Detalles de facturación</h4>
+							<h4 class="mb15">Detalles de facturación</h4>
+							@include('custom.message')
 				            <form class="form2" id="coupon_form" name="contact_form" action="#" method="post" novalidate="novalidate">
 								<div class="row">
 					                <div class="col-sm-6">

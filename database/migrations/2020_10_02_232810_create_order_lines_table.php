@@ -19,8 +19,8 @@ class CreateOrderLinesTable extends Migration
             $table->foreign('order_id')->references('id')->on('orders');
             $table->unsignedBigInteger('curso_id');
             $table->foreign('curso_id')->references('id')->on('cursos');
-            // $table->unsignedBigInteger('carrera_id');
-            // $table->foreign('carrera_id')->references('id')->on('carreras');
+            $table->unsignedBigInteger('carrera_id');
+            $table->foreign('carrera_id')->references('id')->on('carreras');
             $table->float('precio');
             $table->timestamps();
         });

@@ -73,24 +73,39 @@
                                         <div class="details">
                                             <div class="mc_content">
                                                 <p class="subtitle">Carrera: {{$curso->carrera->title}}</p>
-                                                <h5 class="title">{{$curso->title}}<span><small class="tag">Published</small></span></h5>
+                                                <h5 class="title">{{$curso->title}}
+														@if($curso->status === '1')
+														<span>
+															<small class="tag">DISPONIBLE</small>
+														</span>
+														@elseif($curso->status === '2')
+														<span class="style2">
+															<small class="tag">INHABILITADO</small>
+														</span>
+														@elseif($curso->status === '3')
+														<span class="style3">
+															<small class="tag">PENDIENTE</small>
+														</span>
+														@elseif($curso->status === '4')
+														<span class=style4>
+															<small class="tag">RECHAZADO</small>
+														</span>
+														@endif
+														<!-- <span {{ $curso->status === '3' ? 'class=style3' : '' }} >
+															<small class="tag">{{$curso->status}}</small>
+														</span> -->
+													</h5>
                                                 <p>{{$curso->extracto}}</p>
                                             </div>
                                             <div class="mc_footer style2">
                                                 <ul class="mc_meta fn-414">
                                                     <li class="list-inline-item"><a href="#"><i class="flaticon-profile"></i></a></li>
-                                                    <li class="list-inline-item"><a href="#">1548</a></li>
+                                                    <li class="list-inline-item"><a href="#">{{$curso->estudiantes->count()}}</a></li>
                                                     <li class="list-inline-item"><a href="#"><i class="flaticon-comment"></i></a></li>
-                                                    <li class="list-inline-item"><a href="#">25</a></li>
+                                                    <li class="list-inline-item"><a href="#">{{$curso->reviews->count()}}</a></li>
                                                 </ul>
                                                 <ul class="mc_review fn-414">
-                                                    <li class="list-inline-item"><a href="#"><i class="fa fa-star"></i></a></li>
-                                                    <li class="list-inline-item"><a href="#"><i class="fa fa-star"></i></a></li>
-                                                    <li class="list-inline-item"><a href="#"><i class="fa fa-star"></i></a></li>
-                                                    <li class="list-inline-item"><a href="#"><i class="fa fa-star"></i></a></li>
-                                                    <li class="list-inline-item"><a href="#"><i class="fa fa-star"></i></a></li>
-                                                    <li class="list-inline-item"><a href="#">(5)</a></li>
-                                                    <li class="list-inline-item tc_price fn-414"><a href="#">$69.95</a></li>
+                                                @include('estudiante.cursos.resources.valoraciones', ['rating' => $curso->rating])
                                                 </ul>
                                                 <ul class="skills float-right">
                                                     <li class="progressbar3" data-width="92" data-target="92"><span class="float-right">92% Complete</span></li>

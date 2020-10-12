@@ -37,16 +37,16 @@
                                     </div>
                                     @include('custom.message')
                                 
-                                    <form action="{{route('user.update', $id)}}" method="POST" enctype="multipart/form-data" id="UserUpdate">
+                                    <form action="{{route('user.update', $user)}}" method="POST" enctype="multipart/form-data" id="UserUpdate">
                                     @csrf
 									@method('PUT')
 									
-									<input type="hidden" name="user_id" value="{{$id}}">
+									<input type="hidden" name="user_id" value="{{$user}}">
                                     
                                     <div class="row my_setting_content_details pb0">
                                         <div class="col-xl-6">
 											<div class="">
-                                                <img style="object-fit: cover; object-position: center center;" class="float-left" src="/storage/{{$id->avatar}}" alt="{{$id->name}}">
+                                                <img style="object-fit: cover; object-position: center center;" class="float-left" src="/storage/{{$user->avatar}}" alt="{{$user->name}}">
             
 											    <input type="file" name="avatar" id="avatar" accept=".jpg, .png" value="{{old('avatar')}}"/>
 											    <!-- <label  for="avatar">
@@ -68,11 +68,11 @@
 												<div class="col-xl-6">
 													<div class="my_profile_setting_input form-group">
 												    	<label for="name">Nombre</label>
-												    	<input type="text" class="form-control" id="name" name="name" value="{{old('name',$id->name)}}">
+												    	<input type="text" class="form-control" id="name" name="name" value="{{old('name',$user->name)}}">
 													</div>
 													<div class="my_profile_setting_input form-group">
 												    	<label for="email">Correo</label>
-                                                        <input type="email" class="form-control" id="email" name="email" value="{{old('email', $id->email)}}">
+                                                        <input type="email" class="form-control" id="email" name="email" value="{{old('email', $user->email)}}">
                                                         <p style="font-size:10px;">No puedes modificar el correo con el cual te supcribiste</p>
 													</div>
 												</div>

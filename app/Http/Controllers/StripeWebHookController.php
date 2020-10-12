@@ -1,8 +1,11 @@
 <?php
 namespace App\Http\Controllers;
 
+use App\Jobs\SendOwnerSalesEmail;
+use App\Mail\StudentNewOrder;
 use App\Models\Order;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Mail;
 use Laravel\Cashier\Http\Controllers\WebhookController;
 use Log;
 
@@ -24,6 +27,7 @@ class StripeWebHookController extends WebhookController {
                     ->latest()
                     ->first();
                 if ($order) {
+                    $order->load("order_lines.curso.user");
                     $order->update([
                         'invoice_id' => $invoice_id,
                         'status' => Order::ACEPTADA
@@ -37,6 +41,19 @@ class StripeWebHookController extends WebhookController {
                     Log::info(json_encode($user));
                     Log::info(json_encode($order));
                     Log::info("Pedido actualizado correctamente");
+                    
+                    // Envio de email para el estudiante
+                    Mail::to($user->email)->queue(new StudentNewOrder($user, $order));
+
+                    // Envio de email para el propietario del curso
+                    foreach($order->order_lines as $order_line){
+                       SendOwnerSalesEmail::dispatch(
+                           $order_line->curso->user,
+                           $user,
+                           $order_line->curso
+                       );
+                    }
+
                     return new Response('Webhook Handled: {handleChargeSucceeded}', 200);
                 }
             }

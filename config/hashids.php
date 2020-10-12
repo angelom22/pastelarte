@@ -41,6 +41,10 @@ return [
             'salt' => \App\User::class.'fe4898dfe2fb8422f6dc8f79146d214d',
             'length' => 10,
         ],
+        \App\RolesPermisos\Models\Role::class => [
+            'salt' => \App\RolesPermisos\Models\Role::class.'fe4898dfe2fb8422f6dc8f79146d214d',
+            'length' => 12,
+        ],
         \App\Models\Curso::class => [
             'salt' => \App\Models\Curso::class.'6dc29bf420a127578beaacab45f41351',
             'length' => 8,

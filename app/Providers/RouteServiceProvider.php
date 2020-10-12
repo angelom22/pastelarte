@@ -6,6 +6,7 @@ use App\Models\Carrera;
 use App\Models\Curso;
 use App\Models\Leccion;
 use App\Models\Order;
+use App\RolesPermisos\Models\Role;
 use App\User;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Route;
@@ -40,8 +41,10 @@ class RouteServiceProvider extends ServiceProvider
         Route::bind('user', function ($value, $route) {
             return $this->getModel(User::class, $value);
         });
-
-        Route::bind('lecciones', function ($value, $route) {
+        Route::bind('role', function ($value, $route) {
+            return $this->getModel(Role::class, $value);
+        });
+        Route::bind('leccion', function ($value, $route) {
             return $this->getModel(Leccion::class, $value);
         });
 
