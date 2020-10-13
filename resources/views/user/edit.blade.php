@@ -37,7 +37,7 @@
                                 <div class="card-body">
                                 @include('custom.message')
                                 
-                                    <form action="{{route('user.update', $user->id)}}" method="POST" enctype="multipart/form-data">
+                                    <form action="{{route('user.update', $user)}}" method="POST" enctype="multipart/form-data">
                                     @csrf
                                     @method('PUT')
 

@@ -86,9 +86,10 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
+        // dd( $user->roles()->role_id() );
         $this->authorize('update', [$user, ['user.edit', 'userown.edit'] ]);
 
-        $roles = Role::orderBy('name')->get();
+        $roles = Role::orderBy('id', "desc")->get();
 
         // return $roles[0];
         // dd($user->avatar);
@@ -169,7 +170,7 @@ class UserController extends Controller
 
         $user->roles()->sync($request->roles);
         
-        return redirect()->route('admin.user', $user)->with('status_success', 'Usuario actualizado correctamente'); 
+        return redirect()->route('user.edit', $user)->with('status_success', 'Usuario actualizado correctamente'); 
     }
 
     /**

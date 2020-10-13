@@ -36,7 +36,7 @@
                                         @include('custom.message')
 
                                         
-                                            <form action="{{route('role.update', $role->id)}}" method="POST">
+                                            <form action="{{route('role.update', $role)}}" method="POST">
                                             @csrf
                                             @method('PUT')
                                             

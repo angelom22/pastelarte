@@ -76,15 +76,15 @@
                                                         <p style="font-size:10px;">No puedes modificar el correo con el cual te supcribiste</p>
 													</div>
 												</div>
-												<div class="col-xl-6">
-                                                    
+												<div class="col-xl-6">										
+													
                                                     <div class="form-group" style="display:none;">
                                                         <label for="roles">Rol</label>
                                                         <select class="form-control" name="roles" id="roles">
                                                             @foreach($roles as $role)
                                                                 <option value="{{$role->id}}"
-                                                                @isset($id->roles[0]->name)
-                                                                    @if($role->name == $id->roles[0]->name)
+                                                                @isset($user->roles[0]->name)
+                                                                    @if($role->name == $user->roles[0]->name)
                                                                         selected
                                                                     @endif
                                                                 @endisset
@@ -93,6 +93,7 @@
                                                             @endforeach
                                                         </select>
                                                     </div>
+													
                                                     
                                                     <!-- <div class="my_profile_setting_input form-group">
 												    	<label for="phone">Celular</label>
