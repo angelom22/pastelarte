@@ -52,10 +52,10 @@
                             <hr>
                             <div class="row mt40">
                                 <div class="col-lg">
-                                    <button type="submit" class="btn btn-block color-white bgc-fb"><i class="fa fa-facebook float-left mt5"></i> Facebook</button>
+                                    <a href="{{route('login.facebook')}}" type="submit" class="btn btn-block color-white bgc-fb mb-3"><i class="fa fa-facebook float-left mt5"></i> Facebook</a>
                                 </div>
                                 <div class="col-lg">
-                                    <button type="submit" class="btn btn-block color-white bgc-gogle"><i class="fa fa-google float-left mt5"></i> Google</button>
+                                    <a href="#" type="submit" class="btn btn-block color-white bgc-gogle mb-3"><i class="fa fa-google float-left mt5"></i> Google</a>
                                 </div>
                             </div>
                         </form>

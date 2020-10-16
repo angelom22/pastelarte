@@ -43,7 +43,7 @@ class ContactoController extends Controller
         ]);
 
         // cambiar el correo por el de pastelarte
-        Mail::to('angelo.jm2202@gmail.com')->queue(new ContactMessageReceived($message));
+        Mail::to('pastelarteoficial@gmail.com')->queue(new ContactMessageReceived($message));
 
         return redirect()->route('contacto.index')->with('welcome', 'Menesaje enviado, pronto le estaremos dando una respuesta');
     }

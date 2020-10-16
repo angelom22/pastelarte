@@ -33,5 +33,11 @@ return [
     'sendgrid' => [
         'api_key' => env('SENDGRID_API_KEY'),
     ],
+    
+    'facebook' => [
+        'client_id' => env('FACEBOOK_CLIENT_ID'),
+        'client_secret' => env('FACEBBOK_CLIENT_SECRET'),
+        'redirect' => env('FACEBBOK_REDIRECT_URL'),
+    ],
 
 ];

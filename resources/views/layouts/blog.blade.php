@@ -9,12 +9,33 @@
         </div>
         <div class="row">
             <div class="col-lg-6 col-xl-6">
-                        <div class="blog_post one">
-                            <div class="thumb">
-                                <div class="post_title">Pastelería</div>
-                                <img class="img-fluid w100" src="{{asset('img/blog/1.jpg')}}" alt="1.jpg">
-                                <a class="post_date" href="#"><span>20 <br> Octubre</span></a>
+                @forelse($eventos as $evento)
+                <div class="item">
+                    <div class="blog_post one">
+                        <div class="thumb">
+                            <div class="post_title">Eventos</div>
+                            <img style="width:645px; height:450px;
+                object-position: center center;" class="img-fluid w100" src="/storage/{{$evento->file}}" alt="{{$evento->slug}}">
+                            <a class="post_date" href="#"><span>{{$evento->fecha->format('d')}} <br> {{$evento->fecha->format('M')}}</span></a>
+                        </div>
+                        <div class="details">
+                            <div class="post_meta">
+                                <ul>
+                                    <li class="list-inline-item"><a href="#"><i class="flaticon-calendar"></i> {{$evento->hora->format('h:i')}} </a></li>
+                                    <li class="list-inline-item"><a href="#"><i class="flaticon-placeholder"></i>{{$evento->direccion}}</a></li>
+                                </ul>
                             </div>
+                            <h4>{{$evento->title}}</h4>
+                        </div>
+                    </div>
+                </div>
+                @empty
+                <div class="item">
+                    <div class="blog_post one">
+                        <div class="thumb">
+                            <div class="post_title">Pastelería</div>
+                            <img class="img-fluid w100" src="{{asset('img/blog/1.jpg')}}" alt="1.jpg">
+                            <a class="post_date" href="#"><span>20 <br> Octubre</span></a>
                             <div class="details">
                                 <div class="post_meta">
                                     <ul>
@@ -22,9 +43,12 @@
                                         <li class="list-inline-item"><a href="#"><i class="flaticon-placeholder"></i> Guayaquil, Ecuador</a></li>
                                     </ul>
                                 </div>
-                                <h4>Conferencia de pastelería con la chef Beatriz Román</h4>
+                            <h4>Conferencia de pastelería con la chef Beatriz Román</h4>
                             </div>
                         </div>
+                    </div>
+                </div>
+                @endforelse
             </div>
 
 

@@ -5271,7 +5271,7 @@ header.header-nav.menu_style_home_seven .ace-responsive-menu > li.last{
   z-index: 9;
 }
 .blog_post.one .thumb:before{
-  /*background-color: rgba(66, 28, 66, .7);*/
+  background-color: rgba(0, 0, 0, .5);
   bottom: 0;
   content: "";
   position: absolute;

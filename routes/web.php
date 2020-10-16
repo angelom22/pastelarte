@@ -13,6 +13,13 @@ Route::get('/', 'HomeController@index')->name('home');
 
 Auth::routes();
 
+// Rutas para el inicio de sesion con facebook
+Route::get('login/facebook', 'SocialLoginController@redirectToFacebook')->name('login.facebook');
+Route::get('login/facebook/callback', 'SocialLoginController@handleFacebookCallback');
+
+// Ruta para los terminos de seguridad
+Route::get('terms', 'HomeController@terms')->name('terminos.privacidad');
+
 Route::post(
     'stripe/webhook',
     'StripeWebHookController@handleWebhook'

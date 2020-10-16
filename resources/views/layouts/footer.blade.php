@@ -84,7 +84,7 @@
 						<ul>
 							<li class="list-inline-item"><a href="{{ url('/') }}">Home</a></li>
 							<li class="list-inline-item"><a href="#">Privacy</a></li>
-							<li class="list-inline-item"><a href="#">Terms</a></li>
+							<li class="list-inline-item"><a href="{{route('terminos.privacidad')}}">Terms</a></li>
 						</ul>
 					</div>
 				</div>

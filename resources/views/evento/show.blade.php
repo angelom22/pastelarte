@@ -135,7 +135,7 @@
                             <h4 class="title">Detalles del evento</h4>
                             <ul>
                                 <li><span class="flaticon-appointment"></span> Fecha: {{$event->fecha->format('d-m-Y')}}</li>
-                                <li><span class="flaticon-clock"></span> Hora: {{$event->hora->format('h:i:s')}}</li>
+                                <li><span class="flaticon-clock"></span> Hora: {{$event->hora->format('h:i')}}</li>
                                 <li><span class="flaticon-placeholder"></span> Dirección: {{$event->direccion}}</li>
                             </ul>
                         </div>

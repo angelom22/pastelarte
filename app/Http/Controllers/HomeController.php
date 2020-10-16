@@ -6,6 +6,8 @@ use App\Models\Blog;
 use App\Models\Category;
 use App\Models\Carrera;
 use App\Models\Curso;
+use App\Models\Event;
+use  Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -40,8 +42,20 @@ class HomeController extends Controller
         // dd($cursosFeatured[0]->rating);
         
         $total = $cursosFeatured->count();
-        
 
-        return view('home', compact('carreras', 'cursosFeatured','total'));
+        $blog = Blog::where('status', 'PUBLICADO')->get()->last();
+
+        $eventos = Event::orderBy('id', 'DESC')
+                            ->whereNotNull('fecha')
+                            ->where('fecha', '>=' , Carbon::now() )
+                            ->latest('fecha')->paginate(3);
+        // dd($eventos);
+        
+        return view('home', compact('carreras', 'cursosFeatured','total', 'blog', 'eventos'));
+    }
+
+    public function terms()
+    {
+        return 'Vista para los terminos y condiciones de la app';
     }
 }

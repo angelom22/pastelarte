@@ -1,5 +1,5 @@
 <?php
-namespace App\Traits\Student;
+namespace App\Traits\Estudiante;
 
 use App\Events\CourseAddedToWishlist;
 use App\Models\Curso;

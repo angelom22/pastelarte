@@ -77,7 +77,6 @@
 													</div>
 												</div>
 												<div class="col-xl-6">										
-													
                                                     <div class="form-group" style="display:none;">
                                                         <label for="roles">Rol</label>
                                                         <select class="form-control" name="roles" id="roles">
