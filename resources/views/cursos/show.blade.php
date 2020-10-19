@@ -236,11 +236,11 @@
 										<div class="thumb">
 											<img class="img-whp" src="/storage/{{$cursoindividual->thumbnail}}" alt="{{$cursoindividual->slug}}" style="width: 307px; height:200px;  object-fit: cover; object-position: center center;">
 											<div class="overlay">
-												<a class="tc_preview_course"
+												<!-- <a class="tc_preview_course"
 												href="#"
 												data-toggle="modal"
-												data-target="#CursoResumen"
-												><i class="fa fa-play" style="font-size: 30px;"></i></a>
+												data-target="#CursoResumen_{{$cursoindividual->id}}"
+												><i class="fa fa-play" style="font-size: 30px;"></i></a> -->
 											</div>
 										</div>
 										<div class="details">
@@ -264,10 +264,10 @@
 										</div>
 									</div>
 								</div>
+								
 								@empty
 								<h3>No hay cursos relacionados</h3>
 								@endforelse
-								@include('resources.modal_curso')
 							
 							</div>
 						</div>

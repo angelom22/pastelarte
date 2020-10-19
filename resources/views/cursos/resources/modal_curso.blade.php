@@ -19,7 +19,7 @@
 				       	<h3><span class="badge badge-info">Nuevo</span></h3>
 				       	<p class="text-justify">{{$curso->extracto}}</p>
                 <img src="{{asset('/img/usuarios.png')}}"> {{$curso->estudiantes_count}} Alumnos ya inscritos</br>
-                <img src="{{asset('/img/cursos.png')}}"> {{$curso->lecciones->count()}} Lecciones Aprox(2 horas)</br>
+                <img src="{{asset('/img/cursos.png')}}"> {{$curso->lecciones->count()}} Lecciones, tiempo Aproximado( {{$curso->totalTime()}} )</br>
                 <img src="{{asset('/img/star.png')}}"> Nivel que debe tener: {{$curso->nivel_habilidad}}</br>
                 <img src="{{asset('/img/like.png')}}"> 95% Valoración positiva</br>
                 <img src="{{asset('/img/audio.png')}}"> Audio: {{$curso->lenguaje}}</br>
