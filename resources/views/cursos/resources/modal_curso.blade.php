@@ -1,4 +1,4 @@
-<div class="modal fade" id="CursoResumen" tabindex="-1" aria-labelledby="CursoResumen" aria-hidden="true">
+<div class="modal fade" id="CursoResumen_{{ $curso->id }}" tabindex="-1" aria-labelledby="CursoResumen_{{ $curso->id }}" aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header" style="background-color: #441c42;">
@@ -11,25 +11,25 @@
       	<div class="container-fluid">
 				    <div class="row">
 				      <div class="col-md-6">
-                    <!-- <iframe src=""  height="400" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe> -->
+                    <iframe src="{{$curso->url_video_preview_curso}}"  height="400" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
 				      </div>
 				       <div class="col-md-6">
 				       	<h2 id="titulo">{{$curso->title}}</h2>
-				       	<h5>chef Instructor</h5>
+				       	<h5>{{$curso->instructor}}</h5>
 				       	<h3><span class="badge badge-info">Nuevo</span></h3>
-				       	<p class="text-justify">extracto del curso</p>
-                <img src="{{asset('img/usuarios.png')}}"> 25 Alumnos ya inscritos</br>
-                <img src="{{asset('img/cursos.png')}}"> 5 Lecciones Aprox(2 horas)</br>
-                <img src="{{asset('img/star.png')}}"> Nivel que debe tener: Basico</br>
-                <img src="{{asset('img/like.png')}}"> 95% Valoración positiva</br>
-                <img src="{{asset('img/audio.png')}}"> Audio: Espanol</br>
-                <img src="{{asset('img/online.png')}}"> Online</br>
+				       	<p class="text-justify">{{$curso->extracto}}</p>
+                <img src="{{asset('/img/usuarios.png')}}"> {{$curso->estudiantes_count}} Alumnos ya inscritos</br>
+                <img src="{{asset('/img/cursos.png')}}"> {{$curso->lecciones->count()}} Lecciones Aprox(2 horas)</br>
+                <img src="{{asset('/img/star.png')}}"> Nivel que debe tener: {{$curso->nivel_habilidad}}</br>
+                <img src="{{asset('/img/like.png')}}"> 95% Valoración positiva</br>
+                <img src="{{asset('/img/audio.png')}}"> Audio: {{$curso->lenguaje}}</br>
+                <img src="{{asset('/img/online.png')}}"> Online</br>
 				       </div>
 				    </div>
   		</div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-warning" data-dismiss="modal">Comprar US$30</button>
+        <a href="{{ route("add_curso_to_cart",  $curso) }}" type="button" class="btn btn-warning">Comprar {{$curso->formatted_price}}</a>
         <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Cerrar</button>
       </div>
     </div>

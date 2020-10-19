@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 use App\User;
+use App\Http\Controllers\Auth\LoginController;
 
 
 // DB::listen(function($query){
@@ -13,13 +14,14 @@ Route::get('/', 'HomeController@index')->name('home');
 
 Auth::routes();
 
-// Rutas para el inicio de sesion con facebook
-Route::get('login/facebook', 'SocialLoginController@redirectToFacebook')->name('login.facebook');
-Route::get('login/facebook/callback', 'SocialLoginController@handleFacebookCallback');
+// Rutas para el inicio de sesion con redesSociales
+Route::get('login/{socialNetwork}', 'SocialLoginController@redirectToSocialNetwork')->name('login.social');
+Route::get('login/{socialNetwork}/callback', 'SocialLoginController@handleSocialNetworkCallback');
 
 // Ruta para los terminos de seguridad
 Route::get('terms', 'HomeController@terms')->name('terminos.privacidad');
 
+// Ruta de coneccion con Stripe
 Route::post(
     'stripe/webhook',
     'StripeWebHookController@handleWebhook'
@@ -33,7 +35,6 @@ Route::resource('/role', 'RoleController')->names('role');
 
 // Ruta para la vista administrativa de usuarios
 Route::resource('/user', 'UserController',['except' => ['create','store']])->names('user');
-
 
 /**
  *  Rutas para los articulos
@@ -64,7 +65,7 @@ Route::resource('/cursos', 'CursoController')->names([
     'store'     => 'CourseStore',
     'edit'      => 'CourseEdit',
 ]);
-// Ruta para que los estidiantes vean los cursos comprados
+// Ruta para que los estudiantes vean los cursos comprados
 Route::get('cursos/{curso}/aprende', 'CursoController@aprende')
         ->name('cursos.aprende')->middleware("can_access_to_course");
 // Ruta para la valoración de los cursos
@@ -160,4 +161,12 @@ Route::group(['prefix' => 'estudiante', 'as' => 'estudiante.', 'middleware' => [
     Route::get('/orders', 'UserController@orders')->name('orders');
     Route::get('/orders/{order}', 'UserController@showOrder')->name('orders.show');
     Route::get('/orders/{order}/download_invoice', 'UserController@downloadInvoice')->name('orders.download_invoice');
+
+    Route::put('/wishlist/{curso}/toggle', 'UserController@toggleItemOnWishlist')
+        ->name('wishlist.toggle');
+
+    Route::get('/wishlists', 'UserController@meWishlist')
+        ->name('wishlist.me');
+    Route::get('/wishlists/{id}/destroy', 'UserController@destroyWishlistItem')
+        ->name('wishlist.destroy');
 });

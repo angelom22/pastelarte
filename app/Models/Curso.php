@@ -11,6 +11,7 @@ use App\Models\Carrera;
 use App\Models\Leccion;
 use App\Models\Comentario;
 use App\Models\Review;
+use App\Models\Wishlist;
 use App\Traits\Hashidable;
 use App\User;
 
@@ -116,19 +117,29 @@ class Curso extends Model
     }
 
     public function carrera(){
-        return $this->belongsTo(Carrera::class, 'carrera_id', 'id')->withDefault();
+        return $this->belongsTo(Carrera::class, 'carrera_id', 'id');
+    }
+
+    public function reviews(){
+        return $this->hasMany(Review::class);
     }
 
     public function lecciones(){
         return $this->hasMany(Leccion::class)->orderBy("order", "asc");
     }
+   
+    public function wishlists() {
+        return $this->hasMany(Wishlist::class);
+    }
+
+    public function wishedForUser() {
+        return $this->wishlists
+            ->where("curso_id", $this->id)
+            ->count();
+    }
 
     public function comentarios(){
         return $this->hasMany(Comentario::class);
-    }
-    
-    public function reviews(){
-        return $this->hasMany(Review::class);
     }
 
     public function getRatingAttribute () {
@@ -160,12 +171,13 @@ class Curso extends Model
     }
 
     public function scopeFiltro(Builder $builder) {
+        $builder->with("carrera", "wishlists");
         $builder->withCount("estudiantes");
         $builder->where("status", Curso::DISPONIBLE);
         if (session()->has('search[cursos]')) {
             $builder->where('title', 'LIKE', '%' . session('search[cursos]') . '%');
         }
-        return $builder->paginate(9);
+        return $builder->simplePaginate(9);
     }
     
 }

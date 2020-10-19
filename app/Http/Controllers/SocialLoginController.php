@@ -2,38 +2,63 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\SocialProfile;
 use Illuminate\Http\Request;
 use App\User;
 use Auth;
-use Laravel\Socialite\Facades\Socialite;
+use Laravel\Socialite\Facades\Socialite; 
 
 class SocialLoginController extends Controller
 {
-    public function redirectToFacebook()
+    public function __construct(){
+        $this->middleware(['guest','social_network']);
+    }
+
+    public function redirectToSocialNetwork($socialNetwork)
     {
-        return Socialite::driver('facebook')->redirect();   
+        // dd($socialNetwork);
+       return Socialite::dirver($socialNetwork)->stateless()->redirect();
+          
     }
     
-    public function handleFacebookCallback()
-    {
-        if(!request('code')){
+    public function handleSocialNetworkCallback($socialNetwork)
+    {   
+        // dd($socialNetwork);
+   
+        try
+        {
+            $socialUser = Socialite::driver($socialNetwork)->user();
+        }
+        catch(\Exception $e)
+        {
+            // dd($e->getMessage());
             return redirect()->route('login')->with('bye', 'Hubo un error...!');
         }
 
-        $UserFacebook = Socialite::driver('facebook')->user();
+        // Verificar que existe un identificador de usuario de la red social
+        $socialProfile = SocialProfile::firstOrNew([
+            'social_network' => $socialNetwork,
+            'social_network_user_id' => $socialUser->getId()
+        ]);
 
-        $user = User::firstOrNew(['facebook_id' => $UserFacebook->getId()]);
+        if(! $socialProfile->exists ){
 
-        if(!$user->exists){
-            $user->name     = $UserFacebook->getName();
-            $user->email    = $UserFacebook->getEmail();
-            $user->avatar    = $UserFacebook->getAvatar();
-            $user->save();
+            // Verificamos que existe un usuario con el email de la red social
+            $user = User::firstOrNew(['email' => $socialUser->getEmail()]);
+
+            if(! $user->exists){
+                $user->name     = $socialUser->getName();
+                $user->status   = 1;
+                $user->save();
+            }
+            $socialProfile->avatar   = $socialUser->getAvatar();
+
+            $user->profiles()->save( $socialProfile );
 
         }
 
-        Auth::login($user);
+        Auth::login($socialProfile->user);
 
-        return redirect()->route('/')->with('welcome', 'Bienvenid@ '. $user->name);
+        return redirect()->route('/')->with('welcome', 'Bienvenid@ '. $socialProfile->user->name);
     }
 }

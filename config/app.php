@@ -93,7 +93,7 @@ return [
     |
     */
 
-    'fallback_locale' => 'es',
+    'fallback_locale' => 'en',
 
     /*
     |--------------------------------------------------------------------------
@@ -171,6 +171,7 @@ return [
         Intervention\Image\ImageServiceProvider::class,
         Yajra\Disqus\DisqusServiceProvider::class,
         
+        
 
         /*
          * Application Service Providers...
@@ -235,6 +236,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'DataTables' => Yajra\DataTables\Facades\DataTables::class,
         'Image' => Intervention\Image\Facades\Image::class,
+        
 
     ],
 

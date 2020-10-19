@@ -62,7 +62,22 @@
                                 <div class="thumb">
                                     <img class="img-whp" style="width: 307px; height: 200px;" src="/storage/{{$curso->thumbnail}}" alt="{{$curso->slug}}">
                                     <div class="overlay">
-                                        <a class="tc_preview_course" href="#" id="curso_id" data-toggle="modal" data-target="#CursoResumen" ><i class="fa fa-play" style="font-size: 30px;"></i></a>
+                                        @auth
+                                        <div class="icon">
+                                            @if($curso->wishedForUser())
+                                            <i
+                                                class="flaticon-like text-danger toggle-wish"
+                                                data-route="{{ route("estudiante.wishlist.toggle", ["curso" => $curso]) }}"
+                                            ></i>
+                                            @else
+                                            <i
+                                                class="flaticon-like toggle-wish"
+                                                data-route="{{ route("estudiante.wishlist.toggle", ["curso" => $curso]) }}"
+                                            ></i>
+                                            @endif
+                                        </div>
+                                        @endauth
+                                        <a class="tc_preview_course" href="#" id="curso_id" data-toggle="modal" data-target="#CursoResumen_{{ $curso->id }}" ><i class="fa fa-play" style="font-size: 30px;"></i></a>
                                     </div>
                                 </div>
                                 <div class="details">
@@ -87,7 +102,7 @@
                                 </div>
                             </div>
                         </div>
-                        @include('cursos.resources.modal_curso')
+                        @include('cursos.resources.modal_curso', ['curso' => $curso])
                         @empty
                         <div class="col-12">
                             <div class="empty-results">
@@ -96,14 +111,30 @@
                         </div>
                         @endforelse
                         <div class="col-lg-12">
-                            <div class="mbp_pagination mt20">
-                                <ul class="page_navigation">
-                                    @if(count($cursos))
-                                        {{ $cursos->links() }}
-                                    @endif
-                                </ul>
-                            </div>
+                        @if(count($cursos))
+                            {{ $cursos->links() }}
+                        @endif
                         </div>
+                        <!-- <div class="col-lg-12">
+							<div class="mbp_pagination">
+								<ul class="page_navigation">
+								    <li class="page-item disabled">
+								    	<a class="page-link" href="#" tabindex="-1" aria-disabled="true"> <span class="flaticon-left-arrow"></span> Prev</a>
+								    </li>
+								    <li class="page-item"><a class="page-link" href="#">1</a></li>
+								    <li class="page-item active" aria-current="page">
+								    	<a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
+								    </li>
+								    <li class="page-item"><a class="page-link" href="#">3</a></li>
+								    <li class="page-item"><a class="page-link" href="#">...</a></li>
+								    <li class="page-item"><a class="page-link" href="#">14</a></li>
+								    <li class="page-item">
+								    	<a class="page-link" href="#">Next <span class="flaticon-right-arrow-1"></span></a>
+								    </li>
+								</ul>
+							</div>
+						</div> -->
+
                     </div>
                 </div>
 
@@ -157,7 +188,7 @@
                                 <div id="panelBodyAuthors" class="panel-collapse collapse show">
                                     <div class="panel-body">
                                         <div class="cl_skill_checkbox">
-                                            <img src="{{ asset('img/gallery/chefroman.jpg') }}" alt="chefroman.jpg">
+                                            <img src="{{ asset('/img/gallery/chefroman.jpg') }}" alt="chefroman.jpg">
                                         </div>
                                     </div>
                                 </div>

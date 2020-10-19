@@ -50,14 +50,14 @@
                             </div>
                             <button type="submit" class="btn btn-log btn-block btn-thm2">Login</button>
                             <hr>
-                            <div class="row mt40">
+                            <!-- <div class="row mt40">
                                 <div class="col-lg">
-                                    <a href="{{route('login.facebook')}}" type="submit" class="btn btn-block color-white bgc-fb mb-3"><i class="fa fa-facebook float-left mt5"></i> Facebook</a>
+                                    <a href="{{route('login.social', 'facebook')}}" type="submit" class="btn btn-block color-white bgc-fb mb-3"><i class="fa fa-facebook float-left mt5"></i> Facebook</a>
                                 </div>
                                 <div class="col-lg">
-                                    <a href="#" type="submit" class="btn btn-block color-white bgc-gogle mb-3"><i class="fa fa-google float-left mt5"></i> Google</a>
+                                    <a href="{{route('login.social', 'google')}}" type="submit" class="btn btn-block color-white bgc-gogle mb-3"><i class="fa fa-google float-left mt5"></i> Google</a>
                                 </div>
-                            </div>
+                            </div> -->
                         </form>
                     </div>
                 </div>

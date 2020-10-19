@@ -1,0 +1,7 @@
+##Esta es la modificacion del archivo htaccess en produccion
+
+RewriteEngine on
+RewriteCond %{HTTP_HOST} ^pastelarte.com.ec$ [NC,OR]
+RewriteCond %{HTTP_HOST} ^www.pastelarte.com.ec$
+RewriteCond %{REQUEST_URI} !public/
+RewriteRule (.*) /public/$1 [L]

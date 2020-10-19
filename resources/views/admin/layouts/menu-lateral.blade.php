@@ -13,9 +13,9 @@
             <li {{ request()->is('estudiante/cursos') ? 'class=active' : '' }} ><a href="{{route('estudiante.cursos')}}"><span class="flaticon-online-learning"></span>Mis Cursos</a></li>
             <li {{ request()->is('estudiante/orders') ? 'class=active' : '' }} ><a href="{{route('estudiante.orders')}}"><span class="flaticon-shopping-bag-1"></span> Facturas</a></li>
             <li {{ request()->is('estudiante/credit-card') ? 'class=active' : '' }} ><a href="{{route('estudiante.billing.credit_card_form')}}"><span class="flaticon-shopping-bag-1"></span> Datos de Pago</a></li>
-            <li><a href="#"><span class="flaticon-rating"></span> Valoraciones</a></li>
+            <!-- <li><a href="#"><span class="flaticon-rating"></span> Valoraciones</a></li> -->
             <li><a href="#"><span class="flaticon-speech-bubble"></span> Certificados</a></li>
-            <li><a href="#"><span class="flaticon-like"></span> Lista de Deseos</a></li>
+            <li {{ request()->is('estudiante//wishlists') ? 'class=active' : '' }} ><a href="{{route('estudiante.wishlist.me')}}"><span class="flaticon-like"></span> Lista de Deseos</a></li>
             @endauth
 
             @if( auth()->user()->roles(([1])) )

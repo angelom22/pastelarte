@@ -36,8 +36,14 @@ return [
     
     'facebook' => [
         'client_id' => env('FACEBOOK_CLIENT_ID'),
-        'client_secret' => env('FACEBBOK_CLIENT_SECRET'),
-        'redirect' => env('FACEBBOK_REDIRECT_URL'),
+        'client_secret' => env('FACEBOOK_CLIENT_SECRET'),
+        'redirect' => env('GOOGLE_REDIRECT_URL', 'https://pastelarte.com.ec/login/facebook/callback'),
+    ],
+    
+    'google' => [
+        'client_id' => env('GOOGLE_CLIENT_ID'),
+        'client_secret' => env('GOOGLE_CLIENT_SECRET'),
+        'redirect' => env('GOOGLE_REDIRECT_URL', 'https://pastelarte.com.ec/login/google/callback') ,
     ],
 
 ];

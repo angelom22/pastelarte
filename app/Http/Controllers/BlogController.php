@@ -26,12 +26,12 @@ class BlogController extends Controller
         // dd($slug);
         $category   = Category::where('slug', $slug)->pluck('id')->first();
         $blogs      = Blog::where('category_id', $category)->orderBy('id', 'DESC')->where('status', 'PUBLICADO')->paginate(3);
-        dd($blogs);
+        // dd($blogs);
 
         $categories = Category::orderBy('name', 'ASC')->get();
         $tags       = Tag::orderBy('name', 'ASC')->get();
 
-        return view('Blog.index',compact('blogs', 'categories', 'tags'));
+        return view('blog.index',compact('blogs', 'categories', 'tags'));
     }
     
     public function filtrarEtiqueta($slug)
@@ -45,7 +45,7 @@ class BlogController extends Controller
         $categories = Category::orderBy('name', 'ASC')->get();
         $tags       = Tag::orderBy('name', 'ASC')->get();
 
-        return view('Blog.index',compact('blogs', 'categories', 'tags'));
+        return view('blog.index',compact('blogs', 'categories', 'tags'));
     }
 
     public function index()
@@ -57,7 +57,7 @@ class BlogController extends Controller
 
         $tags = Tag::orderBy('name', 'ASC')->get();
 
-        return view('Blog.index',compact('blogs', 'categories', 'tags'));
+        return view('blog.index',compact('blogs', 'categories', 'tags'));
     }
 
     /**
@@ -141,7 +141,7 @@ class BlogController extends Controller
 
         $tags = Tag::orderBy('name', 'ASC')->get();
 
-        return view('Blog.show',compact('blog', 'categories', 'tags'));
+        return view('blog.show',compact('blog', 'categories', 'tags'));
     }
 
     /**

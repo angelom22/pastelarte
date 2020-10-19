@@ -7,6 +7,7 @@ use Cviebrock\EloquentSluggable\Sluggable;
 use Cviebrock\EloquentSluggable\SluggableScopeHelpers;
 use App\Models\Curso;
 use App\Traits\Hashidable;
+use App\User;
 
 class Carrera extends Model
 {
@@ -46,6 +47,10 @@ class Carrera extends Model
     ];
 
     public function cursos(){
-        return $this->belongsToMany(Curso::class)->withTimestamps();
+        return $this->belongsToMany(Curso::class, 'carrera_curso');
+    }
+
+    public function estudiantes(){
+        return $this->belongsToMany(User::class, 'curso_user');
     }
 }

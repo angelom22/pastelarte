@@ -14,6 +14,7 @@ use App\Models\Blog;
 use App\Models\Comentario;
 use App\Models\Curso;
 use App\Models\Order;
+use App\Models\SocialProfile;
 use App\Traits\Hashidable;
 use Laravel\Cashier\Billable;
 
@@ -68,6 +69,7 @@ class User extends Authenticatable
     use Notifiable, UserTrait;
     use Billable;
     use Hashidable;
+
 
     /**
      * The attributes that are mass assignable.
@@ -153,6 +155,12 @@ class User extends Authenticatable
             ->with("order_lines", "coupon")
             ->withCount("order_lines")
             ->paginate();
+    }
+
+    // Relacion para los perfiles con redes sociales
+    public function profiles()
+    {
+        return $this->hasMany(SocialProfile::class);
     }
 
 }

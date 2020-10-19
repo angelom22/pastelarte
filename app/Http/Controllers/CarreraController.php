@@ -15,7 +15,7 @@ class CarreraController extends Controller
     public function filtrarCarrera($slug)
     {
         $carrera   = Carrera::select('carreras.*')->where('slug', $slug)->first();
-
+        // dd($carrera->cursos()->count());
         $carrera_cursos    = Curso::where('carrera_id', $carrera->id)
                             ->where("status", Curso::DISPONIBLE)
                             ->select('cursos.*')

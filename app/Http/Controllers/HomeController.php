@@ -34,10 +34,10 @@ class HomeController extends Controller
         $carreras = Carrera::withCount("cursos")->get();
 
         $cursosFeatured = Curso::withCount("estudiantes")
-                                    ->with("carrera")
-                                    ->whereFeatured(true)
-                                    ->whereStatus(Curso::DISPONIBLE)
-                                    ->get();
+                                ->with("carrera", "wishlists")
+                                ->whereFeatured(true)
+                                ->whereStatus(Curso::DISPONIBLE)
+                                ->get();
 
         // dd($cursosFeatured[0]->rating);
         

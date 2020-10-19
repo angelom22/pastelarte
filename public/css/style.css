@@ -7049,6 +7049,27 @@ ul.mc_parent_list ul.mc_child_list:hover .pricing_btn{
   border: 2px solid #ff1053;
   color: #ff1053;
 }
+.cart_btnss_white_wishlist{
+  background-color: #ffffff;
+  border: 2px solid #ff1053;
+  border-radius: 27px;
+  color: #ff1053;
+  display: line;
+  font-size: 15px;
+  font-family: "Open Sans";
+  line-height: 3.2;
+  margin-bottom: 23px;
+  height: 50px;
+  max-width: 234px;
+  -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
+.cart_btnss_white_wishlist:hover{
+  background-color: #ff1053;
+  color: #ffffff;
+}
 .cart_btnss_white{
   background-color: #ffffff;
   border: 2px solid #ff1053;

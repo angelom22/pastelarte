@@ -62,7 +62,7 @@
         @include('layouts.footer')
 
         <!-- Modal CursosResumen-->
-        
+       
 
         <a class="scrollToHome" href="#"><i class="flaticon-up-arrow-1"></i></a>
 
@@ -140,6 +140,38 @@
     <!-- Validación Registro -->
     <script type="text/javascript" src="{{ asset('js/register.js') }}"></script>
 
+    <!-- JQuery para anadir cursos a lista de deseos -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.blockUI/2.70/jquery.blockUI.min.js"></script>
+    <script>
+        jQuery(document).ready(function () {
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+            $(".toggle-wish").unbind().on("click", function (e) {
+                console.log('cliked');
+                const self = $(this);
+                const route = $(this).data("route");
+                jQuery.ajax({
+                    method: "PUT",
+                    url: route,
+                    beforeSend: function () {
+                        $.blockUI({
+                            message: '<div class="preloader"></div>'
+                        });
+                    },
+                    success: function () {
+                        self.toggleClass("text-danger");
+                    },
+                    complete: function () {
+                        $.unblockUI();
+                    }
+                });
+            });
+        });
+    </script>
 
     @stack('js')
 

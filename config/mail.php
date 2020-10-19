@@ -71,11 +71,10 @@ return [
             'transport' => 'array',
         ],
 
-        'mailers' => [
-            'sendgrid' => [
-                'transport' => 'sendgrid',
-            ],
+        'sendgrid' => [
+            'transport' => 'sendgrid',
         ],
+        
     ],
 
     /*

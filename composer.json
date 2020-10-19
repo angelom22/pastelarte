@@ -22,6 +22,7 @@
         "laravel/tinker": "^2.0",
         "laravel/ui": "^3.0",
         "s-ichikawa/laravel-sendgrid-driver": "^3.0",
+        "symfony/intl": "^5.1",
         "vinkla/hashids": "^9.0",
         "yajra/laravel-datatables-oracle": "~9.0",
         "yajra/laravel-disqus": "^1.2"

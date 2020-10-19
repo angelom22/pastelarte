@@ -21,6 +21,13 @@ class Cart {
     /**
      * Cart constructor.
      */
+    // public $items=null;
+    // public function __construct($oldCart){
+    //     if($oldCart){
+    //         $this->items=$oldCart->items;
+    //     }
+    // }
+
     public function __construct() {
         if (session()->has("cart")) {
             $this->cart = session("cart");

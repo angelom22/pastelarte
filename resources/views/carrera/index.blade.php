@@ -13,13 +13,13 @@
 								<div class="cs_instructor">
 									<ul class="cs_instrct_list float-left mb0">
 										<li class="list-inline-item"><div class="color-white">Chef Beatriz Román</div></li>
-										<li class="list-inline-item"><div class="color-white">última actualización 06/09/2020</div></li>
+										<li class="list-inline-item"><div class="color-white">última actualización {{$carrera->updated_at->format('d/m/Y')}}</div></li>
 									</ul>
 								</div>
-								<h3 class="cs_title color-white">{{$carrera->title}}</h3>
+								<h1 class="cs_title color-white">{{$carrera->title}}</h1>
 								<ul class="cs_review_enroll">
-									<li class="list-inline-item color-white"><span class="flaticon-profile"></span> 20 estudiantes inscritos</li>
-									<li class="list-inline-item color-white"><span class="flaticon-comment"></span> 25 comentarios</li>
+									<!-- <li class="list-inline-item color-white"><span class="flaticon-profile"></span> 0 estudiantes inscritos</li> -->
+									<!-- <li class="list-inline-item color-white"><span class="flaticon-comment"></span> 0 comentarios</li> -->
 								</ul>
 							</div>
 						</div>
@@ -92,7 +92,6 @@
 														<h4 class="title">Cursos:</h4>
 														<ul class="course_schdule float-right">
 															<li class="list-inline-item"><a href="#">{{$carrera->cursos->count()}} Cursos</a></li>
-															<li class="list-inline-item"><a href="#">10:00:00</a></li>
 														</ul>
 													</div>
 													<br>
@@ -108,17 +107,24 @@
 															    <div id="{{$curso->slug}}" class="panel-collapse collapse show">
 															        <div class="panel-body">
 															        	<ul class="cs_list mb0">
-																			@foreach($curso->lecciones as $lecciones)
+																			@forelse($curso->lecciones as $lecciones)
 															        		<li>
 															      					<span class="flaticon-play-button-1 icon"></span> {{$lecciones->title_leccion}} --- {{$lecciones->duration_leccion}}
-															        		</li>
-															        		@endforeach
+																			</li>
+																			@empty
+																			<div class="col-12">
+																				<div class="empty-results">
+																					<h5>Este curso no tiene lecciones...!</h5>
+																				</div>
+																			</div>
+															        		@endforelse
 															        	</ul>
 															        </div>
 															    </div>
 														    </div>
 														</div>
 													</div>
+													
 													@endforeach
 
 												</div>
@@ -173,7 +179,7 @@
 
 
 										<div class="tab-pane fade" id="review" role="tabpanel" aria-labelledby="review-tab">
-											<div class="cs_row_five csv2">
+											<!-- <div class="cs_row_five csv2">
 												<div class="student_feedback_container">
 													<h4 class="aii_title">Comentarios de los estudiantes</h4>
 													<div class="s_feeback_content">
@@ -212,7 +218,7 @@
 														</div>
 													</div>
 												</div>
-											</div>
+											</div> -->
 
 											<!-- DISQUS -->
 											<div id="disqus_thread"></div>
@@ -244,50 +250,54 @@
 
 
 
-						<div class="col-lg-12">
-							<h3 class="r_course_title">Adquirir curso por separado:</h3>
-						</div>
+			<div class="col-lg-12">
+				<h3 class="r_course_title">Adquirir curso por separado:</h3>
+			</div>
 
 			<div class="row">
 				<div class="col-lg-12">
 					<div class="popular_course_slider">
-@foreach($cursos as $curso)
+						@forelse($cursos as $item)
+				
 						<div class="item">
 							<div class="top_courses home2 mb0">
                                 <div class="thumb">
-                                    <img class="img-whp" src="/storage/{{$curso->thumbnail}}" alt="{{$curso->title}}" style="width: 307px; height:200px;  object-fit: cover; object-position: center center;">
+                                    <img class="img-whp" src="/storage/{{$item->thumbnail}}" alt="{{$item->title}}" style="width: 307px; height:200px;  object-fit: cover; object-position: center center;">
                                     <div class="overlay">
-                                        <div class="tag" style="background: #441c42;">{{ $curso->status === '1' ? 'Destacado' : '' }}</div>
+                                        <div class="tag" style="background: #441c42;">{{ $item->status === '1' ? 'Destacado' : '' }}</div>
                                         <!-- <div class="icon" style="background: #441c42; font-size: 15px;">decoración</div> -->
-                                        <a class="tc_preview_course" href="#" data-toggle="modal" data-target="#curso1"><i class="fa fa-play" style="font-size: 30px;"></i></a>
+										<!-- <a class="tc_preview_course" href="#" data-toggle="modal" data-target="#CursoResumen_{{ $item->id }}"><i class="fa fa-play" style="font-size: 30px;"></i></a> -->
                                     </div>
                                 </div>
                                 <div class="details">
                                     <div class="tc_content">
-                                        <p>{{$curso->instructor}}</p>
-                                        <h5>{{$curso->title}}</h5>
+                                        <p>{{$item->instructor}}</p>
+                                        <a href="{{route('cursos.show', $item->slug)}}"><h5>{{$item->title}}</h5></a>
                                         <ul class="tc_review">
-                                            <li class="list-inline-item"><a href="#"><i class="fa fa-star"></i></a></li>
-                                            <li class="list-inline-item"><a href="#"><i class="fa fa-star"></i></a></li>
-                                            <li class="list-inline-item"><a href="#"><i class="fa fa-star"></i></a></li>
-                                            <li class="list-inline-item"><a href="#"><i class="fa fa-star"></i></a></li>
-                                            <li class="list-inline-item"><a href="#"><i class="fa fa-star"></i></a></li>
-                                            <li class="list-inline-item"><a href="#">(6)</a></li>
+										@include('estudiante.cursos.resources.valoraciones', ['rating' => $item->rating])
                                         </ul>
                                     </div>
                                     <div class="tc_footer">
                                         <ul class="tc_meta float-left">
                                             <li class="list-inline-item"><a href="#"><i class="flaticon-profile"></i></a></li>
-                                            <li class="list-inline-item"><a href="#">30</a></li>
+                                            <li class="list-inline-item"><a href="#">{{$item->estudiantes->count()}}</a></li>
                                             <li class="list-inline-item"><a href="#"><i class="flaticon-comment"></i></a></li>
-                                            <li class="list-inline-item"><a href="#">10</a></li>
+                                            <li class="list-inline-item"><a href="#">{{$item->reviews->count()}}</a></li>
                                         </ul>
-                                        <div class="tc_price float-right">${{$curso->precio}}</div>
+                                        <div class="tc_price float-right">${{$item->precio}}</div>
                                     </div>
                                 </div>
 							</div>
 						</div>
-@endforeach
+						
+						@empty
+						<div class="col-12">
+							<div class="empty-results">
+								<h3>No hay ningún curso relacionado con tu busqueda...!</h3>
+							</div>
+						</div>
+						@endforelse
+						
 					</div>
 				</div>
 			</div>
@@ -305,12 +315,11 @@
 
 				<div class="col-lg-4 col-xl-3">
 					<div class="instructor_pricing_widget csv2">
-						<div class="price"><span>Precio</span> ${{$carrera->precio}}</div>
-						<a href="#" class="cart_btnss">Agregar al carro</a>
-						<a href="#" class="cart_btnss_white">Comprar ahora</a>
+						<!-- <div class="price"><span>Precio</span> ${{$carrera->precio}}</div> -->
+						<!-- <a href="#" class="cart_btnss">Agregar al carro</a> -->
+						<!-- <a href="#" class="cart_btnss_white">Comprar ahora</a> -->
 						<h5 class="subtitle text-left">Incluye</h5>
 						<ul class="price_quere_list text-left">
-							<li><span class="flaticon-play-button-1"></span>10 horas de video</li><br>
 							<li><span class="flaticon-key-1"></span> Acceso de por vida completo</li><br>
 							<li><span class="flaticon-responsive"></span> Acceso en móvil, laptops, tablets y Tv</li><br>
 							<li><span class="flaticon-flash"></span> Asignaciones</li><br>
@@ -318,14 +327,14 @@
 						</ul>
 					</div>
 
-								<div class="blog_recent_post_widget media_widget">
-			                        <h4 class="title">Chef Beatriz Román</h4>
-			                        <img src="{{ asset('img/gallery/chefroman.jpg') }}" alt="chefroman.jpg">
-			                    </div>
+					<div class="blog_recent_post_widget media_widget">
+						<h4 class="title">Chef Beatriz Román</h4>
+						<img src="{{ asset('img/gallery/chefroman.jpg') }}" alt="chefroman.jpg">
+					</div>
 
-			                   	<div class="blog_recent_post_widget media_widget">
-			                        <h4 class="title">Inicia ya con nuestros cursos GRATUITOS</h4>
-			                    </div>
+					<div class="blog_recent_post_widget media_widget">
+						<h4 class="title">Inicia ya con nuestros cursos GRATUITOS</h4>
+					</div>
 
 				</div>
 
