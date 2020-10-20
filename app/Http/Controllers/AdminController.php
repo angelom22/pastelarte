@@ -10,6 +10,7 @@ use App\Models\Event;
 use App\Models\Curso;
 use App\Models\Category;
 use App\Models\Carrera;
+use App\Models\OrderLine;
 use App\RolesPermisos\Models\Role;
 
 
@@ -28,7 +29,14 @@ class AdminController extends Controller
      */
     public function index()
     {
-        return view('admin.dashboard.dashboard');
+        $this->authorize('haveaccess', 'dashboard.admin');
+
+        $users = User::where('status', true)->orderBy('id', 'desc')->paginate(3);
+        $cursosGratis = Curso::where('gratis', true)->count();
+        $cursosPagos = Curso::where('gratis', false)->count();
+        $ganaciaTotal = OrderLine::sum("precio");
+
+        return view('admin.dashboard.index', compact('users', 'cursosPagos', 'cursosGratis', 'ganaciaTotal'));
     }
 
     public function curso(Request $request)

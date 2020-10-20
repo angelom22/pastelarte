@@ -33,10 +33,7 @@ class CursoController extends Controller
      */
     public function index()
     {
-        // $cursos = Curso::where('status', 1)
-        //                 ->select('cursos.*')
-        //                 ->orderBy('id', 'ASC')
-        //                 ->paginate(9);
+       
         $cursos = Curso::filtro();
         
         $totalCursos = $cursos->count();

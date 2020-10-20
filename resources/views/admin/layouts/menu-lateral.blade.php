@@ -9,7 +9,7 @@
     <div class="dashbord_nav_list">
         <ul>
             @auth
-            <li {{ request()->is('dashboard') ? 'class=active' : '' }} ><a href="{{url('dashboard')}}"><span class="flaticon-puzzle-1"></span> Inicio</a></li>
+            
             <li {{ request()->is('estudiante/cursos') ? 'class=active' : '' }} ><a href="{{route('estudiante.cursos')}}"><span class="flaticon-online-learning"></span>Mis Cursos</a></li>
             <li {{ request()->is('estudiante/orders') ? 'class=active' : '' }} ><a href="{{route('estudiante.orders')}}"><span class="flaticon-shopping-bag-1"></span> Facturas</a></li>
             <li {{ request()->is('estudiante/credit-card') ? 'class=active' : '' }} ><a href="{{route('estudiante.billing.credit_card_form')}}"><span class="flaticon-shopping-bag-1"></span> Datos de Pago</a></li>
@@ -20,6 +20,9 @@
 
             @if( auth()->user()->roles(([1])) )
 
+                @can('haveaccess','dashboard.admin')
+                <li {{ request()->is('dashboard') ? 'class=active' : '' }} ><a href="{{url('dashboard')}}"><span class="flaticon-puzzle-1"></span> Inicio</a></li>
+                @endcan
                 @can('haveaccess','course.admin')
                 <li {{ request()->is('admin/curso') ? 'class=active' : '' }} ><a href="{{route('admin.curso')}}"><span class="flaticon-online-learning"></span>Cursos</a></li>
                 @endcan

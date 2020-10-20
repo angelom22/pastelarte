@@ -1,6 +1,5 @@
 @extends('admin.layouts.app')
 
-
 @section('content')
 
 	<!-- Main Header Nav -->
@@ -28,8 +27,8 @@
 							<div class="ff_one">
 								<div class="icon"><span class="flaticon-user"></span></div>
 								<div class="detais">
-									<p>Usuarios Registrados</p>
-									<div class="timer">45</div>
+									<p>Usuarios</p>
+									<div class="timer">{{$users->count()}}</div>
 								</div>
 							</div>
 						</div>
@@ -38,36 +37,45 @@
 								<div class="icon"><span class="flaticon-online-learning"></span></div>
 								<div class="detais">
 									<p>Cursos Pagos</p>
-									<div class="timer">2,589</div>
+									<div class="timer">{{$cursosPagos}}</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-6 col-md-6 col-lg-6 col-xl-3">
+							<div class="ff_one style2">
+								<div class="icon"><span class="flaticon-online-learning"></span></div>
+								<div class="detais">
+									<p>Cursos Gratis</p>
+									<div class="timer">{{$cursosGratis}}</div>
 								</div>
 							</div>
 						</div>
 						<div class="col-sm-6 col-md-6 col-lg-6 col-xl-3">
 							<div class="ff_one style4">
-								<div class="icon"><span class="flaticon-online-learning"></span></div>
+								<div class="icon"><span class="flaticon-online-money"></span></div>
 								<div class="detais">
-									<p>Cursos Gratuitos</p>
-									<div class="timer">27</div>
+									<p>Ganancia $</p>
+									<div class="timer">{{$ganaciaTotal}}</div>
 								</div>
 							</div>
 						</div>
 
 						<div class="col-xl-8">
-							<div class="application_statics">
-								<h4>Resumen Actual</h4>
-								<div class="c_container"></div>
-							</div>
+							@include('admin.dashboard.charts')
 						</div>
 
 						<div class="col-xl-4">
 							<div class="recent_job_activity">
 								<h4 class="title">Últimos Usuarios Registrados</h4>
+								@forelse($users as $user)
 								<div class="grid">
 									<ul>
-										<li><div class="icon"><span class="flaticon-user"></span></div></li>
-										<li><p>Arlindo Ochoa / arlindoochoa@gmail.com</p></li>
+										<li><div class="icon title"><span class="flaticon-user"></span><p>{{$user->name}} / {{$user->email}}</p></div></li>
 									</ul>
 								</div>
+								@empty
+								<div class="grid">No hay usuarios registrados</div>
+								@endforelse
 							</div>
 						</div>
 					</div>

@@ -127,6 +127,14 @@ class AngelPermissionInfoSeeder extends Seeder
 
         // Permisos users
         $permission = Permission::create([
+            'name' => 'Administracion',
+            'slug' => 'dashboard.admin',
+            'description' => 'El usuario puede ver las estadisticas de ganacia de la aplicación',
+        ]);
+
+        $permission_all[] = $permission->id;
+
+        $permission = Permission::create([
             'name' => 'Lista user',
             'slug' => 'user.index',
             'description' => 'El usuario puede listar los users',

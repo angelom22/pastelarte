@@ -60,7 +60,9 @@
                 </a>
 
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                    @can('haveaccess','dashboard.admin')
                     <a class="dropdown-item" href="{{url('dashboard')}}"> <i class="fa fa-user fa-fw"></i> Dashboard</a>
+                    @endcan
                     <span class="dropdown-divider"></span>
                     <a class="dropdown-item" href="{{route('estudiante.cursos')}}"> <i class="fa fa-bookmark fa-fw"></i> Mis cursos</a>
                     <a class="dropdown-item" href="{{route('admin.user', Auth::user()->id)}}"> <i class="fa fa-cog fa-fw"></i> Configurar Cuenta</a>

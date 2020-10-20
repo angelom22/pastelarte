@@ -134,9 +134,6 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth']], 
 
 });
 
-// Ruta para los comentarios
-Route::post('cursos/{curso}/comentarios', 'ComentarioController@store')->name('cursos.comentarios.store');
-
 // Rutas para anadir cursos y carreras al carrito de compras
 Route::get('/add-curso-to-cart/{curso}', 'UserController@addCursoToCart')->name('add_curso_to_cart');
 Route::get('/cart', 'UserController@showCart')->name('cart');

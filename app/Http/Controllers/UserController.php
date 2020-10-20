@@ -11,6 +11,7 @@ use App\Traits\ManageCart;
 use App\Traits\Estudiante\ManageCursos;
 use App\Traits\Estudiante\ManageOrders;
 use App\Traits\Estudiante\ManageWishlists;
+use App\Traits\ManageProfits;
 use Illuminate\Support\Facades\Hash;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Storage;
@@ -19,7 +20,7 @@ use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
-    use ManageCart, ManageCursos, ManageOrders, ManageWishlists;
+    use ManageCart, ManageCursos, ManageOrders, ManageWishlists, ManageProfits;
     
     public function __construct()
     {
